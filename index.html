@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Sun Digital | Automate Your Google Reviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#F2B705',
+              charcoal: '#1C1C1C',
+              warmGray: '#E6E6E6',
+              offWhite: '#F9F9F9',
+              black: '#000000',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            borderRadius: {
+              'holo': '24px',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #000000;
+        margin: 0;
+      }
+      .hero-node-line {
+        position: absolute;
+        background: rgba(242, 183, 5, 0.2);
+        z-index: 0;
+      }
+      .node-dot {
+        width: 8px;
+        height: 8px;
+        background: #F2B705;
+        border-radius: 50%;
+        position: absolute;
+      }
+      ::selection {
+        background-color: #F2B705;
+        color: #000000;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
