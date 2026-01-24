@@ -17,47 +17,47 @@ const Hero: React.FC = () => {
             </svg>
           </div>
 
-          {/* Radiating Nodes */}
+          {/* Radiating Nodes - repositioned for better line alignment */}
           {/* Top Left */}
-          <div className="absolute top-0 left-1/4 animate-bounce" style={{ animationDuration: '3s' }}>
+          <div className="absolute top-2 left-[20%] animate-bounce" style={{ animationDuration: '3s' }}>
             <div className="w-14 h-14 bg-white border border-black/5 rounded-2xl flex items-center justify-center shadow-xl">
               <span className="text-2xl">📱</span>
             </div>
-            <div className="node-dot -right-4 top-1/2" />
           </div>
 
           {/* Bottom Left */}
-          <div className="absolute bottom-4 left-1/3 animate-pulse" style={{ animationDuration: '4s' }}>
+          <div className="absolute bottom-2 left-[28%] animate-pulse" style={{ animationDuration: '4s' }}>
             <div className="w-14 h-14 bg-white border border-black/5 rounded-2xl flex items-center justify-center shadow-xl">
               <span className="text-2xl">💬</span>
             </div>
           </div>
 
           {/* Top Right */}
-          <div className="absolute top-8 right-1/4 animate-bounce" style={{ animationDuration: '3.5s' }}>
+          <div className="absolute top-2 right-[20%] animate-bounce" style={{ animationDuration: '3.5s' }}>
             <div className="w-14 h-14 bg-white border border-black/5 rounded-2xl flex items-center justify-center shadow-xl">
               <span className="text-2xl">⭐</span>
             </div>
           </div>
 
           {/* Bottom Right */}
-          <div className="absolute bottom-0 right-1/3 animate-pulse" style={{ animationDuration: '2.5s' }}>
+          <div className="absolute bottom-2 right-[28%] animate-pulse" style={{ animationDuration: '2.5s' }}>
             <div className="w-14 h-14 bg-white border border-black/5 rounded-2xl flex items-center justify-center shadow-xl">
               <span className="text-2xl">📈</span>
             </div>
           </div>
 
-          {/* Decorative Connecting Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" preserveAspectRatio="none">
-            <line x1="25%" y1="20%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="33%" y1="80%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="75%" y1="30%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1="66%" y1="90%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
+          {/* Decorative Connecting Lines - adjusted positions */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" preserveAspectRatio="none">
+            <line x1="27%" y1="15%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1.5" strokeDasharray="6 6" />
+            <line x1="35%" y1="85%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1.5" strokeDasharray="6 6" />
+            <line x1="73%" y1="15%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1.5" strokeDasharray="6 6" />
+            <line x1="65%" y1="85%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1.5" strokeDasharray="6 6" />
           </svg>
         </div>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-4xl mx-auto leading-tight text-black">
-          Too Busy (or Too Awkward) to Ask for <span className="text-primary">Google Reviews?</span>
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto leading-tight text-black">
+          Too Busy (or Too Awkward) to Ask for{' '}
+          <span className="text-primary">Google Reviews?</span>
         </h1>
         <p className="text-lg md:text-xl text-charcoal/60 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
           Let automated texts follow up for you after each visit—no uncomfortable conversations required.
