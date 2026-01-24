@@ -42,30 +42,10 @@ const PricingSection: React.FC = () => {
         }),
       });
 
-      // 2. Redirect to Stripe Checkout
-      const stripe = window.Stripe?.('pk_live_51NXuaoDvoiUTuOpLdMM4H5L5HuVDXl6A2eQy3q5BF0nCilRRZniH7NwHAKb7gGlgadcNKIPrZvG8SgihfEdx3qbk00ZssFajDs');
-
-      if (!stripe) {
-        throw new Error('Stripe failed to load. Please check your internet connection.');
-      }
-
-      const { error } = await stripe.redirectToCheckout({
-        lineItems: [{
-          price: 'price_1SsszrDvoiUTuOpLA2YT7tAT',
-          quantity: 1,
-        }],
-        mode: 'subscription',
-        successUrl: window.location.origin + '?success=true',
-        cancelUrl: window.location.href,
-        customerEmail: formData.email,
-      });
-
-      if (error) {
-        console.error('Stripe error:', error);
-        alert(error.message);
-      } else {
-        setSubmitted(true);
-      }
+      // 2. Redirect to Stripe Payment Link with pre-filled email
+      const stripePaymentLink = 'https://buy.stripe.com/cNi00jbNi5TE9yWb2U0kE0f';
+      const prefilledEmail = encodeURIComponent(formData.email);
+      window.location.href = `${stripePaymentLink}?prefilled_email=${prefilledEmail}`;
     } catch (error) {
       console.error('Submission error:', error);
       alert('Something went wrong. Please try again.');
