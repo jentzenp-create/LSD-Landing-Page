@@ -31,7 +31,7 @@ const PricingSection: React.FC = () => {
 
     try {
       // 1. Send data to GoHighLevel Webhook first
-      await fetch('https://services.leadconnectorhq.com/hooks/cj4hQsqqI9fhy6MABW7y/webhook-trigger/4b48dac3-d501-4ac3-bb6d-4f6290e4c198', {
+      await fetch('https://services.leadconnectorhq.com/hooks/cj4hQsqqI9fhy6MABW7y/webhook-trigger/3c0a6347-bd55-45e7-882e-d9aa39c54b23', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
