@@ -56,8 +56,7 @@ const Hero: React.FC = () => {
         </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto leading-tight text-black">
-          Too Busy (or Too Awkward) to Ask for{' '}
-          <span className="text-primary">Google Reviews?</span>
+          Get More <span className="text-primary">5-Star Google Reviews</span> Without Asking Patients Face-to-Face
         </h1>
         <p className="text-lg md:text-xl text-charcoal/60 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
           Let automated texts follow up for you after each visit—no uncomfortable conversations required.
