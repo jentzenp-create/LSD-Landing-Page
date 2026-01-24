@@ -25,18 +25,18 @@ const Header: React.FC = () => {
             Local Sun <span className="text-primary">Digital</span>
           </span>
         </div>
-        
+
         <div className="hidden md:flex items-center gap-8">
           <a href="#features" className="text-sm font-semibold text-charcoal/70 hover:text-black transition-colors">Features</a>
           <a href="#how-it-works" className="text-sm font-semibold text-charcoal/70 hover:text-black transition-colors">How it Works</a>
           <a href="#proof" className="text-sm font-semibold text-charcoal/70 hover:text-black transition-colors">Results</a>
         </div>
 
-        <a 
-          href="#get-started" 
+        <a
+          href="#pricing"
           className="bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95"
         >
-          Get Started
+          Sign Up
         </a>
       </nav>
     </header>

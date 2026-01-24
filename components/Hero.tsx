@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
     <section className="relative pt-32 pb-20 overflow-hidden bg-white min-h-[90vh] flex items-center">
       {/* Decorative background elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">
         {/* Radiating Graphic Element inspired by CoreShift */}
         <div className="relative h-64 mb-12 flex justify-center items-center">
@@ -49,10 +49,10 @@ const Hero: React.FC = () => {
 
           {/* Decorative Connecting Lines */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" preserveAspectRatio="none">
-             <line x1="25%" y1="20%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
-             <line x1="33%" y1="80%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
-             <line x1="75%" y1="30%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
-             <line x1="66%" y1="90%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="25%" y1="20%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="33%" y1="80%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="75%" y1="30%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="66%" y1="90%" x2="50%" y2="50%" stroke="#F2B705" strokeWidth="1" strokeDasharray="4 4" />
           </svg>
         </div>
 
@@ -63,14 +63,14 @@ const Hero: React.FC = () => {
           Let automated texts follow up for you after each visit—no uncomfortable conversations required.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a 
-            href="#get-started" 
+          <a
+            href="#pricing"
             className="bg-black text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-black/10 active:scale-95 w-full sm:w-auto"
           >
             Automate My Review Requests
           </a>
           <p className="text-sm text-charcoal/40 font-semibold">
-            Setup takes less than 15 minutes.
+            Fully automated messaging.
           </p>
         </div>
       </div>

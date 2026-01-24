@@ -5,7 +5,7 @@ import Hero from './components/Hero';
 import ValueProps from './components/ValueProps';
 import ProcessFlow from './components/ProcessFlow';
 import ProofSection from './components/ProofSection';
-import LeadForm from './components/LeadForm';
+import PricingSection from './components/PricingSection';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <ValueProps />
         <ProcessFlow />
         <ProofSection />
-        <LeadForm />
+        <PricingSection />
       </main>
       <Footer />
     </div>
