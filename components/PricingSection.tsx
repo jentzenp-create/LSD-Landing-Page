@@ -178,7 +178,6 @@ const PricingSection: React.FC = () => {
                   'Instant SMS & Email Notifications',
                   'No Contracts—Cancel Anytime',
                   'Custom Review Landing Page',
-                  'Negative Feedback Shield',
                   'A2P Verified Messaging'
                 ].map((benefit) => (
                   <div key={benefit} className="flex items-center gap-3">
