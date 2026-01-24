@@ -26,11 +26,6 @@ const Footer: React.FC = () => {
           <p className="text-charcoal/40 text-sm font-semibold">© 2026 Local Sun Digital. All rights reserved.</p>
         </div>
 
-        <div className="flex gap-8">
-          <a href="#" className="text-charcoal/60 hover:text-black transition-colors text-sm font-bold">Privacy Policy</a>
-          <a href="#" className="text-charcoal/60 hover:text-black transition-colors text-sm font-bold">Terms of Service</a>
-          <a href="#" className="text-charcoal/60 hover:text-black transition-colors text-sm font-bold">Contact Us</a>
-        </div>
       </div>
     </footer>
   );
