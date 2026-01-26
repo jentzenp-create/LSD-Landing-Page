@@ -6,17 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Local Sun Digital | Automate Your Google Reviews</title>
 
-  <!-- Preconnect to critical origins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://js.stripe.com">
+  <!-- DNS prefetch for Stripe (loaded lazily) -->
+  <link rel="dns-prefetch" href="https://js.stripe.com">
 
-  <!-- Google Fonts with display=swap for faster rendering -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"
-    media="print" onload="this.media='all'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </noscript>
+  <!-- Critical inline CSS for instant first paint -->
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+    }
+
+    #root:empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #fff, #F9F9F9);
+    }
+
+    #root:empty::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 3px solid #F2B705;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -27,21 +52,18 @@
 
   <!-- Stripe loaded lazily after page interaction or delay -->
   <script>
-    // Lazy load Stripe only when needed or after page is interactive
     var stripeLoaded = false;
     function loadStripe() {
       if (stripeLoaded) return;
       stripeLoaded = true;
-      var script = document.createElement('script');
-      script.src = 'https://js.stripe.com/v3/';
-      script.async = true;
-      document.head.appendChild(script);
+      var s = document.createElement('script');
+      s.src = 'https://js.stripe.com/v3/';
+      s.async = true;
+      document.head.appendChild(s);
     }
-
-    // Load after 3 seconds or on user interaction, whichever comes first
     setTimeout(loadStripe, 3000);
-    ['click', 'scroll', 'touchstart'].forEach(function (event) {
-      document.addEventListener(event, loadStripe, { once: true, passive: true });
+    ['click', 'scroll', 'touchstart'].forEach(function (e) {
+      document.addEventListener(e, loadStripe, { once: true, passive: true });
     });
   </script>
 </body>
