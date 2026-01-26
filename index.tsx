@@ -1,13 +1,24 @@
 
 import './index.css';
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // Lazy load pages for code-splitting
 const ServicesOverview = lazy(() => import('./pages/ServicesOverview'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const App = lazy(() => import('./App'));
+
+// Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 // Loading fallback component
 const PageLoader = () => (
@@ -38,6 +49,7 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <BrowserRouter basename="/">
+      <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           {/* Services overview - main landing page */}
