@@ -20,6 +20,23 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, '.'),
       }
+    },
+    build: {
+      // Target modern browsers including Safari 14+
+      target: ['es2020', 'safari14'],
+      // Enable modulePreload polyfill for Safari
+      modulePreload: {
+        polyfill: true
+      },
+      // Optimize chunk splitting for faster Safari loading
+      rollupOptions: {
+        output: {
+          // Minimize number of chunks for Safari (slower with many modules)
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom', 'react-router-dom']
+          }
+        }
+      }
     }
   };
 });
