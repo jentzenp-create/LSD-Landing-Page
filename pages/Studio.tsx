@@ -46,19 +46,28 @@ const allFields = [
 ];
 
 const Studio: React.FC = () => {
-    const { content, loading, updateContent } = useContent();
+    const { content, loading, error: contentError, updateContent } = useContent();
     const [editableContent, setEditableContent] = useState<Record<string, string>>({});
     const [savingKeys, setSavingKeys] = useState<Set<string>>(new Set());
     const [savedKeys, setSavedKeys] = useState<Set<string>>(new Set());
     const [activeSection, setActiveSection] = useState('Services Overview');
     const [polishingKey, setPolishingKey] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isOfflineMode, setIsOfflineMode] = useState(false);
 
     useEffect(() => {
-        if (Object.keys(content).length > 0) {
-            setEditableContent(content);
+        // Initialize with placeholders, even if database fails
+        const initialContent: Record<string, string> = {};
+        allFields.forEach(f => {
+            initialContent[f.key] = content[f.key] || '';
+        });
+        setEditableContent(initialContent);
+
+        // Check if we're in offline mode
+        if (contentError) {
+            setIsOfflineMode(true);
         }
-    }, [content]);
+    }, [content, contentError]);
 
     // Get unique sections
     const sections = [...new Set(allFields.map(f => f.section))];
@@ -158,6 +167,27 @@ const Studio: React.FC = () => {
         );
     }
 
+    // Show error banner but still allow editing
+    const ErrorBanner = () => contentError ? (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+            <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-red-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <div>
+                    <p className="font-semibold text-red-800">Database Connection Issue</p>
+                    <p className="text-sm text-red-600 mt-1">
+                        Could not connect to Supabase. Please check your environment variables in Vercel.
+                        You can still view and edit fields, but changes won't be saved.
+                    </p>
+                    <p className="text-xs text-red-500 mt-2 font-mono">
+                        Error: {String(contentError?.message || contentError)}
+                    </p>
+                </div>
+            </div>
+        </div>
+    ) : null;
+
     return (
         <div className="min-h-screen bg-[#F8F9FB] text-black font-['Inter']">
             {/* Sidebar / Navigation */}
@@ -196,8 +226,8 @@ const Studio: React.FC = () => {
                                 key={section}
                                 onClick={() => setActiveSection(section)}
                                 className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all text-sm ${activeSection === section
-                                        ? 'bg-black text-white shadow-lg shadow-black/10'
-                                        : 'text-gray-600 hover:bg-gray-50'
+                                    ? 'bg-black text-white shadow-lg shadow-black/10'
+                                    : 'text-gray-600 hover:bg-gray-50'
                                     }`}
                             >
                                 <div className="flex items-center justify-between">
@@ -275,6 +305,8 @@ const Studio: React.FC = () => {
                         </button>
                     </div>
                 </header>
+
+                <ErrorBanner />
 
                 <div className="max-w-4xl space-y-6">
                     {filteredFields.length > 0 ? (
