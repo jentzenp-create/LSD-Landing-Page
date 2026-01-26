@@ -317,6 +317,68 @@ const serviceCategories = [
                 ctaLink: '#'
             }
         ]
+    },
+    {
+        id: 'ai-automation',
+        name: 'AI Automation',
+        tagline: 'Supercharge your business with intelligent automation',
+        description: 'Custom AI solutions that save time and boost efficiency across your operations.',
+        icon: '🤖',
+        tiers: [
+            {
+                name: 'Starter',
+                price: 299,
+                period: 'month',
+                setupFee: 199,
+                description: 'Essential AI tools for small teams',
+                features: [
+                    'AI Chatbot (1 Platform)',
+                    'Basic Workflow Automation',
+                    'Email Response Assistant',
+                    'Monthly Usage: 1,000 AI Credits',
+                    'Email Support'
+                ],
+                popular: false,
+                ctaText: 'Get Started',
+                ctaLink: '#'
+            },
+            {
+                name: 'Business',
+                price: 799,
+                period: 'month',
+                setupFee: 499,
+                description: 'Full AI suite for growing businesses',
+                features: [
+                    'AI Chatbot (Multi-platform)',
+                    'Advanced Workflow Automation',
+                    'AI Content Generator',
+                    'Lead Scoring & Qualification',
+                    'Monthly Usage: 5,000 AI Credits',
+                    'Priority Support'
+                ],
+                popular: true,
+                ctaText: 'Get Started',
+                ctaLink: '#'
+            },
+            {
+                name: 'Enterprise',
+                price: null,
+                period: 'custom',
+                setupFee: null,
+                description: 'Custom AI solutions at scale',
+                features: [
+                    'Custom AI Model Training',
+                    'Unlimited Automations',
+                    'API Access & Integrations',
+                    'Dedicated AI Strategist',
+                    'Unlimited AI Credits',
+                    'White-label Options'
+                ],
+                popular: false,
+                ctaText: 'Contact Us',
+                ctaLink: '#'
+            }
+        ]
     }
 ];
 
