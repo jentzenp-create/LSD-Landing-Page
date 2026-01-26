@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 interface Category {
     id: string;
@@ -13,6 +14,7 @@ interface ServicesHeaderProps {
 const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,20 +24,17 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToSection = (id: string) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+    // Close mobile menu on route change
+    useEffect(() => {
         setIsMobileMenuOpen(false);
-    };
+    }, [location]);
 
     return (
         <>
             <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-black/5' : 'bg-transparent'
                 }`}>
                 <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <a href="/" className="flex items-center gap-2 group">
+                    <Link to="/" className="flex items-center gap-2 group">
                         {/* SVG Logo */}
                         <svg width="40" height="40" viewBox="0 0 100 100" className="fill-primary transition-transform group-hover:scale-110">
                             <circle cx="50" cy="50" r="20" />
@@ -54,28 +53,28 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
                         <span className="font-bold text-xl tracking-tight hidden sm:block uppercase text-black">
                             Local Sun <span className="text-primary">Digital</span>
                         </span>
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-6">
-                        {categories.slice(0, 4).map((category) => (
-                            <button
+                        {categories.slice(0, 5).map((category) => (
+                            <Link
                                 key={category.id}
-                                onClick={() => scrollToSection(category.id)}
+                                to={`/services/${category.id}`}
                                 className="text-sm font-semibold text-charcoal/70 hover:text-black transition-colors relative group"
                             >
                                 {category.name}
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                            </button>
+                            </Link>
                         ))}
-                        {categories.length > 4 && (
-                            <button
-                                onClick={() => scrollToSection(categories[4].id)}
+                        {categories.length > 5 && (
+                            <Link
+                                to="/"
                                 className="text-sm font-semibold text-charcoal/70 hover:text-black transition-colors relative group"
                             >
-                                More
+                                All Services
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                            </button>
+                            </Link>
                         )}
                     </div>
 
@@ -112,15 +111,20 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
                 <div className={`absolute top-20 left-0 right-0 bg-white shadow-2xl rounded-b-3xl p-6 transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
                     }`}>
                     <div className="space-y-2">
+                        <Link
+                            to="/"
+                            className="w-full block px-4 py-3 rounded-xl text-lg font-semibold text-charcoal hover:bg-primary/10 hover:text-black transition-colors"
+                        >
+                            <span className="text-primary">←</span> All Services
+                        </Link>
                         {categories.map((category) => (
-                            <button
+                            <Link
                                 key={category.id}
-                                onClick={() => scrollToSection(category.id)}
-                                className="w-full text-left px-4 py-3 rounded-xl text-lg font-semibold text-charcoal hover:bg-primary/10 hover:text-black transition-colors flex items-center gap-3"
+                                to={`/services/${category.id}`}
+                                className="w-full block px-4 py-3 rounded-xl text-lg font-semibold text-charcoal hover:bg-primary/10 hover:text-black transition-colors"
                             >
-                                <span className="text-primary">→</span>
-                                {category.name}
-                            </button>
+                                <span className="text-primary">→</span> {category.name}
+                            </Link>
                         ))}
                     </div>
                 </div>

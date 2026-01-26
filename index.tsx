@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Lazy load pages for code-splitting
-const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const ServicesOverview = lazy(() => import('./pages/ServicesOverview'));
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const App = lazy(() => import('./App'));
 
 // Loading fallback component
@@ -39,9 +40,11 @@ root.render(
     <BrowserRouter basename="/">
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          {/* Services/Pricing page is now the root */}
-          <Route path="/" element={<ServicesPage />} />
-          {/* Original San Diego Mobile Lab landing page */}
+          {/* Services overview - main landing page */}
+          <Route path="/" element={<ServicesOverview />} />
+          {/* Individual service detail pages */}
+          <Route path="/services/:serviceId" element={<ServiceDetail />} />
+          {/* Original San Diego Mobile Lab landing page (not linked from main site) */}
           <Route path="/mobile-lab" element={<App />} />
         </Routes>
       </Suspense>
