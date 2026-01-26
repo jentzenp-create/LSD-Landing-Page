@@ -1,7 +1,13 @@
-
 import React from 'react';
+import { useContent } from '../hooks/useContent';
 
 const Hero: React.FC = () => {
+  const { content, loading } = useContent();
+
+  const title = content.hero_title || "Get More 5-Star Google Reviews Without Asking Patients Face-to-Face";
+  const subtitle = content.hero_subtitle || "Let automated texts follow up for you after each visit—no uncomfortable conversations required.";
+  const cta = content.cta_button || "Automate My Review Requests";
+
   return (
     <section className="relative pt-32 pb-20 overflow-hidden bg-white min-h-[90vh] flex items-center">
       {/* Decorative background elements */}
@@ -56,17 +62,19 @@ const Hero: React.FC = () => {
         </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto leading-tight text-black">
-          Get More <span className="text-primary">5-Star Google Reviews</span> Without Asking Patients Face-to-Face
+          {title.includes('5-Star Google Reviews') ? (
+            <>Get More <span className="text-primary">5-Star Google Reviews</span> Without Asking Patients Face-to-Face</>
+          ) : title}
         </h1>
         <p className="text-lg md:text-xl text-charcoal/60 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-          Let automated texts follow up for you after each visit—no uncomfortable conversations required.
+          {subtitle}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#pricing"
             className="bg-black text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-black/10 active:scale-95 w-full sm:w-auto"
           >
-            Automate My Review Requests
+            {cta}
           </a>
           <p className="text-sm text-charcoal/40 font-semibold">
             Fully automated messaging.

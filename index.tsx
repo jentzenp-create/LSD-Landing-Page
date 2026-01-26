@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 // Lazy load pages for code-splitting
 const ServicesOverview = lazy(() => import('./pages/ServicesOverview'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const Studio = lazy(() => import('./pages/Studio'));
 const App = lazy(() => import('./App'));
 
 // Scroll to top on route change
@@ -58,6 +59,8 @@ root.render(
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
           {/* Original San Diego Mobile Lab landing page (not linked from main site) */}
           <Route path="/mobile-lab" element={<App />} />
+          {/* Brand Studio - Client CMS */}
+          <Route path="/studio" element={<Studio />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
