@@ -89,7 +89,7 @@ const ServicesHero: React.FC = () => {
                             <circle cx="9" cy="7" r="4" />
                             <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span className="font-semibold text-xs sm:text-sm">Trusted by 50+ Businesses</span>
+                        <span className="font-semibold text-xs sm:text-sm">Trusted by Local Businesses Nationwide</span>
                     </div>
                 </div>
             </div>

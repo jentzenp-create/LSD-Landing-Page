@@ -112,8 +112,8 @@ const ServiceDetail: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {/* Stats */}
                             <div className="bg-white rounded-2xl p-8 text-center">
-                                <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">50+</div>
-                                <div className="text-charcoal/60 font-medium">Happy Clients</div>
+                                <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">🇺🇸</div>
+                                <div className="text-charcoal/60 font-medium">Nationwide Service</div>
                             </div>
                             <div className="bg-white rounded-2xl p-8 text-center">
                                 <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">4.9★</div>

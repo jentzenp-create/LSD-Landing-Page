@@ -21,7 +21,7 @@ const allFields = [
     { key: 'services_cta_button', label: 'Bottom CTA Button', section: 'Services Overview', placeholder: 'Get Free Consultation' },
 
     // Service Detail Pages
-    { key: 'detail_stats_clients', label: 'Stats - Happy Clients', section: 'Service Details', placeholder: '50+' },
+    { key: 'detail_stats_clients', label: 'Stats - Reach', section: 'Service Details', placeholder: 'Nationwide' },
     { key: 'detail_stats_rating', label: 'Stats - Average Rating', section: 'Service Details', placeholder: '4.9★' },
     { key: 'detail_stats_growth', label: 'Stats - Growth Rate', section: 'Service Details', placeholder: '2x' },
     { key: 'detail_testimonial', label: 'Testimonial Quote', section: 'Service Details', placeholder: 'Working with Local Sun Digital transformed our business...' },

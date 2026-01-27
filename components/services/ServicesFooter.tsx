@@ -30,7 +30,7 @@ const ServicesFooter: React.FC = () => {
                             Schedule a Call
                         </a>
                         <a
-                            href="mailto:hello@localsundigital.com"
+                            href="mailto:jentzen@localsundigital.com"
                             className="bg-white/10 text-white border border-white/20 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all w-full sm:w-auto"
                         >
                             Send an Email
@@ -40,8 +40,8 @@ const ServicesFooter: React.FC = () => {
                     {/* Trust badges */}
                     <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-white/40">
                         <div className="flex flex-col items-center gap-2">
-                            <span className="text-3xl font-black text-white">50+</span>
-                            <span className="text-sm font-medium">Happy Clients</span>
+                            <span className="text-3xl font-black text-white">🇺🇸</span>
+                            <span className="text-sm font-medium">Nationwide Service</span>
                         </div>
                         <div className="flex flex-col items-center gap-2">
                             <span className="text-3xl font-black text-white">5★</span>
@@ -91,7 +91,7 @@ const ServicesFooter: React.FC = () => {
                         <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-semibold">
                             <a href="/" className="hover:text-primary transition-colors">Home</a>
                             <a href="#review-automation" className="hover:text-primary transition-colors">Services</a>
-                            <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+                            <a href="/contact" className="hover:text-primary transition-colors">Contact</a>
                             <a href="/terms" className="hover:text-primary transition-colors">Terms</a>
                             <a href="/privacy" className="hover:text-primary transition-colors">Privacy</a>
                         </div>

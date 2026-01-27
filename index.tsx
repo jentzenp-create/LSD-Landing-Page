@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 const ServicesOverview = lazy(() => import('./pages/ServicesOverview'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Studio = lazy(() => import('./pages/Studio'));
+const Contact = lazy(() => import('./pages/Contact'));
 const App = lazy(() => import('./App'));
 
 // Scroll to top on route change
@@ -61,6 +62,8 @@ root.render(
           <Route path="/mobile-lab" element={<App />} />
           {/* Brand Studio - Client CMS */}
           <Route path="/studio" element={<Studio />} />
+          {/* Contact page */}
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

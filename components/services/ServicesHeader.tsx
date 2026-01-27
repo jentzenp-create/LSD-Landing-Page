@@ -80,12 +80,12 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
 
                     {/* CTA Button */}
                     <div className="flex items-center gap-4">
-                        <a
-                            href="#contact"
+                        <Link
+                            to="/contact"
                             className="bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-black/10"
                         >
                             Get a Quote
-                        </a>
+                        </Link>
 
                         {/* Mobile Menu Button */}
                         <button
