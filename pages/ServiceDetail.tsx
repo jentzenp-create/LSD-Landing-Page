@@ -170,7 +170,7 @@ const ServiceDetail: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a
-                                href="#"
+                                href="/contact"
                                 className="bg-primary text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform inline-flex items-center gap-2"
                             >
                                 Book Free Consultation

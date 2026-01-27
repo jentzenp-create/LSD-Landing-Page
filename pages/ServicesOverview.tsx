@@ -31,7 +31,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Growth',
@@ -49,7 +49,7 @@ export const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Enterprise',
@@ -67,7 +67,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Contact Us',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ],
         valueProps: [
@@ -100,7 +100,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Learn More',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Business Pro',
@@ -118,7 +118,7 @@ export const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Learn More',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'E-Commerce',
@@ -136,7 +136,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Learn More',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ],
         valueProps: [
@@ -169,7 +169,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Start Generating',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Growth Engine',
@@ -187,7 +187,7 @@ export const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Start Generating',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Full Funnel',
@@ -205,7 +205,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Start Generating',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ],
         valueProps: [
@@ -238,7 +238,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Professional',
@@ -256,7 +256,7 @@ export const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Premium',
@@ -274,7 +274,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ],
         valueProps: [
@@ -307,7 +307,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Boost Rankings',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Growth SEO',
@@ -325,7 +325,7 @@ export const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Boost Rankings',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Enterprise SEO',
@@ -343,7 +343,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Boost Rankings',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ],
         valueProps: [
@@ -376,7 +376,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Business',
@@ -394,7 +394,7 @@ export const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Enterprise',
@@ -412,7 +412,7 @@ export const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Contact Us',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ],
         valueProps: [
@@ -492,7 +492,7 @@ const ServicesOverview: React.FC = () => {
                             Book a free consultation and we'll help you find the perfect solution for your business.
                         </p>
                         <a
-                            href="#contact"
+                            href="/contact"
                             className="inline-flex items-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform"
                         >
                             Get Free Consultation

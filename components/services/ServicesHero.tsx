@@ -61,7 +61,7 @@ const ServicesHero: React.FC = () => {
                         </svg>
                     </a>
                     <a
-                        href="#contact"
+                        href="/contact"
                         className="bg-white text-black border-2 border-black/10 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg hover:border-primary hover:bg-primary/5 transition-all w-full sm:w-auto"
                     >
                         Get Custom Quote

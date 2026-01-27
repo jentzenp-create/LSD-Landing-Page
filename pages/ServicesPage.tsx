@@ -30,7 +30,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Growth',
@@ -48,7 +48,7 @@ const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Enterprise',
@@ -66,7 +66,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Contact Us',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ]
     },
@@ -92,7 +92,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Learn More',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Business Pro',
@@ -110,7 +110,7 @@ const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Learn More',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'E-Commerce',
@@ -128,7 +128,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Learn More',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ]
     },
@@ -154,7 +154,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Start Generating',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Growth Engine',
@@ -172,7 +172,7 @@ const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Start Generating',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Full Funnel',
@@ -190,7 +190,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Start Generating',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ]
     },
@@ -216,7 +216,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Professional',
@@ -234,7 +234,7 @@ const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Premium',
@@ -252,7 +252,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ]
     },
@@ -278,7 +278,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Boost Rankings',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Growth SEO',
@@ -296,7 +296,7 @@ const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Boost Rankings',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Enterprise SEO',
@@ -314,7 +314,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Boost Rankings',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ]
     },
@@ -340,7 +340,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Business',
@@ -358,7 +358,7 @@ const serviceCategories = [
                 ],
                 popular: true,
                 ctaText: 'Get Started',
-                ctaLink: '#'
+                ctaLink: '/contact'
             },
             {
                 name: 'Enterprise',
@@ -376,7 +376,7 @@ const serviceCategories = [
                 ],
                 popular: false,
                 ctaText: 'Contact Us',
-                ctaLink: '#'
+                ctaLink: '/contact'
             }
         ]
     }
