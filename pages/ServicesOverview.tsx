@@ -146,6 +146,73 @@ export const serviceCategories = [
         ]
     },
     {
+        id: 'ai-automation',
+        name: 'AI Automation',
+        tagline: 'Supercharge your business with intelligent automation',
+        description: 'Custom AI solutions that save time and boost efficiency across your operations.',
+        icon: '🤖',
+        startingPrice: 299,
+        period: 'month',
+        tiers: [
+            {
+                name: 'Starter',
+                price: 299,
+                period: 'month',
+                setupFee: 199,
+                description: 'Essential AI tools for small teams',
+                features: [
+                    'AI Chatbot (1 Platform)',
+                    'Basic Workflow Automation',
+                    'Email Response Assistant',
+                    'Monthly Usage: 1,000 AI Credits',
+                    'Email Support'
+                ],
+                popular: false,
+                ctaText: 'Get Started',
+                ctaLink: '/contact'
+            },
+            {
+                name: 'Business',
+                price: 799,
+                period: 'month',
+                setupFee: 499,
+                description: 'Full AI suite for growing businesses',
+                features: [
+                    'AI Chatbot (Multi-platform)',
+                    'Advanced Workflow Automation',
+                    'AI Content Generator',
+                    'Lead Scoring & Qualification',
+                    'Monthly Usage: 5,000 AI Credits',
+                    'Priority Support'
+                ],
+                popular: true,
+                ctaText: 'Get Started',
+                ctaLink: '/contact'
+            },
+            {
+                name: 'Enterprise',
+                price: null,
+                period: 'custom',
+                setupFee: null,
+                description: 'Custom AI solutions at scale',
+                features: [
+                    'Custom AI Model Training',
+                    'Custom Automations',
+                    'API Access & Integrations',
+                    'Dedicated AI Strategist'
+                ],
+                popular: false,
+                ctaText: 'Contact Us',
+                ctaLink: '/contact'
+            }
+        ],
+        valueProps: [
+            { title: '24/7 Availability', description: 'AI chatbots handle inquiries around the clock, never missing a lead.' },
+            { title: 'Smart Automation', description: 'Automate repetitive tasks and free up your team for high-value work.' },
+            { title: 'Scalable Intelligence', description: 'AI that learns and improves as your business grows.' }
+        ]
+    },
+    {
         id: 'lead-generation',
         name: 'Lead Generation',
         tagline: 'Fill your pipeline with qualified prospects',
@@ -348,73 +415,6 @@ export const serviceCategories = [
             { title: 'Local Dominance', description: 'Show up first when customers search for services in your area.' },
             { title: 'Organic Traffic', description: 'Build sustainable traffic that doesn\'t require ongoing ad spend.' },
             { title: 'Data-Driven', description: 'Every decision backed by analytics and real performance data.' }
-        ]
-    },
-    {
-        id: 'ai-automation',
-        name: 'AI Automation',
-        tagline: 'Supercharge your business with intelligent automation',
-        description: 'Custom AI solutions that save time and boost efficiency across your operations.',
-        icon: '🤖',
-        startingPrice: 299,
-        period: 'month',
-        tiers: [
-            {
-                name: 'Starter',
-                price: 299,
-                period: 'month',
-                setupFee: 199,
-                description: 'Essential AI tools for small teams',
-                features: [
-                    'AI Chatbot (1 Platform)',
-                    'Basic Workflow Automation',
-                    'Email Response Assistant',
-                    'Monthly Usage: 1,000 AI Credits',
-                    'Email Support'
-                ],
-                popular: false,
-                ctaText: 'Get Started',
-                ctaLink: '/contact'
-            },
-            {
-                name: 'Business',
-                price: 799,
-                period: 'month',
-                setupFee: 499,
-                description: 'Full AI suite for growing businesses',
-                features: [
-                    'AI Chatbot (Multi-platform)',
-                    'Advanced Workflow Automation',
-                    'AI Content Generator',
-                    'Lead Scoring & Qualification',
-                    'Monthly Usage: 5,000 AI Credits',
-                    'Priority Support'
-                ],
-                popular: true,
-                ctaText: 'Get Started',
-                ctaLink: '/contact'
-            },
-            {
-                name: 'Enterprise',
-                price: null,
-                period: 'custom',
-                setupFee: null,
-                description: 'Custom AI solutions at scale',
-                features: [
-                    'Custom AI Model Training',
-                    'Custom Automations',
-                    'API Access & Integrations',
-                    'Dedicated AI Strategist'
-                ],
-                popular: false,
-                ctaText: 'Contact Us',
-                ctaLink: '/contact'
-            }
-        ],
-        valueProps: [
-            { title: '24/7 Availability', description: 'AI chatbots handle inquiries around the clock, never missing a lead.' },
-            { title: 'Smart Automation', description: 'Automate repetitive tasks and free up your team for high-value work.' },
-            { title: 'Scalable Intelligence', description: 'AI that learns and improves as your business grows.' }
         ]
     }
 ];
