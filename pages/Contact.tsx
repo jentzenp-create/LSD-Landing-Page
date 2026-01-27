@@ -30,84 +30,86 @@ const Contact: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Contact Options */}
+                {/* Calendar Section - Full Width */}
                 <section className="py-16 sm:py-24 bg-white">
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                            {/* Calendar Embed Section */}
-                            <div className="bg-offWhite rounded-3xl p-8 sm:p-10">
-                                <h2 className="text-2xl font-bold text-black mb-4">Schedule a Call</h2>
-                                <p className="text-charcoal/60 mb-8">
-                                    Book a free 15-minute consultation to discuss your business goals and how we can help.
-                                </p>
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                        <div className="bg-offWhite rounded-3xl p-6 sm:p-10">
+                            <h2 className="text-2xl font-bold text-black mb-2">Schedule a Call</h2>
+                            <p className="text-charcoal/60 mb-8">
+                                Book a free 15-minute consultation to discuss your business goals and how we can help.
+                            </p>
 
-                                {/* Calendar Embed */}
-                                <div className="bg-white rounded-2xl overflow-hidden min-h-[500px]">
-                                    <iframe
-                                        src="https://api.leadconnectorhq.com/widget/booking/BaehU5q6Dx4fjczoZ9TF"
-                                        style={{ width: '100%', height: '600px', border: 'none', overflow: 'hidden' }}
-                                        scrolling="no"
-                                        id="BaehU5q6Dx4fjczoZ9TF_1769471898131"
-                                    />
-                                </div>
+                            {/* Calendar Embed */}
+                            <div className="bg-white rounded-2xl overflow-hidden">
+                                <iframe
+                                    src="https://api.leadconnectorhq.com/widget/booking/BaehU5q6Dx4fjczoZ9TF"
+                                    style={{ width: '100%', height: '700px', border: 'none', overflow: 'hidden' }}
+                                    scrolling="no"
+                                    id="BaehU5q6Dx4fjczoZ9TF_1769471898131"
+                                />
                             </div>
+                        </div>
+                    </div>
+                </section>
 
-                            {/* Contact Info */}
-                            <div className="space-y-8">
-                                <div className="bg-offWhite rounded-3xl p-8 sm:p-10">
-                                    <h2 className="text-2xl font-bold text-black mb-6">Other Ways to Reach Us</h2>
+                {/* Contact Info Section */}
+                <section className="py-16 bg-offWhite">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Other Ways to Reach Us */}
+                            <div className="bg-white rounded-3xl p-8">
+                                <h2 className="text-xl font-bold text-black mb-6">Other Ways to Reach Us</h2>
 
-                                    <div className="space-y-6">
-                                        {/* Email */}
-                                        <a
-                                            href="mailto:jentzen@localsundigital.com"
-                                            className="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-lg transition-all group"
-                                        >
-                                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                                                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-charcoal/40 font-medium">Email us</p>
-                                                <p className="text-lg font-bold text-black">jentzen@localsundigital.com</p>
-                                            </div>
-                                        </a>
+                                <div className="space-y-4">
+                                    {/* Email */}
+                                    <a
+                                        href="mailto:jentzen@localsundigital.com"
+                                        className="flex items-center gap-4 p-4 bg-offWhite rounded-2xl hover:shadow-lg transition-all group"
+                                    >
+                                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                            <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-charcoal/40 font-medium">Email us</p>
+                                            <p className="text-lg font-bold text-black">jentzen@localsundigital.com</p>
+                                        </div>
+                                    </a>
 
-                                        {/* Response Time */}
-                                        <div className="flex items-center gap-4 p-4 bg-white rounded-2xl">
-                                            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                                                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-charcoal/40 font-medium">Response time</p>
-                                                <p className="text-lg font-bold text-black">Within 24 hours</p>
-                                            </div>
+                                    {/* Response Time */}
+                                    <div className="flex items-center gap-4 p-4 bg-offWhite rounded-2xl">
+                                        <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                            <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-charcoal/40 font-medium">Response time</p>
+                                            <p className="text-lg font-bold text-black">Within 24 hours</p>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                {/* Quick Info */}
-                                <div className="bg-black rounded-3xl p-8 sm:p-10 text-white">
-                                    <h3 className="text-xl font-bold mb-4">Why Work With Us?</h3>
-                                    <ul className="space-y-3">
-                                        {[
-                                            'Trusted by local businesses nationwide',
-                                            'No long-term contracts required',
-                                            'Transparent pricing, no hidden fees',
-                                            'Dedicated support team'
-                                        ].map((item, i) => (
-                                            <li key={i} className="flex items-center gap-3 text-white/80">
-                                                <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                                </svg>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                            {/* Why Work With Us */}
+                            <div className="bg-black rounded-3xl p-8 text-white">
+                                <h3 className="text-xl font-bold mb-4">Why Work With Us?</h3>
+                                <ul className="space-y-3">
+                                    {[
+                                        'Trusted by local businesses nationwide',
+                                        'No long-term contracts required',
+                                        'Transparent pricing, no hidden fees',
+                                        'Dedicated support team'
+                                    ].map((item, i) => (
+                                        <li key={i} className="flex items-center gap-3 text-white/80">
+                                            <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </div>
