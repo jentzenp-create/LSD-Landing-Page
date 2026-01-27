@@ -146,7 +146,7 @@ const serviceCategories = [
                 setupFee: 250,
                 description: 'Get your first leads flowing',
                 features: [
-                    '500 Outreach Emails/Month',
+                    '5000 Outreach Emails/Month',
                     'Basic Lead Targeting',
                     'Weekly Reports',
                     'Email Templates',
@@ -163,7 +163,7 @@ const serviceCategories = [
                 setupFee: 500,
                 description: 'Scale your lead generation',
                 features: [
-                    '2,000 Outreach Emails/Month',
+                    '15,000 Outreach Emails/Month',
                     'Advanced Targeting & Personalization',
                     'Multi-channel Campaigns',
                     'A/B Testing',
@@ -181,7 +181,7 @@ const serviceCategories = [
                 setupFee: 1000,
                 description: 'Complete lead-to-close system',
                 features: [
-                    'Unlimited Outreach',
+                    '30,000+ Outreach',
                     'Complete Sales Funnel Build',
                     'Landing Page Creation',
                     'Retargeting Ads',

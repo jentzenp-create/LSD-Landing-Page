@@ -161,7 +161,7 @@ export const serviceCategories = [
                 setupFee: 250,
                 description: 'Get your first leads flowing',
                 features: [
-                    '500 Outreach Emails/Month',
+                    '5000 Outreach Emails/Month',
                     'Basic Lead Targeting',
                     'Weekly Reports',
                     'Email Templates',
@@ -178,7 +178,7 @@ export const serviceCategories = [
                 setupFee: 500,
                 description: 'Scale your lead generation',
                 features: [
-                    '2,000 Outreach Emails/Month',
+                    '15,000 Outreach Emails/Month',
                     'Advanced Targeting & Personalization',
                     'Multi-channel Campaigns',
                     'A/B Testing',
@@ -196,7 +196,7 @@ export const serviceCategories = [
                 setupFee: 1000,
                 description: 'Complete lead-to-close system',
                 features: [
-                    'Unlimited Outreach',
+                    '30,000+ Outreach',
                     'Complete Sales Funnel Build',
                     'Landing Page Creation',
                     'Retargeting Ads',
@@ -250,7 +250,7 @@ export const serviceCategories = [
                     '20 Posts/Month',
                     '4 Platforms',
                     'Story Content',
-                    'Community Management',
+                    '4x Custom Video Creation',
                     'Competitor Analysis',
                     'Bi-weekly Reports'
                 ],
@@ -267,7 +267,7 @@ export const serviceCategories = [
                 features: [
                     'Daily Posting',
                     'All Major Platforms',
-                    'Video Content Creation',
+                    '8x Video Content Creation',
                     'Influencer Outreach',
                     'Paid Ad Management',
                     'Weekly Strategy Calls'
@@ -320,8 +320,7 @@ export const serviceCategories = [
                     'Content Strategy',
                     'Technical SEO Audit',
                     'Backlink Building',
-                    'Competitor Analysis',
-                    'Bi-weekly Reports'
+                    'Competitor Analysis'
                 ],
                 popular: true,
                 ctaText: 'Boost Rankings',
@@ -338,8 +337,7 @@ export const serviceCategories = [
                     'Custom Content Creation',
                     'Authority Link Building',
                     'Multi-location SEO',
-                    'Advanced Analytics',
-                    'Weekly Strategy Sessions'
+                    'Advanced Analytics'
                 ],
                 popular: false,
                 ctaText: 'Boost Rankings',
@@ -404,11 +402,9 @@ export const serviceCategories = [
                 description: 'Custom AI solutions at scale',
                 features: [
                     'Custom AI Model Training',
-                    'Unlimited Automations',
+                    'Custom Automations',
                     'API Access & Integrations',
-                    'Dedicated AI Strategist',
-                    'Unlimited AI Credits',
-                    'White-label Options'
+                    'Dedicated AI Strategist'
                 ],
                 popular: false,
                 ctaText: 'Contact Us',
