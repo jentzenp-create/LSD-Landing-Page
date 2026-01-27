@@ -43,8 +43,7 @@ const Contact: React.FC = () => {
                             <div className="bg-white rounded-2xl overflow-hidden">
                                 <iframe
                                     src="https://api.leadconnectorhq.com/widget/booking/BaehU5q6Dx4fjczoZ9TF"
-                                    style={{ width: '100%', height: '900px', border: 'none', overflow: 'hidden' }}
-                                    scrolling="no"
+                                    style={{ width: '100%', height: '1100px', border: 'none' }}
                                     id="BaehU5q6Dx4fjczoZ9TF_1769471898131"
                                 />
                             </div>
