@@ -9,6 +9,7 @@ const ServicesOverview = lazy(() => import('./pages/ServicesOverview'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Studio = lazy(() => import('./pages/Studio'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Packages = lazy(() => import('./pages/Packages'));
 const App = lazy(() => import('./App'));
 
 // Scroll to top on route change
@@ -58,6 +59,8 @@ root.render(
           <Route path="/" element={<ServicesOverview />} />
           {/* Individual service detail pages */}
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
+          {/* Packages landing page */}
+          <Route path="/packages" element={<Packages />} />
           {/* Original San Diego Mobile Lab landing page (not linked from main site) */}
           <Route path="/mobile-lab" element={<App />} />
           {/* Brand Studio - Client CMS */}
