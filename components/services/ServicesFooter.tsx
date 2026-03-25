@@ -90,7 +90,7 @@ const ServicesFooter: React.FC = () => {
 
                         <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-semibold">
                             <a href="/" className="hover:text-primary transition-colors">Home</a>
-                            <a href="#review-automation" className="hover:text-primary transition-colors">Services</a>
+                            <a href="/#services" className="hover:text-primary transition-colors">Services</a>
                             <a href="/contact" className="hover:text-primary transition-colors">Contact</a>
                             <a href="/terms" className="hover:text-primary transition-colors">Terms</a>
                             <a href="/privacy" className="hover:text-primary transition-colors">Privacy</a>

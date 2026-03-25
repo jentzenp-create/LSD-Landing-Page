@@ -459,7 +459,7 @@ const ServicesOverview: React.FC = () => {
                 <ServicesHero />
 
                 {/* Services Grid */}
-                <section className="py-16 sm:py-24 bg-offWhite">
+                <section id="services" className="py-16 sm:py-24 bg-offWhite">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">

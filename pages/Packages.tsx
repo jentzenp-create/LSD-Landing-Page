@@ -314,36 +314,69 @@ const PackagesPage: React.FC = () => {
 
         {/* ── 2. PROBLEM SECTION ── */}
         <section className="py-24 bg-offWhite">
-          <div className="max-w-3xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">This is for you if…</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-black">Is this for you?</h2>
+              <p className="text-charcoal/50 font-medium mt-3 text-lg">See if it's a fit before you reach out.</p>
             </div>
 
-            <div className="bg-white border border-black/5 rounded-3xl p-10 md:p-14 shadow-sm">
-              <div className="space-y-0">
-                {[
-                  "People don't fully understand your value right away",
-                  "You rely on conversations to explain everything",
-                  "Leads come in, but follow-up is inconsistent",
-                  "Opportunities slip through the cracks",
-                  "Your sales process feels manual or scattered",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 py-5 border-b border-black/5 last:border-0">
-                    <div className="w-6 h-6 rounded-full bg-black/5 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-3 h-3 text-charcoal/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* IS for you */}
+              <div className="bg-white border border-black/5 rounded-3xl p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <h3 className="text-xl font-bold text-black">This IS for you</h3>
+                </div>
+                <div className="space-y-0">
+                  {[
+                    "People don't fully understand your value right away",
+                    "You rely on conversations to explain everything",
+                    "Leads come in, but follow-up is inconsistent",
+                    "Opportunities slip through the cracks",
+                    "Your sales process feels manual or scattered",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 py-4 border-b border-black/5 last:border-0">
+                      <div className="w-6 h-6 rounded-full bg-green-50 border border-green-200 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-base font-medium text-charcoal/70">{item}</p>
                     </div>
-                    <p className="text-lg font-medium text-charcoal/70">{item}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
-              <div className="pt-8 text-center">
-                <p className="text-2xl md:text-3xl font-bold text-black">
-                  It's not a lead problem. It's a system problem.
-                </p>
+              {/* ISN'T for you */}
+              <div className="bg-white border border-black/5 rounded-3xl p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <h3 className="text-xl font-bold text-black">This ISN'T for you</h3>
+                </div>
+                <div className="space-y-0">
+                  {[
+                    "You're looking for overnight results",
+                    "You don't have a proven product or service yet",
+                    "You're not ready to invest in building systems",
+                    "You prefer to manage everything manually",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 py-4 border-b border-black/5 last:border-0">
+                      <div className="w-6 h-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </div>
+                      <p className="text-base font-medium text-charcoal/70">{item}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
+
+            <div className="pt-10 text-center">
+              <p className="text-2xl md:text-3xl font-bold text-black">
+                It's not a lead problem. It's a system problem.
+              </p>
             </div>
           </div>
         </section>
@@ -568,24 +601,30 @@ const PackagesPage: React.FC = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-black">How It Works</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-              <div className="hidden md:block absolute top-14 left-[calc(33.33%-16px)] right-[calc(33.33%-16px)] h-px bg-gradient-to-r from-primary/30 via-primary/60 to-primary/30" />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+              <div className="hidden md:block absolute top-14 left-[calc(12.5%+14px)] right-[calc(12.5%+14px)] h-px bg-gradient-to-r from-primary/30 via-primary/60 to-primary/30" />
 
               {[
                 {
                   step: '1',
+                  title: 'Onboard',
+                  description: 'A call to understand your brand and value proposition so every asset is built to resonate.',
+                  icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+                },
+                {
+                  step: '2',
                   title: 'Build',
                   description: 'We create your systems and assets: landing page, video, pipeline, and automations.',
                   icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
                 },
                 {
-                  step: '2',
+                  step: '3',
                   title: 'Launch',
                   description: 'Everything goes live and starts working. Your leads enter a system that never sleeps.',
                   icon: 'M5 3l14 9-14 9V3z',
                 },
                 {
-                  step: '3',
+                  step: '4',
                   title: 'Grow',
                   description: 'You get better conversations and more closed deals. The system does the heavy lifting.',
                   icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',

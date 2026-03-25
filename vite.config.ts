@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       // Target modern browsers including Safari 14+
-      target: ['es2020', 'safari14'],
+      target: ['es2020', 'safari14', 'ios14'],
       // Enable modulePreload polyfill for Safari
       modulePreload: {
         polyfill: true

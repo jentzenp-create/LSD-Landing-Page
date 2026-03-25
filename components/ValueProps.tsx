@@ -31,14 +31,17 @@ const ValueProps: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {props.map((prop) => (
-            <div 
-              key={prop.id} 
+            <div
+              key={prop.id}
               className="bg-white border border-black/5 p-8 rounded-holo flex flex-col h-full hover:shadow-xl transition-all group"
             >
               <div className="mb-6 overflow-hidden rounded-2xl aspect-[16/10]">
-                <img 
-                  src={prop.image} 
-                  alt={prop.title} 
+                <img
+                  src={prop.image}
+                  alt={prop.title}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

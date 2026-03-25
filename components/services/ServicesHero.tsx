@@ -52,7 +52,7 @@ const ServicesHero: React.FC = () => {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2">
                     <a
-                        href="#review-automation"
+                        href="/#services"
                         className="bg-black text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg hover:scale-105 transition-all shadow-2xl shadow-black/10 active:scale-95 w-full sm:w-auto inline-flex items-center justify-center gap-2"
                     >
                         Explore Services

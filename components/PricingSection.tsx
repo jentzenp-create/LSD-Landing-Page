@@ -128,7 +128,7 @@ const PricingSection: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-black text-white font-bold py-5 rounded-full text-lg hover:scale-[1.01] active:scale-[0.98] transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-black text-white font-bold py-5 rounded-full text-lg hover:scale-[1.01] active:scale-[0.98] transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed will-change-transform"
             >
               {isLoading ? 'Processing...' : 'Continue to Secure Payment'}
             </button>
@@ -193,7 +193,7 @@ const PricingSection: React.FC = () => {
 
               <button
                 onClick={() => setShowForm(true)}
-                className="w-full bg-black text-white font-bold py-5 rounded-full text-xl hover:scale-102 active:scale-0.98] transition-all shadow-xl hover:shadow-primary/20"
+                className="w-full bg-black text-white font-bold py-5 rounded-full text-xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl hover:shadow-primary/20 will-change-transform"
               >
                 Sign Up Now
               </button>
