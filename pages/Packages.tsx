@@ -273,11 +273,12 @@ const PackagesPage: React.FC = () => {
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                   <span className="text-sm font-bold text-charcoal">For Professional Service Businesses</span>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1] text-black">
-                  Never Miss Another Opportunity: Turn Your Marketing and Sales Into a System
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.05] text-black">
+                  Stop Losing Leads.<br />
+                  <span className="text-primary">Start Closing Clients.</span>
                 </h1>
                 <p className="text-lg md:text-xl text-charcoal/60 mb-10 leading-relaxed font-medium max-w-xl">
-                  We help professional service businesses clearly communicate their value and automatically follow up with every lead, so more conversations turn into clients.
+                  We build the system that follows up, communicates your value, and turns more conversations into clients.
                 </p>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <a

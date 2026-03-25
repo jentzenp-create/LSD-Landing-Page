@@ -60,7 +60,7 @@ const ServicesFooter: React.FC = () => {
             </section>
 
             {/* Footer */}
-            <footer className="bg-charcoal py-16 border-t border-white/5">
+            <footer className="bg-charcoal py-16 border-t-2 border-primary/40">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-10">
                         <div className="flex flex-col items-center md:items-start gap-4">
