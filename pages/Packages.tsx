@@ -3,6 +3,25 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ServicesFooter from '../components/services/ServicesFooter';
 
+const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/cj4hQsqqI9fhy6MABW7y/webhook-trigger/3c0a6347-bd55-45e7-882e-d9aa39c54b23';
+
+const PACKAGES = {
+  conversion: {
+    name: 'Conversion Engine™',
+    stripeLink: 'https://buy.stripe.com/14A4gz18E6XIfXk4Ew0kE0h',
+  },
+  pipeline: {
+    name: 'AI Pipeline System™',
+    stripeLink: 'https://buy.stripe.com/3cI00j8B6bdY3aygne0kE0j',
+  },
+  bundle: {
+    name: 'Full Growth System',
+    stripeLink: 'https://buy.stripe.com/8x27sL18EbdYcL85IA0kE0k',
+  },
+} as const;
+
+type PackageKey = keyof typeof PACKAGES;
+
 const SunLogo: React.FC<{ size?: number }> = ({ size = 40 }) => (
   <svg width={size} height={size} viewBox="0 0 100 100" className="fill-primary">
     <circle cx="50" cy="50" r="20" />
@@ -29,6 +48,9 @@ const CheckIcon: React.FC = () => (
 const PackagesPage: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<PackageKey | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: '', businessName: '', phone: '', email: '' });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -36,8 +58,147 @@ const PackagesPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedPackage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [selectedPackage]);
+
+  const openCheckout = (pkg: PackageKey) => {
+    setFormData({ name: '', businessName: '', phone: '', email: '' });
+    setSelectedPackage(pkg);
+  };
+
+  const closeCheckout = () => {
+    if (!isLoading) setSelectedPackage(null);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedPackage) return;
+    setIsLoading(true);
+
+    const pkg = PACKAGES[selectedPackage];
+
+    try {
+      await fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, package: pkg.name, source: 'Packages Page' }),
+      });
+      const prefilledEmail = encodeURIComponent(formData.email);
+      window.location.href = `${pkg.stripeLink}?prefilled_email=${prefilledEmail}`;
+    } catch {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
+
+      {/* ── CHECKOUT MODAL ── */}
+      {selectedPackage && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeCheckout} />
+          <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 md:p-10">
+            {/* Close */}
+            <button
+              onClick={closeCheckout}
+              disabled={isLoading}
+              className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="mb-8">
+              <span className="inline-flex items-center bg-primary/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                {PACKAGES[selectedPackage].name}
+              </span>
+              <h2 className="text-3xl font-bold text-black">Complete Your Order</h2>
+              <p className="text-charcoal/50 font-medium mt-2">Enter your details and you'll be taken to secure checkout.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-charcoal/50 uppercase tracking-wider">Name</label>
+                  <input
+                    required
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full bg-offWhite border border-black/5 rounded-xl px-4 py-3.5 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-charcoal/50 uppercase tracking-wider">Business Name</label>
+                  <input
+                    required
+                    name="businessName"
+                    value={formData.businessName}
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="Acme Advisors"
+                    className="w-full bg-offWhite border border-black/5 rounded-xl px-4 py-3.5 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-charcoal/50 uppercase tracking-wider">Phone</label>
+                  <input
+                    required
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    type="tel"
+                    placeholder="(555) 000-0000"
+                    className="w-full bg-offWhite border border-black/5 rounded-xl px-4 py-3.5 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-charcoal/50 uppercase tracking-wider">Email</label>
+                  <input
+                    required
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    type="email"
+                    placeholder="john@example.com"
+                    className="w-full bg-offWhite border border-black/5 rounded-xl px-4 py-3.5 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-black text-white font-bold py-4 rounded-full text-lg hover:scale-[1.01] active:scale-[0.98] transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+              >
+                {isLoading ? 'Redirecting...' : 'Continue to Secure Checkout'}
+              </button>
+
+              <p className="text-center text-charcoal/40 text-xs font-bold uppercase tracking-wider pt-1">
+                Secured by Stripe. No surprises.
+              </p>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* ── HEADER ── */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -145,7 +306,6 @@ const PackagesPage: React.FC = () => {
                     className="w-full block"
                   />
                 </div>
-
               </div>
 
             </div>
@@ -197,22 +357,10 @@ const PackagesPage: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {[
-                {
-                  text: 'Your value is clear in seconds',
-                  icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-                },
-                {
-                  text: 'Your marketing does the explaining for you',
-                  icon: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z',
-                },
-                {
-                  text: 'Every lead is tracked and followed up with',
-                  icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
-                },
-                {
-                  text: 'You always know what to do next',
-                  icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
-                },
+                { text: 'Your value is clear in seconds', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+                { text: 'Your marketing does the explaining for you', icon: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z' },
+                { text: 'Every lead is tracked and followed up with', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4' },
+                { text: 'You always know what to do next', icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7' },
               ].map((item, i) => (
                 <div
                   key={i}
@@ -291,11 +439,7 @@ const PackagesPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-4 mb-8">
-                  {[
-                    'High-Converting Landing Page',
-                    '60-Second Explainer Video',
-                    'Proposal Enhancement Kit',
-                  ].map((feature) => (
+                  {['High-Converting Landing Page', '60-Second Explainer Video', 'Proposal Enhancement Kit'].map((feature) => (
                     <div key={feature} className="flex items-center gap-3">
                       <div className="w-5 h-5 bg-primary/20 rounded-full flex items-center justify-center shrink-0">
                         <CheckIcon />
@@ -311,12 +455,12 @@ const PackagesPage: React.FC = () => {
                   </p>
                 </div>
 
-                <a
-                  href="/contact"
+                <button
+                  onClick={() => openCheckout('conversion')}
                   className="block w-full bg-black text-white font-bold py-4 rounded-full text-center hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg"
                 >
                   Get Started
-                </a>
+                </button>
               </div>
 
               {/* Card 2: Bundle (Most Popular - center, emphasized) */}
@@ -360,12 +504,12 @@ const PackagesPage: React.FC = () => {
                       ))}
                     </div>
 
-                    <a
-                      href="/contact"
+                    <button
+                      onClick={() => openCheckout('bundle')}
                       className="block w-full bg-black text-white font-bold py-5 rounded-full text-center text-xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl hover:shadow-primary/20"
                     >
                       Get Full System
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -405,12 +549,12 @@ const PackagesPage: React.FC = () => {
                   </p>
                 </div>
 
-                <a
-                  href="/contact"
+                <button
+                  onClick={() => openCheckout('pipeline')}
                   className="block w-full bg-black text-white font-bold py-4 rounded-full text-center hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg"
                 >
                   Get Started
-                </a>
+                </button>
               </div>
 
             </div>
@@ -425,7 +569,6 @@ const PackagesPage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-              {/* Connecting line on desktop */}
               <div className="hidden md:block absolute top-14 left-[calc(33.33%-16px)] right-[calc(33.33%-16px)] h-px bg-gradient-to-r from-primary/30 via-primary/60 to-primary/30" />
 
               {[
