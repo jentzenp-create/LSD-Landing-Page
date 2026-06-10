@@ -75,3 +75,26 @@ section {
     transform: rotate(360deg);
   }
 }
+
+/* ── Event poll widget animations ── */
+@keyframes pour-bounce {
+  0% { transform: scaleY(0.85); }
+  45% { transform: scaleY(1.06); }
+  70% { transform: scaleY(0.97); }
+  100% { transform: scaleY(1); }
+}
+
+.animate-pour {
+  transform-origin: bottom;
+  animation: pour-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes float-up {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -40px); }
+}
+
+.animate-float-up {
+  animation: float-up 1s ease-out forwards;
+}
