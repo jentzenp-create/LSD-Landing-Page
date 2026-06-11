@@ -200,6 +200,18 @@ const PackagesPage: React.FC = () => {
           </div>
         </section>
 
+        {/* ── SECTION DIVIDER ── */}
+        <div className="bg-white py-12 md:py-16">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <p className="text-charcoal/40 text-sm font-bold uppercase tracking-[0.2em]">Now that you know where you stand...</p>
+            <div className="flex items-center gap-4 mt-4">
+              <div className="flex-1 h-px bg-charcoal/10" />
+              <ArrowDownIcon />
+              <div className="flex-1 h-px bg-charcoal/10" />
+            </div>
+          </div>
+        </div>
+
         {/* ── ROI CALCULATOR ── */}
         <section id="roi" className="relative py-16 md:py-24 overflow-hidden bg-charcoal">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
@@ -250,10 +262,10 @@ const PackagesPage: React.FC = () => {
                   <span className="inline-flex items-center bg-primary/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-primary mb-5">
                     Free Workshop &middot; June 17 &middot; 11am PST
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-5 tracking-tight leading-[1.1]">
                     AI Agents That Pay For Themselves
                   </h2>
-                  <p className="text-charcoal/60 text-lg font-medium mb-8 max-w-2xl">
+                  <p className="text-charcoal/60 text-lg md:text-xl font-medium mb-8 max-w-2xl leading-relaxed">
                     A practical, no-fluff session on putting AI agents to work in your
                     day-to-day operations. What to automate first, what tools to use,
                     and how to get started without a tech team.
@@ -269,7 +281,7 @@ const PackagesPage: React.FC = () => {
                         <div className="w-10 h-10 bg-primary/15 rounded-xl flex items-center justify-center shrink-0 text-black">
                           {item.icon}
                         </div>
-                        <p className="text-sm font-semibold text-charcoal/70">{item.text}</p>
+                        <p className="text-base font-semibold text-charcoal/70">{item.text}</p>
                       </div>
                     ))}
                   </div>

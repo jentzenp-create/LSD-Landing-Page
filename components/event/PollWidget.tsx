@@ -1,10 +1,12 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 const COUNTER_WORKSPACE = 'lsd-ai-event-2026';
 const STORAGE_KEY = 'lsd-ai-poll-vote';
+const POLL_INTERVAL = 3000;
 
 type StageKey = 'curious' | 'experimenting' | 'implementing' | 'systematized';
+const STAGE_KEYS: StageKey[] = ['curious', 'experimenting', 'implementing', 'systematized'];
 
 // Stage colors — progresses from cool to warm along the gradient journey
 const STAGE_COLORS: Record<StageKey, { fill: string; iconBg: string; border: string; selectedBorder: string; selectedBg: string }> = {
@@ -114,6 +116,51 @@ const PollWidget: React.FC = () => {
   const [reaction, setReaction] = useState<string | null>(null);
   const [reactionVisible, setReactionVisible] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [liveBlip, setLiveBlip] = useState<StageKey | null>(null);
+  const prevCountsRef = useRef<Counts>(FALLBACK_COUNTS);
+  const reactionQueueRef = useRef<{ key: StageKey; delta: number }[]>([]);
+  const processingQueueRef = useRef(false);
+
+  const fetchCounts = useCallback(async (): Promise<Counts | null> => {
+    try {
+      const results = await Promise.all(
+        STAGE_KEYS.map((key) =>
+          fetch(`https://api.counterapi.dev/v1/${COUNTER_WORKSPACE}/${key}`)
+            .then((r) => (r.ok ? r.json() : null))
+            .catch(() => null)
+        )
+      );
+      const next: Partial<Counts> = {};
+      results.forEach((res, i) => {
+        if (res && typeof res.count === 'number') {
+          next[STAGE_KEYS[i]] = res.count;
+        }
+      });
+      if (Object.keys(next).length > 0) {
+        return { ...FALLBACK_COUNTS, ...next };
+      }
+    } catch {}
+    return null;
+  }, []);
+
+  const processReactionQueue = useCallback(() => {
+    if (processingQueueRef.current) return;
+    const item = reactionQueueRef.current.shift();
+    if (!item) return;
+
+    processingQueueRef.current = true;
+    setLiveBlip(item.key);
+    const comment = pickRandom(VOTE_REACTIONS[item.key]);
+    setReaction(comment);
+    setReactionVisible(true);
+
+    setTimeout(() => setLiveBlip(null), 1000);
+    setTimeout(() => {
+      setReactionVisible(false);
+      processingQueueRef.current = false;
+      setTimeout(() => processReactionQueue(), 300);
+    }, 2500);
+  }, []);
 
   // Dev helper: press Shift+R while on the poll to reset your vote and test again
   useEffect(() => {
@@ -134,33 +181,40 @@ const PollWidget: React.FC = () => {
     const prevVote = localStorage.getItem(STORAGE_KEY) as StageKey | null;
     if (prevVote) setVoted(prevVote);
 
-    const fetchCounts = async () => {
-      try {
-        const results = await Promise.all(
-          STAGES.map((s) =>
-            fetch(`https://api.counterapi.dev/v1/${COUNTER_WORKSPACE}/${s.key}`)
-              .then((r) => (r.ok ? r.json() : null))
-              .catch(() => null)
-          )
-        );
-        const next: Partial<Counts> = {};
-        results.forEach((res, i) => {
-          if (res && typeof res.count === 'number') {
-            next[STAGES[i].key] = res.count;
-          }
-        });
-        if (Object.keys(next).length > 0) {
-          setCounts((prev) => ({ ...prev, ...next }));
-        }
-      } catch {
-        // keep fallback counts
-      } finally {
-        setLoaded(true);
+    const init = async () => {
+      const fresh = await fetchCounts();
+      if (fresh) {
+        setCounts(fresh);
+        prevCountsRef.current = fresh;
       }
+      setLoaded(true);
     };
+    init();
+  }, [fetchCounts]);
 
-    fetchCounts();
-  }, []);
+  // Live polling — pick up other people's votes every 3s
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const fresh = await fetchCounts();
+      if (!fresh) return;
+
+      const prev = prevCountsRef.current;
+      const changed: { key: StageKey; delta: number }[] = [];
+      for (const key of STAGE_KEYS) {
+        const delta = fresh[key] - prev[key];
+        if (delta > 0) changed.push({ key, delta });
+      }
+
+      if (changed.length > 0) {
+        setCounts(fresh);
+        prevCountsRef.current = fresh;
+        for (const c of changed) reactionQueueRef.current.push(c);
+        processReactionQueue();
+      }
+    }, POLL_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [fetchCounts, processReactionQueue]);
 
   const handleVote = async (key: StageKey) => {
     if (voted) return;
@@ -169,9 +223,9 @@ const PollWidget: React.FC = () => {
     setVoted(key);
     setJustVoted(key);
     setCounts((prev) => ({ ...prev, [key]: prev[key] + 1 }));
+    prevCountsRef.current = { ...prevCountsRef.current, [key]: prevCountsRef.current[key] + 1 };
     setTimeout(() => setJustVoted(null), 1000);
 
-    // Show a funny reaction comment
     const comment = pickRandom(VOTE_REACTIONS[key]);
     setReaction(comment);
     setReactionVisible(true);
@@ -183,11 +237,10 @@ const PollWidget: React.FC = () => {
         const data = await res.json();
         if (typeof data.count === 'number') {
           setCounts((prev) => ({ ...prev, [key]: data.count }));
+          prevCountsRef.current[key] = data.count;
         }
       }
-    } catch {
-      // optimistic local increment already applied
-    }
+    } catch {}
   };
 
   const totalVotes = Object.values<number>(counts).reduce((a, b) => a + b, 0);
@@ -213,8 +266,8 @@ const PollWidget: React.FC = () => {
                   : `${colors.border} bg-white/[0.07] hover:bg-white/[0.12] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20`
               } ${voted && !isSelected ? 'opacity-50' : ''} ${voted ? 'cursor-default' : 'cursor-pointer'}`}
             >
-              {/* Floating +1 badge */}
-              {justVoted === stage.key && (
+              {/* Floating +1 badge — own vote or live incoming */}
+              {(justVoted === stage.key || liveBlip === stage.key) && (
                 <span className="pointer-events-none absolute left-1/2 top-2 -translate-x-1/2 text-white font-black text-lg animate-float-up">
                   +1
                 </span>
@@ -231,7 +284,7 @@ const PollWidget: React.FC = () => {
               <div className="relative w-full h-32 md:h-40 rounded-b-2xl rounded-t-md bg-white/[0.06] border border-white/10 overflow-hidden mt-auto">
                 <div
                   className={`absolute bottom-0 left-0 right-0 ${colors.fill} rounded-b-2xl transition-[height] duration-700 ease-out ${
-                    justVoted === stage.key ? 'animate-pour' : ''
+                    justVoted === stage.key || liveBlip === stage.key ? 'animate-pour' : ''
                   }`}
                   style={{ height: loaded ? `${Math.max(pct, 4)}%` : '0%' }}
                 />
