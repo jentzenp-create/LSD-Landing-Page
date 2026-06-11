@@ -425,17 +425,17 @@ const PackagesPage: React.FC = () => {
         <section className="py-12 bg-offWhite">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h3 className="text-lg md:text-xl font-bold text-black mb-2">
-              Not ready for either? Get our free AI Quick-Start Checklist.
+              Not ready for either? Stay in the loop.
             </h3>
             <p className="text-charcoal/50 font-medium mb-6 text-sm">
-              We'll send it straight to your inbox. No strings attached.
+              Drop your email and we'll keep you posted. No strings attached.
             </p>
             <div className="max-w-md mx-auto">
               <QuickForm
                 source="AI Checklist – Event"
-                submitLabel="Send It to Me"
+                submitLabel="Stay in the Loop"
                 loadingLabel="Sending..."
-                successMessage="On its way! Check your inbox shortly."
+                successMessage="You're in! We'll keep you posted."
                 emailOnly
               />
             </div>
