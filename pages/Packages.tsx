@@ -87,6 +87,14 @@ const PackagesPage: React.FC = () => {
         </div>
       </header>
 
+      {/* ── SCROLL CUE ── */}
+      <div className="relative z-20 flex flex-col items-center gap-1 text-charcoal/40 -mb-2">
+        <p className="text-xs font-bold uppercase tracking-[0.2em]">Scroll for more</p>
+        <div className="animate-gentle-bounce">
+          <ArrowDownIcon />
+        </div>
+      </div>
+
       <main>
 
         {/* ── HERO ── */}
