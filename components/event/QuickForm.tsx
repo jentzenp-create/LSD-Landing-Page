@@ -83,7 +83,7 @@ const QuickForm: React.FC<QuickFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className={emailOnly ? 'flex flex-col sm:flex-row gap-3' : 'space-y-4'}>
+    <form onSubmit={handleSubmit} className="space-y-4">
       {!emailOnly && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
@@ -107,25 +107,27 @@ const QuickForm: React.FC<QuickFormProps> = ({
         </div>
       )}
 
-      <input
-        required
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        type="email"
-        placeholder="Email address"
-        className={`w-full bg-gray-100 border border-gray-300 rounded-xl px-5 py-4 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black placeholder:text-charcoal/40 ${emailOnly ? 'sm:flex-1' : ''}`}
-      />
+      <div className={emailOnly ? 'flex flex-col sm:flex-row gap-3' : ''}>
+        <input
+          required
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          type="email"
+          placeholder="Email address"
+          className={`w-full bg-gray-100 border border-gray-300 rounded-xl px-5 py-4 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black placeholder:text-charcoal/40 ${emailOnly ? 'sm:flex-1 sm:min-w-0' : ''}`}
+        />
 
-      <button
-        type="submit"
-        disabled={isLoading}
-        className={`bg-black text-white font-bold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
-          emailOnly ? 'px-8 py-4 whitespace-nowrap' : 'w-full py-5 text-lg'
-        }`}
-      >
-        {isLoading ? loadingLabel : submitLabel}
-      </button>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`bg-black text-white font-bold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+            emailOnly ? 'px-8 py-4 whitespace-nowrap' : 'w-full py-5 text-lg'
+          }`}
+        >
+          {isLoading ? loadingLabel : submitLabel}
+        </button>
+      </div>
 
       {finePrint && (
         <p className="text-center text-charcoal/40 text-xs font-bold uppercase tracking-wider">{finePrint}</p>
