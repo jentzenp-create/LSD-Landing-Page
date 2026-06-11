@@ -288,12 +288,11 @@ const PackagesPage: React.FC = () => {
 
                   <QuickForm
                     source="AI Workshop RSVP – June 17"
-                    submitLabel="Save My Seat"
-                    loadingLabel="Registering..."
-                    successMessage="You're on the list! We'll send details before June 17."
-                    redirectUrl={WORKSHOP_LUMA_LINK}
-                    prefillEmail={false}
-                    finePrint="Free · No obligation · Registers you on Luma"
+                    submitLabel="Send Me the Details"
+                    loadingLabel="Sending..."
+                    successMessage="Check your inbox! We just sent you the link to register and everything you need for June 17."
+                    emailOnly
+                    finePrint="We'll email you the registration link and workshop details"
                   />
                 </div>
 

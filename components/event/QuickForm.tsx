@@ -127,7 +127,7 @@ const QuickForm: React.FC<QuickFormProps> = ({
         {isLoading ? loadingLabel : submitLabel}
       </button>
 
-      {finePrint && !emailOnly && (
+      {finePrint && (
         <p className="text-center text-charcoal/40 text-xs font-bold uppercase tracking-wider">{finePrint}</p>
       )}
     </form>
