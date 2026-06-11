@@ -114,7 +114,7 @@ const QuickForm: React.FC<QuickFormProps> = ({
         onChange={handleChange}
         type="email"
         placeholder="Email address"
-        className={`w-full bg-white border border-black/10 rounded-xl px-5 py-4 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black ${emailOnly ? 'sm:flex-1' : ''}`}
+        className={`w-full bg-gray-100 border border-gray-300 rounded-xl px-5 py-4 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-black placeholder:text-charcoal/40 ${emailOnly ? 'sm:flex-1' : ''}`}
       />
 
       <button
