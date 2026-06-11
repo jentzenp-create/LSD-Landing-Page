@@ -105,7 +105,7 @@ const PackagesPage: React.FC = () => {
                 </h1>
                 <p className="text-lg md:text-xl text-charcoal/60 mb-10 leading-relaxed font-medium max-w-xl">
                   Most businesses are leaving hours on the table doing things AI
-                  can handle in minutes. Find out exactly where, for free or for $97.
+                  can handle in minutes.
                 </p>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <a

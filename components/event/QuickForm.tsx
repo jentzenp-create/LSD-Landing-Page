@@ -83,7 +83,7 @@ const QuickForm: React.FC<QuickFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {!emailOnly && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
@@ -107,7 +107,7 @@ const QuickForm: React.FC<QuickFormProps> = ({
         </div>
       )}
 
-      <div className={emailOnly ? 'flex flex-col sm:flex-row gap-3' : ''}>
+      <div className={emailOnly ? 'flex flex-col sm:flex-row gap-3' : 'space-y-3'}>
         <input
           required
           name="email"
