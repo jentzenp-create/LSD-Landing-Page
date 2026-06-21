@@ -33,7 +33,9 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
 
   const sessionIdRef = useRef<string>(crypto.randomUUID());
   const recognitionRef = useRef<any>(null);
+  const listeningRef = useRef(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const speechSupported = !!getSpeechRecognition();
   const ttsSupported = typeof window !== 'undefined' && 'speechSynthesis' in window;
 
@@ -46,6 +48,14 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, isThinking]);
+
+  // Auto-grow the textarea to fit its content (resets when cleared).
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = `${el.scrollHeight}px`;
+  }, [input]);
 
   async function sendToAI(history: ChatMessage[]) {
     setIsThinking(true);
@@ -116,8 +126,8 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
     if (!trimmed || isThinking || completedSummary) return;
     const nextHistory: ChatMessage[] = [...messages, { role: 'user', content: trimmed }];
     setMessages(nextHistory);
-    setInput('');
     stopListening();
+    setInput('');
     sendToAI(nextHistory);
   }
 
@@ -141,6 +151,8 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
     let baseText = input ? input + ' ' : '';
 
     recognition.onresult = (event: SpeechRecognitionResultLike) => {
+      // Ignore any trailing results that fire after we've stopped (e.g. on send).
+      if (!listeningRef.current) return;
       let finalChunk = '';
       let interimChunk = '';
       for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -175,6 +187,7 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
     try {
       recognition.start();
       setErrorMessage(null);
+      listeningRef.current = true;
       setIsListening(true);
     } catch {
       // start() throws if called while already active; ignore.
@@ -182,7 +195,13 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
   }
 
   function stopListening() {
-    recognitionRef.current?.stop();
+    listeningRef.current = false;
+    const recognition = recognitionRef.current;
+    if (recognition) {
+      // Detach so no buffered/trailing result can repopulate the input after send.
+      recognition.onresult = null;
+      recognition.stop();
+    }
     setIsListening(false);
   }
 
@@ -288,6 +307,7 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
           )}
 
           <textarea
+            ref={textareaRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
