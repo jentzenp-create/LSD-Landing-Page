@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import Anthropic from '@anthropic-ai/sdk';
 import { getOnboardingClient } from '../lib/onboardingClients';
 import { buildOnboardingSystemPrompt, ONBOARDING_COMPLETE_MARKER } from '../lib/onboardingPrompt';
 
@@ -7,7 +8,7 @@ interface ChatMessage {
   content: string;
 }
 
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const CLAUDE_MODEL = 'claude-haiku-4-5';
 
 function extractCompletion(text: string): { reply: string; done: boolean; summary?: Record<string, unknown> } {
   const markerIndex = text.indexOf(ONBOARDING_COMPLETE_MARKER);
@@ -37,9 +38,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    res.status(500).json({ error: 'Server is missing GEMINI_API_KEY.' });
+    res.status(500).json({ error: 'Server is missing ANTHROPIC_API_KEY.' });
     return;
   }
 
@@ -56,34 +57,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const contents = messages.map((m) => ({
-    role: m.role === 'assistant' ? 'model' : 'user',
-    parts: [{ text: m.content }],
-  }));
+  const anthropic = new Anthropic({ apiKey });
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: buildOnboardingSystemPrompt(client) }] },
-          contents,
-          generationConfig: { temperature: 0.7, maxOutputTokens: 1024 },
-        }),
-      }
-    );
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
+      max_tokens: 1024,
+      temperature: 0.7,
+      system: buildOnboardingSystemPrompt(client),
+      messages: messages.map((m) => ({ role: m.role, content: m.content })),
+    });
 
-    if (!response.ok) {
-      const errBody = await response.text();
-      console.error('Gemini API error:', response.status, errBody);
-      res.status(502).json({ error: 'The AI service returned an error. Please try again.' });
-      return;
-    }
-
-    const data = await response.json();
-    const text: string | undefined = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    const textBlock = response.content.find((block) => block.type === 'text');
+    const text = textBlock && textBlock.type === 'text' ? textBlock.text : undefined;
 
     if (!text) {
       res.status(502).json({ error: 'The AI service returned an empty response.' });
