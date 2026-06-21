@@ -157,12 +157,28 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
       setInput(baseText + interimChunk);
     };
 
-    recognition.onerror = () => setIsListening(false);
+    recognition.onerror = (event: { error?: string }) => {
+      setIsListening(false);
+      if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+        setErrorMessage(
+          'Microphone access is blocked. Allow mic access for this site in your browser settings (click the 🔒 in the address bar), then tap the mic again — or just type your answer.'
+        );
+      } else if (event.error === 'no-speech') {
+        setErrorMessage("Didn't catch that — tap the mic and try again, or type your answer.");
+      } else if (event.error && event.error !== 'aborted') {
+        setErrorMessage('Voice input had a problem. You can type your answer instead.');
+      }
+    };
     recognition.onend = () => setIsListening(false);
 
     recognitionRef.current = recognition;
-    recognition.start();
-    setIsListening(true);
+    try {
+      recognition.start();
+      setErrorMessage(null);
+      setIsListening(true);
+    } catch {
+      // start() throws if called while already active; ignore.
+    }
   }
 
   function stopListening() {
@@ -180,34 +196,49 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-offWhite">
-      <header className="bg-white border-b border-black/5 px-4 sm:px-6 py-4 flex items-center justify-between shrink-0">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-primary">Website Onboarding</p>
-          <h1 className="text-lg sm:text-xl font-bold text-black">{client.businessName}</h1>
+    <div className="relative flex flex-col h-screen bg-gradient-to-b from-white to-offWhite overflow-hidden">
+      {/* Decorative brand glows (match site hero) */}
+      <div className="pointer-events-none absolute -top-32 -left-24 w-[420px] h-[420px] bg-primary/10 rounded-full blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-0 -right-24 w-[360px] h-[360px] bg-primary/5 rounded-full blur-[90px]" />
+
+      <header className="relative z-10 bg-white/80 backdrop-blur-md border-b border-black/5 px-4 sm:px-6 py-4 shrink-0">
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 min-w-0">
+            <SunMark />
+            <div className="min-w-0">
+              <div className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5 mb-1">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal">Website Onboarding</span>
+              </div>
+              <h1 className="text-base sm:text-lg font-bold tracking-tight text-black truncate">{client.businessName}</h1>
+            </div>
+          </div>
+          {ttsSupported && (
+            <button
+              onClick={() => setVoiceOutputEnabled((v) => !v)}
+              className={`shrink-0 text-xs font-bold px-3 py-2 rounded-full border transition-all active:scale-95 ${
+                voiceOutputEnabled
+                  ? 'bg-primary/10 border-primary/30 text-charcoal'
+                  : 'bg-white border-black/10 text-charcoal/50 hover:border-primary/30'
+              }`}
+            >
+              {voiceOutputEnabled ? '🔊 Reading aloud' : '🔈 Read aloud off'}
+            </button>
+          )}
         </div>
-        {ttsSupported && (
-          <button
-            onClick={() => setVoiceOutputEnabled((v) => !v)}
-            className={`text-xs font-bold px-3 py-2 rounded-full border transition-colors ${
-              voiceOutputEnabled
-                ? 'bg-primary/10 border-primary text-charcoal'
-                : 'bg-white border-black/10 text-charcoal/50'
-            }`}
-          >
-            {voiceOutputEnabled ? '🔊 Reading aloud' : '🔈 Read aloud off'}
-          </button>
-        )}
       </header>
 
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 sm:px-6 py-6 space-y-4 max-w-2xl mx-auto w-full">
+      <div ref={scrollRef} className="relative z-10 flex-1 overflow-y-auto px-4 sm:px-6 py-8 space-y-6 max-w-2xl mx-auto w-full">
         {messages
           .filter((m) => !m.hidden)
           .map((m, i) => (
-            <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key={i} className={`flex items-end gap-2.5 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              {m.role === 'assistant' && <SunMark className="mb-1 shrink-0" size={32} />}
               <div
-                className={`max-w-[85%] rounded-3xl px-5 py-3 whitespace-pre-wrap leading-relaxed ${
-                  m.role === 'user' ? 'bg-black text-white' : 'bg-white text-black shadow-sm'
+                className={`max-w-[82%] px-5 py-3.5 whitespace-pre-wrap leading-relaxed ${
+                  m.role === 'user'
+                    ? 'bg-black text-white rounded-3xl rounded-br-lg shadow-lg shadow-black/10'
+                    : 'bg-white text-black rounded-3xl rounded-bl-lg border border-black/5 shadow-xl shadow-black/5'
                 }`}
               >
                 {m.content}
@@ -216,8 +247,9 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
           ))}
 
         {isThinking && (
-          <div className="flex justify-start">
-            <div className="bg-white rounded-3xl px-5 py-4 shadow-sm flex gap-1.5 items-center">
+          <div className="flex items-end gap-2.5 justify-start">
+            <SunMark className="mb-1 shrink-0" size={32} />
+            <div className="bg-white rounded-3xl rounded-bl-lg px-5 py-4 border border-black/5 shadow-xl shadow-black/5 flex gap-1.5 items-center">
               {[0, 1, 2].map((i) => (
                 <span
                   key={i}
@@ -236,14 +268,16 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
         )}
       </div>
 
-      <div className="bg-white border-t border-black/5 px-4 sm:px-6 py-4 shrink-0">
+      <div className="relative z-10 bg-white/80 backdrop-blur-md border-t border-black/5 px-4 sm:px-6 py-4 shrink-0">
         <div className="max-w-2xl mx-auto flex items-end gap-2">
           {speechSupported && (
             <button
               onClick={toggleListening}
               aria-label={isListening ? 'Stop voice input' : 'Start voice input'}
-              className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
-                isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-offWhite text-charcoal hover:bg-primary/10'
+              className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all active:scale-95 ${
+                isListening
+                  ? 'bg-primary text-black animate-pulse shadow-lg shadow-primary/30'
+                  : 'bg-offWhite text-charcoal hover:bg-primary/10'
               }`}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -264,13 +298,13 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
             }}
             placeholder={isListening ? 'Listening… keep talking' : 'Type your answer, or tap the mic to talk'}
             rows={1}
-            className="flex-1 resize-none bg-offWhite border border-black/10 rounded-2xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 max-h-32"
+            className="flex-1 resize-none bg-offWhite border border-black/10 rounded-2xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-shadow max-h-32"
           />
 
           <button
             onClick={() => handleSend(input)}
             disabled={isThinking || !input.trim()}
-            className="shrink-0 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center disabled:opacity-30 hover:scale-105 active:scale-95 transition-transform"
+            className="shrink-0 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center disabled:opacity-30 hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-black/10"
             aria-label="Send"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -279,7 +313,8 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
           </button>
         </div>
 
-        <div className="max-w-2xl mx-auto mt-2 text-right">
+        <div className="max-w-2xl mx-auto mt-2.5 flex items-center justify-between gap-4">
+          <img src="/logo.png" alt="Local Sun Digital" className="h-5 w-auto opacity-50" />
           <button onClick={handleWrapUp} disabled={isThinking} className="text-xs font-semibold text-charcoal/40 hover:text-primary transition-colors">
             I've covered everything — wrap it up
           </button>
@@ -288,6 +323,16 @@ const OnboardingChat: React.FC<{ client: OnboardingClient }> = ({ client }) => {
     </div>
   );
 };
+
+/** Local Sun Digital sun mark — gold disc + 8 rays (matches site header logo). */
+const SunMark: React.FC<{ size?: number; className?: string }> = ({ size = 40, className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" className={`fill-primary shrink-0 ${className}`} aria-hidden="true">
+    <circle cx="50" cy="50" r="20" />
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+      <rect key={angle} x="47" y="15" width="6" height="15" rx="3" transform={`rotate(${angle} 50 50)`} />
+    ))}
+  </svg>
+);
 
 const SUMMARY_LABELS: Record<string, string> = {
   businessName: 'Business Name',
@@ -310,29 +355,37 @@ const OnboardingSummary: React.FC<{ client: OnboardingClient; summary: Record<st
   client,
   summary,
 }) => (
-  <div className="min-h-screen bg-offWhite py-12 px-4 sm:px-6">
-    <div className="max-w-2xl mx-auto">
-      <div className="text-center mb-10">
-        <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-7 h-7 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+  <div className="relative min-h-screen bg-gradient-to-b from-white to-offWhite py-16 px-4 sm:px-6 overflow-hidden">
+    {/* Decorative brand glows */}
+    <div className="pointer-events-none absolute -top-32 left-1/4 w-[480px] h-[480px] bg-primary/10 rounded-full blur-[110px]" />
+    <div className="pointer-events-none absolute bottom-0 -right-24 w-[360px] h-[360px] bg-primary/5 rounded-full blur-[90px]" />
+
+    <div className="relative z-10 max-w-2xl mx-auto">
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+          <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+          <span className="text-xs font-bold uppercase tracking-wider text-charcoal">Interview Complete</span>
+        </div>
+        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary/20">
+          <svg className="w-8 h-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-black mb-2">Thanks, {client.contactName}!</h1>
-        <p className="text-charcoal/60">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-black mb-3">Thanks, {client.contactName}!</h1>
+        <p className="text-base sm:text-lg text-charcoal/60 leading-relaxed max-w-md mx-auto">
           We've got everything we need to start designing the {client.businessName} website. We'll be in touch soon.
         </p>
       </div>
 
-      <div className="bg-white rounded-3xl p-6 sm:p-8 space-y-6">
+      <div className="bg-white rounded-3xl border border-black/5 shadow-xl shadow-black/5 p-6 sm:p-10 space-y-8">
         {Object.entries(SUMMARY_LABELS).map(([key, label]) => {
           const value = summary[key];
           if (!value || (Array.isArray(value) && value.length === 0)) return null;
           return (
-            <div key={key}>
-              <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1">{label}</p>
+            <div key={key} className="border-l-2 border-primary/30 pl-4">
+              <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">{label}</p>
               {Array.isArray(value) ? (
-                <ul className="list-disc list-inside text-black space-y-0.5">
+                <ul className="list-disc list-inside text-black space-y-1 leading-relaxed">
                   {value.map((item, i) => (
                     <li key={i}>{String(item)}</li>
                   ))}
@@ -343,6 +396,10 @@ const OnboardingSummary: React.FC<{ client: OnboardingClient; summary: Record<st
             </div>
           );
         })}
+      </div>
+
+      <div className="flex flex-col items-center gap-2 mt-10">
+        <img src="/logo.png" alt="Local Sun Digital" className="h-9 w-auto opacity-80" />
       </div>
     </div>
   </div>
