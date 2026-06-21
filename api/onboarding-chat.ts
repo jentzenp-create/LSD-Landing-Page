@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Anthropic from '@anthropic-ai/sdk';
-import { getOnboardingClient } from '../lib/onboardingClients';
-import { buildOnboardingSystemPrompt, ONBOARDING_COMPLETE_MARKER } from '../lib/onboardingPrompt';
+import { getOnboardingClient } from '../lib/onboardingClients.js';
+import { buildOnboardingSystemPrompt, ONBOARDING_COMPLETE_MARKER } from '../lib/onboardingPrompt.js';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
