@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gatherly × Local Sun Digital · Growth Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-line {
+      position: absolute;
+      background: rgba(242, 183, 5, 0.08);
+      transform-origin: center;
+    }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 500;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 52px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold);
+    }
+    .card.gold-border {
+      border-color: var(--border-gold);
+      background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%);
+    }
+
+    .icon-wrap {
+      width: 48px; height: 48px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .card-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5;
+    }
+    .check-icon {
+      width: 22px; height: 22px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── GATHERLY MOCKUP ── */
+    .mockup-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-card);
+      padding: 28px;
+    }
+    .mockup-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-title { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-left: auto; }
+    .spatial-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      aspect-ratio: 5/3;
+    }
+    .spatial-cell {
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.15);
+      cursor: default;
+    }
+    .av-a { background: #F2B705; color: #000; }
+    .av-b { background: #3B82F6; color: #fff; }
+    .av-c { background: #10B981; color: #fff; }
+    .av-d { background: #8B5CF6; color: #fff; }
+    .av-e { background: #EF4444; color: #fff; }
+    .av-f { background: #F97316; color: #fff; }
+    .av-g { background: #EC4899; color: #fff; }
+    .av-group {
+      background: rgba(242,183,5,0.08);
+      border-radius: 12px;
+      border: 1px solid rgba(242,183,5,0.3);
+      display: flex; align-items: center; justify-content: center; gap: -4px;
+      grid-column: span 2;
+      position: relative;
+      padding: 8px;
+      gap: 4px;
+    }
+    .av-group::after {
+      content: 'Networking';
+      position: absolute; bottom: 6px; left: 0; right: 0;
+      text-align: center; font-size: 9px; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .spatial-label {
+      margin-top: 14px;
+      font-size: 11px; color: var(--text-dim); font-weight: 500;
+      text-align: center; letter-spacing: 0.04em;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      margin-bottom: 32px;
+    }
+    .pkg-num {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--gold);
+      color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: #fff; }
+    .pkg-price {
+      margin-left: auto;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 6px 18px;
+      font-size: 15px; font-weight: 800;
+      color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px;
+      margin-bottom: 10px;
+    }
+
+    /* ── COLD EMAIL FEATURES ── */
+    .email-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .email-feat {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .email-feat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+    .email-feat-body { flex: 1; }
+    .email-feat-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .email-feat-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-card);
+      padding: 32px 40px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+    .pricing-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+    }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total {
+      background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03));
+      border-top: 1px solid var(--border-gold);
+    }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note {
+      font-size: 12px; color: var(--text-dim); font-style: italic;
+      text-align: center; padding: 16px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px;
+      text-align: center;
+    }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT FOR GATHERLY SECTION ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="./LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Gatherly</span> · June 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Growth Proposal · Local Sun Digital
+    </div>
+    <h1>A <span class="gold">Growth Engine</span><br/>for Gatherly</h1>
+    <p class="hero-sub">
+      Video content that converts communities away from Zoom. Cold email infrastructure that puts Gatherly in front of the right decision-makers. Built to work together.
+    </p>
+    <div class="badge-row">
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        Video Content
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Cold Email Campaign
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        Landing Pages
+      </span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROBLEM ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Gap</div>
+      <h2 class="section-title">Gatherly's Value Isn't<br/>Showing Up Where It Counts</h2>
+      <p class="section-sub">The platform is built. The experience is unlike anything else. But without marketing assets that capture it, the right communities have no way to find it.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="card-title">Strong Product Videos. No Targeted Story.</div>
+        <p class="card-body">Gatherly has videos that showcase the platform well. What's missing is content built specifically for community leaders: targeted assets that speak to their pain points, frame the value proposition for their world, and give them a clear reason to switch.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.5 8.5L9 12l-3.5 3.5L4 14l2-2-2-2 1.5-1.5zm13 0L15 12l3.5 3.5L20 14l-2-2 2-2-1.5-1.5zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        </div>
+        <div class="card-title">The Right Audience Isn't Looking</div>
+        <p class="card-body">The ideal Gatherly customer is already paying for Zoom, frustrated but comfortable. Without proactive outreach, Gatherly is invisible to the communities that need it most and waiting for them to discover it on their own.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="card-title">Interest Has Nowhere to Go</div>
+        <p class="card-body">Even a warm prospect has no clear next step. Awareness without a connected funnel does not convert. The gap between "I've heard of Gatherly" and "I'm a paying licensee" is where growth stops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CONNECTED SYSTEM ── -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-label">The Strategy</div>
+        <h2 class="section-title">One Connected<br/>Growth System</h2>
+        <p class="section-sub" style="margin-bottom: 28px;">Each asset is engineered to hand off to the next. Video earns attention. Cold email activates the right inboxes. Landing pages turn interest into appointments. And the Acres of Diamonds roundtable closes the loop.</p>
+        <ul class="check-list">
+          <li>
+            <div class="check-icon">
+              <svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            60-second videos that make the value immediate
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Cold emails that open conversations at scale
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Landing pages that convert interest into appointments
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            A roundtable pipeline that qualifies and closes
+          </li>
+        </ul>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- Video mockup -->
+        <div class="mockup-card" style="padding: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; background: #EF4444; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #F2B705; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
+            <span style="font-size: 11px; color: var(--text-dim); margin-left: auto; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">60-Sec Brand Video</span>
+          </div>
+          <div style="aspect-ratio: 16/5; background: #111; border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid rgba(255,255,255,0.06);">
+            <div style="width: 32px; height: 32px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <svg width="12" height="12" fill="#000" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px;">
+              <div style="width: 38%; height: 100%; background: var(--gold); border-radius: 2px;"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Landing page mockup -->
+        <div class="mockup-card" style="padding: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; background: #EF4444; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #F2B705; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
+            <span style="font-size: 11px; color: var(--text-dim); margin-left: auto; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Landing Page</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="height: 7px; background: rgba(255,255,255,0.15); border-radius: 4px; width: 55%;"></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; width: 85%;"></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; width: 70%;"></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.04); border-radius: 4px; width: 78%;"></div>
+            <div style="margin-top: 4px;"><div style="height: 22px; background: var(--gold); border-radius: 99px; width: 38%; display: flex; align-items: center; justify-content: center;"><div style="height: 4px; width: 50%; background: rgba(0,0,0,0.3); border-radius: 2px;"></div></div></div>
+          </div>
+        </div>
+        <!-- Email mockup -->
+        <div class="mockup-card" style="padding: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; background: #EF4444; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #F2B705; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
+            <span style="font-size: 11px; color: var(--text-dim); margin-left: auto; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Cold Email Sequence</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0;"></div>
+              <div style="height: 4px; background: rgba(255,255,255,0.12); border-radius: 4px; flex: 1;"></div>
+              <div style="font-size: 9px; color: var(--gold); font-weight: 700; white-space: nowrap;">Day 1</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 6px; height: 6px; background: rgba(242,183,5,0.4); border-radius: 50%; flex-shrink: 0;"></div>
+              <div style="height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; flex: 1;"></div>
+              <div style="font-size: 9px; color: rgba(242,183,5,0.5); font-weight: 700; white-space: nowrap;">Day 3</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 6px; height: 6px; background: rgba(242,183,5,0.2); border-radius: 50%; flex-shrink: 0;"></div>
+              <div style="height: 4px; background: rgba(255,255,255,0.04); border-radius: 4px; flex: 1;"></div>
+              <div style="font-size: 9px; color: rgba(242,183,5,0.3); font-weight: 700; white-space: nowrap;">Day 7</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 1: VIDEO ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Video Content</div>
+      <div class="pkg-price">$4,500</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      Two 60-second brand videos built for different audiences, a complete VSL script and asset deck for a 20–30 minute long-form video, plus a copy overhaul of an existing Gatherly one-pager.
+    </p>
+    <div class="grid-3" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="card-title">60-Sec Brand Video<br/><span style="color:var(--gold); font-size:13px;">Stelmakh Edition</span></div>
+        <p class="card-body" style="margin-bottom: 14px;">Targeted at community leaders who fit the Stelmakh ICP. Introduces Gatherly, then reveals that Stelmakh is willing to sponsor their account.</p>
+        <ul class="check-list" style="font-size:13px; gap: 8px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Pain → Platform → Sponsorship CTA</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Warm-audience focused</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Lands at Stelmakh landing page</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="card-title">60-Sec Brand Video<br/><span style="color:var(--gold); font-size:13px;">Broad Audience</span></div>
+        <p class="card-body" style="margin-bottom: 14px;">Built for anyone running a community on Zoom or a similar platform. Positions Gatherly as the obvious upgrade without Stelmakh-specific messaging.</p>
+        <ul class="check-list" style="font-size:13px; gap: 8px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Pain → Value Prop → License CTA</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Broad top-of-funnel reach</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Lands at general landing page</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div class="card-title">VSL Script +<br/>Presentation Assets</div>
+        <p class="card-body" style="margin-bottom: 14px;">A complete 20–30 minute long-form video script for a Gatherly presenter, whether that's Adib or someone brought in for the role. Deep pain point breakdown, objection handling, social proof structure.</p>
+        <ul class="check-list" style="font-size:13px; gap: 8px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Word-for-word script</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Screen-share slide deck assets</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Objection + close section</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card gold-border">
+      <div class="bonus-tag">Bonus Included</div>
+      <div class="card-title">One-Pager Copy Revision</div>
+      <p class="card-body">Your existing one-pager gets a full copy overhaul: hook rewrite, readability improvements, and a sharper value proposition that speaks directly to community leaders on the fence.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 2: LANDING PAGES ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">Landing Pages</div>
+      <div class="pkg-price">$1,000</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      Two dedicated landing pages, one per brand video, engineered to turn cold email clicks and video viewers into demo requests or account sign-ups.
+    </p>
+    <div class="grid-2">
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        </div>
+        <div class="card-title">Stelmakh Edition Landing Page</div>
+        <p class="card-body" style="margin-bottom: 16px;">Mirrors the Stelmakh video messaging. Leads with the sponsorship angle: communities that qualify can claim a sponsored account. Single, clear CTA with no distraction.</p>
+        <ul class="check-list" style="font-size: 13px; gap: 8px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Stelmakh sponsorship CTA front and center</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Lead capture form</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Mobile responsive, LSD-built & hosted</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        </div>
+        <div class="card-title">Broad Audience Landing Page</div>
+        <p class="card-body" style="margin-bottom: 16px;">Paired with the general brand video. Speaks to any community leader considering a Zoom alternative. Focused on Gatherly's value proposition with a demo or trial CTA.</p>
+        <ul class="check-list" style="font-size: 13px; gap: 8px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>"Book a demo" or "Start free trial" CTA</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Lead capture form</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Mobile responsive, LSD-built & hosted</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 3: COLD EMAIL ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">3</div>
+      <div class="pkg-title">Cold Email Campaign Setup</div>
+      <div class="pkg-price">$3,000</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      A cold email sequence engineered to start real conversations. Each email ends with a simple question: want me to send you a resource on this? A yes triggers the landing page, the video, and an invitation to a private community roundtable. Infrastructure and copy, built and handed off.
+    </p>
+    <div class="email-features">
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Domain Acquisition & Warmup</div>
+          <div class="email-feat-desc">Fresh sending domains purchased, configured, and warmed to protect deliverability.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Campaign Copy & Variations</div>
+          <div class="email-feat-desc">Sequences written for each audience, Stelmakh ICP and broad, with A/B subject lines. Each sequence ends with a resource offer that feeds into the landing page.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">ICP Definition & Target Avatars</div>
+          <div class="email-feat-desc">Clear profiles of who we're targeting: community type, platform, size, and intent signals, so outreach lands with precision.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Contact Data Scraping & Delivery</div>
+          <div class="email-feat-desc">Verified contact lists scraped and supplied: community leaders, association managers, event organizers, matched to the ICP.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">1,000 Emails/Day Capacity</div>
+          <div class="email-feat-desc">Full sending infrastructure configured and tested, ready to scale from day one without hitting spam folders.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Performance Benchmarks</div>
+          <div class="email-feat-desc">Expected positive reply rates and meeting booking benchmarks based on industry averages for this audience type.</div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-callout">
+      <div>
+        <div class="stat-num">2–4%</div>
+        <div class="stat-label">Expected positive reply rate</div>
+      </div>
+      <div>
+        <div class="stat-num">~10k</div>
+        <div class="stat-label">Unique contacts per month</div>
+      </div>
+      <p class="stat-note">At 1,000 sends/day across a 3-email sequence, roughly 10,000 unique community leaders enter the pipeline each month. At a 2–4% positive reply rate, that's <strong style="color:#fff;">200–400 warm conversations per month</strong> feeding into the Acres of Diamonds roundtable.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ACRES OF DIAMONDS ── -->
+<section class="section" style="background: linear-gradient(180deg, #0f0c01 0%, #0E0E0E 100%);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Strategic Alignment</div>
+      <h2 class="section-title">Built to Feed <span style="color:var(--gold);">Acres of Diamonds</span></h2>
+      <p class="section-sub">Every asset in this proposal flows directly into what Acres of Diamonds is already building: a warm, qualified pipeline of community leaders ready for Stelmakh sponsorship.</p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 52px;">
+      <img src="./AOD-logo.svg" alt="Acres of Diamonds" style="height: 56px; object-fit: contain;" />
+    </div>
+
+    <div class="grid-2" style="margin-bottom: 40px;">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">What Acres of Diamonds Does</div>
+        <p class="card-body">Acres of Diamonds hosts private roundtables that bring together community leaders who are curious, qualified, and ready to evaluate Gatherly. The roundtable is the vetting layer between initial interest and a Stelmakh-sponsored account.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="card-title">What This Proposal Adds</div>
+        <p class="card-body">The videos, landing pages, and cold email system here are the top-of-funnel infrastructure that AOD currently doesn't have. They turn cold inboxes into warm roundtable seats at scale, without manual prospecting.</p>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px;">
+      <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; text-align: center;">The Pipeline Flow</p>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;">
+
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 10px;">
+            <div style="width: 36px; height: 36px; background: var(--gold-dim); border: 1px solid var(--border-gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+              <svg width="16" height="16" fill="none" stroke="#F2B705" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: #fff;">Cold Email</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">1,000/day</div>
+          </div>
+        </div>
+
+        <div style="color: var(--gold); font-size: 20px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 10px;">
+            <div style="width: 36px; height: 36px; background: var(--gold-dim); border: 1px solid var(--border-gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+              <svg width="16" height="16" fill="none" stroke="#F2B705" stroke-width="2" viewBox="0 0 24 24"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: #fff;">Interested?</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Resource offer</div>
+          </div>
+        </div>
+
+        <div style="color: var(--gold); font-size: 20px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 10px;">
+            <div style="width: 36px; height: 36px; background: var(--gold-dim); border: 1px solid var(--border-gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+              <svg width="16" height="16" fill="none" stroke="#F2B705" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: #fff;">Landing Page</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Video + CTA</div>
+          </div>
+        </div>
+
+        <div style="color: var(--gold); font-size: 20px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); border: 1px solid var(--border-gold); border-radius: 12px; padding: 16px 10px;">
+            <div style="width: 36px; height: 36px; background: var(--gold-dim); border: 1px solid var(--border-gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+              <svg width="16" height="16" fill="none" stroke="#F2B705" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: var(--gold);">AOD Roundtable</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Private vetting</div>
+          </div>
+        </div>
+
+        <div style="color: var(--gold); font-size: 20px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--gold); border-radius: 12px; padding: 16px 10px;">
+            <div style="width: 36px; height: 36px; background: rgba(0,0,0,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+              <svg width="16" height="16" fill="none" stroke="#000" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: #000;">Stelmakh</div>
+            <div style="font-size: 11px; color: rgba(0,0,0,0.55); margin-top: 2px;">Sponsorship</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub">Three packages built to work together. Each one stands on its own; together, they create a self-reinforcing growth loop.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 680px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Video Content
+          <small>2 brand videos · VSL script & assets · one-pager revision</small>
+        </div>
+        <div class="pricing-amt">$4,500</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Landing Pages
+          <small>Stelmakh edition + broad audience · lead capture forms · hosted</small>
+        </div>
+        <div class="pricing-amt">$1,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Cold Email Campaign Setup
+          <small>Domains · copy · ICP · data · 1,000/day sending infrastructure</small>
+        </div>
+        <div class="pricing-amt">$3,000</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Total Investment</div>
+        <div class="pricing-amt">$8,500</div>
+      </div>
+      <div class="pricing-note">Video scope reflects current deliverables. Open to adjusting based on final deliverable count or turnaround requirements.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">Built for Brands That Move Fast</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Video That Converts</div>
+          <p class="why-desc">We don't just produce videos; we script around the psychology of community leaders already skeptical of switching platforms. Every second is earning attention.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Full Cold Email Stack</div>
+          <p class="why-desc">Not just copywriters. We build the infrastructure, source the data, and hand you a pipeline. Not just a document.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">One Unified Strategy</div>
+          <p class="why-desc">The video primes. The email activates. The landing page converts. Three assets designed to hand off to each other. Not three disconnected freelancers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's Build Gatherly's<br/><span style="color:var(--gold);">Growth Engine.</span></h2>
+    <p class="cta-sub">Questions, adjustments, or ready to move forward. Reach out and we'll make it happen.</p>
+    <div>
+      <a href="mailto:jentzenp@gmail.com?subject=Gatherly Proposal -Let's Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzenp@gmail.com?subject=Gatherly Proposal -Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="./LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Gatherly</span>
+</footer>
+
+</body>
+</html>
