@@ -443,6 +443,8 @@
     }
     .portfolio-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
     .portfolio-media { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; background: #000; }
+    .portfolio-card-wide { grid-column: 1 / -1; }
+    .portfolio-card-wide .portfolio-media { aspect-ratio: auto; object-fit: contain; height: auto; }
     .portfolio-meta { padding: 16px 20px 20px; }
     .portfolio-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
     .portfolio-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
@@ -1054,7 +1056,7 @@
           <p class="portfolio-desc">Short-form video ad built around customer social proof for a local service brand.</p>
         </div>
       </div>
-      <div class="portfolio-card">
+      <div class="portfolio-card portfolio-card-wide">
         <img class="portfolio-media" src="/gatherly/email-campaign-results.png" alt="Email campaign results" />
         <div class="portfolio-meta">
           <div class="portfolio-label">Cold Email</div>
