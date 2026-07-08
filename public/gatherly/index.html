@@ -433,6 +433,21 @@
     .why-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
 
+    /* ── PORTFOLIO ── */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 860px) { .portfolio-grid { grid-template-columns: 1fr; } }
+    .portfolio-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .portfolio-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .portfolio-media { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; background: #000; }
+    .portfolio-meta { padding: 16px 20px 20px; }
+    .portfolio-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .portfolio-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .portfolio-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
     /* ── CTA ── */
     .cta-section {
       background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
@@ -1005,6 +1020,48 @@
         <div class="pricing-amt">$8,500</div>
       </div>
       <div class="pricing-note">Video scope reflects current deliverables. Open to adjusting based on final deliverable count or turnaround requirements.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PORTFOLIO ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">What We've Built</h2>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <video class="portfolio-media" controls preload="metadata" poster="">
+          <source src="https://assets.cdn.filesafe.space/cj4hQsqqI9fhy6MABW7y/media/6a4ec3ceeada8c1f4571835d.mp4" type="video/mp4">
+        </video>
+        <div class="portfolio-meta">
+          <div class="portfolio-label">Brand Video</div>
+          <div class="portfolio-title">Acres of Diamonds Explainer</div>
+          <p class="portfolio-desc">60-second explainer introducing the AOD community platform and its value proposition for members.</p>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <video class="portfolio-media" controls preload="metadata">
+          <source src="https://assets.cdn.filesafe.space/cj4hQsqqI9fhy6MABW7y/media/6a4ec3d2ac2f159bb07ca7f0.mp4" type="video/mp4">
+        </video>
+        <div class="portfolio-meta">
+          <div class="portfolio-label">Ad Creative</div>
+          <div class="portfolio-title">Local Service Business Reviews</div>
+          <p class="portfolio-desc">Short-form video ad built around customer social proof for a local service brand.</p>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <img class="portfolio-media" src="/gatherly/email-campaign-results.png" alt="Email campaign results" />
+        <div class="portfolio-meta">
+          <div class="portfolio-label">Cold Email</div>
+          <div class="portfolio-title">Campaign Performance Snapshot</div>
+          <p class="portfolio-desc">Real results from a cold email campaign we ran: open rates, reply rates, and pipeline generated.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
