@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lake Tahoe Pontoons × Local Sun Digital · 3-Month Marketing Sprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-line {
+      position: absolute;
+      background: rgba(242, 183, 5, 0.08);
+      transform-origin: center;
+    }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 500;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 52px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold);
+    }
+    .card.gold-border {
+      border-color: var(--border-gold);
+      background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%);
+    }
+
+    .icon-wrap {
+      width: 48px; height: 48px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .card-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; color: var(--text-muted); font-weight: 500; line-height: 1.55;
+    }
+    .check-icon {
+      width: 22px; height: 22px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── SCOPE CARDS ── */
+    .scope-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      background: var(--gold);
+      color: #000;
+      font-size: 15px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .scope-head {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 18px;
+    }
+    .scope-head .card-title { margin-bottom: 0; }
+
+    /* ── TIMELINE ── */
+    .timeline-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .timeline-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold);
+    }
+    .timeline-month {
+      display: inline-block;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 5px 14px;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    /* ── X-LIST (NOT INCLUDED) ── */
+    .x-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .x-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; color: var(--text-muted); font-weight: 500; line-height: 1.55;
+    }
+    .x-icon {
+      width: 22px; height: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+    .pricing-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+    }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total {
+      background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03));
+      border-top: 1px solid var(--border-gold);
+    }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note {
+      font-size: 12px; color: var(--text-dim); font-style: italic;
+      text-align: center; padding: 16px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── STAT CALLOUT ── */
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-card);
+      padding: 32px 40px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 42px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px;
+      text-align: center;
+    }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/lake-tahoe-pontoons/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Lake Tahoe Pontoons</span> · July 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Marketing Proposal · Local Sun Digital
+    </div>
+    <h1>A <span class="gold">3-Month Marketing Sprint</span><br/>for Lake Tahoe Pontoons</h1>
+    <p class="hero-sub">
+      Stronger online visibility, better customer follow-up, and steady growth through peak season. Practical marketing improvements aligned with your business goals, brand, and values.
+    </p>
+    <div class="badge-row">
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        SEO Foundation
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Homepage Refresh
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Weekly Newsletters
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        Review Automation
+      </span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── OVERVIEW ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">Momentum Now.<br/>Groundwork for What's Next.</h2>
+      <p class="section-sub">This 3-month sprint is designed to improve online visibility, strengthen customer follow-up, and support steady business growth during peak season. The focus is on practical marketing improvements that pay off both in the short term and over time — all aligned with Dennis's business goals, brand, and values.</p>
+    </div>
+    <div class="stat-callout" style="margin-top: 0; justify-content: center;">
+      <div style="text-align: center;">
+        <div class="stat-num">$2,000<span style="font-size: 20px; font-weight: 700;">/mo</span></div>
+        <div class="stat-label">Monthly investment</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Months · July, Aug, Sept</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="stat-num">$6,000</div>
+        <div class="stat-label">Total investment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SCOPE OF WORK ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Scope of Work</div>
+      <h2 class="section-title">Six Workstreams, One Goal</h2>
+      <p class="section-sub">Every piece of this sprint works toward the same outcome: more visibility, more bookings, and more repeat customers.</p>
+    </div>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="scope-head">
+          <div class="scope-num">1</div>
+          <div class="card-title">SEO Foundation &amp; Website Optimization</div>
+        </div>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Review current website performance, rankings, and search visibility</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Establish a baseline for traffic, keyword visibility, and SEO strength</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Identify priority search opportunities based on competitor positioning and customer demand</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Optimize key website pages and on-site content for relevant search terms</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Strengthen website SEO structure to support improved long-term visibility</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Monitor performance and adjust priorities throughout the sprint</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="scope-head">
+          <div class="scope-num">2</div>
+          <div class="card-title">Homepage Conversion Refresh</div>
+        </div>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Review the current homepage for clarity, trust, and conversion barriers</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Make light design and copy updates to improve messaging and user flow</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Strengthen calls to action and overall homepage structure</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Improve how services, value, and booking information are presented</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Complete updates within the existing website framework</li>
+        </ul>
+        <p class="card-body" style="margin-top: 16px; font-size: 12px; font-style: italic; color: var(--text-dim);">This includes a light homepage refresh only — not a full website redesign or rebuild.</p>
+      </div>
+
+      <div class="card">
+        <div class="scope-head">
+          <div class="scope-num">3</div>
+          <div class="card-title">Weekly Email Newsletter</div>
+        </div>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Create and send <strong style="color:#fff;">one email newsletter per week</strong></li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Re-engage past customers and stay top of mind with existing contacts</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Write content aligned with the brand voice and values</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Use newsletter communication to support relationship-based marketing and repeat business</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="scope-head">
+          <div class="scope-num">4</div>
+          <div class="card-title">Review &amp; Follow-Up Automation</div>
+        </div>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Set up or improve post-booking follow-up communication</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Create automated review request messaging</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Support an increase in customer reviews over time</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Build a simple communication process that encourages referrals and repeat bookings</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="scope-head">
+          <div class="scope-num">5</div>
+          <div class="card-title">Customer Re-Engagement Emails</div>
+        </div>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Develop and send light marketing or follow-up emails to previous customers</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Encourage repeat bookings through simple, timely outreach</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Improve ongoing communication without requiring constant manual follow-up</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="scope-head">
+          <div class="scope-num">6</div>
+          <div class="card-title">Reporting &amp; Strategy Oversight</div>
+        </div>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Take an initial performance snapshot at the start of the engagement</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Provide monthly progress reports</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Track movement in traffic, search visibility, engagement, and review activity</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Adjust strategy based on what is working best during the sprint</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROJECT INTENT ── -->
+<section class="section" style="background: linear-gradient(180deg, #0f0c01 0%, #0E0E0E 100%);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Project Intent</div>
+      <h2 class="section-title">Built for This Season <span style="color:var(--gold);">and the Next</span></h2>
+      <p class="section-sub">This sprint builds momentum during the current season while laying groundwork for future growth. SEO improvements are typically longer-term, while homepage improvements, email outreach, and customer follow-up systems create more immediate business value.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="card-title">Immediate Value</div>
+        <p class="card-body">Homepage improvements, weekly email outreach, and automated customer follow-up are designed to generate bookings and reviews right away — during the months that matter most.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="card-title">Long-Term Growth</div>
+        <p class="card-body">SEO foundations compound over time. Better search visibility, clearer conversion pathways, and consistent customer communication set up steady, healthy growth well beyond the sprint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Timeline</div>
+      <h2 class="section-title">Three Months, Mapped Out</h2>
+    </div>
+    <div class="grid-3">
+      <div class="timeline-card">
+        <div class="timeline-month">Month 1 · July</div>
+        <div class="card-title">Foundation &amp; Setup</div>
+        <p class="card-body">Baseline review, strategy setup, homepage refresh, foundational SEO work, and newsletter and follow-up setup.</p>
+      </div>
+      <div class="timeline-card">
+        <div class="timeline-month">Month 2 · August</div>
+        <div class="card-title">Build &amp; Optimize</div>
+        <p class="card-body">Continued SEO improvements, weekly newsletters, follow-up optimization, and progress tracking.</p>
+      </div>
+      <div class="timeline-card">
+        <div class="timeline-month">Month 3 · September</div>
+        <div class="card-title">Refine &amp; Recommend</div>
+        <p class="card-body">Continued implementation, reporting, and evaluation for next-step recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">Simple, Flat Monthly Pricing</h2>
+      <p class="section-sub">One rate covers the entire scope of work — SEO, homepage refresh, weekly newsletters, review automation, re-engagement emails, and monthly reporting.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 680px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Month 1 · July
+          <small>Baseline review · strategy setup · homepage refresh · SEO foundation · newsletter &amp; follow-up setup</small>
+        </div>
+        <div class="pricing-amt">$2,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Month 2 · August
+          <small>SEO improvements · weekly newsletters · follow-up optimization · progress tracking</small>
+        </div>
+        <div class="pricing-amt">$2,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Month 3 · September
+          <small>Continued implementation · reporting · next-step recommendations</small>
+        </div>
+        <div class="pricing-amt">$2,000</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Total Investment</div>
+        <div class="pricing-amt">$6,000</div>
+      </div>
+      <div class="pricing-note">Billed at $2,000/month for the 3-month term: July, August, September.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── NOT INCLUDED / ADDITIONAL OPPORTUNITIES ── -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Scope Clarity</div>
+        <h2 class="section-title" style="font-size: clamp(22px, 3vw, 30px);">Not Included</h2>
+        <p class="section-sub" style="margin-bottom: 28px; font-size: 14px;">To keep the sprint focused and the pricing honest, the following are outside this engagement:</p>
+        <ul class="x-list">
+          <li><div class="x-icon"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></div>Paid advertising management</li>
+          <li><div class="x-icon"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></div>Full website redesign or rebuild</li>
+          <li><div class="x-icon"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></div>Social media management</li>
+          <li><div class="x-icon"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></div>Branding strategy or visual identity development</li>
+          <li><div class="x-icon"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></div>AI phone receptionist setup or implementation</li>
+          <li><div class="x-icon"><svg width="10" height="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></div>Ongoing work beyond the 3-month sprint unless extended separately</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">Additional Opportunities</div>
+        <h2 class="section-title" style="font-size: clamp(22px, 3vw, 30px);">Want to Go Further?</h2>
+        <p class="section-sub" style="margin-bottom: 28px; font-size: 14px;">These services are available if Dennis would like to expand the engagement in the future:</p>
+        <ul class="check-list">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg></div>AI-assisted video content creation</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg></div>Social media posting support</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg></div>Additional promotional content development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's Make This Season<br/><span style="color:var(--gold);">Your Best One Yet.</span></h2>
+    <p class="cta-sub">Secure your 3-month marketing sprint — $2,000/month for July, August, and September.</p>
+    <div>
+      <a href="https://buy.stripe.com/dRmdR9eZugyieTg0og0kE0C" class="btn-primary">
+        Start the Sprint
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzenp@gmail.com?subject=Lake Tahoe Pontoons Proposal - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/lake-tahoe-pontoons/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Lake Tahoe Pontoons</span>
+</footer>
+
+</body>
+</html>
