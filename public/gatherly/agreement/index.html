@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gatherly × Local Sun Digital · Service Agreement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 24px 80px;
+      text-align: center;
+    }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(34px, 5.5vw, 64px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      font-weight: 500;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 13px; font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 620px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    .divider { height: 1px; background: var(--border); }
+
+    .icon-wrap {
+      width: 48px; height: 48px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    /* ── COLD EMAIL FEATURES ── */
+    .email-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 860px) { .email-features { grid-template-columns: 1fr; } }
+    .email-feat {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .email-feat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+    .email-feat-body { flex: 1; }
+    .email-feat-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .email-feat-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-card);
+      padding: 32px 40px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── PROOF ── */
+    .proof-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .proof-card img { width: 100%; display: block; height: auto; background: #000; }
+    .proof-meta { padding: 16px 20px 20px; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .proof-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .proof-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+    /* ── AGREEMENT DOCUMENT ── */
+    .agreement-doc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 48px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) { .agreement-doc { padding: 28px 20px; } }
+    .agreement-parties {
+      display: flex; flex-wrap: wrap; gap: 24px;
+      padding-bottom: 28px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .party-block { flex: 1; min-width: 220px; }
+    .party-role { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .party-name { font-size: 16px; font-weight: 700; color: #fff; }
+    .party-sub { font-size: 13px; color: var(--text-muted); }
+
+    .agreement-doc h3 {
+      font-size: 16px; font-weight: 800; color: #fff;
+      margin: 32px 0 10px;
+      display: flex; align-items: baseline; gap: 10px;
+    }
+    .agreement-doc h3:first-of-type { margin-top: 0; }
+    .clause-num { color: var(--gold); font-weight: 900; flex-shrink: 0; }
+    .agreement-doc p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 10px; }
+    .agreement-doc strong { color: #fff; font-weight: 700; }
+    .agreement-doc ul { list-style: none; margin: 10px 0 14px; display: flex; flex-direction: column; gap: 8px; }
+    .agreement-doc ul li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    }
+    .doc-check {
+      width: 18px; height: 18px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .callout-inline {
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      margin: 12px 0;
+    }
+
+    /* ── ACCEPTANCE ── */
+    .accept-card {
+      background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-card);
+      padding: 44px 48px;
+      max-width: 860px;
+      margin: 48px auto 0;
+    }
+    @media (max-width: 640px) { .accept-card { padding: 28px 20px; } }
+    .accept-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .accept-sub { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 28px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+    .field label {
+      display: block;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .field input[type="text"] {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .field input[type="text"]:focus { border-color: var(--border-gold); }
+    .field input[type="text"]::placeholder { color: var(--text-dim); }
+
+    .accept-check {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin: 22px 0 28px;
+      cursor: pointer;
+    }
+    .accept-check input[type="checkbox"] {
+      width: 20px; height: 20px;
+      accent-color: var(--gold);
+      margin-top: 2px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .accept-check span { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .accept-date { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+    .accept-date strong { color: var(--text-muted); font-weight: 600; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      font-family: inherit;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .btn-primary:hover:not(:disabled) { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+    .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-hint { font-size: 12px; color: var(--text-dim); margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 60px 16px 50px; }
+      .section { padding: 60px 0; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      nav, .accept-card { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/gatherly/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Service Agreement · <span>Gatherly</span></span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Cold Email Campaign Setup · $3,000
+    </div>
+    <h1>Let's Launch Gatherly's<br/><span class="gold">Cold Email Engine</span></h1>
+    <p class="hero-sub">
+      You picked the highest-leverage piece of the growth plan: infrastructure that puts Gatherly in front of thousands of qualified community leaders every month. Here's everything included, the agreement, and one click to kick it off.
+    </p>
+    <div class="badge-row">
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Full Sending Infrastructure
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        Campaign Copy & Strategy
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        1,000 Emails/Day
+      </span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHAT YOU'RE GETTING ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Package</div>
+      <h2 class="section-title">Everything Included in Your Setup</h2>
+      <p class="section-sub">A cold email system engineered to start real conversations, built end to end and handed off ready to run.</p>
+    </div>
+    <div class="email-features">
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0; margin-bottom:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Domain Acquisition & Warmup</div>
+          <div class="email-feat-desc">Fresh sending domains purchased, configured, and warmed to protect deliverability.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0; margin-bottom:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Campaign Copy & Variations</div>
+          <div class="email-feat-desc">Sequences written for each target audience with A/B subject lines. Each sequence ends with a simple resource offer that starts a conversation.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0; margin-bottom:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">ICP Definition & Target Avatars</div>
+          <div class="email-feat-desc">Clear profiles of who we're targeting: community type, platform, size, and intent signals, so outreach lands with precision.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0; margin-bottom:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Contact Data Scraping & Delivery</div>
+          <div class="email-feat-desc">Verified contact lists scraped and supplied: community leaders, association managers, event organizers, matched to the ICP.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0; margin-bottom:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">1,000 Emails/Day Capacity</div>
+          <div class="email-feat-desc">Full sending infrastructure configured and tested, ready to scale from day one without hitting spam folders.</div>
+        </div>
+      </div>
+      <div class="email-feat">
+        <div class="icon-wrap" style="width:40px; height:40px; border-radius:10px; flex-shrink:0; margin-bottom:0;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="email-feat-body">
+          <div class="email-feat-title">Event-Based Outreach Planning</div>
+          <div class="email-feat-desc">Outreach strategy built around Gatherly's upcoming events, including follow-up sequences for existing event attendees.</div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-callout">
+      <div>
+        <div class="stat-num">2–4%</div>
+        <div class="stat-label">Expected positive reply rate</div>
+      </div>
+      <div>
+        <div class="stat-num">~10k</div>
+        <div class="stat-label">Unique contacts per month</div>
+      </div>
+      <p class="stat-note">At 1,000 sends/day across a 3-email sequence, roughly 10,000 unique community leaders enter the pipeline each month. At a 2–4% positive reply rate, that's <strong style="color:#fff;">200–400 warm conversations per month</strong> for Gatherly.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROOF ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Proven System</div>
+      <h2 class="section-title">We've Run This Play Before</h2>
+      <p class="section-sub">Real results from a cold email campaign we built and ran with this exact system.</p>
+    </div>
+    <div class="proof-card">
+      <img src="/gatherly/email-campaign-results.png" alt="Email campaign results" />
+      <div class="proof-meta">
+        <div class="proof-label">Cold Email</div>
+        <div class="proof-title">Campaign Performance Snapshot</div>
+        <p class="proof-desc">Open rates, reply rates, and pipeline generated from a live campaign running on the same infrastructure we'll build for Gatherly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SERVICE AGREEMENT ── -->
+<section class="section" id="agreement">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Agreement</div>
+      <h2 class="section-title">Service Agreement</h2>
+      <p class="section-sub">Plain language, no surprises. Review the terms below, then accept and check out to get started.</p>
+    </div>
+
+    <div class="agreement-doc">
+      <div class="agreement-parties">
+        <div class="party-block">
+          <div class="party-role">Provider</div>
+          <div class="party-name">Local Sun Digital</div>
+          <div class="party-sub">"Provider"</div>
+        </div>
+        <div class="party-block">
+          <div class="party-role">Client</div>
+          <div class="party-name">Gatherly Virtual Events Inc.</div>
+          <div class="party-sub">"Client"</div>
+        </div>
+        <div class="party-block">
+          <div class="party-role">Effective Date</div>
+          <div class="party-name" id="effective-date">Date of payment</div>
+          <div class="party-sub">Executed upon acceptance and payment</div>
+        </div>
+      </div>
+
+      <h3><span class="clause-num">1.</span> Scope of Services</h3>
+      <p>Provider will deliver cold email campaign setup and strategy services for Client, including:</p>
+      <ul>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Setup of sending infrastructure, including domains and inboxes</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Configuration of cold email campaign systems</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Initial campaign strategy and sequencing</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Copywriting support for campaign messaging</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Segmentation planning for target audiences</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Planning for event-based outreach and attendee follow-up sequences</li>
+      </ul>
+      <p>This agreement does <strong>not</strong> include landing page development or video production at this stage.</p>
+
+      <h3><span class="clause-num">2.</span> Fees & Payment Terms</h3>
+      <p>Client agrees to pay Provider a one-time setup fee of <strong>$3,000</strong>, due <strong>100% upfront</strong> via the checkout link on this page. Work begins upon receipt of payment.</p>
+      <p>This fee covers:</p>
+      <ul>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Domain and inbox setup</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Annual purchase costs for domains and inboxes included in the setup period</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Initial technical configuration and campaign buildout</li>
+      </ul>
+      <p>The previously discussed $4,500 video content scope is not included in this agreement.</p>
+
+      <h3><span class="clause-num">3.</span> Software / Platform Costs</h3>
+      <p>Provider may use Provider's existing Instantly subscription for campaign execution. If Client's campaign volume requires a higher tier, Client will pay the difference associated with the necessary upgrade.</p>
+      <p>Any third-party software or tool costs not explicitly included above must be approved by Client before purchase.</p>
+
+      <h3><span class="clause-num">4.</span> Ongoing Optimization</h3>
+      <p>Provider will provide ongoing optimization of the cold email campaign as part of the partnership and will not charge a separate maintenance fee at this time.</p>
+
+      <h3><span class="clause-num">5.</span> Revisions</h3>
+      <p>The setup fee includes up to <strong>two (2) rounds of revisions</strong> on campaign copy and sequence structure per audience segment. Additional revision rounds or material changes in campaign direction after approval will be scoped and priced separately with Client's approval before any work begins.</p>
+
+      <h3><span class="clause-num">6.</span> Client Responsibilities</h3>
+      <p>Client agrees to:</p>
+      <ul>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Participate in a kickoff and planning session</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Provide timely feedback on campaign direction and messaging</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Share relevant business information needed for targeting and segmentation</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Provide access to event calendars, attendee data, and related materials if Client wants attendee follow-up campaigns included</li>
+      </ul>
+
+      <h3><span class="clause-num">7.</span> Strategy and Deliverables</h3>
+      <p>Initial planning may include:</p>
+      <ul>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Recommended number of domains</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Domain warm-up timeline</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Sequence structure</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Audience segmentation</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Integration of upcoming events into outreach strategy</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Follow-up campaigns for existing event attendees</li>
+      </ul>
+
+      <h3><span class="clause-num">8.</span> Email Compliance</h3>
+      <p>Provider follows industry best practices for cold outreach, including opt-out handling and sending hygiene. However, Client is responsible for the legal review of outbound email compliance in the jurisdictions where Client operates and targets recipients, including but not limited to CAN-SPAM, GDPR, and CASL. Provider does not provide legal advice.</p>
+
+      <h3><span class="clause-num">9.</span> No Guarantee of Results</h3>
+      <p>Provider will use reasonable professional efforts to execute and optimize campaigns. However, Provider does not guarantee any specific number of leads, meetings, conversions, or revenue outcomes.</p>
+
+      <h3><span class="clause-num">10.</span> Term and Termination</h3>
+      <p>This Agreement begins on the Effective Date and continues until the initial setup and agreed launch work is completed, unless terminated earlier by either party in writing.</p>
+      <p>If terminated after work has begun, Client will remain responsible for payment for work completed and any approved third-party costs already incurred.</p>
+
+      <h3><span class="clause-num">11.</span> Intellectual Property</h3>
+      <p>Client will own Client-specific campaign assets and business materials created under this agreement upon full payment, excluding Provider's pre-existing processes, frameworks, templates, and know-how.</p>
+
+      <h3><span class="clause-num">12.</span> Confidentiality</h3>
+      <p>Both parties agree to keep confidential any non-public business, technical, or commercial information shared during the engagement.</p>
+
+      <h3><span class="clause-num">13.</span> Independent Contractor</h3>
+      <p>Provider is acting as an independent contractor and not as an employee, partner, or legal representative of Client.</p>
+
+      <h3><span class="clause-num">14.</span> Acceptance & Electronic Execution</h3>
+      <p>This Agreement is executed electronically. By entering their name and title below, checking the acceptance box, and completing payment through the checkout link on this page, Client's authorized representative agrees to be bound by all terms of this Agreement. Electronic acceptance carries the same legal effect as a handwritten signature.</p>
+      <div class="callout-inline">
+        The Effective Date of this Agreement is the date Client completes payment. Provider countersigns by accepting payment and beginning work.
+      </div>
+    </div>
+
+    <!-- ── ACCEPTANCE ── -->
+    <div class="accept-card">
+      <div class="accept-title">Accept & Get Started</div>
+      <p class="accept-sub">Enter your details, confirm your acceptance, and continue to secure checkout. Your name and acceptance are attached to the payment record.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="signer-name">Full Name</label>
+          <input type="text" id="signer-name" placeholder="Your full legal name" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="signer-title">Title</label>
+          <input type="text" id="signer-title" placeholder="e.g. Founder & CEO" autocomplete="organization-title" />
+        </div>
+      </div>
+
+      <label class="accept-check">
+        <input type="checkbox" id="agree-box" />
+        <span>I am authorized to sign on behalf of Gatherly Virtual Events Inc., I have read and agree to the Service Agreement above, and I understand that completing payment executes this Agreement.</span>
+      </label>
+
+      <p class="accept-date">Acceptance date: <strong id="today-date"></strong></p>
+
+      <button class="btn-primary" id="checkout-btn" disabled>
+        Agree & Continue to Payment
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </button>
+      <p class="btn-hint">Secure checkout powered by Stripe · $3,000 one-time</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/gatherly/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">Questions before you sign? Email <a href="mailto:jentzenp@gmail.com" style="color: var(--gold); text-decoration: none;">jentzenp@gmail.com</a></span>
+</footer>
+
+<script>
+  // Swap this for the live Stripe Payment Link
+  var STRIPE_PAYMENT_LINK = 'STRIPE_PAYMENT_LINK_PLACEHOLDER';
+
+  var nameInput = document.getElementById('signer-name');
+  var titleInput = document.getElementById('signer-title');
+  var agreeBox = document.getElementById('agree-box');
+  var checkoutBtn = document.getElementById('checkout-btn');
+
+  document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  function updateButton() {
+    var ready = nameInput.value.trim().length >= 2 &&
+                titleInput.value.trim().length >= 2 &&
+                agreeBox.checked;
+    checkoutBtn.disabled = !ready;
+  }
+
+  nameInput.addEventListener('input', updateButton);
+  titleInput.addEventListener('input', updateButton);
+  agreeBox.addEventListener('change', updateButton);
+
+  checkoutBtn.addEventListener('click', function () {
+    if (STRIPE_PAYMENT_LINK.indexOf('PLACEHOLDER') !== -1) {
+      alert('Checkout link is being finalized. Please email jentzenp@gmail.com and we will send it right over.');
+      return;
+    }
+    // Attach the signer to the Stripe payment as client_reference_id (alphanumeric, dashes, underscores)
+    var ref = (nameInput.value.trim() + '-' + titleInput.value.trim())
+      .replace(/[^a-zA-Z0-9 _-]/g, '')
+      .replace(/\s+/g, '_')
+      .slice(0, 190);
+    var url = STRIPE_PAYMENT_LINK + (STRIPE_PAYMENT_LINK.indexOf('?') === -1 ? '?' : '&') +
+      'client_reference_id=' + encodeURIComponent(ref);
+    window.location.href = url;
+  });
+</script>
+
+</body>
+</html>
