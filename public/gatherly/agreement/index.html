@@ -344,9 +344,28 @@
       .section { padding: 60px 0; }
     }
 
+    .print-signature { display: none; }
+
     @media print {
       body { background: #fff; color: #000; }
-      nav, .accept-card { display: none; }
+      nav, footer, .hero, .divider, .accept-card, .section:not(#agreement) { display: none; }
+      .section { padding: 0; }
+      .section-header .section-label { color: #8a6a00; }
+      .section-title, .agreement-doc h3, .agreement-doc strong, .party-name { color: #000; }
+      .section-sub, .agreement-doc p, .agreement-doc ul li, .party-sub, .accept-date { color: #333; }
+      .clause-num, .party-role { color: #8a6a00; }
+      .agreement-doc { background: #fff; border: none; padding: 0; max-width: none; }
+      .agreement-parties { border-bottom: 1px solid #ccc; }
+      .doc-check { border-color: #8a6a00; background: #fff8e0; }
+      .callout-inline { background: #fff8e0; border-color: #d9b12a; color: #333; }
+      .print-signature {
+        display: block;
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid #ccc;
+        font-size: 14px;
+        color: #000;
+      }
     }
   </style>
 </head>
@@ -443,7 +462,7 @@
         </div>
         <div class="email-feat-body">
           <div class="email-feat-title">Contact Data Scraping & Delivery</div>
-          <div class="email-feat-desc">Verified contact lists scraped and supplied: community leaders, association managers, event organizers, matched to the ICP.</div>
+          <div class="email-feat-desc">Verified contact lists scraped and supplied for your first 30 days of sending: community leaders, association managers, event organizers, matched to the ICP.</div>
         </div>
       </div>
       <div class="email-feat">
@@ -553,14 +572,14 @@
       <p>The previously discussed $4,500 video content scope is not included in this agreement.</p>
 
       <h3><span class="clause-num">3.</span> Software / Platform Costs</h3>
-      <p>Provider may use Provider's existing Instantly subscription for campaign execution. If Client's campaign volume requires a higher tier, Client will pay the difference associated with the necessary upgrade.</p>
+      <p>Campaign execution requires an email sending platform. Client agrees to an ongoing platform cost of <strong>$87/month</strong> to accommodate the campaign's email volume, beginning at campaign launch.</p>
       <p>Any third-party software or tool costs not explicitly included above must be approved by Client before purchase.</p>
 
       <h3><span class="clause-num">4.</span> Ongoing Optimization</h3>
       <p>Provider will provide ongoing optimization of the cold email campaign as part of the partnership and will not charge a separate maintenance fee at this time.</p>
 
-      <h3><span class="clause-num">5.</span> Revisions</h3>
-      <p>The setup fee includes up to <strong>two (2) rounds of revisions</strong> on campaign copy and sequence structure per audience segment. Additional revision rounds or material changes in campaign direction after approval will be scoped and priced separately with Client's approval before any work begins.</p>
+      <h3><span class="clause-num">5.</span> Lead Data</h3>
+      <p>Provider will supply the initial batch of verified lead data, sufficient for approximately the <strong>first 30 days</strong> of sending. Thereafter, Client is responsible for providing lead lists on an ongoing basis, along with any associated data verification and enrichment costs.</p>
 
       <h3><span class="clause-num">6.</span> Client Responsibilities</h3>
       <p>Client agrees to:</p>
@@ -569,6 +588,7 @@
         <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Provide timely feedback on campaign direction and messaging</li>
         <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Share relevant business information needed for targeting and segmentation</li>
         <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Provide access to event calendars, attendee data, and related materials if Client wants attendee follow-up campaigns included</li>
+        <li><div class="doc-check"><svg width="9" height="9" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Provide ongoing lead lists after the initial 30-day batch, including any verification and enrichment costs</li>
       </ul>
 
       <h3><span class="clause-num">7.</span> Strategy and Deliverables</h3>
@@ -606,6 +626,12 @@
       <div class="callout-inline">
         The Effective Date of this Agreement is the date Client completes payment. Provider countersigns by accepting payment and beginning work.
       </div>
+
+      <div class="print-signature" id="print-signature">
+        <strong>Accepted electronically by:</strong> <span id="print-name">____________________</span><br/>
+        <strong>Title:</strong> <span id="print-title">____________________</span><br/>
+        <strong>Date:</strong> <span id="print-date"></span>
+      </div>
     </div>
 
     <!-- ── ACCEPTANCE ── -->
@@ -635,7 +661,8 @@
         Agree & Continue to Payment
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
       </button>
-      <p class="btn-hint">Secure checkout powered by Stripe · $3,000 one-time</p>
+      <p class="btn-hint">Secure checkout powered by Stripe · $3,000 one-time · $87/mo platform cost begins at launch</p>
+      <p class="btn-hint" style="margin-top: 6px;"><a href="#" id="print-link" style="color: var(--text-muted); text-decoration: underline;">Print or save a PDF copy of this agreement</a></p>
     </div>
   </div>
 </section>
@@ -648,7 +675,7 @@
 
 <script>
   // Swap this for the live Stripe Payment Link
-  var STRIPE_PAYMENT_LINK = 'STRIPE_PAYMENT_LINK_PLACEHOLDER';
+  var STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/8x2fZhaJebdYeTg8UM0kE0D';
 
   var nameInput = document.getElementById('signer-name');
   var titleInput = document.getElementById('signer-title');
@@ -669,6 +696,20 @@
   nameInput.addEventListener('input', updateButton);
   titleInput.addEventListener('input', updateButton);
   agreeBox.addEventListener('change', updateButton);
+
+  function fillPrintSignature() {
+    if (nameInput.value.trim()) document.getElementById('print-name').textContent = nameInput.value.trim();
+    if (titleInput.value.trim()) document.getElementById('print-title').textContent = titleInput.value.trim();
+    document.getElementById('print-date').textContent = new Date().toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  }
+
+  document.getElementById('print-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    fillPrintSignature();
+    window.print();
+  });
 
   checkoutBtn.addEventListener('click', function () {
     if (STRIPE_PAYMENT_LINK.indexOf('PLACEHOLDER') !== -1) {
