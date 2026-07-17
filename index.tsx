@@ -11,6 +11,8 @@ const Studio = lazy(() => import('./pages/Studio'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Packages = lazy(() => import('./pages/Packages'));
 const App = lazy(() => import('./App'));
+const Onboarding = lazy(() => import('./pages/Onboarding'));
+const OnboardingAdmin = lazy(() => import('./pages/OnboardingAdmin'));
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -67,6 +69,10 @@ root.render(
           <Route path="/studio" element={<Studio />} />
           {/* Contact page */}
           <Route path="/contact" element={<Contact />} />
+          {/* AI client onboarding interview, e.g. /onboarding/beautyscapes */}
+          <Route path="/onboarding/:clientSlug" element={<Onboarding />} />
+          {/* Private: review onboarding interview responses (not linked from nav) */}
+          <Route path="/onboarding-admin" element={<OnboardingAdmin />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

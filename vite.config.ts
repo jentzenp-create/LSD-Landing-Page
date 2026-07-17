@@ -10,6 +10,14 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
       host: '0.0.0.0',
+      // Forward serverless API calls to `vercel dev` (run separately on 3001) so the
+      // /api/onboarding-chat route works during local Vite development.
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+        },
+      },
     },
     plugins: [react(), tailwindcss()],
     define: {

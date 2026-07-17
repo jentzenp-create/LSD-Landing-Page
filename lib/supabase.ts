@@ -8,4 +8,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
     console.warn('Supabase credentials missing. Studio functionality will be limited.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// createClient throws if URL is empty, so guard when credentials are absent (e.g. local dev without .env).
+const noopQuery = { upsert: async () => {}, select: () => noopQuery, order: () => noopQuery, data: [], error: null };
+export const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : ({ from: () => noopQuery } as any);
