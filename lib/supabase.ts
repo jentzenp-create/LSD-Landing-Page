@@ -9,6 +9,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // createClient throws if URL is empty, so guard when credentials are absent (e.g. local dev without .env).
+const noopQuery = { upsert: async () => {}, select: () => noopQuery, order: () => noopQuery, data: [], error: null };
 export const supabase = supabaseUrl && supabaseAnonKey
   ? createClient(supabaseUrl, supabaseAnonKey)
-  : ({ from: () => ({ upsert: async () => {}, select: async () => ({ data: [], error: null }) }) } as any);
+  : ({ from: () => noopQuery } as any);

@@ -21,17 +21,22 @@ const OnboardingAdmin: React.FC = () => {
 
   useEffect(() => {
     async function load() {
-      const { data, error: fetchError } = await supabase
-        .from('onboarding_sessions')
-        .select('*')
-        .order('updated_at', { ascending: false });
+      try {
+        const { data, error: fetchError } = await supabase
+          .from('onboarding_sessions')
+          .select('*')
+          .order('updated_at', { ascending: false });
 
-      if (fetchError) {
-        setError(fetchError.message);
-      } else {
-        setSessions(data as OnboardingSessionRow[]);
+        if (fetchError) {
+          setError(fetchError.message);
+        } else {
+          setSessions((data ?? []) as OnboardingSessionRow[]);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unexpected error loading sessions.');
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     load();
   }, []);
