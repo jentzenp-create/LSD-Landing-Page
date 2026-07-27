@@ -5,6 +5,30 @@
             "destination": "/api/$1"
         },
         {
+            "source": "/baxter-advisors",
+            "destination": "/baxter-advisors/index.html"
+        },
+        {
+            "source": "/baxter-advisors/",
+            "destination": "/baxter-advisors/index.html"
+        },
+        {
+            "source": "/baxter-advisors/(.*)",
+            "destination": "/baxter-advisors/$1"
+        },
+        {
+            "source": "/proposals/:slug",
+            "destination": "/proposals/:slug/index.html"
+        },
+        {
+            "source": "/proposals/:slug/",
+            "destination": "/proposals/:slug/index.html"
+        },
+        {
+            "source": "/proposals/:slug/(.*)",
+            "destination": "/proposals/:slug/$1"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
