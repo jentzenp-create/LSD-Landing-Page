@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richard Rodman × Local Sun Digital · Growth Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 15px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(45px, 7.5vw, 90px);
+      font-weight: 900; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 24px; color: #fff;
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(20px, 2.5vw, 25px); font-weight: 500;
+      color: var(--text-muted); max-width: 620px;
+      margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 16px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 14px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .section-sub { font-size: 20px; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 21px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 18px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 19px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 22px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 28px; font-weight: 800; color: #fff; }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 19px; font-weight: 800; color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 50px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 18px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 18px; color: var(--text-muted); line-height: 1.65; max-width: 520px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 19px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 15px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 22px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 21px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 32px; }
+    .pricing-note { font-size: 15px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 21px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 18px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px; text-align: center;
+    }
+    .cta-title { font-size: clamp(35px, 6.25vw, 65px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 21px; color: var(--text-muted); margin-bottom: 40px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 20px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 19px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 15px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    /* ── QUOTE CALLOUT ── */
+    .quote-callout {
+      background: var(--surface-2);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 28px 32px;
+      font-size: 24px;
+      font-weight: 600;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.55;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── OPEN QUESTIONS LIST ── */
+    .oq-list { display: flex; flex-direction: column; gap: 16px; }
+    .oq-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 20px 24px;
+    }
+    .oq-mark {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      color: var(--gold); font-weight: 800; font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .oq-body { font-size: 18px; color: var(--text-muted); line-height: 1.65; }
+    .oq-body strong { color: #fff; }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/rodman/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Richard Rodman</span> · July 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Growth Proposal · Local Sun Digital
+    </div>
+    <h1>Turning a Life's Work<br/>Into a <span class="gold">Scalable Asset</span></h1>
+    <p class="hero-sub">
+      Your presentation has moved audiences from high schoolers to seasoned professionals for years. That's rare. Most financial education is institutional and forgettable — yours has a human being behind it. This proposal is about making sure that human being reaches the tens of thousands of people who will never sit in the room with you.
+    </p>
+    <div class="badge-row">
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        7-Module Curriculum
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a4 4 0 115.657 0L12 17.657 8.464 15.243z"/></svg>
+        AI-Guided Experience
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Gatherly Distribution
+      </span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 1. OPPORTUNITY ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">1 · The Opportunity</div>
+      <h2 class="section-title">The Content Already Exists.<br/>It Just Isn't Built to Scale.</h2>
+      <p class="section-sub">Richard Rodman's book and presentation are proven — they've worked on audiences from high schoolers to professionals for years. The opportunity isn't creating new material. It's turning static material into a product ecosystem that keeps working long after the last live presentation.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <div class="card-title">A Proven Message, Locked to a Room</div>
+        <p class="card-body">Every time this content reaches someone, it requires Richard in the room. That's a ceiling, not a flaw — but it means the material's reach is capped by his calendar, not by its value.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">The Distribution Already Exists</div>
+        <p class="card-body">Joe has thousands of contacts and access to thousands more through firm relationships. Gatherly offers a near-term channel for events and follow-up education. The audience isn't the missing piece — the product is.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="card-title">AI Closes the Gap</div>
+        <p class="card-body">AI can take the book and presentation as source material and turn them into an experience that feels personalized and interactive at scale — the closest thing to a room with Richard, without needing Richard in the room.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── QUOTE ── -->
+<section class="section" style="padding-top: 0; padding-bottom: 60px;">
+  <div class="container">
+    <div class="quote-callout">
+      "What would it mean to you to know that five years from now, thousands of people who never got to sit in a room with you are making better financial decisions because of what you built?"
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 2. VISION FOR THE PLATFORM ── -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-label">2 · The Vision</div>
+        <h2 class="section-title">A Framework That<br/>Reaches Tens of Thousands</h2>
+        <p class="section-sub" style="margin-bottom: 28px;">Delivered digitally, Richard's framework can reach students, tenants, young professionals, and families who need exactly what he's built — people who will never sit in a room with him, but can still get the benefit of what he teaches. This phase doesn't try to build all of that at once. It builds the wedge that proves it's possible.</p>
+        <ul class="check-list">
+          <li>
+            <div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            The material already exists — this is not starting from zero
+          </li>
+          <li>
+            <div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            AI makes the content feel personalized and interactive, not static
+          </li>
+          <li>
+            <div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            Gatherly offers a near-term distribution channel to prove it out
+          </li>
+          <li>
+            <div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            The same content can support multiple revenue paths at once
+          </li>
+        </ul>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="card" style="padding: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; background: #EF4444; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #F2B705; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
+            <span style="font-size: 14px; color: var(--text-dim); margin-left: auto; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Recorded Presentation</span>
+          </div>
+          <div style="aspect-ratio: 16/6; background: #111; border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid rgba(255,255,255,0.06);">
+            <div style="width: 32px; height: 32px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <svg width="12" height="12" fill="#000" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; background: #EF4444; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #F2B705; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
+            <span style="font-size: 14px; color: var(--text-dim); margin-left: auto; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">7-Module AI Experience</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="height: 7px; background: rgba(255,255,255,0.15); border-radius: 4px; width: 60%;"></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; width: 88%;"></div>
+            <div style="height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; width: 72%;"></div>
+          </div>
+        </div>
+        <div class="card" style="padding: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; background: #EF4444; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #F2B705; border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
+            <span style="font-size: 14px; color: var(--text-dim); margin-left: auto; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Gatherly Deployment</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0;"></div>
+              <div style="height: 4px; background: rgba(255,255,255,0.12); border-radius: 4px; flex: 1;"></div>
+              <div style="font-size: 11px; color: var(--gold); font-weight: 700; white-space: nowrap;">Live Now</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 3. PRIMARY BUSINESS MODELS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">3 · Primary Business Models</div>
+      <h2 class="section-title">Three Distinct Lanes.<br/>One Wedge to Prove Them.</h2>
+      <p class="section-sub">Rather than sell all three equally, we recommend positioning the AI-guided experience as the primary wedge, with licensing and the keynote offering as expansion paths once the wedge proves out.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card gold-border">
+        <div class="bonus-tag">Primary Wedge</div>
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a4 4 0 115.657 0L12 17.657 8.464 15.243z"/></svg>
+        </div>
+        <div class="card-title">Follow-Up Education & Coaching Funnel</div>
+        <p class="card-body">A post-event or post-roundtable AI experience that continues the money conversation after Richard leaves the room, leading into deeper engagement. Deployed through Gatherly and events first.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div class="card-title">Licensed Content for Professionals</div>
+        <p class="card-body">A turnkey financial education resource for advisors, attorneys, accountants, and similar professionals to use with their own clients — a second-stage expansion path once the core experience is proven.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="card-title">Signature Presentation / Keynote</div>
+        <p class="card-body">A packaged talk or workshop offering, deployed through Gatherly and similar environments — the most direct extension of what Richard already does live.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px; border-style: dashed;">
+      <div class="card-title">Adjacent Opportunity: 401(k) Compliance / HR Education</div>
+      <p class="card-body">Raised in discussion as a meaningful angle — using this content for employer-sponsored 401(k) and HR financial education — but it's less developed than the three lanes above. Worth tracking as a future expansion path, not a Phase 1 commitment.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 4. RECOMMENDED PHASE 1 SCOPE ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Recommended Phase 1 Scope</div>
+      <div class="pkg-price">$10,000/mo</div>
+    </div>
+    <p style="font-size: 19px; color:var(--text-muted); margin-bottom: 36px; max-width:680px;">
+      A focused three-month build phase with three moving parts: Richard records once, Local Sun Digital builds the delivery system, and Joe begins deploying immediately into his existing audience. Contained, real, and it produces data that opens the door to the larger firm relationship Joe already has access to.
+    </p>
+    <div class="grid-3" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="card-title">Professional Recording</div>
+        <p class="card-body">Richard records the presentation once, in a professional video format. Once done, he never has to present it live again for it to keep working.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a4 4 0 115.657 0L12 17.657 8.464 15.243z"/></svg>
+        </div>
+        <div class="card-title">7-Module AI-Guided Experience</div>
+        <p class="card-body">The presentation is revised into 7 modules, the book is aligned around Money Momentum, and both become source material for an AI-guided educational experience — education first, with qualification or conversion paths second.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">Immediate Deployment</div>
+        <p class="card-body">Joe deploys it immediately into his existing audience to generate early revenue and proof of concept — the data that opens the door to the larger firm relationship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 5. TARGET AUDIENCES / DISTRIBUTION ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">5 · Target Audiences & Distribution</div>
+      <h2 class="section-title">Who This Reaches, and How</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422A12.083 12.083 0 0121 15.5c0 1.6-.336 3.12-.94 4.5M12 14l-6.16-3.422A12.083 12.083 0 003 15.5c0 1.6.336 3.12.94 4.5M12 14v7"/></svg>
+        </div>
+        <div class="card-title">Audience: Who Needs This</div>
+        <ul class="check-list" style="font-size: 18px; gap: 10px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Students and young professionals</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Tenants and families building financial literacy</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Advisors, attorneys, and accountants (licensing path)</li>
+        </ul>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">Distribution: How We Reach Them</div>
+        <ul class="check-list" style="font-size: 18px; gap: 10px;">
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Joe's existing contacts and firm relationships</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Gatherly events and roundtables</li>
+          <li><div class="check-icon"><svg width="10" height="10" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Post-event follow-up sequences</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 6. AI EXPERIENCE CONCEPT ── -->
+<section class="section" style="background: linear-gradient(180deg, #0f0c01 0%, #0E0E0E 100%);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">6 · The AI Experience Concept</div>
+      <h2 class="section-title">The Closest Thing to<br/><span style="color:var(--gold);">a Room With Richard</span></h2>
+      <p class="section-sub">Using the book and presentation as source material, an AI-guided experience walks each person through the 7 modules at their own pace — answering their specific questions, referencing their specific situation, and feeling personalized rather than pre-recorded.</p>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px;">
+      <p style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; text-align: center;">Content Flow</p>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;">
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 10px;">
+            <div style="font-size: 15px; font-weight: 700; color: #fff;">Book + Presentation</div>
+            <div style="font-size: 14px; color: var(--text-dim); margin-top: 2px;">Source material</div>
+          </div>
+        </div>
+        <div style="color: var(--gold); font-size: 25px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 10px;">
+            <div style="font-size: 15px; font-weight: 700; color: #fff;">7 Modules</div>
+            <div style="font-size: 14px; color: var(--text-dim); margin-top: 2px;">Money Momentum</div>
+          </div>
+        </div>
+        <div style="color: var(--gold); font-size: 25px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); border: 1px solid var(--border-gold); border-radius: 12px; padding: 16px 10px;">
+            <div style="font-size: 15px; font-weight: 700; color: var(--gold);">AI Guide</div>
+            <div style="font-size: 14px; color: var(--text-dim); margin-top: 2px;">Personalized, interactive</div>
+          </div>
+        </div>
+        <div style="color: var(--gold); font-size: 25px; font-weight: 300; flex-shrink: 0; padding: 0 2px;">›</div>
+        <div style="text-align: center; flex: 1; min-width: 110px;">
+          <div style="background: var(--gold); border-radius: 12px; padding: 16px 10px;">
+            <div style="font-size: 15px; font-weight: 700; color: #000;">Education First</div>
+            <div style="font-size: 14px; color: rgba(0,0,0,0.55); margin-top: 2px;">Conversion second</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 7. OPEN BUSINESS QUESTIONS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">7 · Open Business Questions</div>
+      <h2 class="section-title">What We're Not Pretending to Know Yet</h2>
+      <p class="section-sub">This is feasible, but only if the business side is handled seriously. These aren't weaknesses in the proposal — they're part of what makes it credible.</p>
+    </div>
+    <div class="oq-list">
+      <div class="oq-item">
+        <div class="oq-mark">1</div>
+        <div class="oq-body"><strong>This is a heavy lift.</strong> Turning a live presentation into a scalable digital product is a real build, not a weekend project — the three-month timeline reflects that.</div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-mark">2</div>
+        <div class="oq-body"><strong>Pricing, licensing, and ROI are not yet defined.</strong> Phase 1 produces the data needed to answer those questions with evidence instead of guesses.</div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-mark">3</div>
+        <div class="oq-body"><strong>A capital plan still needs to be developed</strong> for scaling past this pilot into the larger firm relationship and licensing paths.</div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-mark">4</div>
+        <div class="oq-body"><strong>Success likely depends on Richard not needing an immediate return</strong> in the first three to six months — this is a seed investment in an asset, not a short-term revenue play.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── COST OF WAITING ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Cost of Waiting</div>
+      <h2 class="section-title">What Doesn't Get Built<br/>Stays Locked to the Room</h2>
+      <p class="section-sub">This isn't a "sale ends Friday" argument — it's a logical one. Three things are true today that won't necessarily stay true indefinitely.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="card-title">Every Month It Stays a Live Talk</div>
+        <p class="card-body">Reach stays capped by Richard's calendar. The material keeps working exactly as well as it always has — for the room it's delivered to, and no one else. That ceiling doesn't lower itself.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">Joe's Warm Network Is Open Now</div>
+        <p class="card-body">The contacts and firm relationships that make Phase 1 deployable at zero cold-start cost are available today. Relationships and timing shift — the easiest version of this pilot is the one built while that access is warm.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <div class="card-title">The Source Is Easiest to Capture Directly</div>
+        <p class="card-body">The most valuable input to this whole system is Richard, on camera, explaining this in his own words. That's the one part of Phase 1 nothing can substitute for later — everything downstream depends on capturing it well, now.</p>
+      </div>
+    </div>
+    <div class="stat-callout" style="max-width: 780px; margin: 32px auto 0;">
+      <p class="stat-note" style="max-width: none;">None of this is about pressure — it's about sequencing. The $30,000 doesn't buy urgency, it buys the difference between "this reach stays possible" and "this reach stays theoretical." The pilot is what turns the vision from something we discuss into something we can point to.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 8. INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">8 · Investment</div>
+      <h2 class="section-title">A Seed Investment,<br/>Not an Expense</h2>
+      <p class="section-sub">Framed the way Richard thinks — as an investor. This funds the pilot: the recording, the build, and the first deployment.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 680px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Phase 1 Build
+          <small>Recording · 7-module AI experience · Gatherly deployment</small>
+        </div>
+        <div class="pricing-amt">$10,000/mo</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Term
+          <small>Three-month build phase</small>
+        </div>
+        <div class="pricing-amt">× 3 months</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Total Phase 1 Investment</div>
+        <div class="pricing-amt">$30,000</div>
+      </div>
+      <div class="pricing-note">Scope reflects the recommended Phase 1 build. Open to structuring around milestones as the plan is finalized.</div>
+    </div>
+    <div class="stat-callout" style="max-width: 680px; margin: 32px auto 0;">
+      <div>
+        <div class="stat-num">↑</div>
+        <div class="stat-label">Upside</div>
+      </div>
+      <div>
+        <div class="stat-num">↓</div>
+        <div class="stat-label">Downside</div>
+      </div>
+      <p class="stat-note">Upside: a curriculum that generates licensing fees, course revenue, and speaking or workshop fees indefinitely — without Richard ever having to present again. Downside: a well-produced course that didn't scale, and even then, legacy materials exist in a form that outlives him and reaches people he'll never meet. For someone who managed $800M, this is a very small bet with asymmetric upside.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">A Team Already Inside the Story</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Already Building the Memoir</div>
+          <p class="why-desc">We're already inside Richard's legacy story. That trust carries directly into how we build this — we understand the material because we're already working with it.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a4 4 0 115.657 0L12 17.657 8.464 15.243z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">AI Built for Real Content</div>
+          <p class="why-desc">We build AI-guided experiences from real source material, not generic scripts — so the experience sounds like Richard, not like a chatbot reciting a FAQ.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Connected to Real Distribution</div>
+          <p class="why-desc">Between Joe's contacts, firm relationships, and Gatherly, this isn't a build with no audience waiting. The pilot deploys into real reach on day one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 9. RECOMMENDED NEXT STEPS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">9 · Recommended Next Steps</div>
+      <h2 class="section-title">A Clear First Phase</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="pkg-num" style="margin-bottom: 16px;">1</div>
+        <div class="card-title">Richard Records</div>
+        <p class="card-body">Schedule the professional recording of the presentation — once, done.</p>
+      </div>
+      <div class="card">
+        <div class="pkg-num" style="margin-bottom: 16px;">2</div>
+        <div class="card-title">LSD Builds</div>
+        <p class="card-body">Local Sun Digital builds the 7-module AI-guided delivery system around it.</p>
+      </div>
+      <div class="card">
+        <div class="pkg-num" style="margin-bottom: 16px;">3</div>
+        <div class="card-title">Joe Deploys</div>
+        <p class="card-body">Joe deploys into his existing audience for early revenue and proof of concept.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are, Richard</p>
+    <h2 class="cta-title">Let's Make Sure Your Work<br/><span style="color:var(--gold);">Outlives the Room.</span></h2>
+    <p class="cta-sub">Questions, adjustments, or ready to move forward on Phase 1 — reach out and we'll make it happen.</p>
+    <div>
+      <a href="mailto:jentzenp@gmail.com?subject=Rodman Proposal - Let's Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzenp@gmail.com?subject=Rodman Proposal - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/proposals/rodman/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Richard Rodman</span>
+</footer>
+
+</body>
+</html>
