@@ -63,7 +63,7 @@
     ],
     "headers": [
         {
-            "source": "/dr-leslie-k/(.*)",
+            "source": "/(proposals|baxter-advisors|gatherly|lake-tahoe-pontoons|dr-leslie-k|richard-rodman|dugan-insurance)",
             "headers": [
                 {
                     "key": "X-Robots-Tag",
@@ -76,7 +76,7 @@
             ]
         },
         {
-            "source": "/dr-leslie-k",
+            "source": "/(proposals|baxter-advisors|gatherly|lake-tahoe-pontoons|dr-leslie-k|richard-rodman|dugan-insurance)/(.*)",
             "headers": [
                 {
                     "key": "X-Robots-Tag",
