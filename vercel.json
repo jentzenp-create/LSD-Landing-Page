@@ -37,6 +37,14 @@
             "destination": "/proposals/rodman/index.html"
         },
         {
+            "source": "/dugan-insurance",
+            "destination": "/proposals/dugan-insurance/index.html"
+        },
+        {
+            "source": "/dugan-insurance/",
+            "destination": "/proposals/dugan-insurance/index.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }

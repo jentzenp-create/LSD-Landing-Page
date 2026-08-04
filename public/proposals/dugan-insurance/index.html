@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dugan Insurance Services × Local Sun Digital · Growth Sprint Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,14,14,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.04em; }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero { position: relative; overflow: hidden; padding: 100px 24px 90px; text-align: center; }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 24px; color: #fff; }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); font-weight: 500; color: var(--text-muted); max-width: 620px; margin: 0 auto 36px; line-height: 1.65; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 660px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: #fff; }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 40px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 560px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── DATA TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .data-table th, .data-table td { text-align: left; padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .data-table th { background: var(--surface-2); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .data-table td { color: var(--text-muted); line-height: 1.5; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td.metric, .data-table td.month { color: #fff; font-weight: 600; white-space: nowrap; vertical-align: top; }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius-card); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%); border-top: 1px solid var(--border-gold); padding: 100px 24px; text-align: center; }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── COMPLIANCE NOTE ── */
+    .note-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface-2); border: 1px dashed var(--border-gold);
+      border-radius: var(--radius-sm); padding: 20px 24px; margin-top: 20px;
+    }
+    .note-mark {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      color: var(--gold); font-weight: 800; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .note-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+    .note-body strong { color: #fff; }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+      .data-table th, .data-table td { padding: 10px 12px; font-size: 13px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/dugan-insurance/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Sam Dugan</span> · August 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      3-Month Growth Sprint · Local Sun Digital
+    </div>
+    <h1>Stop Competing Nationally.<br/>Start Owning <span class="gold">Bakersfield.</span></h1>
+    <p class="hero-sub">
+      Dugan Insurance Services doesn't need to out-rank eHealth, Boomer Benefits, or Medicare.gov. The data already shows exactly where this wins: hyper-local Bakersfield and Kern County search, paired with the video and review presence a 65+ audience trusts more than any blog post.
+    </p>
+    <div class="badge-row">
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        Local-First SEO
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        Video / YouTube
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        Review & Referral Engine
+      </span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHERE THINGS STAND TODAY ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Where Things Stand Today</div>
+      <h2 class="section-title">The Data Already Points<br/>at the Answer</h2>
+      <p class="section-sub">Sam's current $650/mo retainer covers CRM management, an AI voice agent, monthly articles, and GBP posts — it keeps things running, but it wasn't built to generate net-new leads. 16 months of Google Analytics and Search Console data confirm exactly why.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric</th><th>What the Data Shows</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Traffic mix</td><td>Direct 1,739 sessions vs. Organic Search 882 vs. Organic Social 80 — most visitors already know the Dugan name</td></tr>
+          <tr><td class="metric">Top-performing page</td><td>Homepage: position 6.5, 234 clicks — the one page that ranks well</td></tr>
+          <tr><td class="metric">Blog articles</td><td>Statewide comparison posts get thousands of impressions but near-zero clicks (position 30–70+)</td></tr>
+          <tr><td class="metric">Local, unbranded terms</td><td>"medicare bakersfield ca" (pos. 4.97), "health insurance bakersfield" (pos. 3.97) — strong when content is tightly local</td></tr>
+          <tr><td class="metric">Video / social presence</td><td>Minimal — some Facebook posts, but little recorded video content to date</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card gold-border" style="margin-top: 24px;">
+      <p class="card-body" style="font-size: 15px; color: var(--text-muted);">In short: the current content motion produces pages Google indexes but rarely surfaces, because it's competing nationally against eHealth, Boomer Benefits, and Medicare.gov. Meanwhile, the narrow set of hyper-local terms the site does rank for proves the audience and the intent are there — they just haven't been built for.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE OPPORTUNITY ── -->
+<section class="section" style="background: linear-gradient(180deg, #0f0c01 0%, #0E0E0E 100%);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Opportunity</div>
+      <h2 class="section-title">Own Bakersfield. Don't Chase<br/>the National Players.</h2>
+      <p class="section-sub">Sam doesn't need to out-rank eHealth or Medicare.gov. He needs to own Bakersfield and Kern County, where the data already shows traction, paired with a trust-building presence — video, reviews — that a 65+ audience responds to more than any amount of blog copy. This sprint redirects the marketing budget from broad content that isn't working toward a local-first system built to compound over three months and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROPOSED SPRINT: WORKSTREAM 1 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Local-First Content Engine</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      Retire the statewide comparison articles and replace them with city- and neighborhood-level pages and posts: Bakersfield/Kern County plan comparisons, AEP deadline content, and local testimonials. This is a direct response to the one thing the data proves works — tightly local content already ranks in the top 5.
+    </p>
+    <div class="grid-2" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div class="card-title">Local Content Buildout</div>
+        <p class="card-body">City- and neighborhood-level pages and posts for Bakersfield and Kern County, replacing the statewide content that isn't converting.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        </div>
+        <div class="card-title">Local Authority & Backlink Building</div>
+        <p class="card-body">Purchasing and earning backlinks from relevant local and industry sources to build domain authority — the ranking factor that content alone can't move on its own, and a direct lever for pushing those hyper-local terms higher.</p>
+      </div>
+    </div>
+    <div class="note-card">
+      <div class="note-mark">↻</div>
+      <div class="note-body"><strong>This is a system, not a three-month content drop.</strong> The deliverable isn't a fixed batch of articles that stops when the sprint ends — it's an automated content production system that keeps generating local content, on a schedule, indefinitely. The sprint builds and proves the system; it doesn't expire with it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKSTREAM 2 ── -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">Video Content, YouTube-First</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      The single biggest gap today is that there's no video or social presence at all. Short, local-focused videos ("How Medicare Works in Bakersfield," client testimonials, plan-comparison explainers) get posted to YouTube — a real search engine in its own right for this kind of query — then cut down into GBP posts, Facebook, and Instagram content from a single shoot.
+    </p>
+    <div class="note-card">
+      <div class="note-mark">i</div>
+      <div class="note-body"><strong>Where AI avatars fit, and where they don't.</strong> Tools like HeyGen are a good fit for lower-stakes, purely educational pieces (FAQ-style explainers) where a script-to-video workflow saves real production time. Testimonials and anything trust-critical should stay as real footage of Sam — an AI avatar delivering a client testimonial reads as inauthentic to this audience, which defeats the purpose. Any AI-generated content should also be cleared with Sam's FMO/carrier compliance team before use.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKSTREAM 3 ── -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">3</div>
+      <div class="pkg-title">Compliant Review & Referral Engine</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      Reviews are the top local-pack ranking factor and the cheapest lever available — this is a workflow build inside the CRM Sam already pays for (automated post-appointment review requests), not new spend.
+    </p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <div class="card-title">Automated Review Requests</div>
+        <p class="card-body">Built inside the CRM Sam already has — post-appointment review requests go out automatically, no new tooling or spend required.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">Referral Program, Built to CMS Rules</div>
+        <p class="card-body">No cash or cash-equivalent rewards. Nominal gifts capped at $15 per referral and $75 per client per year. Gift cards to local businesses only, never big-box retailers. The gift is given regardless of whether the referred person enrolls, and offered equally to every client who refers someone.</p>
+      </div>
+    </div>
+    <div class="note-card">
+      <div class="note-mark">!</div>
+      <div class="note-body">This program should be reviewed and approved by Sam's FMO or carrier compliance contact before launch, since referral programs are typically subject to plan-year sign-off.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKSTREAM 4 ── -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">4</div>
+      <div class="pkg-title">Enhanced Google Business Profile</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      Beyond the monthly posts already included in the base package:
+    </p>
+    <ul class="check-list" style="max-width: 640px;">
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Q&A seeding</li>
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Service-area accuracy</li>
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Geo-tagged photos</li>
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Active review responses</li>
+    </ul>
+    <p style="font-size:14px; color:var(--text-dim); margin-top: 16px; max-width: 640px;">All reinforcing the local-pack visibility this strategy is built around.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">3-Month Timeline</div>
+      <h2 class="section-title">How This Rolls Out</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th style="width: 110px;">Month</th><th>Focus</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="month">Month 1</td>
+            <td>Local landing pages for Bakersfield / Kern County submarkets; retire low-performing statewide posts. GBP deep optimization: Q&A seeding, service areas, geo-tagged photos. Set up CRM-based review request automation. Script and shoot first video batch.</td>
+          </tr>
+          <tr>
+            <td class="month">Month 2</td>
+            <td>Publish videos to YouTube; repurpose into GBP posts, Facebook, Instagram. Continue local content buildout (carrier comparisons, AEP prep content) and backlink outreach. Launch compliant referral program (pending FMO/carrier sign-off).</td>
+          </tr>
+          <tr>
+            <td class="month">Month 3</td>
+            <td>Second video batch; iterate on top-performing formats. Expand local content to surrounding Kern County cities. Confirm the automated content system is running on its own cadence. Review results against baseline; build Month 4+ recommendation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT & ROI ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment & ROI</div>
+      <h2 class="section-title">What It Costs. What It Takes<br/>to Pay for Itself.</h2>
+      <p class="section-sub">The existing retainer stays in place — this sprint is an add-on that redirects budget toward what the data proves works.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 720px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Existing Retainer
+          <small>CRM management, AI voice agent, monthly articles, GBP posts</small>
+        </div>
+        <div class="pricing-amt">$650/mo</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Growth Sprint Add-On
+          <small>Automated local content engine, backlink building, video/YouTube, review & referral engine, GBP build-out</small>
+        </div>
+        <div class="pricing-amt">$2,000/mo</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Combined Monthly Investment</div>
+        <div class="pricing-amt">$2,650/mo</div>
+      </div>
+      <div class="pricing-note">3-month total: $7,950 ($1,950 existing retainer + $6,000 sprint add-on)</div>
+    </div>
+    <div class="stat-callout" style="max-width: 720px; margin: 32px auto 0;">
+      <div>
+        <div class="stat-num">&lt;5</div>
+        <div class="stat-label">Clients to break even</div>
+      </div>
+      <div>
+        <div class="stat-num">$1,250</div>
+        <div class="stat-label">Annual value per client</div>
+      </div>
+      <p class="stat-note">At $1,250 in annual value per new client signed, the $6,000 sprint add-on breaks even at fewer than 5 new clients over three months — before accounting for multi-year client retention. This is the math that justifies the investment, not a guaranteed outcome; actual results depend on execution and market response.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SUCCESS METRICS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Success Metrics</div>
+      <h2 class="section-title">How We'll Know It's Working</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric</th><th>How We'll Track It</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Non-branded local search visibility</td><td>Rankings and impressions for Bakersfield/Kern County terms (GSC)</td></tr>
+          <tr><td class="metric">Organic click growth</td><td>Clicks on local landing pages vs. current near-zero baseline</td></tr>
+          <tr><td class="metric">Video reach</td><td>YouTube views, watch time, subscriber growth</td></tr>
+          <tr><td class="metric">Reviews</td><td>New Google reviews per month via CRM automation</td></tr>
+          <tr><td class="metric">Leads</td><td>Calls/form submissions attributable to local content and video</td></tr>
+          <tr><td class="metric">New clients signed</td><td>Tracked against the $1,250/year value per client</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">Built Around What the Data Says</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Data-Led, Not Guess-Led</div>
+          <p class="why-desc">Every recommendation here traces back to 16 months of Sam's own Search Console and Analytics data — not a generic Medicare marketing playbook.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Compliance Built In, Not Bolted On</div>
+          <p class="why-desc">The referral program is designed to CMS gift rules from day one, and every AI-assisted video workflow is flagged for FMO/carrier sign-off before use.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">A System, Not a Sprint</div>
+          <p class="why-desc">The content engine keeps producing local content on its own after Month 3 — this isn't three months of manually-written articles that stop the day the sprint ends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── NEXT STEPS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Next Steps</div>
+      <h2 class="section-title">Getting Started</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="pkg-num" style="margin-bottom: 16px;">1</div>
+        <div class="card-title">Approve Scope & Budget</div>
+        <p class="card-body">Sam approves scope and budget for the 3-month sprint.</p>
+      </div>
+      <div class="card">
+        <div class="pkg-num" style="margin-bottom: 16px;">2</div>
+        <div class="card-title">Confirm Compliance</div>
+        <p class="card-body">Confirm referral program language with Sam's FMO/carrier compliance contact before launch.</p>
+      </div>
+      <div class="card">
+        <div class="pkg-num" style="margin-bottom: 16px;">3</div>
+        <div class="card-title">Kick Off Month 1</div>
+        <p class="card-body">Local content buildout, GBP optimization, and the first video shoot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are, Sam</p>
+    <h2 class="cta-title">Let's Make Bakersfield<br/><span style="color:var(--gold);">Your Market.</span></h2>
+    <p class="cta-sub">Questions, adjustments, or ready to move forward on the sprint — reach out and we'll make it happen.</p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Dugan Insurance Proposal - Let's Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Dugan Insurance Proposal - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/proposals/dugan-insurance/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Dugan Insurance Services</span>
+</footer>
+
+</body>
+</html>
