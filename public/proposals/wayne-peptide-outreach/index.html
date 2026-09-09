@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Wayne × Local Sun Digital · B2B Peptide Provider Outreach System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.04em; }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero { position: relative; overflow: hidden; padding: 100px 24px 90px; text-align: center; }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 24px; color: #fff; }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); font-weight: 500; color: var(--text-muted); max-width: 620px; margin: 0 auto 36px; line-height: 1.65; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: #fff; }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 13px; font-weight: 800; color: var(--gold);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 520px; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      background: linear-gradient(135deg, rgba(242,183,5,0.08), rgba(242,183,5,0.02));
+      border-radius: 0 var(--radius-card) var(--radius-card) 0;
+      padding: 28px 32px; margin: 8px 0 0;
+      font-size: clamp(17px, 2.2vw, 21px); font-weight: 600; color: #fff; line-height: 1.5;
+      max-width: 780px;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .data-table th, .data-table td { text-align: left; padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .data-table th { background: var(--surface-2); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .data-table td { color: var(--text-muted); line-height: 1.55; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td.metric { color: #fff; font-weight: 600; white-space: nowrap; }
+    .data-table td.ours { color: rgba(255,255,255,0.8); background: rgba(242,183,5,0.045); }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius-card); }
+
+    /* ── PHASE CARDS ── */
+    .phase-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px; }
+    .phase-card.active { border-color: var(--border-gold); background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); }
+    .phase-tag { display: inline-block; background: var(--gold-dim); border: 1px solid var(--border-gold); color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 99px; padding: 4px 12px; margin-bottom: 16px; }
+    .phase-title { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+
+    /* ── STATUS PILLS ── */
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .pill { font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--surface-2); border: 1px solid var(--border); border-radius: 99px; padding: 6px 14px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); line-height: 1.7; }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── NOTE BOX ── */
+    .note-box { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-sm); padding: 22px 26px; max-width: 840px; margin: 0 auto; }
+    .note-box p { font-size: 13px; color: var(--text-dim); line-height: 1.75; }
+    .note-box strong { color: var(--text-muted); }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%); border-top: 1px solid var(--border-gold); padding: 100px 24px; text-align: center; }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px; text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .data-table th, .data-table td { padding: 10px 12px; font-size: 13px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card, .phase-card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/wayne-peptide-outreach/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Wayne</span> · September 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Growth Proposal · Local Sun Digital
+    </div>
+    <h1>An outbound system<br />built to reach the <span class="gold">inbox</span></h1>
+    <p class="hero-sub">
+      A custom, deliverability-first cold email engine for opening conversations with clinics, med
+      spas, and physician practices. Built as infrastructure you own, not a tool you rent.
+    </p>
+    <div class="badge-row">
+      <span class="badge">$3,000 Cold Email Build</span>
+      <span class="badge">15% Rev Share on Sourced Accounts</span>
+      <span class="badge">You Own the Infrastructure</span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE OPPORTUNITY ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Opportunity</div>
+      <h2 class="section-title">A strong B2B offer that needs distribution</h2>
+      <p class="section-sub">
+        The platform gives providers a genuinely better way to buy: aggregate volume pricing, fast
+        shipping, and multiple supply options in one provider-focused ordering experience. The offer
+        is not the constraint. Getting it in front of the right decision-makers, repeatedly and at
+        scale, is the constraint.
+      </p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div class="card-title">Competitive rates through volume</div>
+        <p class="card-body">Aggregate buying power gives providers pricing they generally cannot access ordering on their own. That is a concrete, quantifiable reason to switch suppliers.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+        </div>
+        <div class="card-title">Fast, potentially same-day shipping</div>
+        <p class="card-body">Speed matters when a practice is managing patient schedules and inventory. This is one of the sharpest differentiators to lead with in outbound messaging.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <div class="card-title">Broader supply options</div>
+        <p class="card-body">Multiple sourcing options in one account reduces the operational friction of juggling suppliers. That is the practical, convenience-led angle for recurring ordering.</p>
+      </div>
+    </div>
+
+    <div class="stat-callout">
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Core buyer segments</div>
+      </div>
+      <p class="stat-note">
+        Clinics, physician practices, med spas, and other peptide-purchasing providers. Each segment
+        buys for different reasons and responds to different messaging, which is exactly why the
+        first campaign is structured as a test, not a blast.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE GAP ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Gap</div>
+      <h2 class="section-title">Why most outbound programs stall</h2>
+      <p class="section-sub">
+        The failure point is rarely the offer. It is almost always infrastructure, ownership, and
+        measurement. Three problems that compound quietly until the whole program looks like it
+        simply doesn't work.
+      </p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </div>
+        <div class="card-title">Messages that never reach the inbox</div>
+        <p class="card-body">Sending cold volume from an unprepared domain drives mail to spam and damages sender reputation. Reply rates collapse, and it looks like the offer failed when the message was never actually read.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        </div>
+        <div class="card-title">Renting the growth engine</div>
+        <p class="card-body">When domains, mailboxes, lead data, and workflows live inside a vendor's platform, leaving means rebuilding from zero. The pipeline is only as durable as the contract behind it.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+        </div>
+        <div class="card-title">No attribution, no learning</div>
+        <p class="card-body">Without tracked lead status and clear sourcing, there is no way to tell which segment, message, or list produced a real account, so every round of spend repeats the same guesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE STRATEGY ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">The Strategy</div>
+      <h2 class="section-title">Email-led, multichannel, human-closed</h2>
+    </div>
+    <div class="two-col">
+      <div>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75; margin-bottom:24px;">
+          Email does the volume work: it starts conversations across hundreds of practices at a cost
+          per touch nothing else matches. Calling does the qualification work on accounts worth the
+          time. And you, or your sales team, do the closing work on the accounts that actually move
+          the revenue number.
+        </p>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75;">
+          The system's job is to manufacture qualified conversations and route them cleanly to a
+          human. It is not designed to replace the relationship-driven sale, because for a clinic
+          committing to a new supplier, the relationship <em>is</em> the sale.
+        </p>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75; margin-top:24px;">
+          This proposal builds the first link in that chain: the cold email engine and the
+          infrastructure underneath it. The CRM pipeline, post-call automation, and everything that
+          follows are listed as optional add-ons further down, so you can add them once the outreach
+          is proving itself rather than paying for them up front.
+        </p>
+      </div>
+      <div>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Cold email opens the door at volume</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Human calls qualify and reach decision-makers</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Post-call email delivers the platform link and next step (add-on)</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Re-engagement sequences work non-responders</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Whale accounts get personalized, relationship-led follow-up</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Pipeline and lead status tracking live in GoHighLevel (add-on)</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> AI supports research and triage, but it does not close</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SCOPE 1 ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">What the $3,000 Setup Includes</div>
+      <h2 class="section-title">Five build blocks, one cold email engine</h2>
+      <p class="section-sub">Strategy, deliverability infrastructure, cold email campaigns, list preparation with bare-bones attribution, and a launch plan. Everything here is built under your business and stays there.</p>
+    </div>
+
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Outreach strategy &amp; ICP definition</div>
+      <div class="pkg-price">Included</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:680px;">
+      Before a single email goes out, we define exactly who we are talking to and what we are saying
+      to them, segmented by how they actually buy.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div class="card-title">Ideal customer profile</div>
+        <p class="card-body">Define the prospect profile across clinics, med spas, physician practices, and other peptide purchasers, including who inside each one actually signs off on supplier decisions.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        </div>
+        <div class="card-title">Segmentation</div>
+        <p class="card-body">Group contacts by specialty, location, likely purchasing volume, and role wherever the data supports it, so messaging and priority can differ by segment.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l2.4 6.3L21 11l-6.6 1.7L12 19l-2.4-6.3L3 11l6.6-1.7z"/></svg>
+        </div>
+        <div class="card-title">Whale account approach</div>
+        <p class="card-body">Identify the high-value targets that justify personalized research and manual follow-up, with a track designed to support relationship-led selling rather than automation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SCOPE 2 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">Deliverability-first email infrastructure</div>
+      <div class="pkg-price">Included</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:680px;">
+      Custom sending infrastructure set up under your business, separated from the primary brand
+      domain, and ramped deliberately before it ever runs at scale.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V7z"/></svg>
+        </div>
+        <div class="card-title">Domains, mailboxes &amp; authentication</div>
+        <p class="card-body">Sending domains, inboxes, authentication records, and routing configured properly from the start, with sending limits set per mailbox rather than pushed to the maximum.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        </div>
+        <div class="card-title">Warm-up &amp; controlled ramp</div>
+        <p class="card-body">A gradual warm-up and volume ramp process so sending history builds naturally, instead of a cold domain suddenly pushing hundreds of messages a day.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        </div>
+        <div class="card-title">Monitoring &amp; sender reputation</div>
+        <p class="card-body">Ongoing review of bounces, reply quality, inbox placement signals, and sender reputation, with sending behavior adjusted based on what those signals show.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote" style="margin-top:40px;">
+      A campaign is only worth what reaches the inbox. This build treats deliverability as the
+      foundation of the system, and it keeps outbound activity away from your primary business domain.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SCOPE 3 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">3</div>
+      <div class="pkg-title">Messaging &amp; campaign creation</div>
+      <div class="pkg-price">Included</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:680px;">
+      Full sequence buildout. Professional, direct, and credible in tone. Written the way a provider
+      would want to be approached about a supplier decision, not the way a mass mailer sounds.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 8l8 5 8-5"/></svg>
+        </div>
+        <div class="card-title">Cold &amp; follow-up sequences</div>
+        <p class="card-body">Initial outreach, structured follow-ups, re-engagement for non-responders, and a dedicated high-value account track, all sent from the cold email system itself.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        </div>
+        <div class="card-title">Value-proposition testing</div>
+        <p class="card-body">Message variations across the main angles: better rates, faster shipping, broader supply options, and recurring-order convenience. The test shows which one actually earns replies.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/></svg>
+        </div>
+        <div class="card-title">Branching follow-up logic</div>
+        <p class="card-body">Different paths for prospects who open, reply, express interest, or go quiet, so the right message follows the right behavior instead of everyone getting the same drip.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SCOPE 4 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">4</div>
+      <div class="pkg-title">List preparation &amp; bare-bones attribution</div>
+      <div class="pkg-price">Included</div>
+    </div>
+    <div class="two-col">
+      <div>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75; margin-bottom:20px;">
+          The first list gets imported, validated, deduplicated, and segmented so the campaign sends
+          only to real, reachable contacts and nobody gets emailed twice. That work is required for
+          cold email to run at all, so it stays in the core build.
+        </p>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75; margin-bottom:20px;">
+          Attribution is deliberately minimal. Every contact the system emails is logged with a date,
+          and that sent log is the source of truth. When an account activates, it gets checked
+          against the log: if the system emailed that practice before it signed up, it counts toward
+          the revenue share. One shared record tracks the attributable accounts and what has been
+          collected on them, reconciled once a month against your commission statement.
+        </p>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75;">
+          No pipeline to maintain, no CRM to keep current, and no daily data entry on your side. When
+          the CRM add-on is built later, this record moves into GoHighLevel and the tracking becomes
+          a byproduct of the pipeline instead of a monthly check.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Emailed</span>
+          <span class="pill">Replied</span>
+          <span class="pill">Activated</span>
+        </div>
+      </div>
+      <div>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Import, validate, dedupe, and segment the initial list</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Suppression list so no contact is emailed twice</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Every send logged with a date stamp</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> One shared attribution record for sourced accounts</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> A written rule for what counts as system sourced</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Monthly reconciliation against your commission statement</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Qualified replies forwarded straight to you</li>
+        </ul>
+        <div class="card" style="margin-top:24px;">
+          <div class="card-title">Worth confirming with the platform</div>
+          <p class="card-body">
+            If the ordering platform can issue a unique signup or referral link, that link becomes a
+            second, cleaner attribution signal and removes most of the judgment calls. Worth asking
+            them before launch, though the sent log works on its own if they cannot.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SCOPE 5 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">5</div>
+      <div class="pkg-title">Launch &amp; optimization plan</div>
+      <div class="pkg-price">Included</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:680px;">
+      The first campaign launches only after technical readiness and list review are both cleared.
+      From there, the initial ~100-lead test does the teaching.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2c3 3 4.5 6.5 4.5 10a4.5 4.5 0 11-9 0C7.5 8.5 9 5 12 2z"/></svg>
+        </div>
+        <div class="card-title">Controlled first send</div>
+        <p class="card-body">Launch against the reviewed list once infrastructure is warmed, so the first real data comes from a clean test rather than a compromised one.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21h6M10 17h4"/><path d="M12 3a6 6 0 00-3 11v3h6v-3a6 6 0 00-3-11z"/></svg>
+        </div>
+        <div class="card-title">Learn before scaling</div>
+        <p class="card-body">Read the test for lead quality, message-market fit, reply rates, objections, and which buyer segments respond, including whether the current $1-per-lead source earns its cost.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+        </div>
+        <div class="card-title">Scale plan</div>
+        <p class="card-body">A documented path for growing volume using both curated leads and more economical supplemental sources, with deliverability guardrails built into the ramp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── OPTIONAL ADD-ONS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Optional Add-Ons</div>
+      <h2 class="section-title">Where this expands, when you want it</h2>
+      <p class="section-sub">
+        None of these are required for the cold email system to run, and none are priced here. They
+        are the natural next builds once outreach is producing conversations worth managing. Each one
+        gets quoted separately at the point you decide to add it.
+      </p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="phase-tag">Add-on</div>
+        <div class="card-title">GoHighLevel CRM buildout</div>
+        <p class="card-body">Pipeline stages, contact records, and the full lead status workflow from contacted through closed, plus reporting, so conversations stop living in an inbox and attribution becomes automatic.</p>
+      </div>
+      <div class="card">
+        <div class="phase-tag">Add-on</div>
+        <div class="card-title">Post-call follow-up automation</div>
+        <p class="card-body">The emails that go out after a call, carrying the platform link and a clear next action, triggered from the CRM instead of sent by hand every time.</p>
+      </div>
+      <div class="card">
+        <div class="phase-tag">Add-on</div>
+        <div class="card-title">Nurture &amp; re-engagement automation</div>
+        <p class="card-body">Longer-horizon sequences for prospects who are interested but not ready yet, running on their own once built so slow accounts are not lost by default.</p>
+      </div>
+      <div class="card">
+        <div class="phase-tag">Add-on</div>
+        <div class="card-title">Additional campaigns &amp; segments</div>
+        <p class="card-body">New buyer segments, new geographies, or a second offer angle, each with its own list buildout, sequence, and sending capacity added to the existing infrastructure.</p>
+      </div>
+      <div class="card">
+        <div class="phase-tag">Add-on</div>
+        <div class="card-title">AI-assisted calling</div>
+        <p class="card-body">Worth revisiting only once the sales process is proven and volume justifies it, as covered in Phase 3. It should create and qualify opportunities, never carry the close on a large account.</p>
+      </div>
+      <div class="card">
+        <div class="phase-tag">Add-on</div>
+        <div class="card-title">SMS outreach</div>
+        <p class="card-body">Possible later, and only after a compliance review of consent and messaging requirements for this audience. Higher risk than email, so it needs a deliberate decision rather than a default.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── DELIVERABILITY ADVANTAGE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Deliverability Advantage</div>
+      <h2 class="section-title">The part most outbound skips</h2>
+      <p class="section-sub">
+        Deliverability is the difference between an outreach program and a spam folder. It is not a
+        setting to switch on. It is a set of practices maintained continuously, and it is the
+        central discipline of this build.
+      </p>
+    </div>
+    <div class="grid-2">
+      <div class="card gold-border">
+        <div class="card-title" style="margin-bottom:18px;">Built into the foundation</div>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Sending domains kept separate from the main business domain</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Proper domain and mailbox configuration</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Email authentication configured correctly</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Mailbox warm-up before meaningful volume</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Controlled sending-volume ramp per mailbox</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:18px;">Maintained over time</div>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Sender reputation and inbox health monitoring</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Bounce and response monitoring with list hygiene</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Volume adjusted to what the data supports</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Copy and cadence tuned to reduce negative signals</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Infrastructure expanded as demand justifies it</li>
+        </ul>
+        <p class="card-body" style="margin-top:20px; color:var(--text-dim); font-size:13px;">
+          No provider can guarantee inbox placement, because mailbox providers make that call. What this
+          build does is follow the practices that give a sending program its best structural chance,
+          and catch problems early enough to correct them.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ROLLOUT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Rollout Plan</div>
+      <h2 class="section-title">Validate → Scale → Automate selectively</h2>
+      <p class="section-sub">Each phase unlocks the next. Nothing scales until the data says it should.</p>
+    </div>
+    <div class="grid-3">
+      <div class="phase-card active">
+        <div class="phase-tag">Phase 1 · Validate</div>
+        <div class="phase-title">Learn from the first 100</div>
+        <p class="card-body">
+          Run the existing ~100-lead list as a controlled test: personalized cold email from the new
+          infrastructure, with your call follow-up on anyone who engages. The goal is answers: which
+          buyer types engage, what objections surface, which value proposition resonates, and whether
+          the lead quality justifies its cost.
+        </p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-tag">Phase 2 · Scale</div>
+        <div class="phase-title">Add volume without breaking placement</div>
+        <p class="card-body">
+          Once messaging and conversion signals hold up, layer in larger, lower-cost lead sources
+          alongside curated contacts for priority accounts. Sending volume increases gradually,
+          within deliverability limits, and inbound replies get routed to you first.
+        </p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-tag">Phase 3 · Automate</div>
+        <div class="phase-title">Selective, once the process is proven</div>
+        <p class="card-body">
+          AI calling and workflow automation come in only after there is enough volume and a tested
+          sales process to justify them, supporting research, enrichment, personalization, reply
+          triage, and scheduling. For large accounts, automation creates and qualifies
+          opportunities; it does not replace the relationship.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── LEAD ECONOMICS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Lead Economics</div>
+      <h2 class="section-title">Judge lists by results, not by price</h2>
+    </div>
+    <div class="two-col">
+      <div>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75; margin-bottom:20px;">
+          The current source runs roughly 100 AI-sourced leads at about $1 each, with name, email,
+          and phone. That is a reasonable validation source, good enough to learn from and worth
+          testing properly before committing to it as the long-term supply.
+        </p>
+        <p style="font-size:15px; color:var(--text-muted); line-height:1.75;">
+          The recommendation going forward is to test supplemental bulk sources that may cost
+          substantially less, use those for volume, and keep curated lists for focused outreach on
+          accounts worth the extra effort. Cost per lead means very little; cost per activated
+          account means everything.
+        </p>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Input</th><th>Current position</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="metric">List size</td><td>~100 leads for the initial test</td></tr>
+            <tr><td class="metric">Cost per lead</td><td>~$1, AI / data-mined source</td></tr>
+            <tr><td class="metric">Fields</td><td>Name, email, phone number</td></tr>
+            <tr><td class="metric">Role in plan</td><td>Validation source, not necessarily the long-term supply</td></tr>
+            <tr><td class="metric">Next test</td><td>Supplemental bulk sources at lower cost, measured on activation rate</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ONGOING MANAGEMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Ongoing Management</div>
+      <h2 class="section-title">Compensated on realized revenue, not activity</h2>
+      <p class="section-sub">
+        Ongoing management runs on a 15% share of net commissions actually received from accounts
+        attributable to the outreach system. The setup fee builds durable assets; everything after
+        that is tied to money you have actually collected.
+      </p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="margin-bottom:18px;">What management covers</div>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Deliverability and sender-reputation monitoring</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Mailbox health and gradual volume scaling</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Campaign performance review, with qualified replies forwarded to you</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Testing of messaging, subject lines, CTAs, and segments</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Follow-up timing optimization</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Lead-list refresh and expansion recommendations</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Monthly attribution reconciliation and revenue share statement</li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Recommendations on adding calling, SMS, or AI workflows</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Term</th><th>Suggested structure</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="metric">Rate</td><td>15% of net commissions actually received</td></tr>
+            <tr><td class="metric">Applies to</td><td>Only accounts sourced through the outreach system</td></tr>
+            <tr><td class="metric">Attribution</td><td>CRM records, tagging, unique links, or a shared pipeline</td></tr>
+            <tr><td class="metric">Payment</td><td>Monthly, after commissions are received</td></tr>
+            <tr><td class="metric">Initial term</td><td>90-day minimum management period, then month-to-month</td></tr>
+            <tr><td class="metric">Scoped separately</td><td>Substantial calling, hands-on sales support, or major new campaign builds</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── COMPARISON ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Custom System vs. Sellthium</div>
+      <h2 class="section-title">Owning the engine vs. renting one</h2>
+      <p class="section-sub">
+        Sellthium is a real product with a clear model. Their data engine sources and enriches leads,
+        their stack sends the email, and you pay a monthly subscription priced by lead volume. It is a
+        legitimate tool. It is also a different thing from what this proposal builds, and the
+        difference is worth understanding before you choose.
+      </p>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>This custom system</th>
+            <th>Sellthium, per their site</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric">Model</td>
+            <td class="ours">A one-time build of outbound infrastructure under your business, then managed on a share of commissions you actually receive.</td>
+            <td>A monthly subscription priced by lead volume: $99.95 for 150 leads, $199.95 for 400, $449.95 for 1,000, $999.95 for 2,500, custom above that.</td>
+          </tr>
+          <tr>
+            <td class="metric">Who sends the mail</td>
+            <td class="ours">Sending runs from domains and mailboxes registered to your business, kept separate from your primary brand domain.</td>
+            <td>Their site states that sequences run from their stack, so sending happens on infrastructure they own and operate across their customer base.</td>
+          </tr>
+          <tr>
+            <td class="metric">Deliverability</td>
+            <td class="ours">Domain separation, authentication, mailbox warm-up, controlled ramping, and sender-reputation monitoring are the core of the build.</td>
+            <td>The site describes tracking of opens, clicks, and replies. It does not describe domains, authentication, warm-up, sender reputation, or inbox placement anywhere.</td>
+          </tr>
+          <tr>
+            <td class="metric">Lead data</td>
+            <td class="ours">Lists sourced, validated, and segmented specifically for clinics, med spas, and physician practices. The records stay yours.</td>
+            <td>Their data engine is described as sourcing, verifying, and enriching retail prospects. Worth confirming coverage depth for clinical and med spa buyers before relying on it.</td>
+          </tr>
+          <tr>
+            <td class="metric">AI</td>
+            <td class="ours">AI supports research, enrichment, personalization, and reply triage, with heavier automation added only once the sales process is proven.</td>
+            <td>AI personalized onboarding and lead personalization are listed as included platform features.</td>
+          </tr>
+          <tr>
+            <td class="metric">If it ends</td>
+            <td class="ours">Domains, mailboxes, lead data, campaign copy, documentation, and pipeline records stay with you and keep working.</td>
+            <td>Access to the platform, its lists, and its sending stack ends with the subscription.</td>
+          </tr>
+          <tr>
+            <td class="metric">Sales philosophy</td>
+            <td class="ours">Built to feed a human closer, with high-value accounts routed to you for relationship-led selling.</td>
+            <td>Positioned as rep replacement. The site's own framing is "Fire Inefficiency, Hire Automation," aimed at cutting SDR cost.</td>
+          </tr>
+          <tr>
+            <td class="metric">Best fit</td>
+            <td class="ours">High-value B2B outreach where inbox placement, asset ownership, and a human close decide the outcome.</td>
+            <td>Teams that want lead volume and sending bundled into one low monthly cost without building anything of their own.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stat-callout" style="margin-top:28px;">
+      <div>
+        <div class="stat-num">~$55</div>
+        <div class="stat-label">Full sending stack, per month</div>
+      </div>
+      <p class="stat-note">
+        One domain, two mailboxes at roughly $3.50 each, and Instantly's Growth plan at $47 a month
+        for the sequencing software that schedules sends, tracks opens and replies, and runs warmup.
+        That covers a multi-touch sequence against Sellthium's entire 400-lead Associate tier, priced
+        at $199.95 a month, for about 27% of the cost. Scale the math up and the gap holds: matching
+        their 2,500-lead Sales Manager tier at $999.95 a month takes roughly six times the mailboxes
+        and Instantly's $97 Hypergrowth plan, once contact volume passes 1,000, for around $147.50 a
+        month, about 15% of the cost.
+      </p>
+    </div>
+
+    <div class="note-box" style="margin-top:20px;">
+      <p>
+        <strong>How this comparison was made.</strong> Everything about Sellthium was read directly
+        from sellthium.ai in September 2026, not inferred. Where their site is silent, the table says
+        so rather than assuming a practice is missing. Sellthium may well handle authentication and
+        warm-up carefully behind the scenes. The point is that it would not be yours to control,
+        verify, or take with you. The stack above prices three separate wholesale tools against
+        Sellthium's one bundled subscription: Zapmail-style rates for mailboxes and domains, and
+        Instantly's published monthly rates for the sequencing software that actually sends, tracks,
+        and warms up the mailboxes, both confirmed directly from their pricing pages in September
+        2026. Domain pricing is a standard-TLD estimate.
+      </p>
+      <p style="margin-top:14px;">
+        <strong>What that gap actually buys.</strong> It is not proof that Sellthium overcharges for
+        what it does. A subscription like theirs bundles lead sourcing, sending, and support into one
+        predictable monthly bill with nothing to configure. The cost above is only the wholesale price
+        of the parts: domains, mailboxes, and sequencing software still need to be set up correctly,
+        connected to each other, authenticated, warmed up, and monitored, which is exactly the work
+        priced into this build's setup fee and ongoing management. Raw infrastructure is cheap.
+        Running it correctly is the actual product.
+      </p>
+      <p style="margin-top:14px;">
+        <strong>On lead sourcing cost.</strong> Actor-based scraping tools can source raw contact
+        records for well under a cent apiece before verification, a small fraction of Sellthium's
+        $0.40 to $0.67 per lead. That is not a fully apples-to-apples number on its own: raw scraped
+        records still need deduplication, validation, and segmentation before they are usable, which
+        is the work already priced into this build's list preparation block. Once that work is
+        counted, sourcing through this system still lands well under Sellthium's bundled rate for
+        equivalent volume.
+      </p>
+      <p style="margin-top:14px;">
+        <strong>A practical note.</strong> These are not strictly either/or. At $99.95 to $449.95 a
+        month, Sellthium is a plausible supplemental lead source to test in Phase 2 once messaging is
+        validated, feeding records into infrastructure you own rather than replacing it. That call
+        should come down to measured activation rate, not list price.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">Built as an asset, not a subscription</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0; margin-bottom:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V7z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Deliverability is the discipline</div>
+          <p class="why-desc">Domain separation, authentication, warm-up, and reputation monitoring are treated as the foundation of the build, not a checkbox after the copy is written.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0; margin-bottom:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M12 3v18"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">You keep everything</div>
+          <p class="why-desc">Domains, mailboxes, lead data, campaign copy, process documentation, and pipeline records live in your business. If our arrangement ends, the growth engine doesn't.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0; margin-bottom:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Aligned on outcomes</div>
+          <p class="why-desc">A one-time build fee for durable infrastructure, then compensation tied to commissions you have actually received, with attribution tracked so both sides can see what the system produced.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub">One build fee to stand the cold email system up, then a performance-based share on what it actually produces. Add-ons stay optional and unpriced until you want them.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 720px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Cold Email System Build
+          <small>Strategy and ICP, deliverability infrastructure, cold email campaigns, list prep and attribution, launch plan</small>
+        </div>
+        <div class="pricing-amt">$3,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Ongoing Management
+          <small>Deliverability, campaign optimization, reporting. Billed only on commissions received</small>
+        </div>
+        <div class="pricing-amt">15% rev share</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Due to Start</div>
+        <div class="pricing-amt">$3,000</div>
+      </div>
+      <div class="pricing-note">
+        Revenue share applies only to accounts sourced through the outreach system, is paid monthly
+        after commissions are received, and runs on a 90-day initial term before moving to
+        month-to-month. Third-party costs such as domains, mailboxes, sending tools, and lead data are
+        billed at cost and remain owned by your business. The optional add-ons listed above, including
+        the GoHighLevel CRM buildout and post-call automation, are quoted separately at the point you
+        decide to add them.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── COMPLIANCE NOTE ── -->
+<section class="section" style="padding: 56px 0;">
+  <div class="container">
+    <div class="note-box">
+      <p>
+        <strong>Compliance note.</strong> Cold email, outbound calling, SMS, third-party data
+        sourcing, and health-adjacent business outreach are subject to privacy, consent, marketing,
+        platform, and other regulatory requirements that vary by jurisdiction and channel. Before
+        launch, the list sources, message content, and contact practices described here should be
+        reviewed by qualified counsel or a compliance advisor. Nothing in this proposal guarantees
+        inbox placement, reply rates, appointments, or revenue.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's build the pipeline</h2>
+    <p class="cta-sub">
+      Approve the build and we start with strategy and infrastructure, then run the first 100 leads
+      as a real test, with everything we stand up staying in your name.
+    </p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Wayne Proposal - Let's Talk" class="btn-primary">
+        Approve &amp; Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Wayne Proposal - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/proposals/wayne-peptide-outreach/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Wayne</span>
+</footer>
+
+</body>
+</html>

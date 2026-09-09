@@ -24,4 +24,4 @@ Inter (loaded via Google Fonts `<link>` in `<head>`). Headings are bold/black we
 ## Notes
 - Every proposal is a single self-contained `index.html` — no build step, no external JS framework. Keep it that way so it can be dropped straight into `public/proposals/<slug>/` and just work.
 - Reuse section patterns from `index.html` (`.card`, `.package-header` + `.pkg-num`/`.pkg-price`, `.pricing-table`, `.why-card`, `.cta-section`) rather than inventing new CSS — this keeps every proposal visually consistent.
-- CTA `mailto:` links go to `jentzenp@gmail.com`.
+- CTA `mailto:` links go to `jentzen@localsundigital.com`.
