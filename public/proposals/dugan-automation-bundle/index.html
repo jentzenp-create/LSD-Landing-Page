@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dugan Insurance Services × Local Sun Digital · Automation, Lead Intake & Website Bundle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,14,14,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.04em; }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero { position: relative; overflow: hidden; padding: 100px 24px 90px; text-align: center; }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 24px; color: #fff; }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); font-weight: 500; color: var(--text-muted); max-width: 640px; margin: 0 auto 36px; line-height: 1.65; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 660px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: #fff; }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold);
+    }
+    .pkg-tag {
+      margin-left: auto; background: var(--gold); color: #000;
+      border-radius: 99px; padding: 6px 16px; font-size: 12px; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 40px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 560px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── DATA TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .data-table th, .data-table td { text-align: left; padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .data-table th { background: var(--surface-2); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .data-table td { color: var(--text-muted); line-height: 1.5; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td.metric, .data-table td.month { color: #fff; font-weight: 600; white-space: nowrap; vertical-align: top; }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius-card); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%); border-top: 1px solid var(--border-gold); padding: 100px 24px; text-align: center; }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── COMPLIANCE / URGENCY NOTE ── */
+    .note-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface-2); border: 1px dashed var(--border-gold);
+      border-radius: var(--radius-sm); padding: 20px 24px; margin-top: 20px;
+    }
+    .note-mark {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      color: var(--gold); font-weight: 800; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .note-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+    .note-body strong { color: #fff; }
+
+    /* ── PHASE MARKER ── */
+    .phase-marker {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: #000; font-weight: 800; font-size: 12px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 99px; padding: 6px 16px; margin-bottom: 20px;
+    }
+    .phase-marker.dim { background: var(--surface-2); color: var(--gold); border: 1px solid var(--border-gold); }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+      .data-table th, .data-table td { padding: 10px 12px; font-size: 13px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/dugan-automation-bundle/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Sam Dugan</span> · September 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Automation, Lead Intake & Website Bundle · Local Sun Digital
+    </div>
+    <h1>Catch Every Call Before<br/><span class="gold">September 24.</span><br/>Then Rebuild the Site Behind It.</h1>
+    <p class="hero-sub">
+      A radio ad, a fair banner, and several thousand mailers are about to send a wave of calls at Dugan Insurance — right as Sam's team is stretched thinnest. This bundle makes sure none of those calls get lost, gets every interested caller into the intake pipeline automatically, and then turns to rebuilding the website itself so it can keep pace with everything else going forward.
+    </p>
+    <div class="badge-row">
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 011 .76l1.12 4.5a1 1 0 01-.29 1L8.09 10.4a16 16 0 006.51 6.51l1.14-1.02a1 1 0 011-.29l4.5 1.12a1 1 0 01.76 1V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+        Second Voice AI Agent
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Lead Intake Automation
+      </span>
+      <span class="badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+        Website Migration & Redesign
+      </span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE SITUATION ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Situation</div>
+      <h2 class="section-title">A Lot of Calls,<br/>Not a Lot of Hands</h2>
+      <p class="section-sub">A radio ad airs Wednesday, September 24, alongside a fair banner and several thousand mailers — all driving calls to a second number. At the same time, Sam's team of 5 agents will be stretched thin working the fair in person, with several tied up around an upcoming congregation privilege. Without something answering that line, overflow calls become lost leads.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3M3 11h18M5 5h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/></svg>
+        </div>
+        <div class="card-title">Hard Deadline</div>
+        <p class="card-body">Radio ad airs September 24. The second line needs to be live and tested before then, not built around it.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="card-title">Team Stretched Thin</div>
+        <p class="card-body">5 agents working the fair in person and a congregation privilege overlapping the same window — fewer hands to pick up the phone.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="card-title">The Fix, in Two Parts</div>
+        <p class="card-body">Automate the intake Sam already built (the JotForm), then put Linda on the second number to catch what the team can't answer live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PHASE 1: LEAD INTAKE AUTOMATION ── -->
+<section class="section" style="background: linear-gradient(180deg, #0f0c01 0%, #0E0E0E 100%);">
+  <div class="container">
+    <div class="phase-marker">Phase 1 · Starts Immediately</div>
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Lead Intake Automation on the Existing Line</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      Sam has already built a bilingual (English/Spanish) JotForm intake that collects everything needed to start a Medicare application — primary care doctor, specialist, phone, email, and more. Right now, when a caller expresses interest, Linda takes that information down manually. This phase teaches her to hand it off to the form instead.
+    </p>
+    <div class="grid-2" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="card-title">Intent Detection & Text Handoff</div>
+        <p class="card-body">When a caller says something like "I'd like to enroll" or asks about a Medicare consultation, Linda offers to text the intake form link on the spot — in English or Spanish, matching the caller.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </div>
+        <div class="card-title">Two-Stage Lead Notifications</div>
+        <p class="card-body">Sam and any team members he chooses are notified when a caller speaks with the AI but doesn't complete the form, and again when a caller does complete it. Notifications can go out by text, email, or both — per person — so nothing sits unseen.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+      </div>
+      <div class="card-title">Manual Lead Distribution, Sam in Control</div>
+      <p class="card-body">Completed leads are emailed to Sam with full details so he can review and forward opportunities to Madison, Gabrielle, Dominic, or Griselda himself. Automated round-robin or weighted distribution can be layered on later if he wants it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHASE 2: SECOND VOICE AI LINE ── -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="phase-marker">Phase 2 · Live Before Sept 24</div>
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">Second Voice AI Agent for the Open Enrollment Push</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      The radio ad, fair banner, and mailers all drive to a second number. Rather than let it ring to voicemail while the team works the fair, Linda answers it directly — engaging the caller and routing interested ones straight to the same intake form built in Phase 1.
+    </p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 011 .76l1.12 4.5a1 1 0 01-.29 1L8.09 10.4a16 16 0 006.51 6.51l1.14-1.02a1 1 0 011-.29l4.5 1.12a1 1 0 01.76 1V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+        </div>
+        <div class="card-title">In Scope</div>
+        <p class="card-body">Voice AI answers the second number, converses naturally with the caller, and texts the intake form to anyone interested — same form, same follow-up flow as the main line.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </div>
+        <div class="card-title">Explicitly Out of Scope (For Now)</div>
+        <p class="card-body">No scheduling or booking functionality on this line yet — that's a "maybe later." Sam will personally handle distributing leads and submissions evenly among the agents, same as Phase 1.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHASE 3: WEBSITE MIGRATION ── -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="phase-marker dim">Phase 3 · Starts After Sept 24, ~30 Days</div>
+    <div class="package-header">
+      <div class="pkg-num">3</div>
+      <div class="pkg-title">Website Migration & Redesign</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 20px; max-width:680px;">
+      Once the pre-event automation is live and stable, focus shifts to needmedicareplan.com itself: moving it off its current page-builder platform and onto a modern foundation that supports fast, ongoing design and content changes — then rebuilding the design fully around Sam's new logo so the site, Google Business Profile, and social presence all look uniform.
+    </p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+        </div>
+        <div class="card-title">Platform Migration</div>
+        <p class="card-body">Move the site to a faster, more flexible platform for making design and content changes — new pages, new offers, new copy — without being stuck in a slow page builder.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <div class="card-title">Full Design Refresh</div>
+        <p class="card-body">Rebuilt around the new logo, with the compliance and trust fixes already flagged (CMS disclaimer, HTTPS, review widget, consistent experience claims) addressed as part of the rebuild.</p>
+      </div>
+    </div>
+    <div class="note-card">
+      <div class="note-mark">✓</div>
+      <div class="note-body"><strong>GoHighLevel doesn't go anywhere.</strong> Calendar, CRM, and Linda all stay exactly as they are — the new site connects to them through an embed, so booking and lead flow keep working the same way for Sam and the team. Only the public-facing website itself moves.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ONGOING MARKETING SUPPORT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Running Alongside All Three Phases</div>
+      <h2 class="section-title">Ongoing Marketing Support</h2>
+      <p class="section-sub">Independent of the automation build and the website work, the existing content cadence continues without interruption.</p>
+    </div>
+    <ul class="check-list" style="max-width: 640px; margin: 0 auto;">
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Social posts published simultaneously across Google, Facebook, and Instagram</li>
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Existing cadence maintained: approximately 12 posts per month, every 3–4 days</li>
+      <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Consistent images, logos, and branding across every platform</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Delivery Timeline</div>
+      <h2 class="section-title">What Happens When</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th style="width: 170px;">Window</th><th>Focus</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="month">Now → Sept 24</td>
+            <td>Build and test lead intake automation on the existing line (form handoff, two-stage notifications, manual assignment workflow). Stand up the second voice AI agent on the second number and test it end to end. Ongoing social posting continues on its normal cadence throughout.</td>
+          </tr>
+          <tr>
+            <td class="month">Sept 24 event</td>
+            <td>Second line live and answering overflow calls while the team works the fair. Sam reviews and distributes completed leads as they come in.</td>
+          </tr>
+          <tr>
+            <td class="month">Post-event, ~30 days</td>
+            <td>Shift focus to the website: platform migration, full redesign around the new logo, GHL calendar/CRM/Linda re-embedded, compliance and trust fixes addressed. Social posting and lead automation continue running in the background.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs</h2>
+      <p class="section-sub">One project investment covering all three phases, split into two payments.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 720px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Automation, Lead Intake & Website Bundle
+          <small>Lead intake automation, second voice AI agent, website migration & redesign</small>
+        </div>
+        <div class="pricing-amt">$4,000</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Total Investment</div>
+        <div class="pricing-amt">$4,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          50% Deposit
+          <small>Due at approval — work on the automation and voice AI agent begins immediately</small>
+        </div>
+        <div class="pricing-amt">$2,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          50% Final Payment
+          <small>Due when the new website goes live</small>
+        </div>
+        <div class="pricing-amt">$2,000</div>
+      </div>
+      <div class="pricing-note">Hosting for the new website and ongoing marketing support (social posting cadence) are included in the existing $2,000/quarter retainer — no change to that line item.</div>
+    </div>
+    <div class="grid-2" style="max-width: 720px; margin: 24px auto 0;">
+      <div class="card">
+        <div class="card-title">Website Revisions Included</div>
+        <ul class="check-list" style="margin-top: 12px;">
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>2 rounds of revisions on the design concept</li>
+          <li><div class="check-icon"><svg width="12" height="12" fill="none" stroke="#F2B705" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>2 rounds of revisions on the built site before launch</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Beyond the Included Rounds</div>
+        <p class="card-body">Additional revision rounds, new pages, or new features outside this scope are quoted separately and approved by Sam before any work begins — no surprise charges.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">Built Around What Sam Already Has</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Built on Sam's Own Work, Not From Scratch</div>
+          <p class="why-desc">The JotForm intake and Linda are already his — this bundle connects and extends what he's built rather than replacing it.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3M3 11h18M5 5h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Deadline-First Sequencing</div>
+          <p class="why-desc">Everything tied to September 24 is prioritized first; the bigger website rebuild deliberately waits until the pressure is off.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Nothing Sam Relies on Today Changes</div>
+          <p class="why-desc">GoHighLevel keeps running the calendar, CRM, and Linda throughout — the automation and the new site both build on top of it, not around it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are, Sam</p>
+    <h2 class="cta-title">Let's Get Ahead of<br/><span style="color:var(--gold);">September 24.</span></h2>
+    <p class="cta-sub">Questions, adjustments, or ready to move forward — reach out and we'll make it happen.</p>
+    <div>
+      <a href="https://buy.stripe.com/cNi28r4kQbdY12q2wo0kE0L" target="_blank" rel="noopener" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Dugan Automation Bundle - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/proposals/dugan-automation-bundle/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Dugan Insurance Services</span>
+</footer>
+
+</body>
+</html>
