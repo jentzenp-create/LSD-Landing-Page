@@ -57,6 +57,14 @@
             "destination": "/dr-leslie-k/$1"
         },
         {
+            "source": "/arcade",
+            "destination": "/arcade/index.html"
+        },
+        {
+            "source": "/arcade/",
+            "destination": "/arcade/index.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }

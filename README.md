@@ -30,3 +30,13 @@ A conversational, voice-enabled AI interview that gathers website requirements f
   - `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` (already used by Studio) must be set, and you need to run `scripts/seed_onboarding_table.sql` once in the Supabase SQL editor to create the `onboarding_sessions` table.
 - **Local testing:** `npm run dev` (Vite) does not serve the `/api` serverless function. Use `vercel dev` (after `vercel link`) to test the AI conversation locally, or test against a deployed Vercel preview.
 - Voice input uses the browser's built-in Speech Recognition API (Chrome/Edge; no extra API key or cost) and falls back to typing where unsupported. Voice output (the AI reading its questions aloud) uses the browser's Speech Synthesis API and is off by default — toggle it on in the chat header.
+
+## Bottleneck Busters arcade game (`/arcade`)
+
+A retro platformer lead magnet built with Phaser 3. Each world is a stage of the customer journey; sun blocks and bosses ask quick diagnostic questions, and the results screen turns the answers into a mini report with an email gate. World 1 ("Ghost Town", visibility & reviews) is playable.
+
+- **Code:** `arcade/` (separate Vite entry, so Phaser never loads on the main site). Level layout: `arcade/level1.ts`. Questions, findings and scoring: `arcade/questions.ts`. All pixel art is drawn in code in `arcade/art.ts`.
+- **Lead capture:** run `scripts/seed_arcade_table.sql` once in the Supabase SQL editor. It creates `arcade_leads` with insert-only access for the anon key (leads are not readable from the browser; view them in the Supabase dashboard). Uses the existing `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`. Without them the game still runs and logs the lead to the console.
+- **Embeds (Gatherly):** the game renders at a fixed 480x272 and scales to fit any box. Sound defaults to off when embedded. Add `?src=gatherly` to the URL to tag leads by source, and `?probe` to show the exact viewport size of the embed.
+- **Attract mode:** when idle, a bot plays the level behind the title screen until someone clicks or presses a key.
+- **Local dev:** `npm run dev`, then open `http://localhost:3000/arcade/`.
