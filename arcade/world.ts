@@ -1,26 +1,49 @@
-// World 1-1: gameplay logic + its 3D objects. Also runs the attract-mode demo
-// (a bot plays behind the title screen) when opts.demo is true.
+// A playable world (1 = night "Get Found", 2 = day "Speed to Lead"): gameplay
+// logic + its 3D objects. Also runs the attract-mode demo (a bot plays behind
+// the title screen) when opts.demo is true.
 import * as THREE from 'three';
 import { MAX_HEARTS, PHYS } from './config';
-import { getIndustry, type Industry, type WorldDef } from './content';
-import { buildLevel1, ROWS, STREET_ROW, T, type LevelData, type SunReward } from './level1';
+import { getIndustry, getWorld, type EnemyType, type Industry, type WorldDef } from './content';
+import { buildLevel1, buildLevel2, ROWS, STREET_ROW, T, type LevelData, type SunReward } from './levels';
 import { makeBody, overlaps, TileGrid, type Body } from './engine/physics';
 import { ease, Tweens } from './engine/tween';
 import type { Input, Pad } from './engine/input';
 import { Boss } from './boss';
-import { makeBlobShadow, makeBlock, makeCricket, makeGrump, makeHeart, makeHero, makeLamp, makeStar, type CreatureModel, type HeroModel } from './render/models';
+import {
+  makeAura,
+  makeBlobShadow,
+  makeBlock,
+  makeBolt,
+  makeCloud,
+  makeCricket,
+  makeGrump,
+  makeHero,
+  makeLamp,
+  makeLead,
+  makePhone,
+  makeSnail,
+  makeStar,
+  makeSunOrb,
+  makeTree,
+  type CreatureModel,
+  type HeroModel,
+} from './render/models';
 import { Town, type Stage } from './render/stage';
 import { tex } from './render/textures';
 import type { UI } from './ui';
-import { run } from './state';
+import { finishWorld, run } from './state';
 import * as sfx from './sfx';
 
 const STAR_BLOCK_VALUE = 3;
 const DEMO_MS = 32000;
 const STEP = 1 / 120;
+const LEAD_LIFETIME = 6; // seconds before a hot lead goes cold
+const AUTOPILOT_MS = 7000;
+const BIG_SCALE = 1.35;
 
 interface Enemy {
-  type: 'grump' | 'cricket';
+  type: EnemyType;
+  role: 'walker' | 'hopper';
   body: Body;
   model: CreatureModel;
   shadow: THREE.Mesh;
@@ -37,6 +60,25 @@ interface Block {
   bump: { y: number };
 }
 
+interface Pickup {
+  c: number;
+  r: number;
+  obj: THREE.Object3D;
+  state: 'waiting' | 'hot' | 'taken' | 'cold';
+  age: number;
+  setHeat?: (h: number) => void;
+}
+
+interface PowerItem {
+  kind: 'sun' | 'bolt';
+  body: Body;
+  root: THREE.Object3D;
+  animate: (t: number) => void;
+  emerging: number; // seconds left rising out of the block
+  dir: 1 | -1;
+  active: boolean;
+}
+
 interface Particle {
   obj: THREE.Object3D;
   vx: number;
@@ -50,6 +92,7 @@ interface Particle {
 export interface WorldOptions {
   demo: boolean;
   industry: Industry;
+  number: 1 | 2;
   stage: Stage;
   ui: UI;
   input: Input;
@@ -84,7 +127,13 @@ export class World {
   private checkpointCol: number;
 
   private enemies: Enemy[] = [];
-  private stars: { c: number; r: number; mesh: THREE.Mesh; taken: boolean }[] = [];
+  private pickups: Pickup[] = [];
+  private items: PowerItem[] = [];
+  private clouds: THREE.Object3D[] = [];
+  private big = false;
+  private autopilotUntil = 0;
+  private aura: THREE.Sprite;
+  private tipsShown = new Set<string>();
   private blocks = new Map<string, Block>();
   private lamps: { col: number; lamp: ReturnType<typeof makeLamp>; threshold: number; checkpoint: boolean; lit: boolean }[] = [];
   private particles: Particle[] = [];
@@ -101,31 +150,36 @@ export class World {
 
   constructor(private opts: WorldOptions) {
     this.demo = opts.demo;
-    this.def = getIndustry(opts.industry).world1;
-    this.level = buildLevel1();
+    this.def = getWorld(opts.industry, opts.number);
+    this.level = opts.number === 1 ? buildLevel1() : buildLevel2();
+    opts.stage.setTheme(this.def.theme);
     this.grid = new TileGrid(this.level.tiles, this.level.cols, this.level.rows);
     this.checkpointCol = this.level.start.col;
     opts.stage.scene.add(this.group);
 
-    this.town = new Town(this.level.cols, STREET_ROW);
+    this.town = new Town(this.level.cols, STREET_ROW, this.def.theme);
     this.group.add(this.town.group);
     this.buildTerrain();
     this.buildPickups();
     this.buildLamps();
+    if (this.def.theme === 'day') this.buildDayDecor();
 
     this.player = makeBody(this.level.start.col + 0.2, STREET_ROW - 0.94, 0.62, 0.94);
     this.hero = makeHero();
     this.group.add(this.hero.root);
     this.heroShadow = makeBlobShadow();
     this.group.add(this.heroShadow);
+    this.aura = makeAura();
+    this.aura.visible = false;
+    this.hero.root.add(this.aura);
 
-    for (const e of this.level.enemies) this.spawnEnemy(e.col, e.type);
+    for (const e of this.level.enemies) this.spawnEnemy(e.col, e.role);
 
     let starBlocks = 0;
     this.level.sunBlocks.forEach((r) => r.kind === 'star' && starBlocks++);
     if (!this.demo) {
       run.stars = 0;
-      run.starsTotal = this.level.stars.length + starBlocks * STAR_BLOCK_VALUE;
+      run.starsTotal = this.level.pickups.length + starBlocks * STAR_BLOCK_VALUE;
     }
     this.botLastX = this.player.x;
     this.updateLit();
@@ -140,7 +194,10 @@ export class World {
   private buildTerrain() {
     const { cols } = this.level;
     // Ground: one chunky slab per continuous stretch of street
-    const sideMat = new THREE.MeshStandardMaterial({ map: tex.dirt(), roughness: 1 });
+    const day = this.def.theme === 'day';
+    const dirtTex = day ? tex.dirtDay : tex.dirt;
+    const walkTex = day ? tex.sidewalkDay : tex.sidewalk;
+    const sideMat = new THREE.MeshStandardMaterial({ map: dirtTex(), roughness: 1 });
     for (let c = 0; c < cols; ) {
       if (this.grid.get(c, STREET_ROW) !== T.STREET) {
         c++;
@@ -151,10 +208,10 @@ export class World {
       const len = end - c + 1;
       const depth = 3.2;
       const height = ROWS - STREET_ROW + 2;
-      const top = tex.sidewalk().clone();
+      const top = walkTex().clone();
       top.repeat.set(len, depth);
       top.needsUpdate = true;
-      const front = tex.dirt().clone();
+      const front = dirtTex().clone();
       front.repeat.set(len / 2, height / 2);
       front.needsUpdate = true;
       const topMat = new THREE.MeshStandardMaterial({ map: top, roughness: 0.9 });
@@ -163,7 +220,7 @@ export class World {
       slab.position.set(c + len / 2, -STREET_ROW - height / 2, -0.6);
       this.group.add(slab);
       // Curb strip along the front edge
-      const curb = new THREE.Mesh(new THREE.BoxGeometry(len, 0.12, 0.25), new THREE.MeshStandardMaterial({ color: 0xb8b4d4, roughness: 0.8 }));
+      const curb = new THREE.Mesh(new THREE.BoxGeometry(len, 0.12, 0.25), new THREE.MeshStandardMaterial({ color: day ? 0x6fbf5f : 0xb8b4d4, roughness: 0.8 }));
       curb.position.set(c + len / 2, -STREET_ROW + 0.02, 0.95);
       this.group.add(curb);
       c = end + 1;
@@ -180,7 +237,7 @@ export class World {
 
   private addBlock(c: number, r: number, t: number) {
     const kind = t === T.BRICK ? 'brick' : t === T.SUN ? 'sun' : t === T.USED ? 'used' : t === T.CRATE ? 'crate' : 'wall';
-    const mesh = makeBlock(kind);
+    const mesh = makeBlock(kind === 'wall' && this.def.theme === 'day' ? 'brick' : kind);
     if (kind === 'wall') mesh.scale.z = 2.4;
     mesh.position.set(c + 0.5, -(r + 0.5), 0);
     this.group.add(mesh);
@@ -190,17 +247,41 @@ export class World {
   }
 
   private buildPickups() {
-    for (const s of this.level.stars) {
-      const mesh = makeStar();
-      mesh.position.set(s.col + 0.5, -(s.row + 0.5), 0);
-      this.group.add(mesh);
-      this.stars.push({ c: s.col, r: s.row, mesh, taken: false });
+    for (const p of this.level.pickups) {
+      if (this.def.pickup === 'star') {
+        const mesh = makeStar();
+        mesh.position.set(p.col + 0.5, -(p.row + 0.5), 0);
+        this.group.add(mesh);
+        this.pickups.push({ c: p.col, r: p.row, obj: mesh, state: 'waiting', age: 0 });
+      } else {
+        const lead = makeLead();
+        lead.root.position.set(p.col + 0.5, -(p.row + 0.5), 0);
+        lead.setHeat(1);
+        this.group.add(lead.root);
+        this.pickups.push({ c: p.col, r: p.row, obj: lead.root, state: 'waiting', age: 0, setHeat: lead.setHeat });
+      }
+    }
+  }
+
+  private buildDayDecor() {
+    for (let col = 4; col < this.level.arena.left - 2; col += 9) {
+      if (this.grid.get(col, STREET_ROW) !== T.STREET || this.grid.get(col, STREET_ROW - 1) !== T.EMPTY) continue;
+      const tree = makeTree(col);
+      tree.position.set(col + 0.5, -STREET_ROW, -1.5);
+      tree.scale.setScalar(0.9 + (col % 3) * 0.12);
+      this.group.add(tree);
+    }
+    for (let i = 0; i < 16; i++) {
+      const cloud = makeCloud(i);
+      cloud.position.set(i * 16 - 10 + (i % 3) * 5, -STREET_ROW + 15 + (i % 4) * 2.5, -45 - (i % 3) * 8);
+      this.group.add(cloud);
+      this.clouds.push(cloud);
     }
   }
 
   private buildLamps() {
     const { arena } = this.level;
-    for (let col = 6; col < arena.left - 2; col += 14) {
+    for (let col = 6; col < arena.left - 2 && this.def.theme === 'night'; col += 14) {
       if (this.grid.get(col, STREET_ROW) !== T.STREET) continue;
       const lamp = makeLamp();
       lamp.root.position.set(col + 0.5, -STREET_ROW, -1.2);
@@ -216,13 +297,14 @@ export class World {
     }
   }
 
-  private spawnEnemy(col: number, type: 'grump' | 'cricket') {
-    const model = type === 'grump' ? makeGrump() : makeCricket();
-    const h = type === 'grump' ? 0.75 : 0.56;
+  private spawnEnemy(col: number, role: 'walker' | 'hopper') {
+    const type = this.def.enemies[role === 'walker' ? 0 : 1];
+    const model = { grump: makeGrump, cricket: makeCricket, snail: makeSnail, phone: makePhone }[type]();
+    const h = { grump: 0.75, cricket: 0.56, snail: 0.6, phone: 0.62 }[type];
     const body = makeBody(col + 0.12, STREET_ROW - h, 0.75, h);
     const shadow = makeBlobShadow();
     this.group.add(model.root, shadow);
-    this.enemies.push({ type, body, model, shadow, awake: false, dead: false, dir: -1, nextHop: 0 });
+    this.enemies.push({ type, role, body, model, shadow, awake: false, dead: false, dir: -1, nextHop: 0 });
   }
 
   // ---------------------------------------------------------------- HUD
@@ -255,6 +337,10 @@ export class World {
 
   private updateLit(force?: number) {
     this.lit = force ?? (this.demo ? this.demoLit : run.starsTotal ? Math.min(1, run.stars / run.starsTotal) : 0);
+    if (this.def.theme === 'day') {
+      this.refreshHud();
+      return;
+    }
     this.opts.stage.setLit(this.lit);
     this.town.setLit(this.lit);
     for (const l of this.lamps) {
@@ -293,7 +379,8 @@ export class World {
     const pad = this.readPad();
     this.movePlayer(pad, dt);
     this.updateEnemies(dt);
-    this.checkPickups();
+    this.updateItems(dt);
+    this.checkPickups(dt);
     this.updateCheckpoints();
 
     if (this.player.y > ROWS + 1.5) {
@@ -325,7 +412,8 @@ export class World {
       const d = PHYS.drag * dt;
       b.vx = Math.abs(b.vx) <= d ? 0 : b.vx - Math.sign(b.vx) * d;
     }
-    b.vx = THREE.MathUtils.clamp(b.vx, -PHYS.runSpeed, PHYS.runSpeed);
+    const max = PHYS.runSpeed * (this.autopilot ? 1.45 : 1);
+    b.vx = THREE.MathUtils.clamp(b.vx, -max, max);
 
     // Jump with coyote time, input buffering and variable height
     if (b.onGround) this.lastGroundAt = this.now;
@@ -380,6 +468,10 @@ export class World {
     const block = this.blocks.get(`${c},${r}`);
     const t = this.grid.get(c, r);
     if (!block || (t !== T.SUN && t !== T.BRICK)) return;
+    if (t === T.BRICK && this.big && !this.demo) {
+      this.smashBrick(block);
+      return;
+    }
     const reward = t === T.SUN ? this.level.sunBlocks.get(`${c},${r}`) : undefined;
     if (t === T.SUN) {
       this.grid.set(c, r, T.USED);
@@ -398,10 +490,32 @@ export class World {
     if (reward) this.giveReward(reward, c, r);
   }
 
+  private smashBrick(block: Block) {
+    this.grid.set(block.c, block.r, T.EMPTY);
+    this.blocks.delete(`${block.c},${block.r}`);
+    block.mesh.visible = false;
+    sfx.play('stomp');
+    this.shake(0.15, 100);
+    for (let i = 0; i < 6; i++) {
+      const chunk = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.3), block.mesh.material as THREE.Material);
+      chunk.position.set(block.c + 0.5, -(block.r + 0.5), 0);
+      this.group.add(chunk);
+      this.particles.push({ obj: chunk, vx: (i % 3 - 1) * 3, vy: 8 + (i % 2) * 4, vz: (i % 2 ? 1 : -1) * 2, life: 0.9, gravity: -40, spin: 10 });
+    }
+    // Knock out enemies standing on it
+    for (const e of this.enemies)
+      if (!e.dead && Math.abs(e.body.x + e.body.w / 2 - (block.c + 0.5)) < 0.9 && Math.abs(e.body.y + e.body.h - block.r) < 0.5) this.killEnemy(e, true);
+    this.addScore(50, block.c + 0.5, block.r - 1);
+  }
+
   private giveReward(reward: SunReward, c: number, r: number) {
     const x = c + 0.5;
+    if (reward.kind === 'power' || reward.kind === 'bolt') {
+      this.spawnItem(reward.kind === 'power' ? 'sun' : 'bolt', c, r);
+      return;
+    }
     if (reward.kind === 'star' || (reward.kind === 'question' && this.demo)) {
-      const s = makeStar();
+      const s = this.def.pickup === 'star' ? makeStar() : makeLead().root;
       s.position.set(x, -r, 0.2);
       this.group.add(s);
       this.particles.push({ obj: s, vx: 0, vy: 9, vz: 0, life: 0.55, gravity: -26, spin: 14 });
@@ -414,26 +528,77 @@ export class World {
         this.demoLit = Math.min(1, this.demoLit + 0.06);
       }
       this.updateLit();
-    } else if (reward.kind === 'heart') {
-      const h = makeHeart();
-      h.position.set(x, -r, 0.2);
-      this.group.add(h);
-      this.particles.push({ obj: h, vx: 0, vy: 6, vz: 0, life: 0.6, gravity: -8, spin: 5 });
-      this.gainHeart(x, r - 2);
     } else if (reward.kind === 'question') {
       void this.askQuestion(reward.index, `Sun block check-up ${reward.index + 1}/${this.def.questions.length}`);
     }
   }
 
-  private gainHeart(x: number, y: number) {
+  // ---------------------------------------------------------------- power-ups
+
+  private get autopilot() {
+    return this.now < this.autopilotUntil;
+  }
+
+  private spawnItem(kind: 'sun' | 'bolt', c: number, r: number) {
+    const model = kind === 'sun' ? makeSunOrb() : makeBolt();
+    const body = makeBody(c + 0.15, r - 0.05, 0.7, 0.7);
+    this.group.add(model.root);
     sfx.play('power');
-    if (this.hearts < MAX_HEARTS) {
-      this.hearts += 1;
-      this.label('+1 heart', x, y, 'red');
-    } else {
-      this.addScore(500, x, y);
+    const dir: 1 | -1 = 1; // like the mushroom: always heads forward
+    this.items.push({ kind, body, root: model.root, animate: model.animate, emerging: 0.45, dir, active: true });
+  }
+
+  private updateItems(dt: number) {
+    for (const it of this.items) {
+      if (!it.active) continue;
+      const b = it.body;
+      if (it.emerging > 0) {
+        it.emerging -= dt;
+        b.y -= (0.75 / 0.45) * dt;
+      } else {
+        const speed = it.kind === 'sun' ? 2.6 : 3.6;
+        if (b.blockedLeft) it.dir = 1;
+        if (b.blockedRight) it.dir = -1;
+        b.vx = it.dir * speed;
+        if (it.kind === 'bolt' && b.onGround) b.vy = -13;
+        b.vy = Math.min(PHYS.maxFall, b.vy + PHYS.gravity * dt);
+        this.grid.move(b, dt);
+        if (b.y > ROWS + 2) it.active = false;
+      }
+      if (it.emerging <= 0.2 && overlaps(this.player, b)) this.collectItem(it);
     }
-    this.refreshHud();
+    this.items = this.items.filter((it) => {
+      if (!it.active) it.root.visible = false;
+      return it.active;
+    });
+  }
+
+  private collectItem(it: PowerItem) {
+    it.active = false;
+    sfx.play('checkpoint');
+    const x = this.player.x;
+    const y = this.player.y - 1.5;
+    if (it.kind === 'sun') {
+      if (this.big) {
+        this.addScore(1000, x, y);
+      } else {
+        this.big = true;
+        this.label('Sunshine power!', x, y, 'gold');
+        this.tip('sun', 'Sunshine power! You can take an extra hit, and smash bricks from below.');
+      }
+    } else {
+      this.autopilotUntil = this.now + AUTOPILOT_MS;
+      this.label('AUTOPILOT!', x, y, 'gold');
+      this.tip('bolt', 'Autopilot! Like a good automation: faster, and nothing can stop you for a few seconds.');
+    }
+    this.addScore(500);
+  }
+
+  /** One-time explainer the first time something happens (not in the demo). */
+  private tip(key: string, text: string) {
+    if (this.demo || this.tipsShown.has(key)) return;
+    this.tipsShown.add(key);
+    this.opts.ui.toast(text);
   }
 
   private async askQuestion(index: number, header: string) {
@@ -452,18 +617,40 @@ export class World {
     }
   }
 
-  private checkPickups() {
+  private checkPickups(dt: number) {
     const p = this.player;
-    for (const s of this.stars) {
-      if (s.taken) continue;
+    const leads = this.def.pickup === 'lead';
+    const screenRight = this.opts.stage.cam.x + this.opts.stage.halfWidth() - 0.5;
+    for (const s of this.pickups) {
+      if (s.state === 'taken' || s.state === 'cold') continue;
+      // Hot leads start cooling as soon as they're on screen
+      if (leads) {
+        if (s.state === 'waiting' && s.c < screenRight) s.state = 'hot';
+        if (s.state === 'hot') {
+          s.age += dt;
+          s.setHeat?.(Math.max(0, 1 - s.age / LEAD_LIFETIME));
+          if (s.age >= LEAD_LIFETIME) {
+            s.state = 'cold';
+            this.particles.push({ obj: s.obj, vx: 0, vy: -1, vz: -3, life: 0.5, gravity: 0, spin: 3 });
+            this.puff(s.c + 0.5, s.r + 0.8, 4);
+            if (!this.demo) this.label('Went cold', s.c + 0.5, s.r - 0.3, 'red');
+            continue;
+          }
+        }
+      }
       if (!overlaps(p, { x: s.c + 0.15, y: s.r + 0.15, w: 0.7, h: 0.7 })) continue;
-      s.taken = true;
-      this.particles.push({ obj: s.mesh, vx: 0, vy: 5, vz: 2, life: 0.35, gravity: 0, spin: 25 });
+      s.state = 'taken';
+      this.particles.push({ obj: s.obj, vx: 0, vy: 5, vz: 2, life: 0.35, gravity: 0, spin: 25 });
       sfx.play('star');
       if (this.demo) this.demoLit = Math.min(1, this.demoLit + 0.03);
       else {
         run.stars += 1;
-        this.addScore(100);
+        if (leads) {
+          const heat = Math.max(0, 1 - s.age / LEAD_LIFETIME);
+          const pts = 100 + Math.round(heat * 200);
+          this.addScore(pts);
+          if (heat > 0.66) this.label(`Hot lead! +${pts}`, s.c + 0.5, s.r - 0.3, 'gold');
+        } else this.addScore(100);
       }
       this.updateLit();
     }
@@ -497,8 +684,8 @@ export class World {
         this.removeEnemy(e);
         continue;
       }
-      if (e.type === 'grump') {
-        const speed = 1.75;
+      if (e.role === 'walker') {
+        const speed = e.type === 'snail' ? 1.1 : 1.75;
         if (b.blockedLeft) e.dir = 1;
         else if (b.blockedRight) e.dir = -1;
         else if (b.onGround) {
@@ -510,8 +697,8 @@ export class World {
         b.vx = 0;
         const dx = this.player.x - b.x;
         if (Math.abs(dx) < 10.5 && this.now > e.nextHop) {
-          b.vx = Math.sign(dx) * 4.4;
-          b.vy = -15;
+          b.vx = Math.sign(dx) * (e.type === 'phone' ? 5 : 4.4);
+          b.vy = e.type === 'phone' ? -13 : -15;
           e.dir = dx > 0 ? 1 : -1;
           e.nextHop = this.now + 1400;
         }
@@ -525,6 +712,12 @@ export class World {
 
   private onEnemyContact(e: Enemy) {
     const p = this.player;
+    if (this.autopilot && !this.demo) {
+      this.killEnemy(e, true);
+      sfx.play('stomp');
+      this.addScore(200, e.body.x + 0.4, e.body.y - 0.8);
+      return;
+    }
     if (p.vy > 0 && p.y + p.h - e.body.y < 0.62) {
       this.killEnemy(e);
       p.vy = -(this.prevJump ? PHYS.stompBounce * 1.35 : PHYS.stompBounce);
@@ -538,7 +731,7 @@ export class World {
   private killEnemy(e: Enemy, flipped = false) {
     e.dead = true;
     e.shadow.visible = false;
-    if (flipped || e.type === 'cricket') {
+    if (flipped || e.role === 'hopper') {
       e.model.root.rotation.z = Math.PI;
       e.model.root.position.y += 0.8;
       this.particles.push({ obj: e.model.root, vx: 1.5, vy: 6, vz: 3, life: 1.1, gravity: -30, spin: 0 });
@@ -558,7 +751,17 @@ export class World {
   // ---------------------------------------------------------------- damage
 
   hurt(fromX: number) {
-    if (this.now < this.invulnUntil || this.frozen || this.demo) return;
+    if (this.now < this.invulnUntil || this.frozen || this.demo || this.autopilot) return;
+    if (this.big) {
+      // Sunshine absorbs the hit
+      this.big = false;
+      sfx.play('hurt');
+      this.invulnUntil = this.now + PHYS.invulnMs;
+      this.player.vx = this.player.x + this.player.w / 2 < fromX ? -7 : 7;
+      this.player.vy = -9;
+      this.label('Sunshine lost', this.player.x, this.player.y - 1.5, 'red');
+      return;
+    }
     this.hearts -= 1;
     sfx.play('hurt');
     this.shake(0.25, 160);
@@ -580,6 +783,8 @@ export class World {
   }
 
   private respawn() {
+    this.big = false;
+    this.autopilotUntil = 0;
     if (this.hearts <= 0) {
       this.hearts = MAX_HEARTS;
       this.label('Hearts restored', this.player.x, this.player.y - 2, 'red');
@@ -605,6 +810,7 @@ export class World {
     sfx.stopMusic();
 
     const def = this.def.boss;
+    this.autopilotUntil = 0;
     this.boss = new Boss(this, def, left + 1, right, STREET_ROW);
     this.group.add(this.boss.model.root);
     await this.tweens.wait(900);
@@ -650,8 +856,8 @@ export class World {
 
   onBossDefeated() {
     this.frozen = true;
-    run.finishedAt = Date.now();
-    const seconds = Math.round((run.finishedAt - run.startedAt) / 1000);
+    finishWorld();
+    const seconds = run.results[run.world]?.seconds ?? 300;
     run.score += 5000 + Math.max(0, 300 - seconds) * 10;
     this.refreshHud();
     sfx.stopMusic();
@@ -669,7 +875,7 @@ export class World {
       this.particles.push({ obj: s, vx: Math.cos(a) * 8, vy: Math.sin(a) * 12 + 4, vz: Math.random() * 4, life: 1.8, gravity: -18, spin: 8 });
     }
     setTimeout(() => this.opts.ui.banner(this.def.boss.winWord, 1600), 300);
-    setTimeout(() => this.opts.ui.banner('World 1 clear!', 2400), 2000);
+    setTimeout(() => this.opts.ui.banner(`World ${this.def.number} clear!`, 2400), 2000);
     setTimeout(() => this.opts.onVictory?.(), 4300);
   }
 
@@ -718,10 +924,32 @@ export class World {
     const state = !p.onGround ? 'jump' : Math.abs(p.vx) > 0.6 ? 'run' : 'idle';
     this.hero.animate(t, state, this.facing);
     this.hero.root.position.set(p.x + p.w / 2, -(p.y + p.h), 0);
+    const targetScale = this.big ? BIG_SCALE : 1;
+    const sc = this.hero.root.scale.x + (targetScale - this.hero.root.scale.x) * Math.min(1, dt * 10);
+    this.hero.root.scale.setScalar(sc);
+    const auto = this.autopilot;
+    this.aura.visible = auto;
+    if (auto) {
+      const left = this.autopilotUntil - this.now;
+      this.aura.material.color.setHSL((t * 1.5) % 1, 0.8, 0.65);
+      this.aura.material.opacity = left < 1500 && Math.floor(this.now / 120) % 2 ? 0.2 : 0.9;
+    }
     this.hero.root.visible = !(this.now < this.invulnUntil && !this.demo && Math.floor(this.now / 80) % 2 === 0);
     this.placeShadow(this.heroShadow, p);
 
-    for (const s of this.stars) if (!s.taken) s.mesh.rotation.y = t * 2.5 + s.c * 0.3;
+    for (const s of this.pickups) {
+      if (s.state === 'taken' || s.state === 'cold') continue;
+      if (this.def.pickup === 'star') s.obj.rotation.y = t * 2.5 + s.c * 0.3;
+      else {
+        s.obj.position.y = -(s.r + 0.5) + Math.sin(t * 4 + s.c) * 0.08;
+        s.obj.rotation.y = Math.sin(t * 2 + s.c) * 0.4;
+      }
+    }
+    for (const it of this.items) {
+      it.root.position.set(it.body.x + it.body.w / 2, -(it.body.y + it.body.h / 2), 0.1);
+      it.animate(t);
+    }
+    for (const c of this.clouds) c.position.x += dt * 0.4;
 
     for (const e of this.enemies) {
       if (e.dead) continue;

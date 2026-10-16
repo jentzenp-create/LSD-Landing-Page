@@ -1,4 +1,4 @@
-// World 1 boss logic (The Invisible Listing / The Ghoster, depending on industry).
+// Boss logic: The Invisible Listing / The Ghoster (World 1), Captain Later (World 2).
 // It drifts around almost invisible, drops problems the player has to dodge
 // (1-star reviews or unanswered emails), then reveals itself and swoops down.
 // It's only vulnerable while dazed on the ground: stomp it then.
@@ -7,7 +7,7 @@ import type { BossDef } from './content';
 import type { Body } from './engine/physics';
 import { overlaps } from './engine/physics';
 import { ease } from './engine/tween';
-import { makeCard, makeGhostBoss, makePinBoss, makeStar, type BossModel } from './render/models';
+import { makeCard, makeClockBoss, makeGhostBoss, makePinBoss, makeStar, type BossModel } from './render/models';
 import * as sfx from './sfx';
 import type { World } from './world';
 
@@ -46,8 +46,8 @@ export class Boss {
     private right: number,
     private floorY: number,
   ) {
-    this.model = def.shape === 'pin' ? makePinBoss() : makeGhostBoss();
-    this.headOffset = def.shape === 'pin' ? 1.75 : 2.0;
+    this.model = def.shape === 'pin' ? makePinBoss() : def.shape === 'ghost' ? makeGhostBoss() : makeClockBoss();
+    this.headOffset = { pin: 1.75, ghost: 2.0, clock: 1.7 }[def.shape];
     this.x = (left + right) / 2;
     this.model.setOpacity(0);
     this.dizzy = new THREE.Group();

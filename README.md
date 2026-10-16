@@ -33,13 +33,19 @@ A conversational, voice-enabled AI interview that gathers website requirements f
 
 ## Bottleneck Busters arcade game (`/arcade`)
 
-A 2.5D (N64-style) platformer lead magnet built with Three.js. Players pick their business type; each world asks questions tailored to where that industry gets its customers, and the boss's strength depends on the answers. The results screen recommends the automation tied to their biggest gap, then collects their details for GoHighLevel. World 1 ("Get Found") is playable for all four industries.
+A 2.5D (N64-style) platformer lead magnet built with Three.js. Players pick their business type, then play two worlds:
+
+1. **World 1, "Get Found"** (night): collect reviews (or leads, for professional services) to light up the town. Questions are tailored to where that industry's customers come from. Boss: The Invisible Listing (1-star reviews) or The Ghoster (unanswered emails).
+2. **World 2, "Speed to Lead"** (daytime): hot leads cool from orange to blue and disappear if you're slow. Questions cover response time, missed calls, follow-up and after-hours coverage. Boss: Captain Later (missed calls).
+
+Power-ups come out of sun blocks: **Sunshine** (grow, survive an extra hit, smash bricks) and **Autopilot** (World 2: faster and invincible for a few seconds). Each boss's strength depends on the player's answers. After each world the results screen recommends the automation tied to the biggest gap; the email gate sits after World 1, and World 2's results are sent as an update.
 
 - **Code:** `arcade/`, a separate Vite entry so the game never loads on the main site.
-  - Questions, findings, automations and bosses per industry: `arcade/content.ts`
-  - Level layout: `arcade/level1.ts`
+  - Questions, findings, automations and bosses per industry and world: `arcade/content.ts`
+  - Level layouts: `arcade/levels.ts`
   - Gameplay: `arcade/world.ts`, `arcade/boss.ts`; 3D models are built in code in `arcade/render/models.ts` (no downloaded assets)
-- **Leads go to GoHighLevel:** set `GHL_WEBHOOK_URL` in `arcade/config.ts` to the URL of an "Inbound Webhook" workflow trigger. Until it's set, the form still works but leads are only logged in the browser console. The webhook receives flat keys: `first_name`, `email`, `phone`, `business_name`, `industry`, `source` ("Bottleneck Busters"), `traffic_source`, `game_diagnosis`, `game_health_score`, `game_health_label`, `game_top_automation`, `game_other_automations`, `game_answers`, `game_findings`, `game_score`, `game_play_seconds`, `game_world_reached`, `game_session_id`, and `sms_summary` (a ready-made text for an internal SMS notification).
+- **Leads go to GoHighLevel:** set `GHL_WEBHOOK_URL` in `arcade/config.ts` to the URL of an "Inbound Webhook" workflow trigger. Until it's set, the form still works but leads are only logged in the browser console. A lead is sent when the player submits the form (usually after World 1) and again with fuller results after World 2. Keys: `first_name`, `email`, `phone`, `business_name`, `industry`, `source` ("Bottleneck Busters"), `traffic_source`, `game_world_reached`, `game_diagnosis`, `game_health_score`, `game_w1_score`, `game_w2_score`, `game_top_automation`, `game_other_automations`, `game_answers`, `game_findings`, `game_score`, `game_play_seconds`, `game_session_id`, and `sms_summary` (a ready-made text for an internal SMS notification).
 - **Embeds (Gatherly):** the game keeps a 16:9 frame that scales to fit any box. Sound defaults to off when embedded. Add `?src=gatherly` to tag leads by source, `?probe` to show the embed's viewport size, and `?lowfx` to force low resolution on slow machines (it also drops resolution automatically if frames are slow).
-- **Attract mode:** when idle, a bot plays the level behind the title screen until someone clicks or presses a key.
+- **Phones:** sized to the visible screen (not hidden behind browser bars), pinch/double-tap zoom disabled, on-screen buttons on touch devices.
+- **Attract mode:** when idle, a bot plays behind the title screen, alternating between the night and day worlds.
 - **Local dev:** `npm run dev`, then open `http://localhost:3000/arcade/`.

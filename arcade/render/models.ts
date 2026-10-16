@@ -369,8 +369,8 @@ export function makeLamp() {
   };
 }
 
-export function makeCard(kind: 'review' | 'email') {
-  const t = kind === 'review' ? tex.reviewCard() : tex.emailCard();
+export function makeCard(kind: 'review' | 'email' | 'missed') {
+  const t = kind === 'review' ? tex.reviewCard() : kind === 'email' ? tex.emailCard() : tex.missedCard();
   const m = new THREE.MeshBasicMaterial({ map: t, transparent: true, side: THREE.DoubleSide });
   return new THREE.Mesh(new THREE.PlaneGeometry(1.8, 1.12), m);
 }
@@ -382,4 +382,202 @@ export function makeBlobShadow() {
   );
   m.rotation.x = -Math.PI / 2;
   return m;
+}
+
+// ---------------------------------------------------------------- World 2 (daytime)
+
+/** Snail: the slow reply. Crawls along, leaving a little trail. */
+export function makeSnail(): CreatureModel {
+  const root = new THREE.Group();
+  const body = new THREE.Group();
+  root.add(body);
+  const foot = mesh(new THREE.CapsuleGeometry(0.16, 0.55, 3, 8), mat(0x9fd38a), 0, 0.16, 0);
+  foot.rotation.z = Math.PI / 2;
+  body.add(foot);
+  const head = new THREE.Group();
+  head.position.set(0.38, 0.32, 0);
+  head.add(mesh(new THREE.SphereGeometry(0.16, 10, 8), mat(0x9fd38a)));
+  for (const z of [-0.07, 0.07]) {
+    const stalk = mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.28, 5), mat(0x7bb768), 0.03, 0.2, z);
+    head.add(stalk);
+    head.add(eye(0.06, 0.05, 0.36, z));
+  }
+  body.add(head);
+  // Spiral shell
+  const shell = new THREE.Group();
+  shell.position.set(-0.05, 0.48, 0);
+  shell.add(mesh(new THREE.SphereGeometry(0.32, 12, 10), mat(0xd9893b)));
+  const swirl = mesh(new THREE.TorusGeometry(0.17, 0.05, 6, 16), mat(0xa85f22), 0, 0, 0.27);
+  shell.add(swirl);
+  shell.add(mesh(new THREE.SphereGeometry(0.07, 8, 6), mat(0xa85f22), 0, 0, 0.32));
+  body.add(shell);
+  return {
+    root,
+    animate(t, moving, facing) {
+      body.rotation.y = facing === 1 ? -0.45 : Math.PI + 0.45;
+      const s = moving ? Math.sin(t * 5) : 0;
+      foot.scale.y = 1 + s * 0.08;
+      head.position.x = 0.38 + s * 0.03;
+      swirl.rotation.z = t * 0.6;
+    },
+  };
+}
+
+/** Ringing phone: an unanswered call that hops at you. */
+export function makePhone(): CreatureModel {
+  const root = new THREE.Group();
+  const body = new THREE.Group();
+  root.add(body);
+  const red = 0xe04848;
+  body.add(mesh(new THREE.BoxGeometry(0.7, 0.42, 0.55), mat(red), 0, 0.24, 0));
+  const dial = mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.05, 14), mat(0xf4f0ff), 0, 0.3, 0.28);
+  dial.rotation.x = Math.PI / 2;
+  body.add(dial);
+  const handset = new THREE.Group();
+  handset.position.set(0, 0.55, 0);
+  handset.add(mesh(new THREE.BoxGeometry(0.75, 0.1, 0.16), mat(0xb83232)));
+  handset.add(mesh(new THREE.BoxGeometry(0.16, 0.14, 0.22), mat(0xb83232), -0.32, -0.07, 0));
+  handset.add(mesh(new THREE.BoxGeometry(0.16, 0.14, 0.22), mat(0xb83232), 0.32, -0.07, 0));
+  body.add(handset);
+  body.add(eye(0.09, -0.15, 0.36, 0.25), eye(0.09, 0.15, 0.36, 0.25));
+  return {
+    root,
+    animate(t, _moving, facing, airborne) {
+      body.rotation.y = facing * 0.4;
+      // Ringing: the handset rattles
+      handset.position.y = 0.55 + (airborne ? 0.12 : Math.abs(Math.sin(t * 40)) * 0.04);
+      handset.rotation.z = Math.sin(t * 38) * 0.12;
+    },
+  };
+}
+
+/** Captain Later: a giant alarm clock stuck on "later". Origin at its feet. */
+export function makeClockBoss(): BossModel {
+  const root = new THREE.Group();
+  const body = new THREE.Group();
+  root.add(body);
+  const base = 0x5aa0e6;
+  const skin = bossMaterials(base);
+  const metal = new THREE.MeshStandardMaterial({ color: 0xd8d8e8, transparent: true, flatShading: true, metalness: 0.4, roughness: 0.4 });
+  const faceMat = new THREE.MeshStandardMaterial({ map: tex.clockFace(), transparent: true, roughness: 0.6 });
+  const rim = mesh(new THREE.CylinderGeometry(1.1, 1.1, 0.6, 20), skin, 0, 1.7, 0);
+  rim.rotation.x = Math.PI / 2;
+  body.add(rim);
+  const face = mesh(new THREE.CircleGeometry(0.92, 24), faceMat, 0, 1.7, 0.31);
+  body.add(face);
+  for (const x of [-0.62, 0.62]) {
+    const bell = mesh(new THREE.SphereGeometry(0.38, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), metal, x, 2.65, 0);
+    bell.rotation.z = x < 0 ? 0.45 : -0.45;
+    body.add(bell);
+  }
+  body.add(mesh(new THREE.SphereGeometry(0.12, 8, 6), metal, 0, 2.9, 0));
+  for (const x of [-0.55, 0.55]) {
+    const leg = mesh(new THREE.CylinderGeometry(0.06, 0.04, 0.6, 6), metal, x, 0.4, 0);
+    leg.rotation.z = x < 0 ? -0.35 : 0.35;
+    body.add(leg);
+    body.add(mesh(new THREE.SphereGeometry(0.13, 8, 6), metal, x * 1.3, 0.1, 0));
+  }
+  return finishBoss(root, body, [skin, metal, faceMat], base);
+}
+
+let leadGeo: THREE.BufferGeometry | undefined;
+/** A hot lead: an envelope with a notification dot. Cools from orange to blue. */
+export function makeLead() {
+  const root = new THREE.Group();
+  leadGeo ??= new THREE.BoxGeometry(0.66, 0.44, 0.1);
+  const paper = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.6, emissive: 0xff7a00, emissiveIntensity: 0.6, flatShading: true });
+  root.add(new THREE.Mesh(leadGeo, paper));
+  const flapMat = new THREE.MeshStandardMaterial({ color: 0xe8e4f4, flatShading: true });
+  for (const s of [-1, 1]) {
+    const flap = mesh(new THREE.BoxGeometry(0.42, 0.05, 0.04), flapMat, s * 0.15, 0.08, 0.06);
+    flap.rotation.z = s * -0.55;
+    root.add(flap);
+  }
+  const dot = mesh(new THREE.SphereGeometry(0.1, 10, 8), new THREE.MeshStandardMaterial({ color: 0xff3b30, emissive: 0xff2010, emissiveIntensity: 0.6 }), 0.3, 0.2, 0.06);
+  root.add(dot);
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex.glow(), color: 0xff8a1a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.9 }));
+  glow.scale.set(1.6, 1.6, 1);
+  root.add(glow);
+  const hot = new THREE.Color(0xff7a00);
+  const cold = new THREE.Color(0x7ab8ff);
+  return {
+    root,
+    /** heat: 1 = just arrived, 0 = gone cold */
+    setHeat(heat: number) {
+      paper.emissive.copy(cold).lerp(hot, heat);
+      paper.emissiveIntensity = 0.25 + heat * 0.45;
+      glow.material.color.copy(cold).lerp(hot, heat);
+      glow.material.opacity = 0.35 + heat * 0.6;
+      dot.visible = heat > 0.15;
+    },
+  };
+}
+
+/** Sunshine power-up: a little sun that slides along the ground. */
+export function makeSunOrb() {
+  const root = new THREE.Group();
+  root.add(mesh(new THREE.IcosahedronGeometry(0.3, 1), new THREE.MeshStandardMaterial({ color: 0xffd84d, emissive: 0xffa000, emissiveIntensity: 0.9, flatShading: true })));
+  const rays = new THREE.Group();
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2;
+    const ray = mesh(new THREE.ConeGeometry(0.08, 0.22, 4), mat(0xffc400, { emissive: 0xff9a00, emissiveIntensity: 0.8 }), Math.cos(a) * 0.42, Math.sin(a) * 0.42, 0);
+    ray.rotation.z = a - Math.PI / 2;
+    rays.add(ray);
+  }
+  root.add(rays);
+  root.add(eye(0.06, -0.1, 0.06, 0.25), eye(0.06, 0.1, 0.06, 0.25));
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex.glow(), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.8 }));
+  glow.scale.set(1.8, 1.8, 1);
+  root.add(glow);
+  return { root, animate: (t: number) => (rays.rotation.z = t * 2) };
+}
+
+/** Autopilot power-up: a lightning bolt. */
+export function makeBolt() {
+  const shape = new THREE.Shape();
+  shape.moveTo(0.05, 0.45);
+  shape.lineTo(-0.22, -0.02);
+  shape.lineTo(-0.02, -0.02);
+  shape.lineTo(-0.1, -0.45);
+  shape.lineTo(0.22, 0.06);
+  shape.lineTo(0.02, 0.06);
+  shape.closePath();
+  const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.12, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 1 });
+  geo.center();
+  const root = new THREE.Group();
+  root.add(new THREE.Mesh(geo, mat(0x6ee7ff, { emissive: 0x1aa0ff, emissiveIntensity: 0.9 })));
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex.glow(), color: 0x7fd8ff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  glow.scale.set(1.8, 1.8, 1);
+  root.add(glow);
+  return { root, animate: (t: number) => (root.rotation.y = t * 3) };
+}
+
+/** Additive glow attached to the hero during Autopilot. */
+export function makeAura() {
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex.glow(), color: 0x7fd8ff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.9 }));
+  s.scale.set(2.4, 2.4, 1);
+  s.position.y = 0.6;
+  return s;
+}
+
+/** Low-poly tree for the daytime street. */
+export function makeTree(seed: number) {
+  const root = new THREE.Group();
+  root.add(mesh(new THREE.CylinderGeometry(0.12, 0.18, 1.6, 6), mat(0x7a5233), 0, 0.8, 0));
+  const leaf = mat(seed % 2 ? 0x5fbf5a : 0x4aa84f);
+  root.add(mesh(new THREE.IcosahedronGeometry(0.85, 0), leaf, 0, 2.1, 0));
+  root.add(mesh(new THREE.IcosahedronGeometry(0.6, 0), leaf, 0.45, 1.7, 0.15));
+  root.add(mesh(new THREE.IcosahedronGeometry(0.55, 0), leaf, -0.45, 1.8, -0.1));
+  return root;
+}
+
+export function makeCloud(seed: number) {
+  const root = new THREE.Group();
+  const m = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true, roughness: 1, emissive: 0xffffff, emissiveIntensity: 0.25, fog: false });
+  const n = 3 + (seed % 3);
+  for (let i = 0; i < n; i++) {
+    const r = 1.2 + ((seed * 7 + i * 3) % 5) * 0.3;
+    root.add(mesh(new THREE.IcosahedronGeometry(r, 1), m, i * 1.5 - n * 0.7, (i % 2) * 0.5, 0));
+  }
+  return root;
 }

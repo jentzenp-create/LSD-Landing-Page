@@ -194,6 +194,15 @@ export class UI {
     return b;
   }
 
+  /** A short explainer at the bottom of the screen that fades on its own. */
+  toast(text: string, ms = 4200) {
+    this.root.querySelector('.toast')?.remove();
+    const t = el('div', 'toast', esc(text));
+    this.root.appendChild(t);
+    setTimeout(() => t.classList.add('leaving'), ms - 400);
+    setTimeout(() => t.remove(), ms);
+  }
+
   floatLabel(text: string, pos: { left: number; top: number }, kind: 'score' | 'gold' | 'red' = 'score') {
     const f = el('div', `float ${kind}`, esc(text));
     f.style.left = `${pos.left}%`;

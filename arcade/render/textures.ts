@@ -143,6 +143,99 @@ export const tex = {
       },
       256,
     ),
+  skyDay: () =>
+    canvasTex(
+      'skyDay',
+      4,
+      (g) => {
+        const grad = g.createLinearGradient(0, 0, 0, 256);
+        grad.addColorStop(0, '#3f8fe0');
+        grad.addColorStop(0.6, '#8cc8f5');
+        grad.addColorStop(1, '#ffe4b0');
+        g.fillStyle = grad;
+        g.fillRect(0, 0, 4, 256);
+      },
+      256,
+    ),
+  sidewalkDay: () =>
+    canvasTex('sidewalkDay', 64, (g, s) => {
+      g.fillStyle = '#d9d2c3';
+      g.fillRect(0, 0, s, s);
+      noise(g, s, ['#e6dfd0', '#cbc3b2'], 120);
+      g.fillStyle = '#bdb4a2';
+      g.fillRect(0, 0, s, 2);
+      g.fillRect(0, 0, 2, s);
+    }),
+  dirtDay: () =>
+    canvasTex('dirtDay', 64, (g, s) => {
+      g.fillStyle = '#9a6a43';
+      g.fillRect(0, 0, s, s);
+      noise(g, s, ['#a8774e', '#87593a', '#b5845a'], 160, 3);
+    }),
+  clockFace: () =>
+    canvasTex('clockFace', 256, (g) => {
+      g.fillStyle = '#fffaf0';
+      g.beginPath();
+      g.arc(128, 128, 126, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#1a1423';
+      g.font = 'bold 30px "Lilita One", Arial, sans-serif';
+      g.textAlign = 'center';
+      g.textBaseline = 'middle';
+      for (let i = 1; i <= 12; i++) {
+        const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+        g.fillText(String(i), 128 + Math.cos(a) * 100, 128 + Math.sin(a) * 100);
+      }
+      // Grumpy eyes + "LATER" instead of a time
+      for (const x of [92, 164]) {
+        g.beginPath();
+        g.arc(x, 112, 16, 0, Math.PI * 2);
+        g.fill();
+      }
+      g.lineWidth = 8;
+      g.strokeStyle = '#1a1423';
+      g.beginPath();
+      g.moveTo(70, 82);
+      g.lineTo(110, 94);
+      g.moveTo(186, 82);
+      g.lineTo(146, 94);
+      g.stroke();
+      g.fillStyle = '#d33';
+      g.font = 'bold 34px "Lilita One", Arial, sans-serif';
+      g.fillText('LATER', 128, 168);
+    }),
+  /** A missed call: instantly reads as "you didn't pick up". */
+  missedCard: () =>
+    canvasTex(
+      'missed',
+      256,
+      (g) => {
+        g.fillStyle = '#ffffff';
+        roundRect(g, 4, 4, 248, 152, 18);
+        g.fill();
+        g.strokeStyle = '#d33';
+        g.lineWidth = 6;
+        roundRect(g, 4, 4, 248, 152, 18);
+        g.stroke();
+        // phone handset
+        g.save();
+        g.translate(56, 60);
+        g.rotate(-0.6);
+        g.fillStyle = '#d33';
+        roundRect(g, -34, -10, 68, 20, 9);
+        g.fill();
+        g.fillRect(-34, -10, 16, 30);
+        g.fillRect(18, -10, 16, 30);
+        g.restore();
+        g.fillStyle = '#d33';
+        g.font = 'bold 40px "Lilita One", Arial, sans-serif';
+        g.textAlign = 'left';
+        g.fillText('MISSED', 104, 72);
+        g.textAlign = 'center';
+        g.fillText('CALL (3)', 128, 132);
+      },
+      160,
+    ),
   glow: () =>
     canvasTex('glow', 64, (g, s) => {
       const grad = g.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);

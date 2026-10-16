@@ -6,6 +6,35 @@ import { IN_IFRAME, PROBE } from './config';
 import { Game } from './game';
 import * as sfx from './sfx';
 
+// Size the game to the *visible* viewport (mobile browsers' 100vh includes the
+// part hidden behind the address bar / toolbars).
+function syncViewport() {
+  const vv = window.visualViewport;
+  const w = vv ? vv.width * vv.scale : window.innerWidth;
+  const h = vv ? vv.height * vv.scale : window.innerHeight;
+  document.documentElement.style.setProperty('--app-w', `${Math.round(w)}px`);
+  document.documentElement.style.setProperty('--app-h', `${Math.round(h)}px`);
+}
+syncViewport();
+window.addEventListener('resize', syncViewport);
+window.addEventListener('orientationchange', () => setTimeout(syncViewport, 250));
+window.visualViewport?.addEventListener('resize', syncViewport);
+
+// No zooming: block double-tap zoom and iOS pinch gestures (form fields still work).
+let lastTouchEnd = 0;
+document.addEventListener(
+  'touchend',
+  (e) => {
+    const t = e.target as HTMLElement | null;
+    const now = Date.now();
+    if (now - lastTouchEnd < 350 && !t?.closest('input, textarea, select, button, a, label')) e.preventDefault();
+    lastTouchEnd = now;
+  },
+  { passive: false },
+);
+document.addEventListener('dblclick', (e) => e.preventDefault());
+for (const ev of ['gesturestart', 'gesturechange']) document.addEventListener(ev, (e) => e.preventDefault());
+
 // Global mute toggle (ignored while typing in the email form).
 window.addEventListener('keydown', (e) => {
   const target = e.target as HTMLElement | null;

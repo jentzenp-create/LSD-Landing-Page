@@ -25,15 +25,22 @@ body {
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation; /* no double-tap zoom */
 }
 
-/* The game frame: always 16:9, as large as fits, centered. */
+/* The game frame: always 16:9, as large as fits, centered. --app-w/--app-h are
+   set from the *visible* viewport in main.ts (mobile 100vh includes the area
+   hidden behind the browser's address bar, which cut off the touch buttons). */
 #stage {
   position: fixed;
-  inset: 0;
-  margin: auto;
-  width: min(100vw, calc(100vh * 16 / 9));
-  height: min(100vh, calc(100vw * 9 / 16));
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(var(--app-h, 100vh), calc(var(--app-w, 100vw) * 9 / 16));
+  width: min(var(--app-w, 100vw), calc(var(--app-h, 100vh) * 16 / 9));
+  margin: calc((var(--app-h, 100vh) - min(var(--app-h, 100vh), calc(var(--app-w, 100vw) * 9 / 16))) / 2) auto 0;
   container-type: size;
   overflow: hidden;
   touch-action: none;
@@ -512,7 +519,7 @@ body {
 
 .touch .tbtn {
   position: absolute;
-  bottom: 1.5cqw;
+  bottom: calc(1.5cqw + env(safe-area-inset-bottom, 0px));
   display: grid;
   place-items: center;
   width: 8.5cqw;
@@ -779,6 +786,62 @@ form input:focus {
   font: 13px var(--body);
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* ---------- Toast (one-time tips) ---------- */
+
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 14cqw;
+  transform: translateX(-50%);
+  max-width: 60cqw;
+  padding: 1cqw 2cqw;
+  font-size: 1.7cqw;
+  font-weight: 700;
+  text-align: center;
+  color: var(--ink);
+  background: var(--gold-light);
+  border-radius: 1.4cqw;
+  box-shadow: 0 0.5cqw 0 var(--gold-dark);
+  pointer-events: none;
+  animation: pop2 0.25s cubic-bezier(0.2, 1.4, 0.4, 1);
+  transition: opacity 0.4s;
+}
+
+.toast.leaving {
+  opacity: 0;
+}
+
+.sent {
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--green);
+  border: 2px solid currentColor;
+  border-radius: 12px;
+}
+
+a.link {
+  text-align: center;
+}
+
+/* Phones held upright: the 16:9 game is small, so suggest turning sideways. */
+.rotate-hint {
+  display: none;
+}
+
+@media (orientation: portrait) and (pointer: coarse) {
+  .rotate-hint {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    font-size: 14px;
+    color: var(--dim);
+  }
 }
 
 /* ---------- ?probe size readout ---------- */

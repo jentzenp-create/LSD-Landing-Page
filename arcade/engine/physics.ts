@@ -1,6 +1,6 @@
 // Minimal platformer physics: axis-aligned boxes against a tile grid.
 // Units are tiles; y points down (row 0 is the top of the level).
-import { SOLID, T } from '../level1';
+import { SOLID, T } from '../levels';
 
 export interface Body {
   x: number; // left
