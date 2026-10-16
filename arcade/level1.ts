@@ -1,6 +1,17 @@
-// World 1-1 "Ghost Town" layout, built with small helpers instead of a giant
-// ASCII map so it's easy to tweak. Units are tiles (16px). Row 14 is street level.
-import { T } from './art';
+// World 1-1 layout, built with small helpers instead of a giant ASCII map so
+// it's easy to tweak. Units are tiles. Row 14 is street level.
+
+export const T = {
+  EMPTY: -1,
+  STREET: 0, // ground top
+  DIRT: 1, // ground fill
+  BRICK: 2,
+  SUN: 3, // sun block (reward or question)
+  USED: 4, // spent sun block
+  CRATE: 5,
+  WALL: 6, // boss arena wall
+};
+export const SOLID = new Set([T.STREET, T.DIRT, T.BRICK, T.SUN, T.USED, T.CRATE, T.WALL]);
 
 export const ROWS = 17;
 const STREET = 14;
@@ -107,7 +118,7 @@ export function buildLevel1(): LevelData {
   // --- Section 4: platforms over the big pit -------------------------------
   ground(116, 150);
   enemy(122, 'cricket');
-  sun(126, 10, { kind: 'star' });
+  sun(126, 10, { kind: 'question', index: 2 });
   sun(128, 10, { kind: 'star' });
   for (let i = 0; i < 5; i++) stack(136 + i, i + 1);
   starRow(137, STREET - 7, 3);

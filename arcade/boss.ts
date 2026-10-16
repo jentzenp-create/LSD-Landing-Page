@@ -1,108 +1,150 @@
-// World 1 boss: THE INVISIBLE LISTING.
-// It drifts around nearly invisible (like a business nobody can find on Google),
-// drops "404"s, then reveals itself and swoops. It's only vulnerable while dazed
-// on the ground after a swoop: stomp it then. Its HP is set by the player's answers.
-import Phaser from 'phaser';
-import { CSS, FONT } from './config';
+// World 1 boss logic (The Invisible Listing / The Ghoster, depending on industry).
+// It drifts around almost invisible, drops problems the player has to dodge
+// (1-star reviews or unanswered emails), then reveals itself and swoops down.
+// It's only vulnerable while dazed on the ground: stomp it then.
+import * as THREE from 'three';
+import type { BossDef } from './content';
+import type { Body } from './engine/physics';
+import { overlaps } from './engine/physics';
+import { ease } from './engine/tween';
+import { makeCard, makeGhostBoss, makePinBoss, makeStar, type BossModel } from './render/models';
 import * as sfx from './sfx';
+import type { World } from './world';
 
-type BossState = 'idle' | 'hover' | 'telegraph' | 'swoop' | 'dazed' | 'rise' | 'dead';
+type State = 'idle' | 'hover' | 'telegraph' | 'swoop' | 'dazed' | 'rise' | 'dead';
 
-const HOVER_Y = 70;
-const GHOST_ALPHA = 0.16;
+const HOVER_Y = 4.6;
+const GHOST_ALPHA = 0.18;
 
-export class InvisibleListing {
-  readonly sprite: Phaser.Physics.Arcade.Image;
-  readonly projectiles: Phaser.Physics.Arcade.Group;
-  state: BossState = 'idle';
+interface Projectile {
+  x: number;
+  y: number;
+  vy: number;
+  mesh: THREE.Mesh;
+  alive: boolean;
+}
+
+export class Boss {
+  readonly model: BossModel;
+  state: State = 'idle';
   hp = 3;
   maxHp = 3;
-
+  x: number;
+  y = HOVER_Y;
+  private look = { alpha: 0 };
+  private headOffset: number; // head center -> model origin (tip / hem)
   private stateUntil = 0;
   private nextDrop = 0;
   private hoverT = 0;
-  private dizzy?: Phaser.GameObjects.Text;
+  private projectiles: Projectile[] = [];
+  private dizzy: THREE.Group;
 
   constructor(
-    private scene: Phaser.Scene,
+    private world: World,
+    private def: BossDef,
     private left: number,
     private right: number,
     private floorY: number,
-    private onDefeated: () => void,
   ) {
-    const cx = (left + right) / 2;
-    this.sprite = scene.physics.add.image(cx, HOVER_Y, 'boss').setScale(2).setDepth(25).setAlpha(0);
-    const body = this.sprite.body as Phaser.Physics.Arcade.Body;
-    body.setAllowGravity(false);
-    body.setSize(20, 18).setOffset(2, 1);
-    this.projectiles = scene.physics.add.group({ allowGravity: false });
+    this.model = def.shape === 'pin' ? makePinBoss() : makeGhostBoss();
+    this.headOffset = def.shape === 'pin' ? 1.75 : 2.0;
+    this.x = (left + right) / 2;
+    this.model.setOpacity(0);
+    this.dizzy = new THREE.Group();
+    for (let i = 0; i < 3; i++) {
+      const s = makeStar();
+      s.scale.setScalar(0.45);
+      s.position.set(Math.cos((i / 3) * Math.PI * 2) * 0.9, 0, Math.sin((i / 3) * Math.PI * 2) * 0.9);
+      this.dizzy.add(s);
+    }
+    this.dizzy.visible = false;
+    world.addToScene(this.dizzy);
+    // Fade in for the intro
+    world.tweens.add(this.look, { alpha: 0.75 }, 900, { onUpdate: () => this.model.setOpacity(this.look.alpha) });
   }
 
-  get vulnerable() {
-    return this.state === 'dazed';
+  get hitbox() {
+    return { x: this.x - 0.9, y: this.y - 0.9, w: 1.8, h: 1.8 };
   }
 
-  get harmful() {
-    return this.state === 'hover' || this.state === 'telegraph' || this.state === 'swoop' || this.state === 'rise';
-  }
-
-  fadeIn(duration = 900) {
-    this.scene.tweens.add({ targets: this.sprite, alpha: 0.7, duration });
-  }
-
-  start(hp: number, time: number) {
-    this.hp = this.maxHp = hp;
-    this.toHover(time);
+  private get lowerBox() {
+    return { x: this.x - 0.4, y: this.y + 0.9, w: 0.8, h: this.headOffset - 0.9 };
   }
 
   private get speedUp() {
-    return this.maxHp - this.hp; // gets faster as it takes damage
+    return this.maxHp - this.hp;
   }
 
-  private toHover(time: number) {
+  start(hp: number) {
+    this.hp = this.maxHp = hp;
+    this.toHover();
+  }
+
+  private setAlpha(a: number, ms: number) {
+    this.world.tweens.killOf(this.look);
+    this.world.tweens.add(this.look, { alpha: a }, ms, { onUpdate: () => this.model.setOpacity(this.look.alpha) });
+  }
+
+  private toHover() {
     this.state = 'hover';
-    this.stateUntil = time + Math.max(1400, 2800 - this.speedUp * 300);
-    this.nextDrop = time + 500;
-    this.scene.tweens.add({ targets: this.sprite, alpha: GHOST_ALPHA, duration: 300 });
+    this.stateUntil = this.world.now + Math.max(1400, 2800 - this.speedUp * 300);
+    this.nextDrop = this.world.now + 500;
+    this.setAlpha(GHOST_ALPHA, 300);
   }
 
-  update(time: number, delta: number, player: Phaser.Physics.Arcade.Sprite) {
-    // Clean up 404s that hit the street
-    this.projectiles.getChildren().forEach((obj) => {
-      const p = obj as Phaser.GameObjects.Text;
-      if (p.y > this.floorY - 6) this.poof(p);
-    });
+  update(dt: number, player: Body, frozen: boolean) {
+    const now = this.world.now;
+    this.model.animate(now / 1000);
+    this.model.root.position.set(this.x, -(this.y + this.headOffset), 0);
+    this.dizzy.position.set(this.x, -(this.y - 1.4), 0);
+    this.dizzy.rotation.y = now / 250;
+
+    if (frozen || this.state === 'idle' || this.state === 'dead') return;
+
+    // Projectiles
+    for (const p of this.projectiles) {
+      if (!p.alive) continue;
+      p.y += p.vy * dt;
+      p.mesh.position.set(p.x, -p.y, 0.3);
+      p.mesh.rotation.z = Math.sin(now / 200 + p.x) * 0.3;
+      if (overlaps(player, { x: p.x - 0.7, y: p.y - 0.4, w: 1.4, h: 0.8 })) {
+        this.poof(p);
+        this.world.hurt(p.x);
+      } else if (p.y > this.floorY - 0.3) this.poof(p);
+    }
+    this.projectiles = this.projectiles.filter((p) => p.alive);
 
     if (this.state === 'hover') {
-      this.hoverT += delta / 1000;
-      const span = (this.right - this.left) / 2 - 40;
+      this.hoverT += dt;
+      const span = (this.right - this.left) / 2 - 3;
       const cx = (this.left + this.right) / 2;
-      this.sprite.setPosition(cx + Math.sin(this.hoverT * (1.1 + this.speedUp * 0.15)) * span, HOVER_Y + Math.sin(this.hoverT * 3) * 6);
-      if (time > this.nextDrop) {
-        this.drop404();
-        this.nextDrop = time + Math.max(550, 1100 - this.speedUp * 150);
+      this.x = cx + Math.sin(this.hoverT * (1.1 + this.speedUp * 0.15)) * span;
+      this.y = HOVER_Y + Math.sin(this.hoverT * 3) * 0.35;
+      if (now > this.nextDrop) {
+        this.drop();
+        this.nextDrop = now + Math.max(550, 1100 - this.speedUp * 150);
       }
-      if (time > this.stateUntil) this.toTelegraph(player);
-    } else if (this.state === 'dazed' && time > this.stateUntil) {
-      this.toRise(time);
+      if (now > this.stateUntil) this.toTelegraph(player);
+    } else if (this.state === 'dazed' && now > this.stateUntil) {
+      this.toRise();
     }
 
-    if (this.dizzy) {
-      this.dizzy.setPosition(this.sprite.x, this.sprite.y - 30);
-      this.dizzy.setAngle(Math.sin(time / 90) * 15);
+    // Contact with the player
+    if (overlaps(player, this.hitbox) || overlaps(player, this.lowerBox)) {
+      if (this.state === 'dazed') {
+        if (player.vy > 0 && player.y + player.h - this.hitbox.y < 0.9) this.takeHit();
+      } else {
+        this.world.hurt(this.x);
+      }
     }
   }
 
-  private toTelegraph(player: Phaser.Physics.Arcade.Sprite) {
+  private toTelegraph(player: Body) {
     this.state = 'telegraph';
-    const targetX = Phaser.Math.Clamp(player.x, this.left + 30, this.right - 30);
-    this.scene.tweens.add({ targets: this.sprite, alpha: { from: 0.4, to: 1 }, duration: 90, yoyo: true, repeat: 2, onComplete: () => this.sprite.setAlpha(1) });
-    this.scene.tweens.add({
-      targets: this.sprite,
-      x: targetX,
-      y: HOVER_Y - 10,
-      duration: Math.max(380, 650 - this.speedUp * 60),
-      ease: 'Sine.Out',
+    const targetX = THREE.MathUtils.clamp(player.x + player.w / 2, this.left + 2, this.right - 2);
+    this.setAlpha(1, 250);
+    this.world.tweens.add(this, { x: targetX, y: HOVER_Y - 0.6 }, Math.max(380, 650 - this.speedUp * 60), {
+      ease: ease.inOutSine,
       onComplete: () => this.toSwoop(),
     });
   }
@@ -110,91 +152,66 @@ export class InvisibleListing {
   private toSwoop() {
     if (this.state === 'dead') return;
     this.state = 'swoop';
-    this.scene.tweens.add({
-      targets: this.sprite,
-      y: this.floorY - this.sprite.displayHeight / 2 + 2,
-      duration: 380,
-      ease: 'Quad.In',
+    this.world.tweens.add(this, { y: this.floorY - this.headOffset }, 380, {
+      ease: ease.inQuad,
       onComplete: () => {
         if (this.state === 'dead') return;
         sfx.play('boss-land');
-        this.scene.cameras.main.shake(160, 0.01);
+        this.world.shake(0.5, 200);
+        this.world.puff(this.x, this.floorY, 10);
         this.state = 'dazed';
-        this.stateUntil = this.scene.time.now + Math.max(1100, 1700 - this.speedUp * 120);
-        this.dizzy = this.scene.add.text(this.sprite.x, this.sprite.y - 30, '* * *', { fontFamily: FONT, fontSize: '8px', color: CSS.goldLight }).setOrigin(0.5).setDepth(26);
+        this.dizzy.visible = true;
+        this.stateUntil = this.world.now + Math.max(1100, 1700 - this.speedUp * 120);
       },
     });
   }
 
-  private toRise(time: number) {
+  private toRise() {
     this.state = 'rise';
-    this.dizzy?.destroy();
-    this.dizzy = undefined;
-    this.scene.tweens.add({
-      targets: this.sprite,
-      y: HOVER_Y,
-      duration: 600,
-      ease: 'Sine.InOut',
+    this.dizzy.visible = false;
+    this.world.tweens.add(this, { y: HOVER_Y }, 600, {
+      ease: ease.inOutSine,
       onComplete: () => {
-        if (this.state !== 'dead') this.toHover(time + 600);
+        if (this.state !== 'dead') this.toHover();
       },
     });
   }
 
-  private drop404() {
-    const t = this.scene.add.text(this.sprite.x, this.sprite.y + 20, '404', { fontFamily: FONT, fontSize: '8px', color: CSS.red, stroke: '#1A1423', strokeThickness: 2 }).setOrigin(0.5).setDepth(24);
-    this.projectiles.add(t);
-    const body = t.body as Phaser.Physics.Arcade.Body;
-    body.setAllowGravity(false);
-    body.setVelocityY(95 + this.speedUp * 15);
-    body.setSize(t.width - 4, t.height - 2);
+  private drop() {
+    const mesh = makeCard(this.def.projectile);
+    this.world.addToScene(mesh);
+    this.projectiles.push({ x: this.x, y: this.y + 1.3, vy: 6 + this.speedUp, mesh, alive: true });
   }
 
-  poof(p: Phaser.GameObjects.Text) {
-    if (!p.active) return;
-    p.body && ((p.body as Phaser.Physics.Arcade.Body).enable = false);
-    p.setActive(false);
-    this.scene.tweens.add({ targets: p, alpha: 0, y: p.y - 6, duration: 200, onComplete: () => p.destroy() });
+  private poof(p: Projectile) {
+    p.alive = false;
+    p.mesh.visible = false;
+    this.world.puff(p.x, p.y, 4);
   }
 
-  /** Called when the player lands on the boss while it's dazed. */
-  takeHit() {
-    if (!this.vulnerable) return;
+  private takeHit() {
     this.hp -= 1;
     sfx.play('boss-hit');
-    this.sprite.setTintFill(0xffffff);
-    this.scene.time.delayedCall(120, () => this.sprite.clearTint());
-    this.scene.cameras.main.shake(120, 0.006);
-    if (this.hp <= 0) {
-      this.defeat();
-    } else {
-      this.toRise(this.scene.time.now);
+    this.world.shake(0.3, 140);
+    this.model.setGold(true);
+    setTimeout(() => this.state !== 'dead' && this.model.setGold(false), 120);
+    this.world.onBossHit();
+    if (this.hp <= 0) this.defeat();
+    else {
+      this.dizzy.visible = false;
+      this.world.tweens.killOf(this);
+      this.toRise();
     }
   }
 
   private defeat() {
     this.state = 'dead';
-    this.dizzy?.destroy();
-    this.projectiles.getChildren().slice().forEach((p) => this.poof(p as Phaser.GameObjects.Text));
-    (this.sprite.body as Phaser.Physics.Arcade.Body).enable = false;
-    this.scene.tweens.killTweensOf(this.sprite);
-    this.scene.tweens.add({
-      targets: this.sprite,
-      x: '+=3',
-      duration: 50,
-      yoyo: true,
-      repeat: 7,
-      onComplete: () => {
-        this.sprite.setTint(0xf2b705).setAlpha(1);
-        const cx = (this.left + this.right) / 2;
-        this.scene.tweens.add({ targets: this.sprite, x: cx, y: 110, duration: 900, ease: 'Sine.Out' });
-        this.scene.tweens.add({ targets: this.sprite, scale: 2.3, duration: 300, yoyo: true, repeat: 2 });
-        this.scene.add
-          .text(cx, 62, 'VERIFIED!', { fontFamily: FONT, fontSize: '16px', color: CSS.gold, stroke: '#1A1423', strokeThickness: 4 })
-          .setOrigin(0.5)
-          .setDepth(60);
-        this.onDefeated();
-      },
-    });
+    this.dizzy.visible = false;
+    for (const p of this.projectiles) this.poof(p);
+    this.world.tweens.killOf(this);
+    this.setAlpha(1, 200);
+    this.model.setGold(true);
+    this.world.tweens.add(this, { x: (this.left + this.right) / 2, y: 6.5 }, 900, { ease: ease.outQuad });
+    this.world.onBossDefeated();
   }
 }

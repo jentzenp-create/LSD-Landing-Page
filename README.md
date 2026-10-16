@@ -33,10 +33,13 @@ A conversational, voice-enabled AI interview that gathers website requirements f
 
 ## Bottleneck Busters arcade game (`/arcade`)
 
-A retro platformer lead magnet built with Phaser 3. Each world is a stage of the customer journey; sun blocks and bosses ask quick diagnostic questions, and the results screen turns the answers into a mini report with an email gate. World 1 ("Ghost Town", visibility & reviews) is playable.
+A 2.5D (N64-style) platformer lead magnet built with Three.js. Players pick their business type; each world asks questions tailored to where that industry gets its customers, and the boss's strength depends on the answers. The results screen recommends the automation tied to their biggest gap, then collects their details for GoHighLevel. World 1 ("Get Found") is playable for all four industries.
 
-- **Code:** `arcade/` (separate Vite entry, so Phaser never loads on the main site). Level layout: `arcade/level1.ts`. Questions, findings and scoring: `arcade/questions.ts`. All pixel art is drawn in code in `arcade/art.ts`.
-- **Lead capture:** run `scripts/seed_arcade_table.sql` once in the Supabase SQL editor. It creates `arcade_leads` with insert-only access for the anon key (leads are not readable from the browser; view them in the Supabase dashboard). Uses the existing `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`. Without them the game still runs and logs the lead to the console.
-- **Embeds (Gatherly):** the game renders at a fixed 480x272 and scales to fit any box. Sound defaults to off when embedded. Add `?src=gatherly` to the URL to tag leads by source, and `?probe` to show the exact viewport size of the embed.
+- **Code:** `arcade/`, a separate Vite entry so the game never loads on the main site.
+  - Questions, findings, automations and bosses per industry: `arcade/content.ts`
+  - Level layout: `arcade/level1.ts`
+  - Gameplay: `arcade/world.ts`, `arcade/boss.ts`; 3D models are built in code in `arcade/render/models.ts` (no downloaded assets)
+- **Leads go to GoHighLevel:** set `GHL_WEBHOOK_URL` in `arcade/config.ts` to the URL of an "Inbound Webhook" workflow trigger. Until it's set, the form still works but leads are only logged in the browser console. The webhook receives flat keys: `first_name`, `email`, `phone`, `business_name`, `industry`, `source` ("Bottleneck Busters"), `traffic_source`, `game_diagnosis`, `game_health_score`, `game_health_label`, `game_top_automation`, `game_other_automations`, `game_answers`, `game_findings`, `game_score`, `game_play_seconds`, `game_world_reached`, `game_session_id`, and `sms_summary` (a ready-made text for an internal SMS notification).
+- **Embeds (Gatherly):** the game keeps a 16:9 frame that scales to fit any box. Sound defaults to off when embedded. Add `?src=gatherly` to tag leads by source, `?probe` to show the embed's viewport size, and `?lowfx` to force low resolution on slow machines (it also drops resolution automatically if frames are slow).
 - **Attract mode:** when idle, a bot plays the level behind the title screen until someone clicks or presses a key.
 - **Local dev:** `npm run dev`, then open `http://localhost:3000/arcade/`.
