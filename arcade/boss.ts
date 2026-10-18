@@ -7,7 +7,7 @@ import type { BossDef } from './content';
 import type { Body } from './engine/physics';
 import { overlaps } from './engine/physics';
 import { ease } from './engine/tween';
-import { makeCard, makeClockBoss, makeGhostBoss, makePinBoss, makeStar, type BossModel } from './render/models';
+import { makeBlobShadow, makeCard, makeClockBoss, makeGhostBoss, makePinBoss, makeStar, type BossModel } from './render/models';
 import * as sfx from './sfx';
 import type { World } from './world';
 
@@ -38,6 +38,7 @@ export class Boss {
   private hoverT = 0;
   private projectiles: Projectile[] = [];
   private dizzy: THREE.Group;
+  private landing: THREE.Mesh; // shadow showing where it's about to land
 
   constructor(
     private world: World,
@@ -59,12 +60,21 @@ export class Boss {
     }
     this.dizzy.visible = false;
     world.addToScene(this.dizzy);
+    this.landing = makeBlobShadow();
+    (this.landing.material as THREE.MeshBasicMaterial).color.setHex(0xff3b30);
+    this.landing.visible = false;
+    world.addToScene(this.landing);
     // Fade in for the intro
     world.tweens.add(this.look, { alpha: 0.75 }, 900, { onUpdate: () => this.model.setOpacity(this.look.alpha) });
   }
 
   get hitbox() {
     return { x: this.x - 0.9, y: this.y - 0.9, w: 1.8, h: 1.8 };
+  }
+
+  /** Generous target for stomping while it's dazed. */
+  private get stompBox() {
+    return { x: this.x - 1.3, y: this.y - 3.4, w: 2.6, h: 4.2 };
   }
 
   private get lowerBox() {
@@ -87,8 +97,8 @@ export class Boss {
 
   private toHover() {
     this.state = 'hover';
-    this.stateUntil = this.world.now + Math.max(1400, 2800 - this.speedUp * 300);
-    this.nextDrop = this.world.now + 500;
+    this.stateUntil = this.world.now + 3200;
+    this.nextDrop = this.world.now + 900;
     this.setAlpha(GHOST_ALPHA, 300);
   }
 
@@ -98,6 +108,7 @@ export class Boss {
     this.model.root.position.set(this.x, -(this.y + this.headOffset), 0);
     this.dizzy.position.set(this.x, -(this.y - 1.4), 0);
     this.dizzy.rotation.y = now / 250;
+    if (this.landing.visible) (this.landing.material as THREE.MeshBasicMaterial).opacity = 0.35 + Math.abs(Math.sin(now / 110)) * 0.35;
 
     if (frozen || this.state === 'idle' || this.state === 'dead') return;
 
@@ -107,7 +118,7 @@ export class Boss {
       p.y += p.vy * dt;
       p.mesh.position.set(p.x, -p.y, 0.3);
       p.mesh.rotation.z = Math.sin(now / 200 + p.x) * 0.3;
-      if (overlaps(player, { x: p.x - 0.7, y: p.y - 0.4, w: 1.4, h: 0.8 })) {
+      if (overlaps(player, { x: p.x - 0.55, y: p.y - 0.3, w: 1.1, h: 0.6 })) {
         this.poof(p);
         this.world.hurt(p.x);
       } else if (p.y > this.floorY - 0.3) this.poof(p);
@@ -118,24 +129,23 @@ export class Boss {
       this.hoverT += dt;
       const span = (this.right - this.left) / 2 - 3;
       const cx = (this.left + this.right) / 2;
-      this.x = cx + Math.sin(this.hoverT * (1.1 + this.speedUp * 0.15)) * span;
+      this.x = cx + Math.sin(this.hoverT * (0.7 + this.speedUp * 0.1)) * span;
       this.y = HOVER_Y + Math.sin(this.hoverT * 3) * 0.35;
       if (now > this.nextDrop) {
         this.drop();
-        this.nextDrop = now + Math.max(550, 1100 - this.speedUp * 150);
+        this.nextDrop = now + 1600;
       }
       if (now > this.stateUntil) this.toTelegraph(player);
     } else if (this.state === 'dazed' && now > this.stateUntil) {
       this.toRise();
     }
 
-    // Contact with the player
-    if (overlaps(player, this.hitbox) || overlaps(player, this.lowerBox)) {
-      if (this.state === 'dazed') {
-        if (player.vy > 0 && player.y + player.h - this.hitbox.y < 0.9) this.takeHit();
-      } else {
-        this.world.hurt(this.x);
-      }
+    // Contact with the player. While dazed it never hurts you, and any jump
+    // into it (rising or falling, on or around its head) counts as a stomp.
+    if (this.state === 'dazed') {
+      if (!player.onGround && overlaps(player, this.stompBox)) this.takeHit();
+    } else if (overlaps(player, this.hitbox) || overlaps(player, this.lowerBox)) {
+      this.world.hurt(this.x);
     }
   }
 
@@ -143,7 +153,10 @@ export class Boss {
     this.state = 'telegraph';
     const targetX = THREE.MathUtils.clamp(player.x + player.w / 2, this.left + 2, this.right - 2);
     this.setAlpha(1, 250);
-    this.world.tweens.add(this, { x: targetX, y: HOVER_Y - 0.6 }, Math.max(380, 650 - this.speedUp * 60), {
+    this.landing.position.set(targetX, -this.floorY + 0.03, 0);
+    this.landing.scale.setScalar(2.6);
+    this.landing.visible = true;
+    this.world.tweens.add(this, { x: targetX, y: HOVER_Y - 0.6 }, 1000, {
       ease: ease.inOutSine,
       onComplete: () => this.toSwoop(),
     });
@@ -152,16 +165,19 @@ export class Boss {
   private toSwoop() {
     if (this.state === 'dead') return;
     this.state = 'swoop';
-    this.world.tweens.add(this, { y: this.floorY - this.headOffset }, 380, {
+    this.world.tweens.add(this, { y: this.floorY - this.headOffset }, 560, {
       ease: ease.inQuad,
       onComplete: () => {
+        this.landing.visible = false;
         if (this.state === 'dead') return;
         sfx.play('boss-land');
         this.world.shake(0.5, 200);
         this.world.puff(this.x, this.floorY, 10);
         this.state = 'dazed';
         this.dizzy.visible = true;
-        this.stateUntil = this.world.now + Math.max(1100, 1700 - this.speedUp * 120);
+        this.stateUntil = this.world.now + 2800;
+        // Sink a little so its head is easy to reach
+        this.world.tweens.add(this, { y: this.y + 0.55 }, 160);
       },
     });
   }
@@ -169,7 +185,7 @@ export class Boss {
   private toRise() {
     this.state = 'rise';
     this.dizzy.visible = false;
-    this.world.tweens.add(this, { y: HOVER_Y }, 600, {
+    this.world.tweens.add(this, { y: HOVER_Y }, 900, {
       ease: ease.inOutSine,
       onComplete: () => {
         if (this.state !== 'dead') this.toHover();
@@ -180,7 +196,7 @@ export class Boss {
   private drop() {
     const mesh = makeCard(this.def.projectile);
     this.world.addToScene(mesh);
-    this.projectiles.push({ x: this.x, y: this.y + 1.3, vy: 6 + this.speedUp, mesh, alive: true });
+    this.projectiles.push({ x: this.x, y: this.y + 1.3, vy: 4.2, mesh, alive: true });
   }
 
   private poof(p: Projectile) {

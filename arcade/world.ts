@@ -827,15 +827,16 @@ export class World {
 
     const severity = this.def.questions.reduce((sum, q) => sum + q.answers[run.answers[q.id] ?? 0].severity, 0);
     const max = this.def.questions.length * 2;
-    const hp = 3 + Math.round((severity / max) * 3);
+    // Two stomps, always: the boss is the fun finale, not a skill test.
+    const hp = 2;
     run.bossHp = hp;
     const taunt =
       severity / max >= 0.5
-        ? 'Your answers made me STRONG.'
+        ? 'Your answers just fed me. I feel GREAT.'
         : severity / max >= 0.25
           ? "I'm hiding in the gaps you just told me about."
           : "You've barely left me anywhere to hide. Hmph.";
-    await this.opts.ui.say(`${def.name}  (HP ${hp})`, `${taunt}\n\n${def.projectileHint} Stomp me when I land!`);
+    await this.opts.ui.say(def.name, `${taunt}\n\n${def.projectileHint} Watch for my shadow, then stomp me twice while I'm dizzy!`);
     if (this.disposed) return;
 
     this.opts.ui.setBoss(def.name, hp, hp);
