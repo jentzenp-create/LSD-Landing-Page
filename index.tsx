@@ -10,6 +10,8 @@ const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Studio = lazy(() => import('./pages/Studio'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Packages = lazy(() => import('./pages/Packages'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 const App = lazy(() => import('./App'));
 const Onboarding = lazy(() => import('./pages/Onboarding'));
 const OnboardingAdmin = lazy(() => import('./pages/OnboardingAdmin'));
@@ -63,6 +65,9 @@ root.render(
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
           {/* Packages landing page */}
           <Route path="/packages" element={<Packages />} />
+          {/* AI & automation blog */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           {/* Original San Diego Mobile Lab landing page (not linked from main site) */}
           <Route path="/mobile-lab" element={<App />} />
           {/* Brand Studio - Client CMS */}

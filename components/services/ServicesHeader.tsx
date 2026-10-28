@@ -76,6 +76,13 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                             </Link>
                         )}
+                        <Link
+                            to="/blog"
+                            className="text-sm font-semibold text-charcoal/70 hover:text-black transition-colors relative group"
+                        >
+                            Blog
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                        </Link>
                     </div>
 
                     {/* CTA Button */}
@@ -126,6 +133,12 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ categories }) => {
                                 <span className="text-primary">→</span> {category.name}
                             </Link>
                         ))}
+                        <Link
+                            to="/blog"
+                            className="w-full block px-4 py-3 rounded-xl text-lg font-semibold text-charcoal hover:bg-primary/10 hover:text-black transition-colors"
+                        >
+                            <span className="text-primary">→</span> Blog
+                        </Link>
                     </div>
                 </div>
             </div>
