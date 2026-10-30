@@ -3,7 +3,7 @@
 // Paste the GoHighLevel "Inbound Webhook" URL from the game's workflow here
 // (Automation > Workflows > trigger "Inbound Webhook"). Leads are sent to it
 // when a player submits the email form. Empty = leads are only logged.
-export const GHL_WEBHOOK_URL = '';
+export const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/cj4hQsqqI9fhy6MABW7y/webhook-trigger/c189bc05-27e8-4ac8-a677-2afaf0ea0946';
 
 // The level is laid out on a grid of 1x1 tiles. Physics runs in tile units,
 // y pointing down (row 0 at the top), and the renderer flips it for 3D.

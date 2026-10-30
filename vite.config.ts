@@ -38,11 +38,13 @@ export default defineConfig(({ mode }) => {
       },
       // Optimize chunk splitting for faster Safari loading
       rollupOptions: {
-        // Multi-page: the main React site plus the standalone arcade game (/arcade),
-        // so Phaser never ships in the main site's bundle.
+        // Multi-page: the main React site plus the standalone games (arcade, the
+        // productized vertical games under games/<slug>), each its own entry so
+        // none of them ship in the main site's bundle.
         input: {
           main: path.resolve(__dirname, 'index.html'),
           arcade: path.resolve(__dirname, 'arcade/index.html'),
+          coverageGapChallenge: path.resolve(__dirname, 'games/coverage-gap-challenge/index.html'),
         },
         output: {
           // Minimize number of chunks for Safari (slower with many modules)

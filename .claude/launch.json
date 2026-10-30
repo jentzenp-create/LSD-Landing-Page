@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "aod-financial-game",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/KHUserEnglish/Documents/Vibecoding/AOD Form/aod-form-financial-clarity", "run", "dev:game"],
+      "port": 5174
     }
   ]
 }

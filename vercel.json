@@ -65,6 +65,30 @@
             "destination": "/arcade/index.html"
         },
         {
+            "source": "/games/:slug",
+            "destination": "/games/:slug/index.html"
+        },
+        {
+            "source": "/games/:slug/",
+            "destination": "/games/:slug/index.html"
+        },
+        {
+            "source": "/games/:slug/(.*)",
+            "destination": "/games/:slug/$1"
+        },
+        {
+            "source": "/play/:slug",
+            "destination": "/play/:slug/index.html"
+        },
+        {
+            "source": "/play/:slug/",
+            "destination": "/play/:slug/index.html"
+        },
+        {
+            "source": "/play/:slug/(.*)",
+            "destination": "/play/:slug/$1"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
