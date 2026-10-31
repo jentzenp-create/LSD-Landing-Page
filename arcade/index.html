@@ -2,16 +2,138 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-    <meta name="theme-color" content="#0B0D17" />
-    <title>Bottleneck Busters | Local Sun Digital</title>
-    <meta name="description" content="A retro 3D platformer that finds the bottlenecks in your business. Beat the bosses, get your automation report." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0E0E0E" />
+    <title>The Arcade | Local Sun Digital</title>
+    <meta name="description" content="Short games that score where a business, a buyer, or a team stands, then point to the next step. Pick one and play." />
     <link rel="icon" href="/logo.png" />
+    <script>
+      // /arcade used to be Bottleneck Busters, and booths (Gatherly) still embed it here.
+      // Embedded loads and old game links (?src, ?probe, ?lowfx) go straight to the game.
+      (function () {
+        var q = location.search;
+        if (window.self !== window.top || /[?&](src|probe|lowfx)(=|&|$)/.test(q)) {
+          location.replace('/games/bottleneck-busters/' + q + location.hash);
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./hub.css" />
   </head>
   <body>
-    <div id="stage"></div>
-    <div id="overlay" hidden></div>
-    <div class="rotate-hint">Turn your phone sideways for a bigger view</div>
-    <script type="module" src="./main.ts"></script>
+    <nav>
+      <a href="/"><img src="./LSD-logo.svg" alt="Local Sun Digital" /></a>
+      <span class="nav-label"><span>The Arcade</span> · 8 games</span>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Play · 2 minutes each</div>
+      <h1>Pick a game. <span class="gold">Get your score.</span></h1>
+      <p class="hero-sub">Each game asks a handful of real questions disguised as play, then hands back a score and the one next step that matters most.</p>
+    </header>
+
+    <main class="container">
+      <a class="featured" href="/games/bottleneck-busters/?src=arcade">
+        <div class="featured-art" aria-hidden="true">🕹️</div>
+        <div class="featured-body">
+          <div class="tags"><span class="tag tag-gold">Featured</span><span class="tag">Any business</span><span class="tag">3D platformer</span></div>
+          <h2>Bottleneck Busters</h2>
+          <p>Run, jump, and beat two bosses while the game finds where your business is leaking leads. Ends with your automation report.</p>
+          <span class="play">Play now <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🛡️</div>
+          <div class="tags"><span class="tag">Insurance</span><span class="tag">Card flip</span></div>
+          <h3>Coverage Gap Challenge</h3>
+          <p>Flip six cards and find the gaps in your life and health coverage.</p>
+          <div class="actions">
+            <a class="play" href="/games/coverage-gap-challenge/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/coverage-gap-challenge">About</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🏡</div>
+          <div class="tags"><span class="tag">Real estate</span><span class="tag">Journey map</span></div>
+          <h3>Home Readiness Quest</h3>
+          <p>Drive six stops on the road to a new home and see how ready you are to tour.</p>
+          <div class="actions">
+            <a class="play" href="/games/home-readiness-quest/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/home-readiness-quest">About</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🔨</div>
+          <div class="tags"><span class="tag">Home services</span><span class="tag">Live calculator</span></div>
+          <h3>Project Fit Finder</h3>
+          <p>Build a ballpark estimate for your home project as you go, then get a project-fit score.</p>
+          <div class="actions">
+            <a class="play" href="/games/project-fit-finder/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/project-fit-finder">About</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">💪</div>
+          <div class="tags"><span class="tag">Fitness</span><span class="tag">Swipe deck</span></div>
+          <h3>Fitness Fit Check</h3>
+          <p>Swipe eight cards about how you train and get matched to the right program.</p>
+          <div class="actions">
+            <a class="play" href="/games/fitness-fit-check/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/fitness-fit-check">About</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">✨</div>
+          <div class="tags"><span class="tag">Med spa</span><span class="tag">Spin wheel</span></div>
+          <h3>Confidence Assessment</h3>
+          <p>Spin the wheel five times, answer one question per area, and get your treatment match.</p>
+          <div class="actions">
+            <a class="play" href="/games/confidence-assessment/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/confidence-assessment">About</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🔑</div>
+          <div class="tags"><span class="tag">Mortgage</span><span class="tag">Tier unlock</span></div>
+          <h3>Loan Readiness Quest</h3>
+          <p>Answer six challenges, earn points, and unlock your home-buyer tier.</p>
+          <div class="actions">
+            <a class="play" href="/games/loan-readiness-quest/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/loan-readiness-quest">About</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⏱️</div>
+          <div class="tags"><span class="tag">HR &amp; hiring</span><span class="tag">Timed trivia</span></div>
+          <h3>Culture Fit Challenge</h3>
+          <p>Beat the clock on five hiring-trivia rounds, then check your own team's hiring health.</p>
+          <div class="actions">
+            <a class="play" href="/games/culture-fit-challenge/?src=arcade">Play <span aria-hidden="true">→</span></a>
+            <a class="more" href="/play/culture-fit-challenge">About</a>
+          </div>
+        </article>
+      </div>
+
+      <section class="pitch">
+        <h2>Want one of these for your business?</h2>
+        <p>Every game is rebuilt with your questions, your offer, and your booking link, and every lead lands in your CRM with the score attached.</p>
+        <a class="cta" href="mailto:jentzen@localsundigital.com?subject=A%20game%20for%20my%20business">Talk to us</a>
+      </section>
+    </main>
+
+    <footer>
+      <img src="./LSD-logo.svg" alt="Local Sun Digital" />
+      <span class="footer-note">© 2026 Local Sun Digital · The Arcade</span>
+    </footer>
   </body>
 </html>

@@ -44,6 +44,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           arcade: path.resolve(__dirname, 'arcade/index.html'),
+          bottleneckBusters: path.resolve(__dirname, 'games/bottleneck-busters/index.html'),
           coverageGapChallenge: path.resolve(__dirname, 'games/coverage-gap-challenge/index.html'),
           projectFitFinder: path.resolve(__dirname, 'games/project-fit-finder/index.html'),
           fitnessFitCheck: path.resolve(__dirname, 'games/fitness-fit-check/index.html'),

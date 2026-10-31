@@ -31,7 +31,11 @@ A conversational, voice-enabled AI interview that gathers website requirements f
 - **Local testing:** `npm run dev` (Vite) does not serve the `/api` serverless function. Use `vercel dev` (after `vercel link`) to test the AI conversation locally, or test against a deployed Vercel preview.
 - Voice input uses the browser's built-in Speech Recognition API (Chrome/Edge; no extra API key or cost) and falls back to typing where unsupported. Voice output (the AI reading its questions aloud) uses the browser's Speech Synthesis API and is off by default — toggle it on in the chat header.
 
-## Bottleneck Busters arcade game (`/arcade`)
+## The Arcade (`/arcade`) and Bottleneck Busters (`/games/bottleneck-busters`)
+
+`/arcade` is a hub page (`arcade/index.html` + `arcade/hub.css`) that lists every game. Bottleneck Busters used to live at `/arcade`, so the hub sends embedded loads (iframes) and old links carrying `?src`, `?probe` or `?lowfx` straight to `/games/bottleneck-busters/`, which keeps the Gatherly booth working. Add a card to the hub when a new game ships.
+
+### Bottleneck Busters
 
 A 2.5D (N64-style) platformer lead magnet built with Three.js. Players pick their business type, then play two worlds:
 
@@ -40,7 +44,7 @@ A 2.5D (N64-style) platformer lead magnet built with Three.js. Players pick thei
 
 Power-ups come out of sun blocks: **Sunshine** (grow, survive an extra hit, smash bricks) and **Autopilot** (World 2: faster and invincible for a few seconds). Each boss's strength depends on the player's answers. After each world the results screen recommends the automation tied to the biggest gap; the email gate sits after World 1, and World 2's results are sent as an update.
 
-- **Code:** `arcade/`, a separate Vite entry so the game never loads on the main site.
+- **Code:** `arcade/` (entry page `games/bottleneck-busters/index.html`), a separate Vite entry so the game never loads on the main site.
   - Questions, findings, automations and bosses per industry and world: `arcade/content.ts`
   - Level layouts: `arcade/levels.ts`
   - Gameplay: `arcade/world.ts`, `arcade/boss.ts`; 3D models are built in code in `arcade/render/models.ts` (no downloaded assets)
@@ -48,4 +52,4 @@ Power-ups come out of sun blocks: **Sunshine** (grow, survive an extra hit, smas
 - **Embeds (Gatherly):** the game keeps a 16:9 frame that scales to fit any box. Sound defaults to off when embedded. Add `?src=gatherly` to tag leads by source, `?probe` to show the embed's viewport size, and `?lowfx` to force low resolution on slow machines (it also drops resolution automatically if frames are slow).
 - **Phones:** sized to the visible screen (not hidden behind browser bars), pinch/double-tap zoom disabled, on-screen buttons on touch devices.
 - **Attract mode:** when idle, a bot plays behind the title screen, alternating between the night and day worlds.
-- **Local dev:** `npm run dev`, then open `http://localhost:3000/arcade/`.
+- **Local dev:** `npm run dev`, then open `http://localhost:3000/games/bottleneck-busters/` (or `/arcade/` for the hub).
