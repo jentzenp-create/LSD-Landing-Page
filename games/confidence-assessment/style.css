@@ -1,54 +1,10 @@
 @import '../_shared/base.css';
+@import '../_shared/arcade.css';
 
-/* Spin-wheel + reveal mechanic */
-.counter { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
-
-.wheel-wrap { position: relative; width: min(300px, 80vw); margin: 0 auto 22px; }
-.wheel { width: 100%; height: auto; display: block; filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.55)); }
-.spinner { transform-origin: 50% 50%; transform-box: fill-box; transition: transform 3.2s cubic-bezier(0.15, 0.75, 0.2, 1); }
-.segment { fill: var(--gold); stroke: #0E0E0E; stroke-width: 2; transition: opacity 0.4s ease; }
-.segment.alt { fill: #262626; }
-.segment.used { opacity: 0.28; }
-.segment-label { fill: #111; font-size: 13px; font-weight: 900; font-family: inherit; pointer-events: none; transition: opacity 0.4s ease; }
-.segment-label.alt { fill: var(--gold); }
-.segment-label.used { opacity: 0.4; }
-.rim { fill: none; stroke: var(--gold); stroke-width: 4; }
-.hub { fill: #0E0E0E; stroke: var(--gold); stroke-width: 3; }
-.hub-text { fill: var(--gold); font-size: 20px; }
-
-.wheel-pointer {
-  position: absolute; top: -6px; left: 50%; transform: translateX(-50%); z-index: 2;
-  width: 0; height: 0; border-left: 13px solid transparent; border-right: 13px solid transparent;
-  border-top: 24px solid #fff; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.6));
-}
-
-.spin-panel > .btn-primary { min-width: 180px; }
-
-.reveal {
-  background: var(--surface); border: 1px solid var(--border-gold); border-radius: 20px;
-  padding: 22px 20px; text-align: left; animation: reveal-in 0.4s ease;
-  display: flex; flex-direction: column;
-}
-@keyframes reveal-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: none; } }
-.reveal .area-tag { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
-.reveal .prompt { font-size: 17px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; }
-.reveal .answers { order: 1; }
-.reveal .answer-btn { background: var(--surface-2); transition: opacity 0.2s ease, border-color 0.2s ease; }
-.answer-btn.dim { opacity: 0.35; }
-.answer-btn.picked { border-color: var(--gold); }
-.reveal-finding {
-  order: 2; font-size: 14px; color: var(--text-muted); line-height: 1.6;
-  border-left: 3px solid var(--gold); padding-left: 12px; margin: 16px 0;
-}
-.reveal > .btn-primary { order: 3; width: 100%; }
-
+/* The unlocked-offer box on the result screen */
 .result-extra.offer {
   text-align: center; border-color: var(--border-gold);
   background: linear-gradient(135deg, rgba(242, 183, 5, 0.14), rgba(242, 183, 5, 0.03));
 }
 .result-extra.offer .label { color: var(--gold); }
 .result-extra.offer .value { font-size: 17px; color: #fff; }
-
-@media (prefers-reduced-motion: reduce) {
-  .spinner { transition-duration: 0.6s !important; }
-}

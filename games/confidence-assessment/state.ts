@@ -24,6 +24,11 @@ export function nextLanding(): Area {
   return area;
 }
 
+/** Records that the player caught this area's orb (the catcher picks areas itself). */
+export function land(area: Area) {
+  run.landed.push(area.id);
+}
+
 export function answer(area: Area, idx: number) {
   run.answers[area.id] = idx;
 }

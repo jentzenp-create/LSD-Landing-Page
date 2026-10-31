@@ -1,0 +1,72 @@
+/* Styles for the canvas arcade kit (_shared/arcade.ts): the scaled canvas, the
+   question pop-up, and the intro's how-to list. @import after base.css. */
+
+#stage.playing { padding: 12px; justify-content: center; }
+
+.arena {
+  position: relative;
+  width: min(100%, calc((100dvh - 24px) * 2 / 3));
+  aspect-ratio: 2 / 3;
+  margin: 0 auto;
+}
+.arena-canvas {
+  display: block; width: 100%; height: 100%;
+  border-radius: 18px; border: 1px solid var(--border-gold);
+  background: #0B0D17;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 0 40px rgba(242, 183, 5, 0.08);
+}
+
+.ask {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+  background: rgba(5, 6, 12, 0.72); border-radius: 18px;
+  animation: ask-in 0.18s ease-out;
+}
+.ask-card {
+  width: 100%; max-height: 100%; overflow-y: auto; text-align: left;
+  background: var(--surface); border: 1px solid var(--border-gold); border-radius: 16px;
+  padding: 18px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.ask-tag { font-size: 11px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+.ask-prompt { font-size: 16px; font-weight: 800; line-height: 1.4; margin-bottom: 14px; }
+.ask-answers { display: flex; flex-direction: column; gap: 8px; }
+.ask-answer {
+  display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+  padding: 11px 13px; border-radius: 11px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text); font: 600 14px/1.35 inherit; font-family: inherit;
+  cursor: pointer; transition: border-color 0.12s ease, opacity 0.12s ease;
+}
+.ask-answer:hover:not(:disabled), .ask-answer:focus-visible { border-color: var(--border-gold); outline: none; }
+.ask-answer.picked { border-color: var(--gold); background: var(--gold-dim); }
+.ask-answer.dim { opacity: 0.35; }
+.ask-answer:disabled { cursor: default; }
+.ask-key {
+  flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07); font-size: 11px; font-weight: 800; color: var(--text-muted);
+}
+.ask-finding { margin-top: 12px; padding-left: 10px; border-left: 3px solid var(--mid); font-size: 13px; line-height: 1.5; color: var(--text-muted); }
+.ask-finding.sev-0 { border-color: var(--good); }
+.ask-finding.sev-2 { border-color: var(--bad); }
+.ask-next { width: 100%; margin-top: 14px; }
+.ask-timer { height: 6px; border-radius: 99px; background: rgba(255, 255, 255, 0.08); overflow: hidden; margin-bottom: 14px; }
+.ask-timer-fill { height: 100%; width: 100%; background: var(--gold); }
+
+.how-to { list-style: none; display: flex; flex-direction: column; gap: 8px; text-align: left; margin: -8px 0 26px; }
+.how-to li {
+  position: relative; padding: 10px 14px 10px 36px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border); font-size: 14px; color: var(--text-muted); line-height: 1.45;
+}
+.how-to li::before { content: '▸'; position: absolute; left: 15px; color: var(--gold); font-weight: 900; }
+
+@keyframes ask-in { from { opacity: 0; transform: scale(0.97); } }
+
+/* ?thumb: the canvas fills the window for the hub screenshot. */
+html.thumb, html.thumb body { overflow: hidden; }
+html.thumb #stage.playing { padding: 0; }
+html.thumb .arena { width: 100vw; height: 100vh; }
+html.thumb .arena-canvas { border: 0; border-radius: 0; box-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ask { animation: none; }
+}

@@ -9,6 +9,8 @@ export interface Contact {
   businessName?: string;
 }
 
+export type Severity = 0 | 1 | 2;
+
 /** One finding the game surfaced about the prospect (a gap, a strength, an answer). */
 export interface Finding {
   area: string; // short label, e.g. "Review count", "Coverage gap"

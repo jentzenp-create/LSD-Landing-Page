@@ -1,23 +1,2 @@
 @import '../_shared/base.css';
-
-/* Card-flip mechanic */
-.card-area { perspective: 1200px; margin-bottom: 20px; }
-.card {
-  position: relative; width: 100%; min-height: 260px;
-  transform-style: preserve-3d; transition: transform 0.5s ease;
-}
-.card.flipped { transform: rotateY(180deg); }
-.card-face {
-  position: absolute; inset: 0; backface-visibility: hidden;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 20px; padding: 28px 24px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.card-front .area-tag { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
-.card-front .prompt { font-size: 18px; font-weight: 700; line-height: 1.4; }
-.card-back { transform: rotateY(180deg); border-color: var(--border-gold); text-align: left; }
-.card-back .severity-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: inline-block; padding: 4px 10px; border-radius: 99px; }
-.card-back .severity-tag.sev-0 { background: rgba(46,204,113,0.15); color: var(--good); }
-.card-back .severity-tag.sev-1 { background: rgba(242,183,5,0.15); color: var(--mid); }
-.card-back .severity-tag.sev-2 { background: rgba(255,92,92,0.15); color: var(--bad); }
-.card-back .finding { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+@import '../_shared/arcade.css';

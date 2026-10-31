@@ -105,6 +105,37 @@ export function estimate(project: ProjectDef, sqft: number, age: number): [numbe
   return [r(lo), r(hi)];
 }
 
+/** Home size buckets for the match-3 question; sqft is what the estimate uses. */
+export const SIZES = [
+  { label: 'Under 1,500 sq ft', sqft: 1200 },
+  { label: '1,500 – 2,500 sq ft', sqft: 2000 },
+  { label: '2,500 – 3,500 sq ft', sqft: 3000 },
+  { label: '3,500+ sq ft', sqft: 4000 },
+];
+
+/**
+ * Age buckets, by what the project's age question measures. `age` is the value the
+ * condition check uses, picked to land in the right severity band.
+ */
+export const AGE_BUCKETS: Record<'system' | 'home', { label: string; age: number }[]> = {
+  system: [
+    { label: 'Under 8 years', age: 5 },
+    { label: '8 – 14 years', age: 11 },
+    { label: '15 – 19 years', age: 17 },
+    { label: '20+ years', age: 22 },
+  ],
+  home: [
+    { label: 'Under 20 years', age: 10 },
+    { label: '20 – 39 years', age: 30 },
+    { label: '40 – 60 years', age: 50 },
+    { label: '60+ years', age: 70 },
+  ],
+};
+
+export function ageBucketsFor(project: ProjectDef) {
+  return project.ageLabel === 'Home age' ? AGE_BUCKETS.home : AGE_BUCKETS.system;
+}
+
 export interface Choice {
   id: string;
   label: string;
