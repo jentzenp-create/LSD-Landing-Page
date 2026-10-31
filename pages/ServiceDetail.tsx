@@ -17,7 +17,7 @@ const ServiceDetail: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
-            <ServicesHeader categories={serviceCategories} />
+            <ServicesHeader />
             <main>
                 {/* Hero Section */}
                 <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden bg-gradient-to-b from-white to-offWhite">
@@ -35,7 +35,7 @@ const ServiceDetail: React.FC = () => {
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                Back to All Services
+                                Back to Home
                             </Link>
                         </div>
 

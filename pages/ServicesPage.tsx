@@ -385,7 +385,7 @@ const serviceCategories = [
 const ServicesPage: React.FC = () => {
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
-            <ServicesHeader categories={serviceCategories} />
+            <ServicesHeader />
             <main>
                 <ServicesHero />
                 <ServiceNavigation categories={serviceCategories} />

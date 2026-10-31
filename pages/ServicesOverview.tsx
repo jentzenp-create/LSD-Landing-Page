@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
 import ServicesHero from '../components/services/ServicesHero';
 import ServicesFooter from '../components/services/ServicesFooter';
+import { blogPosts } from '../lib/blogPosts';
 
 // Service data - extracted for reuse
 export const serviceCategories = [
@@ -214,9 +215,9 @@ export const serviceCategories = [
     },
     {
         id: 'lead-generation',
-        name: 'Lead Generation',
-        tagline: 'Fill your pipeline with qualified prospects',
-        description: 'Targeted campaigns that bring high-quality leads directly to your business.',
+        name: 'AI Sales System',
+        tagline: 'Fill your pipeline and follow up automatically',
+        description: 'Cold email with smart autoresponders, instant lead response, and AI follow-up that keeps prospects moving until they book.',
         icon: '📈',
         startingPrice: 500,
         period: 'month',
@@ -277,7 +278,7 @@ export const serviceCategories = [
         ],
         valueProps: [
             { title: 'Targeted Outreach', description: 'We find and reach your ideal customers with precision targeting.' },
-            { title: 'Warm Leads', description: 'No cold calling - we deliver prospects already interested in your services.' },
+            { title: 'Automatic Follow-Up', description: 'Autoresponders and AI follow-up keep every prospect warm without manual chasing.' },
             { title: 'Scalable Systems', description: 'Start small and scale up as your business grows.' }
         ]
     },
@@ -352,9 +353,9 @@ export const serviceCategories = [
     },
     {
         id: 'seo',
-        name: 'SEO Services',
+        name: 'AI-Powered SEO',
         tagline: 'Rank higher, get found, grow organically',
-        description: 'Search engine optimization that drives long-term sustainable traffic to your business.',
+        description: 'AI-assisted research, content, and optimization that drive long-term traffic from Google and AI search.',
         icon: '🔍',
         startingPrice: 600,
         period: 'month',
@@ -419,85 +420,145 @@ export const serviceCategories = [
     }
 ];
 
-// Service card component for the overview
-const ServiceCard: React.FC<{ service: typeof serviceCategories[0] }> = ({ service }) => {
-    const priceDisplay = service.startingPrice
-        ? `$${service.startingPrice}${service.period === 'month' ? '/mo' : ''}`
-        : 'Custom';
+const growthSystems = [
+    {
+        name: 'Sales System',
+        headline: 'Never let a lead go cold',
+        description: 'Every inquiry gets an instant reply, and every prospect gets followed up until they book.',
+        features: ['Instant lead response by text and email', 'Cold email with smart autoresponders', 'AI follow-up and pipeline automation'],
+        link: '/services/lead-generation',
+        icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+    },
+    {
+        name: 'Marketing System',
+        headline: 'Get found and stay top of mind',
+        description: 'AI does the heavy lifting on content and targeting so you show up where buyers are looking.',
+        features: ['AI-powered SEO', 'AI-powered marketing campaigns', 'Content that publishes on schedule'],
+        link: '/services/seo',
+        icon: 'M3 3v18h18M7 14l4-4 4 4 5-5',
+    },
+    {
+        name: 'Reputation System',
+        headline: 'Turn happy customers into growth',
+        description: 'Reviews, referrals, and repeat business, requested automatically at the right moment.',
+        features: ['Automated review requests', 'Past-customer reactivation', 'AI chat that answers 24/7'],
+        link: '/services/review-automation',
+        icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
+    },
+];
 
-    return (
-        <Link
-            to={`/services/${service.id}`}
-            className="group bg-white border border-black/5 rounded-3xl p-8 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1"
-        >
-            <div className="text-5xl mb-6">{service.icon}</div>
-            <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-primary transition-colors">
-                {service.name}
-            </h3>
-            <p className="text-charcoal/60 mb-6 leading-relaxed">
-                {service.tagline}
-            </p>
-            <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-sm text-charcoal/40 font-medium">Starting at</span>
-                <span className="text-2xl font-bold text-black">{priceDisplay}</span>
-            </div>
-            <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all">
-                Learn More
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </div>
-        </Link>
-    );
-};
+const processSteps = [
+    { step: '01', title: 'Audit', description: 'We map where leads come in, where they leak out, and what your team does by hand today.' },
+    { step: '02', title: 'Install', description: 'We build and connect the system to your website, inbox, phone, and CRM. You don\'t touch the tech.' },
+    { step: '03', title: 'Optimize', description: 'We watch the numbers every month and tune messages, timing, and targeting to keep improving.' },
+];
 
 const ServicesOverview: React.FC = () => {
+    const latestPosts = [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3);
+
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
-            <ServicesHeader categories={serviceCategories} />
+            <ServicesHeader />
             <main>
                 <ServicesHero />
 
-                {/* Services Grid */}
-                <section id="services" className="py-16 sm:py-24 bg-offWhite">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">
-                                Our Services
+                <section id="systems" className="py-20 sm:py-28 bg-offWhite scroll-mt-20">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                        <div className="text-center mb-14">
+                            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mb-4">
+                                Three systems. One growth engine.
                             </h2>
                             <p className="text-lg text-charcoal/60 max-w-2xl mx-auto">
-                                Explore our full suite of digital growth solutions. Click any service to see detailed pricing and features.
+                                Start with the one that fixes your biggest leak, or run all three together.
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {serviceCategories.map(service => (
-                                <ServiceCard key={service.id} service={service} />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {growthSystems.map((system) => (
+                                <Link
+                                    key={system.name}
+                                    to={system.link}
+                                    className="group flex flex-col bg-white border border-black/5 rounded-3xl p-8 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1"
+                                >
+                                    <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center mb-6">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
+                                            <path d={system.icon} />
+                                        </svg>
+                                    </div>
+                                    <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2">{system.name}</span>
+                                    <h3 className="text-2xl font-bold text-black mb-3">{system.headline}</h3>
+                                    <p className="text-charcoal/60 mb-6 leading-relaxed">{system.description}</p>
+                                    <ul className="space-y-2 mb-8">
+                                        {system.features.map((feature) => (
+                                            <li key={feature} className="flex items-start gap-2 text-sm font-medium text-charcoal/80">
+                                                <svg className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <span className="mt-auto inline-flex items-center gap-2 text-black font-semibold group-hover:gap-3 transition-all">
+                                        Learn more
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                            <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </span>
+                                </Link>
                             ))}
                         </div>
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <section className="py-16 sm:py-24 bg-black text-white">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                            Not Sure Where to Start?
-                        </h2>
-                        <p className="text-xl text-white/70 mb-8">
-                            Book a free consultation and we'll help you find the perfect solution for your business.
-                        </p>
-                        <a
-                            href="/contact"
-                            className="inline-flex items-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform"
-                        >
-                            Get Free Consultation
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </a>
+                <section id="process" className="py-20 sm:py-28 bg-white scroll-mt-20">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                        <div className="text-center mb-14">
+                            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mb-4">
+                                How it works
+                            </h2>
+                            <p className="text-lg text-charcoal/60 max-w-2xl mx-auto">
+                                You run the business. We build the machine behind it.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                            {processSteps.map((item) => (
+                                <div key={item.step} className="border-t-2 border-primary pt-6">
+                                    <span className="text-sm font-bold text-charcoal/40">{item.step}</span>
+                                    <h3 className="text-2xl font-bold text-black mt-2 mb-3">{item.title}</h3>
+                                    <p className="text-charcoal/60 leading-relaxed">{item.description}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
+
+                {latestPosts.length > 0 && (
+                    <section className="py-20 sm:py-24 bg-offWhite">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                            <div className="flex items-end justify-between gap-4 mb-10">
+                                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+                                    From the blog
+                                </h2>
+                                <Link to="/blog" className="text-sm font-bold text-charcoal/60 hover:text-black whitespace-nowrap">
+                                    All posts &rarr;
+                                </Link>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {latestPosts.map((post) => (
+                                    <Link
+                                        key={post.slug}
+                                        to={`/blog/${post.slug}`}
+                                        className="group block bg-white border border-black/5 rounded-3xl p-6 hover:border-primary/40 hover:shadow-xl transition-all"
+                                    >
+                                        <span className="text-xs font-bold uppercase tracking-wide text-primary">{post.pillar}</span>
+                                        <h3 className="text-lg font-bold text-black mt-2 mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                                        <p className="text-sm text-charcoal/60 leading-relaxed">{post.excerpt}</p>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
             </main>
             <ServicesFooter />
         </div>

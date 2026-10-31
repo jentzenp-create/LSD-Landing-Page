@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
 import ServicesFooter from '../components/services/ServicesFooter';
-import { serviceCategories } from './ServicesOverview';
 import { blogPosts } from '../lib/blogPosts';
 
 const formatDate = (iso: string) =>
@@ -18,7 +17,7 @@ const Blog: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
-            <ServicesHeader categories={serviceCategories} />
+            <ServicesHeader />
             <main>
                 {/* Hero */}
                 <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden bg-gradient-to-b from-white to-offWhite">
@@ -31,7 +30,7 @@ const Blog: React.FC = () => {
                             The Local Sun Digital Blog
                         </h1>
                         <p className="text-xl sm:text-2xl text-charcoal/60 max-w-2xl mx-auto leading-relaxed">
-                            Plain-English guides to AI and automation for local businesses — no jargon, no hype.
+                            Plain-English guides to AI, automation, and growth systems for sales and marketing.
                         </p>
                     </div>
                 </section>

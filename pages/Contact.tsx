@@ -2,12 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
-import { serviceCategories } from './ServicesOverview';
 
 const Contact: React.FC = () => {
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
-            <ServicesHeader categories={serviceCategories} />
+            <ServicesHeader />
             <main>
                 {/* Hero Section */}
                 <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden bg-gradient-to-b from-white to-offWhite">
@@ -25,7 +24,7 @@ const Contact: React.FC = () => {
                             Get in <span className="text-primary">Touch</span>
                         </h1>
                         <p className="text-lg sm:text-xl text-charcoal/60 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-                            Ready to grow your business? Schedule a free consultation or send us a message. We typically respond within 24 hours.
+                            Book a free strategy call and we'll map out the growth system that fits your business. We typically respond within 24 hours.
                         </p>
                     </div>
                 </section>
@@ -36,7 +35,7 @@ const Contact: React.FC = () => {
                         <div className="bg-offWhite rounded-3xl p-6 sm:p-10">
                             <h2 className="text-2xl font-bold text-black mb-2">Schedule a Call</h2>
                             <p className="text-charcoal/60 mb-8">
-                                Book a free 15-minute consultation to discuss your business goals and how we can help.
+                                Book a free 15-minute strategy call. We'll look at where leads come from, where they slip away, and what to automate first.
                             </p>
 
                             {/* Calendar Embed */}
@@ -99,7 +98,7 @@ const Contact: React.FC = () => {
                                         'Trusted by local businesses nationwide',
                                         'No long-term contracts required',
                                         'Transparent pricing, no hidden fees',
-                                        'Dedicated support team'
+                                        'Done-for-you setup and management'
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-center gap-3 text-white/80">
                                             <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -124,7 +123,7 @@ const Contact: React.FC = () => {
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
-                            Back to Services
+                            Back to Home
                         </Link>
                     </div>
                 </section>

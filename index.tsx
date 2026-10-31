@@ -18,11 +18,24 @@ const OnboardingAdmin = lazy(() => import('./pages/OnboardingAdmin'));
 
 // Scroll to top on route change
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    // Target section may not exist until the lazy page chunk renders
+    let tries = 0;
+    const timer = setInterval(() => {
+      const el = document.getElementById(hash.slice(1));
+      if (el || ++tries > 20) {
+        clearInterval(timer);
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+    return () => clearInterval(timer);
+  }, [pathname, hash]);
 
   return null;
 };

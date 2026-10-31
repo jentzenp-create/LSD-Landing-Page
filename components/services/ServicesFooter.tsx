@@ -12,11 +12,11 @@ const ServicesFooter: React.FC = () => {
 
                 <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-                        Ready to <span className="text-primary">Grow</span> Your Business?
+                        Ready to put growth on <span className="text-primary">autopilot</span>?
                     </h2>
                     <p className="text-white/60 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10">
-                        Not sure which services are right for you? Let's chat. We'll create a custom
-                        package tailored to your goals and budget.
+                        Book a free strategy call. We'll find where leads are slipping through and show you
+                        the system that fixes it.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -27,7 +27,7 @@ const ServicesFooter: React.FC = () => {
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                 <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                            Schedule a Call
+                            Book a Strategy Call
                         </a>
                         <a
                             href="mailto:jentzen@localsundigital.com"
@@ -35,26 +35,6 @@ const ServicesFooter: React.FC = () => {
                         >
                             Send an Email
                         </a>
-                    </div>
-
-                    {/* Trust badges */}
-                    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-white/40">
-                        <div className="flex flex-col items-center gap-2">
-                            <span className="text-3xl font-black text-white">🇺🇸</span>
-                            <span className="text-sm font-medium">Nationwide Service</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <span className="text-3xl font-black text-white">5★</span>
-                            <span className="text-sm font-medium">Average Rating</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <span className="text-3xl font-black text-white">24hr</span>
-                            <span className="text-sm font-medium">Response Time</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <span className="text-3xl font-black text-white">$0</span>
-                            <span className="text-sm font-medium">Hidden Fees</span>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -90,7 +70,7 @@ const ServicesFooter: React.FC = () => {
 
                         <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-semibold">
                             <a href="/" className="hover:text-primary transition-colors">Home</a>
-                            <a href="/#services" className="hover:text-primary transition-colors">Services</a>
+                            <a href="/#systems" className="hover:text-primary transition-colors">Growth Systems</a>
                             <a href="/blog" className="hover:text-primary transition-colors">Blog</a>
                             <a href="/contact" className="hover:text-primary transition-colors">Contact</a>
                             <a href="/terms" className="hover:text-primary transition-colors">Terms</a>

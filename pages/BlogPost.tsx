@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
 import ServicesFooter from '../components/services/ServicesFooter';
-import { serviceCategories } from './ServicesOverview';
 import { getPostBySlug, getRelatedPosts } from '../lib/blogPosts';
 
 const formatDate = (iso: string) =>
@@ -31,7 +30,7 @@ const BlogPost: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
-            <ServicesHeader categories={serviceCategories} />
+            <ServicesHeader />
             <main>
                 <article className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden bg-gradient-to-b from-white to-offWhite">
                     <div className="absolute top-1/3 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
