@@ -45,6 +45,9 @@ export default defineConfig(({ mode }) => {
           main: path.resolve(__dirname, 'index.html'),
           arcade: path.resolve(__dirname, 'arcade/index.html'),
           coverageGapChallenge: path.resolve(__dirname, 'games/coverage-gap-challenge/index.html'),
+          projectFitFinder: path.resolve(__dirname, 'games/project-fit-finder/index.html'),
+          fitnessFitCheck: path.resolve(__dirname, 'games/fitness-fit-check/index.html'),
+          loanReadinessQuest: path.resolve(__dirname, 'games/loan-readiness-quest/index.html'),
         },
         output: {
           // Minimize number of chunks for Safari (slower with many modules)

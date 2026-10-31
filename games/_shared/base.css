@@ -1,0 +1,109 @@
+/* LSD dark/gold theme + the screens every game shares (intro, lead form, result).
+   Each game's style.css @imports this and adds only its mechanic's styles. */
+:root {
+  --gold: #F2B705;
+  --gold-dim: rgba(242, 183, 5, 0.15);
+  --bg: #0E0E0E;
+  --surface: #1A1A1A;
+  --surface-2: #222222;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-gold: rgba(242, 183, 5, 0.35);
+  --text: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --text-dim: rgba(255, 255, 255, 0.35);
+  --good: #2ecc71;
+  --mid: #f2b705;
+  --bad: #ff5c5c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stage {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.screen { width: 100%; max-width: 480px; text-align: center; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-dim); border: 1px solid var(--border-gold);
+  border-radius: 99px; padding: 6px 14px;
+  font-size: 11px; font-weight: 700; color: var(--gold);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px;
+}
+
+h1.title { font-size: clamp(26px, 6vw, 36px); font-weight: 900; margin-bottom: 14px; letter-spacing: -0.01em; }
+p.sub { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 28px; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--gold); color: #000; font-weight: 800; font-size: 15px;
+  padding: 14px 30px; border-radius: 99px; border: none; cursor: pointer;
+  font-family: inherit; text-decoration: none; transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn-primary:hover { transform: scale(1.03); }
+.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+.progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 22px; }
+.progress-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.progress-dot.done { background: var(--gold); }
+.progress-dot.active { background: var(--gold); box-shadow: 0 0 0 3px var(--gold-dim); }
+
+.answers { display: flex; flex-direction: column; gap: 10px; }
+.answer-btn {
+  width: 100%; text-align: left; padding: 14px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; color: var(--text); font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.answer-btn:hover { border-color: var(--border-gold); }
+
+.lead-form { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+.lead-form input {
+  width: 100%; padding: 13px 16px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--surface); color: #fff; font-size: 14px;
+  font-family: inherit;
+}
+.lead-form input:focus { outline: none; border-color: var(--border-gold); }
+.skip-note { font-size: 12px; color: var(--text-dim); text-align: center; margin-top: 14px; line-height: 1.5; }
+
+.gauge { width: 160px; height: 160px; margin: 0 auto 20px; position: relative; }
+.gauge svg { transform: rotate(-90deg); }
+.gauge-score { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 900; }
+
+.findings-list { text-align: left; display: flex; flex-direction: column; gap: 10px; margin: 24px 0; }
+.finding-row { display: flex; gap: 10px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+.finding-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+.finding-dot.sev-0 { background: var(--good); }
+.finding-dot.sev-1 { background: var(--mid); }
+.finding-dot.sev-2 { background: var(--bad); }
+.finding-text .area { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+.finding-text .detail { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+.recommendation {
+  background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+  border: 1px solid var(--border-gold); border-radius: 16px; padding: 20px 22px; margin-bottom: 24px; text-align: left;
+}
+.recommendation .label { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.recommendation .rec-title { font-size: 16px; font-weight: 800; }
+
+.result-extra {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px 20px; margin: 4px 0 20px; text-align: left;
+}
+.result-extra .label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.result-extra .value { font-size: 22px; font-weight: 900; color: var(--gold); }
+.result-extra .note { font-size: 12px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }

@@ -16,14 +16,14 @@ hand-building a new engine per client.
 |---|----------|-----------|----------|--------|
 | 1 | Business automation (generic) | Bottleneck Busters | Platformer | **Live** — `arcade/` |
 | 2 | Financial advisory / wealth mgmt | Financial Clarity Quest | Branching story | Built in AOD repo (not here) |
-| 3 | Insurance (life/health) | Coverage Gap Challenge | Card-reveal / flip-match | Not started |
+| 3 | Insurance (life/health) | Coverage Gap Challenge | Card-reveal / flip-match | **Built** — `games/coverage-gap-challenge/` |
 | 4 | Real estate (buyers/investors) | Home Readiness Quest | Progress-map journey | Not started |
-| 5 | Home services (roofing, solar, remodel) | Project Fit Finder | Interactive calculator | Not started |
+| 5 | Home services (roofing, solar, remodel) | Project Fit Finder | Interactive calculator | **Built** — `games/project-fit-finder/` |
 | 6 | Legal (estate planning, injury) | Case Clarity Quiz | Scorecard / gauge | Not started |
-| 7 | Fitness / wellness / gyms | Fitness Fit Check | Swipe-card sorter | Not started |
+| 7 | Fitness / wellness / gyms | Fitness Fit Check | Swipe-card sorter | **Built** — `games/fitness-fit-check/` |
 | 8 | Marketing agencies / B2B SaaS | Growth Readiness Quest | Build-your-own | Not started |
 | 9 | Med spa / dental / aesthetics | Confidence Assessment | Spin-wheel + reveal | Not started |
-| 10 | Mortgage / lending | Loan Readiness Quest | Tier-unlock challenge | Not started |
+| 10 | Mortgage / lending | Loan Readiness Quest | Tier-unlock challenge | **Built** — `games/loan-readiness-quest/` |
 | 11 | HR / recruiting / staffing | Culture Fit Challenge | Trivia challenge | Not started |
 
 Build order: ship the 2-3 verticals where there's already a client relationship first
@@ -37,6 +37,9 @@ games/
   _shared/
     types.ts         shared contracts every vertical's content config implements
     leads.ts          generic "send this lead to GHL" helper (no game-specific state)
+    env.ts            iframe/source detection, session ids, severity -> 0-100 score
+    ui.ts             the screens every game ends on: lead form, gauge, result
+    base.css          LSD theme + styles for those shared screens (@import it)
   <vertical-slug>/     one real game build, e.g. games/coverage-gap-challenge/
     config.ts          webhook URL, constants (mirrors arcade/config.ts)
     content.ts          the industry-specific copy/questions/scoring (mirrors arcade/content.ts)
@@ -53,7 +56,14 @@ Each mechanic (platformer, card-reveal, calculator, etc.) needs its own engine �
 the real build cost per *mechanic*, not per vertical. Once a mechanic's engine exists,
 reskinning it for a new vertical should mostly mean writing a new `content.ts`, not new
 engine code. `_shared/` only holds things that are truly identical across every mechanic
-(lead delivery, shared types) — don't put mechanic-specific logic there.
+(lead delivery, shared types, the lead-form and result screens) — don't put
+mechanic-specific logic there. A game's `main.ts` owns its intro and mechanic, then hands
+off to `renderLeadForm` / `renderResult`; its `style.css` starts with
+`@import '../_shared/base.css';` and adds only the mechanic's styles.
+
+Every game scores the same way: each answer carries a severity (0 = fine, 1 = worth a
+look, 2 = real gap), and `scoreFromSeverities` maps the average onto 0-100. That keeps
+the GHL payload, the gauge colors, and the score bands identical across verticals.
 
 ### URL split: `/games/<slug>` vs `/play/<slug>`
 
@@ -89,8 +99,17 @@ looks like one product line, not ten one-offs.
 4. Vercel rewrites for `/games/:slug` and `/play/:slug` are already generic — a new slug
    needs no new rewrite rule, just the files in the right place.
 
+## Before a game goes live
+
+- Paste the client's GHL inbound-webhook URL into that game's `config.ts` (all four built
+  games ship with it empty, so leads are only logged to the console).
+- Swap the mailto CTA in `renderResult` options for the client's booking link.
+- Have the client review `content.ts` — the findings are written as general education,
+  not advice, and the mortgage and insurance copy in particular should be checked
+  against their compliance rules.
+
 ## Next step
 
-Pick the first new vertical to prototype (recommend the one with a live client interested
-now) and build its mechanic end-to-end — that's the real template; everything after is
-reskinning.
+Five mechanics are left (progress-map, scorecard/gauge, build-your-own, spin-wheel,
+trivia). Several of the built engines can already be reskinned for those verticals in
+the meantime — e.g. the tier-unlock engine fits real estate, the card-flip fits legal.

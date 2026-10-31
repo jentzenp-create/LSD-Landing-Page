@@ -104,9 +104,11 @@
     .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
 
     /* ── PLAY FRAME ── the embedded game lives here, same iframe pattern arcade uses */
-    .play-frame-wrap { max-width: 900px; margin: 0 auto; }
+    /* Fixed height, not an aspect ratio: the games are tall, phone-shaped screens,
+       and 16:10 on a 375px phone leaves ~230px to play in. */
+    .play-frame-wrap { max-width: 640px; margin: 0 auto; }
     .play-frame {
-      position: relative; width: 100%; aspect-ratio: 16 / 10;
+      position: relative; width: 100%; height: min(820px, 88vh);
       background: var(--surface); border: 1px solid var(--border-gold);
       border-radius: var(--radius-card); overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);

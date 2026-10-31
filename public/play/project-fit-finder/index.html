@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Fit Finder | Local Sun Digital</title>
+  <meta name="description" content="Build a live ballpark estimate for your roof, solar, remodel, or HVAC project and get a project-fit score in 60 seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,14,14,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+    }
+    nav img { height: 44px; object-fit: contain; }
+    .nav-label { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.04em; }
+    .nav-label span { color: var(--gold); }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    .hero { position: relative; overflow: hidden; padding: 90px 24px 70px; text-align: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    h1 { font-size: clamp(34px, 6vw, 68px); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 22px; color: #fff; }
+    h1 .gold { color: var(--gold); }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); font-weight: 500; color: var(--text-muted); max-width: 560px; margin: 0 auto 36px; line-height: 1.65; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 44px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+
+    .play-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000; font-size: 17px; font-weight: 800;
+      padding: 18px 44px; border-radius: 99px; text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .play-cta:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+    .play-cta-note { font-size: 13px; color: var(--text-dim); margin-top: 14px; }
+
+    .section { padding: 72px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 580px; }
+    .section-header { margin-bottom: 44px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 30px; }
+    .icon-wrap {
+      width: 46px; height: 46px; background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+    .card-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    .play-frame-wrap { max-width: 640px; margin: 0 auto; }
+    .play-frame {
+      position: relative; width: 100%; height: min(820px, 88vh);
+      background: var(--surface); border: 1px solid var(--border-gold);
+      border-radius: var(--radius-card); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .play-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    .reveal-card {
+      background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 36px; max-width: 640px; margin: 0 auto;
+    }
+    .reveal-label { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .reveal-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .reveal-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    .cta-section { background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%); border-top: 1px solid var(--border-gold); padding: 90px 24px; text-align: center; }
+    .cta-title { font-size: clamp(26px, 5vw, 46px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 16px; color: var(--text-muted); margin-bottom: 36px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted);
+      font-size: 15px; font-weight: 600; text-decoration: none; transition: color 0.2s ease; margin-top: 18px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1000px; margin: 0 auto;
+    }
+    footer img { height: 32px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 64px 16px 50px; }
+      .section { padding: 56px 0; }
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <img src="./LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">A game by <span>Local Sun Digital</span></span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-dot"></div>
+    Home Projects · 60 Second Calculator
+  </div>
+  <h1>Know your <span class="gold">real project number</span> before the first quote</h1>
+  <p class="hero-sub">Pick your project, slide in a few details, and watch a ballpark price build live. Finish with a project-fit score and what to line up before a contractor walks through the door.</p>
+  <div class="badge-row">
+    <span class="badge">Live Ballpark Estimate</span>
+    <span class="badge">Budget Fit Check</span>
+    <span class="badge">Project Readiness Score</span>
+  </div>
+  <a href="#play" class="play-cta">
+    Play Project Fit Finder
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+  </a>
+  <p class="play-cta-note">Takes about 60 seconds · No account needed</p>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">What You'll Discover</div>
+      <h2 class="section-title">A price range and a game plan</h2>
+      <p class="section-sub">Most homeowners call three contractors without knowing what the job should cost or what will slow it down. This tells you both — before anyone's on your roof.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="card-title">Ballpark Price</div>
+        <p class="card-body">A live low-to-high range for your project type and home size, built from national averages.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="card-title">Budget Fit</div>
+        <p class="card-body">Whether your budget covers the job, sits at the low end, or needs financing or a phased scope.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="card-title">Hidden Delays</div>
+        <p class="card-body">Age-related surprises, HOA approvals, and scheduling windows that push projects back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="play">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Play Now</div>
+      <h2 class="section-title">Project Fit Finder</h2>
+    </div>
+    <div class="play-frame-wrap">
+      <div class="play-frame">
+        <iframe src="/games/project-fit-finder/?src=web" title="Project Fit Finder"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Your Result</div>
+      <h2 class="section-title">A real score, not a sales pitch</h2>
+    </div>
+    <div class="reveal-card">
+      <div class="reveal-label">Sample Result</div>
+      <div class="reveal-title">Project Fit: 50/100 — "Close — a few things to line up"</div>
+      <p class="reveal-body">Roof replacement, 2,000 sq ft: $10,000 – $16,000. Best next step: Free roof inspection — at 22 years, the roof is at or past end of life. Plus your budget fit, timeline, financing, and decision-maker findings, ranked by what matters most.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Sixty seconds to your real number</h2>
+    <p class="cta-sub">No sales call required — just your estimate and what it means.</p>
+    <a href="#play" class="play-cta">
+      Play Project Fit Finder
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+    </a>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Project Fit Finder - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="./LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Project Fit Finder</span>
+</footer>
+
+</body>
+</html>
