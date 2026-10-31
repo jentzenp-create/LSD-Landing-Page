@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
 import ServicesFooter from '../components/services/ServicesFooter';
-import { blogPosts } from '../lib/blogPosts';
+import { getPublishedPosts } from '../lib/blogPosts';
 
 const formatDate = (iso: string) =>
     new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
@@ -13,7 +13,7 @@ const formatDate = (iso: string) =>
     });
 
 const Blog: React.FC = () => {
-    const sorted = [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
+    const sorted = getPublishedPosts();
 
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">

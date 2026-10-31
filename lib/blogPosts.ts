@@ -115,8 +115,21 @@ export const blogPosts: BlogPost[] = [
     },
 ];
 
+// Visitor's local date as YYYY-MM-DD, so a post goes live at local midnight on its date
+const todayIso = (): string => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+
+export const getPublishedPosts = (): BlogPost[] => {
+    const today = todayIso();
+    return blogPosts
+        .filter((p) => p.date <= today)
+        .sort((a, b) => (a.date < b.date ? 1 : -1));
+};
+
 export const getPostBySlug = (slug: string): BlogPost | undefined =>
-    blogPosts.find((p) => p.slug === slug);
+    getPublishedPosts().find((p) => p.slug === slug);
 
 export const getRelatedPosts = (slug: string, limit = 2): BlogPost[] =>
-    blogPosts.filter((p) => p.slug !== slug).slice(0, limit);
+    getPublishedPosts().filter((p) => p.slug !== slug).slice(0, limit);

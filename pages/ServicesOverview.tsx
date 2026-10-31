@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
 import ServicesHero from '../components/services/ServicesHero';
 import ServicesFooter from '../components/services/ServicesFooter';
-import { blogPosts } from '../lib/blogPosts';
+import { getPublishedPosts } from '../lib/blogPosts';
 
 // Service data - extracted for reuse
 export const serviceCategories = [
@@ -454,7 +454,7 @@ const processSteps = [
 ];
 
 const ServicesOverview: React.FC = () => {
-    const latestPosts = [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3);
+    const latestPosts = getPublishedPosts().slice(0, 3);
 
     return (
         <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-black">
