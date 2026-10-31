@@ -46,7 +46,7 @@ const OnboardingAdmin: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-2xl font-bold text-black mb-1">Onboarding Sessions</h1>
         <p className="text-charcoal/60 mb-8 text-sm">
-          Responses from client AI onboarding interviews. This page has no login — keep its URL private.
+          Responses from client AI onboarding interviews. This page has no login, so keep its URL private.
         </p>
 
         {loading && <p className="text-charcoal/60">Loading...</p>}

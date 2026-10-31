@@ -3,6 +3,7 @@ import './index.css';
 import React, { Suspense, lazy, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 
 // Lazy load pages for code-splitting
 const ServicesOverview = lazy(() => import('./pages/ServicesOverview'));
@@ -68,6 +69,7 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
+    <MotionConfig reducedMotion="user">
     <BrowserRouter basename="/">
       <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
@@ -94,5 +96,6 @@ root.render(
         </Routes>
       </Suspense>
     </BrowserRouter>
+    </MotionConfig>
   </React.StrictMode>
 );

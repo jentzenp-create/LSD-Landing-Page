@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { ScrollProgress } from './Motion';
 
 const navLinks = [
     { label: 'Growth Systems', to: '/#systems' },
@@ -25,27 +26,18 @@ const ServicesHeader: React.FC = () => {
 
     return (
         <>
+            <ScrollProgress />
             <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-black/5' : 'bg-transparent'
                 }`}>
                 <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-                    <Link to="/" className="flex items-center gap-2 group">
-                        <svg width="36" height="36" viewBox="0 0 100 100" className="fill-primary transition-transform group-hover:scale-110">
-                            <circle cx="50" cy="50" r="20" />
-                            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-                                <rect
-                                    key={angle}
-                                    x="47"
-                                    y="15"
-                                    width="6"
-                                    height="15"
-                                    rx="3"
-                                    transform={`rotate(${angle} 50 50)`}
-                                />
-                            ))}
-                        </svg>
-                        <span className="font-bold text-lg sm:text-xl tracking-tight uppercase text-black">
-                            Local Sun <span className="text-primary">Digital</span>
-                        </span>
+                    <Link to="/" className="flex items-center group" aria-label="Local Sun Digital home">
+                        <img
+                            src="/logo-dark.png"
+                            alt="Local Sun Digital"
+                            width={1405}
+                            height={427}
+                            className="h-9 sm:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                        />
                     </Link>
 
                     <div className="hidden md:flex items-center gap-8">
@@ -64,7 +56,7 @@ const ServicesHeader: React.FC = () => {
                     <div className="flex items-center gap-3">
                         <Link
                             to="/contact"
-                            className="hidden sm:inline-flex bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-black/10"
+                            className="btn-shine hidden sm:inline-flex bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 hover:shadow-primary/30 transition-all active:scale-95 shadow-lg shadow-black/10"
                         >
                             Book a Call
                         </Link>

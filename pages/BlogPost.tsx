@@ -68,7 +68,7 @@ const BlogPost: React.FC = () => {
                                 Want this running in your business?
                             </h2>
                             <p className="text-white/60 mb-6 max-w-xl mx-auto">
-                                We'll show you exactly where automation can save your team time — no pressure, no tech jargon.
+                                We'll show you exactly where automation can save your team time. No pressure, no tech jargon.
                             </p>
                             <Link
                                 to="/contact"
