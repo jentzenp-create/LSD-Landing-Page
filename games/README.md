@@ -17,14 +17,14 @@ hand-building a new engine per client.
 | 1 | Business automation (generic) | Bottleneck Busters | Platformer | **Live** — `arcade/` |
 | 2 | Financial advisory / wealth mgmt | Financial Clarity Quest | Branching story | Built in AOD repo (not here) |
 | 3 | Insurance (life/health) | Coverage Gap Challenge | Card-reveal / flip-match | **Built** — `games/coverage-gap-challenge/` |
-| 4 | Real estate (buyers/investors) | Home Readiness Quest | Progress-map journey | Not started |
+| 4 | Real estate (buyers/investors) | Home Readiness Quest | Progress-map journey | **Built** — `games/home-readiness-quest/` |
 | 5 | Home services (roofing, solar, remodel) | Project Fit Finder | Interactive calculator | **Built** — `games/project-fit-finder/` |
 | 6 | Legal (estate planning, injury) | Case Clarity Quiz | Scorecard / gauge | Not started |
 | 7 | Fitness / wellness / gyms | Fitness Fit Check | Swipe-card sorter | **Built** — `games/fitness-fit-check/` |
 | 8 | Marketing agencies / B2B SaaS | Growth Readiness Quest | Build-your-own | Not started |
-| 9 | Med spa / dental / aesthetics | Confidence Assessment | Spin-wheel + reveal | Not started |
+| 9 | Med spa / dental / aesthetics | Confidence Assessment | Spin-wheel + reveal | **Built** — `games/confidence-assessment/` |
 | 10 | Mortgage / lending | Loan Readiness Quest | Tier-unlock challenge | **Built** — `games/loan-readiness-quest/` |
-| 11 | HR / recruiting / staffing | Culture Fit Challenge | Trivia challenge | Not started |
+| 11 | HR / recruiting / staffing | Culture Fit Challenge | Trivia challenge | **Built** — `games/culture-fit-challenge/` |
 
 Build order: ship the 2-3 verticals where there's already a client relationship first
 (real case-study data beats a portfolio of demos), then back-fill the rest.
@@ -101,15 +101,23 @@ looks like one product line, not ten one-offs.
 
 ## Before a game goes live
 
-- Paste the client's GHL inbound-webhook URL into that game's `config.ts` (all four built
-  games ship with it empty, so leads are only logged to the console).
+- Paste the client's GHL inbound-webhook URL into that game's `config.ts` (every built
+  game ships with it empty, so leads are only logged to the console).
 - Swap the mailto CTA in `renderResult` options for the client's booking link.
 - Have the client review `content.ts` — the findings are written as general education,
-  not advice, and the mortgage and insurance copy in particular should be checked
-  against their compliance rules.
+  not advice. Mortgage, insurance, and med-spa copy in particular should be checked
+  against their compliance rules, and Confidence Assessment's `OFFER` must be an offer
+  the client actually honors (set it to `''` to hide it).
+- Culture Fit Challenge's trivia cites published stats (DOL, Gallup, Brandon Hall Group);
+  re-check them yearly, and cite a source for any round you add.
+
+## Animation rule
+
+Anything the player must wait on (a token driving the map, the trivia clock running out)
+needs a `setTimeout` fallback next to its `requestAnimationFrame` loop. rAF pauses in
+background tabs and hidden iframes, and without the fallback the game stalls there.
 
 ## Next step
 
-Five mechanics are left (progress-map, scorecard/gauge, build-your-own, spin-wheel,
-trivia). Several of the built engines can already be reskinned for those verticals in
-the meantime — e.g. the tier-unlock engine fits real estate, the card-flip fits legal.
+Two mechanics are left: scorecard/gauge (legal) and build-your-own (agencies / B2B).
+Until they exist, the card-flip engine reskins cleanly for legal.
