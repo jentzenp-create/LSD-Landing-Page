@@ -52,6 +52,16 @@ const Blog: React.FC = () => {
                                         onMouseMove={trackSpotlight}
                                         className="spotlight-card group block h-full bg-white border border-black/5 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                                     >
+                                        {post.image && (
+                                            <div className="-mx-6 -mt-6 sm:-mx-8 sm:-mt-8 mb-6 overflow-hidden rounded-t-3xl aspect-[16/9]">
+                                                <img
+                                                    src={post.image}
+                                                    alt=""
+                                                    loading="lazy"
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                />
+                                            </div>
+                                        )}
                                         <span className="inline-block text-xs font-bold uppercase tracking-wide text-primary mb-3">
                                             {post.pillar}
                                         </span>

@@ -1,9 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import ServicesHeader from '../components/services/ServicesHeader';
 import ServicesFooter from '../components/services/ServicesFooter';
 import { getPostBySlug, getRelatedPosts } from '../lib/blogPosts';
+import { loadPostContent } from '../lib/blogContent';
 
 const formatDate = (iso: string) =>
     new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
@@ -15,11 +16,19 @@ const formatDate = (iso: string) =>
 const BlogPost: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const post = slug ? getPostBySlug(slug) : undefined;
+    const [html, setHtml] = useState<string | null>(null);
 
     useEffect(() => {
-        if (post) {
-            document.title = `${post.title} | Local Sun Digital`;
-        }
+        if (!post) return;
+        document.title = `${post.title} | Local Sun Digital`;
+        let active = true;
+        setHtml(null);
+        loadPostContent(post.slug).then((content) => {
+            if (active) setHtml(content ?? '');
+        });
+        return () => {
+            active = false;
+        };
     }, [post]);
 
     if (!post) {
@@ -56,11 +65,23 @@ const BlogPost: React.FC = () => {
                         </h1>
                         <p className="text-charcoal/40 font-semibold mb-10">{formatDate(post.date)}</p>
 
-                        <div className="prose-custom space-y-6 text-lg text-charcoal/80 leading-relaxed">
-                            {post.content.map((paragraph, i) => (
-                                <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />
-                            ))}
-                        </div>
+                        {post.image && (
+                            <img
+                                src={post.image}
+                                alt=""
+                                className="w-full aspect-[16/9] object-cover rounded-3xl mb-10 shadow-xl shadow-black/10"
+                            />
+                        )}
+
+                        {html === null ? (
+                            <div className="space-y-4 animate-pulse" aria-label="Loading article">
+                                {[0, 1, 2, 3].map((i) => (
+                                    <div key={i} className="h-4 bg-black/5 rounded w-full" />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="blog-prose" dangerouslySetInnerHTML={{ __html: html }} />
+                        )}
 
                         {/* Inline CTA */}
                         <div className="mt-14 bg-black rounded-3xl p-8 sm:p-10 text-center">

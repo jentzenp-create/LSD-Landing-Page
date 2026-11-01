@@ -1,3 +1,5 @@
+// Post metadata. Each article body is written in Wordform and pasted into
+// content/blog/<slug>.html (see lib/blogContent.ts).
 export interface BlogPost {
     slug: string;
     title: string;
@@ -7,7 +9,7 @@ export interface BlogPost {
     metaDescription: string;
     keyword: string;
     relatedServiceId?: string;
-    content: string[]; // paragraphs/HTML strings, rendered as-is
+    image?: string; // featured image URL from Wordform
 }
 
 export const pillars = [
@@ -21,97 +23,58 @@ export const pillars = [
 export const blogPosts: BlogPost[] = [
     {
         slug: 'cold-email-with-autoresponders',
-        title: 'Cold Email That Actually Gets Replies: Outreach + Autoresponders',
-        excerpt: "Most cold email fails on follow-up, not the first message. Here's how a simple autoresponder system turns outreach into booked calls.",
+        title: 'Cold Email with Autoresponders: How to Book More Sales Calls on Autopilot',
+        excerpt: "Most replies come from the second, third, or fourth email, not the first. Here's how to build an autoresponder sequence that books calls while you run your business.",
         pillar: 'Automation in Practice',
         date: '2026-10-30',
-        metaDescription: 'How cold email outreach paired with autoresponders and automated follow-up turns cold prospects into booked sales calls for service businesses.',
-        keyword: 'cold email autoresponder',
+        metaDescription: 'How to build a cold email autoresponder sequence that books sales calls on autopilot: timing, copy, exit rules, metrics, and the mistakes that kill reply rates.',
+        keyword: 'cold email autoresponders',
         relatedServiceId: 'lead-generation',
-        content: [
-            "Cold email has a reputation problem. Most people picture a generic blast that lands in spam and gets ignored. Done that way, it deserves the reputation. Done as a system, it's one of the most predictable ways a service business can fill its calendar.",
-            "The difference is almost never the first email. It's what happens after. Most replies come from the second, third, or fourth touch, and most businesses never send them because following up by hand with hundreds of prospects is impossible to keep up with.",
-            "<strong>Start with a tight list.</strong> A smaller list of the right businesses beats a giant list of maybe-fits. We build lists around a specific industry, location, and size, so every message can speak to a problem that prospect actually has.",
-            "<strong>Write like a person, not a brochure.</strong> Short, specific, and about them. One clear question at the end. AI helps here by researching each prospect and personalizing an opening line, but a human still sets the angle and the offer.",
-            "<strong>Let the autoresponders carry the follow-up.</strong> A sequence of three to five messages spaced a few days apart goes out automatically and stops the moment someone replies. Nobody on your team has to remember who to chase.",
-            "<strong>Respond to replies instantly.</strong> When a prospect writes back interested, the system can send your booking link right away and alert you. A warm reply that waits a day often goes cold again.",
-            "<strong>Protect your sending reputation.</strong> Separate sending domains, warmed-up inboxes, and sensible daily limits keep your messages out of spam and your main business email safe.",
-            "Put together, that's not a one-off campaign. It's a sales system that runs every week. If you want to see what that would look like for your market, it's part of our <a href=\"/services/lead-generation\">AI Sales System</a>, and we're happy to <a href=\"/contact\">walk you through it</a>.",
-        ],
+        image: 'https://storage.googleapis.com/wordformai-images/dimg/50bd2bab-7865-4374-9eff-42d0893aa2de.jpg',
     },
     {
         slug: 'ai-powered-seo',
-        title: 'AI-Powered SEO: What Changed and What Still Works',
-        excerpt: "AI didn't kill SEO. It changed where people search and what ranks. Here's what local businesses should focus on now.",
+        title: 'AI-Powered SEO: How Small Businesses Get Found on Google and in AI Search',
+        excerpt: 'Your next customer might ask ChatGPT instead of Google. Here are seven AI-powered SEO strategies that help small businesses show up in both.',
         pillar: 'AI-Powered Marketing',
         date: '2026-10-28',
-        metaDescription: 'How AI is changing SEO for local businesses, what still drives rankings, and how AI-powered SEO helps you show up in Google and AI search answers.',
+        metaDescription: 'Seven AI-powered SEO strategies that help small businesses get found on Google, in Google AI Overviews, and in AI search tools like ChatGPT and Perplexity.',
         keyword: 'AI-powered SEO',
         relatedServiceId: 'seo',
-        content: [
-            "Every few months someone announces that SEO is dead because people ask AI tools instead of searching. The reality is less dramatic: people still search, they now also ask AI assistants, and both reward the same thing. Clear, trustworthy, specific information about what you do and where you do it.",
-            "What has changed is the speed and scale of the work. Keyword research, competitor gap analysis, content outlines, and on-page fixes that used to take days can now be done in hours with AI doing the first pass. That frees time for the parts that need judgment.",
-            "<strong>Your Google Business Profile still matters most locally.</strong> Accurate categories, services, photos, and a steady flow of fresh reviews are still the fastest way to show up in the map results for nearby searches.",
-            "<strong>Answer real questions on your site.</strong> AI search tools pull from pages that answer questions directly. A page that clearly explains your services, pricing approach, service area, and common questions is more likely to be cited than a page of vague marketing language.",
-            "<strong>Publish consistently, edit like a human.</strong> AI makes it easy to produce content. It doesn't make it easy to produce content worth reading. The winning approach is AI-assisted drafts, edited for accuracy and voice, published on a steady schedule.",
-            "<strong>Fix the technical basics.</strong> Fast pages, mobile-friendly layouts, clean titles and descriptions, and structured data help both search engines and AI tools understand your business.",
-            "AI-powered SEO isn't a trick. It's doing the fundamentals faster and more consistently than your competitors. That's how we approach our <a href=\"/services/seo\">AI-Powered SEO</a> work, and this blog is part of that same system.",
-        ],
+        image: 'https://storage.googleapis.com/wordformai-images/dimg/554870bd-0fd4-43da-baf7-00b8c5853c3c.jpg',
     },
     {
         slug: 'ai-powered-marketing-campaigns',
-        title: 'How AI-Powered Marketing Campaigns Work (Without the Hype)',
-        excerpt: 'AI can write, target, and test campaigns faster than any team. The trick is pointing it at the right goal. Here is the practical version.',
+        title: 'AI-Powered Marketing Campaigns: A Practical Guide for Service Businesses',
+        excerpt: 'AI marketing is now affordable for a five-truck plumbing company. Here is a four-step way to launch your first AI campaign and the mistakes that waste money.',
         pillar: 'AI-Powered Marketing',
         date: '2026-10-26',
-        metaDescription: 'A practical look at AI-powered marketing campaigns for service businesses: where AI helps with copy, targeting, and testing, and where people still matter.',
+        metaDescription: 'A practical guide to AI-powered marketing campaigns for service businesses: the core tools, a four-step launch plan, costly mistakes, and the metrics that matter.',
         keyword: 'AI-powered marketing campaigns',
         relatedServiceId: 'ai-automation',
-        content: [
-            "\"AI-powered marketing\" gets attached to almost everything now. Strip away the buzzwords and it comes down to three jobs AI is genuinely good at: producing variations, finding patterns, and doing repetitive work on schedule.",
-            "<strong>Variations.</strong> A campaign used to launch with one or two versions of an ad or email because writing more took too long. AI can draft a dozen angles in minutes. You pick the strongest, test them against each other, and let real results decide.",
-            "<strong>Patterns.</strong> Ad platforms and email tools now use AI to learn who responds and adjust targeting and send times automatically. That works best when you feed it a clear goal, like booked calls rather than clicks, and enough data to learn from.",
-            "<strong>Repetition.</strong> Seasonal promotions, reactivation emails to past customers, follow-ups after a quote. These are campaigns most businesses mean to run and never get to. Automated, they run every time without anyone remembering.",
-            "Where people still matter: choosing the offer, knowing the customer, and deciding what the business actually stands for. AI is a fast assistant, not a strategist. Campaigns built on a weak offer just fail faster.",
-            "The campaigns that work best connect to the rest of your system. An ad brings in a lead, an instant reply goes out, follow-up runs until they book, and a review request goes out after the job. That's the growth system we install. <a href=\"/contact\">Book a strategy call</a> and we'll show you where to start.",
-        ],
+        image: 'https://storage.googleapis.com/wordformai-images/dimg/c753432a-be70-4885-bd89-a4f154588011.jpg',
     },
     {
         slug: 'what-is-an-ai-agent',
-        title: 'What Is an AI Agent, Actually? (No Jargon)',
-        excerpt: "Every software vendor is suddenly selling \"AI agents.\" Here's what the term actually means for a local business, stripped of the hype.",
+        title: 'What Is an AI Agent? A Plain-English Guide for Business Owners',
+        excerpt: "A chatbot answers questions. An AI agent gets things done. Here's how agents work, the five common types, and how to start with one safely.",
         pillar: 'AI Demystified',
         date: '2026-11-02',
-        metaDescription: "A plain-English explanation of what an AI agent is, how it differs from a chatbot, and where local businesses actually see value from one.",
+        metaDescription: 'A plain-English guide to AI agents for business owners: what they are, how they differ from chatbots and automation, common types, and how to get started.',
         keyword: 'what is an AI agent',
         relatedServiceId: 'review-automation',
-        content: [
-            "If you've scrolled past one more ad promising an \"AI agent\" that will run your business for you, you're not alone in wondering what that actually means. The term gets used for everything from a chatbot widget to a fully autonomous system, which makes it easy to ignore. It shouldn't be.",
-            "In plain terms, an AI agent is software that can take an action on its own, not just answer a question. A chatbot tells a customer your hours. An agent books the appointment, sends the confirmation, and follows up if they don't show. The difference is the word \"agent\": it acts, it doesn't just respond.",
-            "For a local business, that distinction matters because it's where the time savings actually live. Answering questions is a convenience. Taking action, like requesting a review after a job closes, following up with a lead who went quiet, or rescheduling a no-show, is what used to require a person remembering to do it at the right moment.",
-            "That's also why this isn't science fiction or something only enterprise companies can afford. The systems doing this today are often simple: a trigger (a job marked complete, a form submitted, a missed call) connected to an action (send a text, update a record, notify a human). The \"AI\" part is usually just making the message sound like a person wrote it.",
-            "The honest caveat: an agent is only as good as the process behind it. If your follow-up process today is \"whoever remembers to do it,\" automating that inconsistency just makes the inconsistency faster. The businesses getting real value start by mapping the repetitive step they already do by hand, then let an agent handle the parts of it that don't need judgment.",
-            "That's exactly the kind of system we build into our <a href=\"/services/review-automation\">review automation</a> and ongoing automation work. Not a generic chatbot, but something that takes the specific, repetitive action your business needs taken, on time, every time.",
-        ],
+        image: 'https://storage.googleapis.com/wordformai-images/dimg/0cf7b302-2359-4546-96b2-4c2b6812015d.jpg',
     },
     {
         slug: 'automate-front-desk-tasks',
-        title: '5 Tasks Your Front Desk Can Automate This Month',
-        excerpt: "Your front desk (or you) is doing a handful of repetitive tasks every single day that don't need a human. Here's where to start.",
+        title: '7 Front Desk Tasks Your Service Business Can Automate This Month',
+        excerpt: 'Every missed call is a customer calling your competitor next. Here are seven front desk tasks to automate, and the order to roll them out in.',
         pillar: 'Automation in Practice',
         date: '2026-11-05',
-        metaDescription: "Five specific front-desk and admin tasks local businesses can automate this month, with no technical background required.",
+        metaDescription: 'Seven front desk tasks service businesses can automate this month, from booking and call handling to reminders, payments, and intake, plus a four-week rollout plan.',
         keyword: 'automate front desk tasks',
         relatedServiceId: 'review-automation',
-        content: [
-            "Most local businesses don't need \"AI transformation.\" They need five fewer things to remember to do by hand every day. Here's where we'd start, in order of how fast each one pays for itself.",
-            "<strong>1. Review requests.</strong> If a review request depends on someone remembering to send it after every job, it's not getting sent consistently. An automated request that fires the moment a job is marked complete, by text and email, closes that gap without anyone lifting a finger.",
-            "<strong>2. Appointment reminders and confirmations.</strong> No-shows are expensive and almost entirely preventable with a reminder sent at the right interval: 24 hours out, then 2 hours out. This is one of the easiest automations to set up and one of the fastest to show up on the bottom line.",
-            "<strong>3. New lead follow-up.</strong> The data is consistent across industries: a lead contacted within 5 minutes converts dramatically better than one contacted an hour later. Nobody's front desk can hit that window consistently by hand. An automated first-touch text or email can.",
-            "<strong>4. Missed call text-back.</strong> Every missed call is a potential customer who's now calling your competitor. A system that automatically texts a missed caller within seconds (\"Sorry we missed you! How can we help?\") recovers leads that would otherwise just vanish.",
-            "<strong>5. Reactivation of old leads.</strong> Most businesses have a list of people who inquired, got quoted, and went quiet. An automated nurture sequence that reaches back out periodically turns a chunk of that \"dead\" list back into booked jobs, with zero manual outreach.",
-            "None of these require replacing your team. They require removing the parts of the job that are pure repetition so your team can focus on the parts that need a person. If you want to see what this looks like specifically for your business, that's exactly what we map out in a <a href=\"/contact\">free automation audit</a>.",
-        ],
+        image: 'https://storage.googleapis.com/wordformai-images/dimg/440c4a9c-c3d3-4d4f-aba2-91136918a5bb.jpg',
     },
 ];
 
