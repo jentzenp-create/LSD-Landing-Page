@@ -8,6 +8,12 @@
       "port": 3000
     },
     {
+      "name": "build-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "preview", "--port", "4173"],
+      "port": 4173
+    },
+    {
       "name": "aod-financial-game",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "C:/Users/KHUserEnglish/Documents/Vibecoding/AOD Form/aod-form-financial-clarity", "run", "dev:game"],
