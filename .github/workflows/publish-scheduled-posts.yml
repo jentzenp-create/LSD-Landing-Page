@@ -1,0 +1,43 @@
+# Blog pages are prerendered at build time, so a post dated in the future only
+# gets its static HTML (and sitemap entry) from a deploy on or after its date.
+# Each morning, if a post is dated today, trigger a Vercel redeploy.
+name: Publish scheduled blog posts
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # 06:00 UTC, just after US Eastern midnight
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Redeploy even if no post is dated today'
+        type: boolean
+        default: false
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for a post dated today
+        id: check
+        run: |
+          today=$(date -u +%F)
+          if grep -q "date: '$today'" lib/blogPosts.ts; then
+            echo "Post scheduled for $today"
+            echo "due=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No post scheduled for $today"
+            echo "due=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger Vercel deploy hook
+        if: steps.check.outputs.due == 'true' || inputs.force
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK_URL secret is not set"
+            exit 1
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK"
