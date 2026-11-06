@@ -13,7 +13,12 @@ export function buildPayload(input: Contact) {
   const autos = topAutomations(worlds);
   const answered = answeredQuestions(worlds);
   const gaps = answered.filter(({ a }) => a.severity > 0).sort((x, y) => y.a.severity - x.a.severity);
-  const reached = run.results[2] ? 2 : 1;
+  const reached = run.results[2] ? 2 : run.results[1] ? 1 : 0;
+  const progress = !run.skipped
+    ? `reached World ${reached}`
+    : reached
+      ? `played World ${reached}, then skipped to the report`
+      : 'skipped the game (questions only)';
   const seconds = Object.values(run.results).reduce((sum, r) => sum + (r?.seconds ?? 0), 0);
   const overall = healths.length ? Math.round(healths.reduce((s, x) => s + x.h.score, 0) / healths.length) : 0;
   const w1 = healths.find((x) => x.w.number === 1)?.h;
@@ -21,7 +26,7 @@ export function buildPayload(input: Contact) {
 
   const smsLines = [
     `Bottleneck Busters lead: ${input.firstName || 'New player'}${input.businessName ? ` (${input.businessName})` : ''}`,
-    `${ind.label} - reached World ${reached}`,
+    `${ind.label} - ${progress}`,
     ...healths.map(({ w, h }) => `${w.diagnosis}: ${h.score}/100`),
     input.email,
     input.phone || null,
@@ -39,6 +44,7 @@ export function buildPayload(input: Contact) {
     traffic_source: SOURCE,
     industry: ind.label,
     game_world_reached: reached,
+    game_mode: run.skipped ? 'skipped' : 'played',
     game_diagnosis: healths.map(({ w, h }) => `${w.diagnosis} ${h.score}/100`).join(' | '),
     game_health_score: overall,
     game_w1_score: w1?.score ?? '',

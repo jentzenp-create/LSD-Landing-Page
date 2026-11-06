@@ -28,6 +28,8 @@ export interface RunState {
   bossHp: number;
   results: Partial<Record<1 | 2, WorldResult>>;
   contact?: Contact;
+  worldStartScore: number; // score when the current world began (for "Restart")
+  skipped: boolean; // used "Skip to my report"
 }
 
 function newId() {
@@ -49,6 +51,8 @@ export const run: RunState = {
   finishedAt: 0,
   bossHp: 0,
   results: {},
+  worldStartScore: 0,
+  skipped: false,
 };
 
 export function resetRun(industry: Industry) {
@@ -66,6 +70,8 @@ export function resetRun(industry: Industry) {
     bossHp: 0,
     results: {},
     contact: undefined,
+    worldStartScore: 0,
+    skipped: false,
   });
 }
 
@@ -75,6 +81,7 @@ export function startWorld(n: 1 | 2) {
   run.starsTotal = 0;
   run.startedAt = Date.now();
   run.finishedAt = 0;
+  run.worldStartScore = run.score;
 }
 
 /** Record the finished world's stats. */
