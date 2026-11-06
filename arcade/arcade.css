@@ -75,7 +75,8 @@ body {
   pointer-events: none;
 }
 
-.ui .hud .sound {
+.ui .hud .sound,
+.ui .hud .menu-btn {
   pointer-events: auto;
 }
 
@@ -786,6 +787,121 @@ form input:focus {
   font: 13px var(--body);
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* ---------- Pause menu ---------- */
+
+.menu-btn[hidden] {
+  display: none;
+}
+
+.menu-btn {
+  font: inherit;
+  font-size: 1.4cqw;
+  color: var(--ink);
+  background: var(--gold);
+  border: none;
+  border-radius: 2cqw;
+  padding: 0.5cqw 1.3cqw;
+  box-shadow: 0 0.3cqw 0 var(--gold-dark);
+  cursor: pointer;
+}
+
+@media (pointer: coarse) {
+  .menu-btn {
+    font-size: 2.4cqw;
+    padding: 1.1cqw 2.2cqw;
+  }
+}
+
+.menu-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 6, 12, 0.6);
+  animation: fadeIn 0.15s;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+  width: 40cqw;
+  padding: 2.4cqw;
+  background: linear-gradient(#211c3d, #17142c);
+  border: 0.35cqw solid var(--gold);
+  border-radius: 2cqw;
+  box-shadow: 0 1cqw 0 rgba(0, 0, 0, 0.5);
+  animation: pop2 0.2s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.menu-title {
+  margin-bottom: 0.6cqw;
+  font-family: var(--display);
+  font-size: 3.4cqw;
+  color: var(--gold);
+  text-align: center;
+  text-shadow: 0 0.3cqw 0 #6b4a00;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2cqw;
+  padding: 1cqw 1.6cqw;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.2cqw solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.2cqw;
+  cursor: pointer;
+}
+
+.menu-item span {
+  font-family: var(--display);
+  font-size: 2.2cqw;
+}
+
+.menu-item small {
+  font-size: 1.3cqw;
+  color: var(--dim);
+}
+
+.menu-item.active {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  color: var(--ink);
+}
+
+.menu-item.active small {
+  color: #4a3500;
+}
+
+.menu .hint {
+  margin-top: 0.4cqw;
+  text-align: center;
+}
+
+.skip-link {
+  margin-top: 2.2cqw;
+  padding: 0.8cqw 1.8cqw;
+  font: inherit;
+  font-size: 1.6cqw;
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(5, 6, 12, 0.55);
+  border: 0.2cqw solid rgba(255, 255, 255, 0.35);
+  border-radius: 3cqw;
+  cursor: pointer;
+}
+
+.skip-link:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
 }
 
 /* ---------- Toast (one-time tips) ---------- */

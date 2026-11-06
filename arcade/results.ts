@@ -59,6 +59,7 @@ function automationBlock(worlds: WorldDef[], tag: string) {
 
 function statsBlock(w: WorldDef) {
   const r = run.results[w.number];
+  if (!r) return '';
   const secs = r?.seconds ?? 0;
   return `<div class="stats">
     <div><span>${r?.stars ?? 0}/${r?.starsTotal ?? 0}</span>${esc(w.collectible)}</div>
@@ -158,9 +159,10 @@ export function showFinalResults({ onPlayAgain }: { onPlayAgain: () => void }) {
   const w2 = world(2);
   const alreadySaved = !!run.contact;
   const cta = 'Send my full report';
+  const eyebrow = run.results[2] ? 'World 2 clear' : 'Quick check-up';
   const el = show(`
     <div class="card" role="dialog" aria-labelledby="final-title">
-      <p class="eyebrow">World 2 clear &middot; ${esc(industry().label)}</p>
+      <p class="eyebrow">${eyebrow} &middot; ${esc(industry().label)}</p>
       <h1 id="final-title">Your Bottleneck Report</h1>
       ${statsBlock(w2)}
       ${worlds.map(healthBlock).join('')}

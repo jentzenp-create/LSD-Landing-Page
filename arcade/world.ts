@@ -113,6 +113,10 @@ export class World {
   now = 0;
   private acc = 0;
   frozen = false;
+  /** Menu or quick-quiz open: the whole world (timers, tweens, bosses) stops. */
+  paused = false;
+  /** In a scripted moment (boss intro/outro) where the menu shouldn't open. */
+  scripted = false;
 
   // Player
   readonly player: Body;
@@ -354,8 +358,16 @@ export class World {
 
   // ---------------------------------------------------------------- main loop
 
+  get isDemo() {
+    return this.demo;
+  }
+
   update(dt: number) {
     if (this.disposed) return;
+    if (this.paused) {
+      this.updateCamera(0);
+      return;
+    }
     this.now += dt * 1000;
     this.tweens.update(dt * 1000);
 
@@ -800,6 +812,7 @@ export class World {
   private async enterArena() {
     this.inArena = true;
     this.frozen = true;
+    this.scripted = true;
     const { left, right } = this.level.arena;
     for (let r = 0; r < STREET_ROW; r++) {
       this.grid.set(left, r, T.WALL);
@@ -841,6 +854,7 @@ export class World {
 
     this.opts.ui.setBoss(def.name, hp, hp);
     this.frozen = false;
+    this.scripted = false;
     this.prevJump = true;
     sfx.startMusic();
     this.boss.start(hp);
@@ -857,6 +871,7 @@ export class World {
 
   onBossDefeated() {
     this.frozen = true;
+    this.scripted = true;
     finishWorld();
     const seconds = run.results[run.world]?.seconds ?? 300;
     run.score += 5000 + Math.max(0, 300 - seconds) * 10;

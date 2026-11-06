@@ -25,6 +25,8 @@ export class UI {
   private score: HTMLElement;
   private boss: HTMLElement;
   private keyHandler?: (e: KeyboardEvent) => void;
+  private menuHandler?: () => void;
+  private menuBtn!: HTMLButtonElement;
 
   constructor(stage: HTMLElement) {
     this.root = el('div', 'ui');
@@ -53,7 +55,17 @@ export class UI {
       e.stopPropagation();
       sfx.toggleMute();
     });
-    this.hud.append(this.hearts, countWrap, meter, this.score, sound);
+    const menu = el('button', 'menu-btn', '&#9776; Menu');
+    this.menuBtn = menu;
+    menu.hidden = true;
+    menu.type = 'button';
+    menu.tabIndex = -1;
+    menu.title = 'Menu (Esc)';
+    menu.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.menuHandler?.();
+    });
+    this.hud.append(this.hearts, countWrap, meter, this.score, sound, menu);
     this.root.appendChild(this.hud);
 
     this.boss = el('div', 'boss-bar');
@@ -83,7 +95,22 @@ export class UI {
 
   // ---------------------------------------------------------------- screens
 
-  showTitle(onStart: () => void) {
+  showMenuButton(on: boolean) {
+    this.menuBtn.hidden = !on;
+  }
+
+  /** Called when the Menu button is pressed (Escape is wired in Game). */
+  onMenu(fn: () => void) {
+    this.menuHandler = fn;
+  }
+
+  /** True while something else owns the screen (dialog, title, picker, results...). */
+  hasModal() {
+    const overlay = document.getElementById('overlay');
+    return !!(this.root.querySelector('.dialog-wrap, .screen, .title-screen, .menu-wrap') || (overlay && !overlay.hidden));
+  }
+
+  showTitle(onStart: () => void, onSkip?: () => void) {
     const t = el(
       'div',
       'title-screen',
@@ -91,6 +118,7 @@ export class UI {
         <div class="logo"><span class="l1">Bottleneck</span><span class="l2">Busters</span></div>
         <p class="tagline">Find what's slowing your business down</p>
         <p class="press">Click or press any key to play</p>
+        ${onSkip ? '<button type="button" class="skip-link" tabindex="-1">Not a gamer? Just answer the questions &#9654;</button>' : ''}
       </div>
       <div class="credit">A Local Sun Digital arcade</div>`,
     );
@@ -98,13 +126,15 @@ export class UI {
     let done = false;
     const start = (e: Event) => {
       if (done) return;
-      if (e instanceof KeyboardEvent && e.key.toLowerCase() === 'm') return;
-      if (e.target instanceof HTMLElement && e.target.closest('.sound')) return;
+      if (e instanceof KeyboardEvent && ['m', 'escape'].includes(e.key.toLowerCase())) return;
+      if (e.target instanceof HTMLElement && e.target.closest('.sound, .menu-btn')) return;
+      const skip = e.target instanceof HTMLElement && !!e.target.closest('.skip-link');
       done = true;
       window.removeEventListener('keydown', start);
       this.root.removeEventListener('pointerdown', start);
       t.remove();
-      onStart();
+      if (skip && onSkip) onSkip();
+      else onStart();
     };
     window.addEventListener('keydown', start);
     this.root.addEventListener('pointerdown', start);
@@ -209,6 +239,80 @@ export class UI {
     f.style.top = `${pos.top}%`;
     this.root.appendChild(f);
     setTimeout(() => f.remove(), 900);
+  }
+
+  // ---------------------------------------------------------------- pause menu
+
+  /**
+   * The pause menu. Arrow keys / W-S to move, Enter or Space to pick, Escape
+   * (or the Resume item) to close. Returns a function that closes it.
+   */
+  showMenu(items: { label: string; hint?: string; action: () => void; keepOpen?: boolean }[], onClose: () => void) {
+    const wrap = el('div', 'menu-wrap');
+    const box = el('div', 'menu', '<div class="menu-title">Paused</div>');
+    const buttons = items.map((item, i) => {
+      const b = el('button', 'menu-item', `<span>${esc(item.label)}</span>${item.hint ? `<small>${esc(item.hint)}</small>` : ''}`);
+      b.type = 'button';
+      b.tabIndex = -1;
+      b.addEventListener('pointerenter', () => select(i));
+      b.addEventListener('click', (e) => {
+        e.stopPropagation();
+        select(i);
+        pick();
+      });
+      box.appendChild(b);
+      return b;
+    });
+    box.appendChild(el('div', 'hint', 'Esc to resume'));
+    wrap.appendChild(box);
+    // Clicking the dimmed area outside the panel resumes
+    wrap.addEventListener('pointerdown', (e) => {
+      if (e.target === wrap) close();
+    });
+    this.root.appendChild(wrap);
+
+    let selected = 0;
+    let closed = false;
+    const render = () => buttons.forEach((b, i) => b.classList.toggle('active', i === selected));
+    const select = (i: number) => {
+      if (i === selected) return;
+      selected = i;
+      sfx.play('select');
+      render();
+    };
+    const close = () => {
+      if (closed) return;
+      closed = true;
+      this.clearKeys();
+      wrap.remove();
+      onClose();
+    };
+    const pick = () => {
+      const item = items[selected];
+      sfx.play('select');
+      if (item.keepOpen) {
+        item.action();
+        // Labels can change (e.g. Sound on/off)
+        buttons[selected].querySelector('span')!.textContent = items[selected].label;
+        return;
+      }
+      close();
+      item.action();
+    };
+    render();
+    this.setKeys((e) => {
+      const k = e.key.toLowerCase();
+      if (k === 'escape' || k === 'p') {
+        e.preventDefault();
+        close();
+      } else if (k === 'arrowup' || k === 'w') select((selected + buttons.length - 1) % buttons.length);
+      else if (k === 'arrowdown' || k === 's') select((selected + 1) % buttons.length);
+      else if (k === ' ' || k === 'enter') {
+        e.preventDefault();
+        pick();
+      }
+    });
+    return close;
   }
 
   // ---------------------------------------------------------------- dialogs
