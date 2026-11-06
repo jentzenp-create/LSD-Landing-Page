@@ -354,6 +354,12 @@ const PackagesPage: React.FC = () => {
                 emailOnly
               />
             </div>
+            <p className="text-charcoal/30 text-xs font-medium mt-8">
+              Prefer to just chat first?{' '}
+              <a href="/contact" className="underline hover:text-charcoal/60 transition-colors">
+                Book a quick meeting
+              </a>
+            </p>
           </div>
         </section>
 
