@@ -33,6 +33,28 @@ All three are wired as `--accent-blue`, `--accent-teal`, `--accent-rose` (plus
 for buttons, the nav label, and primary CTAs — the secondary accents are for
 section tinting and chart/data-viz color only, never for the main CTA button.
 
+### Light sections (added Nov 2026 — for a breather between dark sections)
+
+Apply `.section-light` to a `<section class="section ...">` to flip it to a
+warm cream background with dark text, instead of another dark gradient tint.
+It works by redefining `--bg`, `--surface`, `--text`, `--gold` (to a darker
+`--gold-ink` ink color so it stays legible on cream), etc. *inside that
+section's scope* — every existing component (`.card`, `.stat-tile`,
+`.check-list`, bar charts, gauges) is already built from those variables, so
+it flips automatically. Don't add new light-specific component classes.
+
+Use it for 1–2 sections per page as a change of pace (a gallery of client
+screenshots, a calmer data section) — never for the hero or CTA, which stay
+on the dark gold-on-black treatment, and never for more than ~2 sections on
+one page or the contrast with the rest stops reading as deliberate.
+
+**If you add new component CSS:** always color text from `var(--text)` /
+`var(--text-muted)` / `var(--text-dim)`, never a literal `#fff` — a hardcoded
+white heading is invisible the moment that component ends up inside a
+`.section-light`. Same for backgrounds: build from `var(--surface)` /
+`var(--surface-2)` rather than a literal dark hex or an
+`rgba(255,255,255,0.0x)` overlay (which disappears on a light background).
+
 ## Typography
 Inter (loaded via Google Fonts `<link>` in `<head>`). Headings are bold/black weight, `#fff`. Body copy uses `--text-muted`.
 
