@@ -23,27 +23,10 @@ import EventFooter from '../components/event/EventFooter';
 // 4. Paste the resulting Stripe Payment Link URL below.
 const AUDIT_STRIPE_LINK = 'https://buy.stripe.com/dRm14n2cI4PAbH46ME0kE0y';
 
-// Workshop registration — Luma event page
-const WORKSHOP_LUMA_LINK = 'https://luma.com/w4fr7xzx';
-
-const CalendarIcon: React.FC = () => (
-  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2" />
-    <path d="M16 2v4M8 2v4M3 10h18" />
-  </svg>
-);
-
 const ClockIcon: React.FC = () => (
   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="9" />
     <path d="M12 7v5l3 3" />
-  </svg>
-);
-
-const SparkIcon: React.FC = () => (
-  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
-    <circle cx="12" cy="12" r="3" />
   </svg>
 );
 
@@ -117,14 +100,8 @@ const PackagesPage: React.FC = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <a
-                    href="#workshop"
-                    className="bg-black text-white px-8 py-4 rounded-full font-bold text-base hover:scale-105 transition-all shadow-xl shadow-black/10 active:scale-95 text-center"
-                  >
-                    Free Workshop
-                  </a>
-                  <a
                     href="#audit"
-                    className="bg-white text-black border-2 border-black/10 px-8 py-4 rounded-full font-bold text-base hover:border-primary hover:bg-primary/5 transition-all text-center"
+                    className="bg-black text-white px-8 py-4 rounded-full font-bold text-base hover:scale-105 transition-all shadow-xl shadow-black/10 active:scale-95 text-center"
                   >
                     $97 AI Audit
                   </a>
@@ -167,10 +144,6 @@ const PackagesPage: React.FC = () => {
                   <div className="absolute bottom-12 -left-6 bg-black text-white rounded-2xl px-4 py-3 shadow-xl">
                     <p className="text-2xl font-black text-primary leading-none">$97</p>
                     <p className="text-[10px] font-bold text-white/50 uppercase tracking-wider mt-0.5">AI Audit</p>
-                  </div>
-                  <div className="absolute top-1/3 -left-8 bg-primary rounded-2xl px-4 py-2.5 shadow-xl hidden md:block">
-                    <p className="text-sm font-black text-black leading-none">Free Workshop</p>
-                    <p className="text-[10px] font-bold text-black/50 uppercase tracking-wider mt-0.5">June 17 · 11am PST</p>
                   </div>
                 </div>
               </div>
@@ -240,72 +213,6 @@ const PackagesPage: React.FC = () => {
               </p>
             </div>
             <ROICalculator />
-          </div>
-        </section>
-
-        {/* ── FREE OFFER: WORKSHOP ── */}
-        <section id="workshop" className="py-16 md:py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="bg-offWhite border border-black/5 rounded-3xl overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-5">
-
-                {/* Left: Workshop illustration or image */}
-                <div className="lg:col-span-2 relative min-h-[320px] lg:min-h-full overflow-hidden">
-                  <img
-                    src="/workshop-visual.png"
-                    alt="AI Workshop"
-                    className="w-full h-full object-cover object-bottom absolute inset-0"
-                  />
-                  {/* Subtle bottom gradient so the badge text is readable */}
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                  {/* Badge */}
-                  <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg">
-                    <p className="text-primary font-bold text-sm leading-none">Free Workshop</p>
-                    <p className="text-charcoal/50 font-semibold text-xs mt-0.5">June 17 · 11am PST</p>
-                  </div>
-                </div>
-
-                {/* Right: Content */}
-                <div className="lg:col-span-3 p-8 md:p-12">
-                  <span className="inline-flex items-center bg-primary/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-primary mb-5">
-                    Free Workshop &middot; June 17 &middot; 11am PST
-                  </span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-5 tracking-tight leading-[1.1]">
-                    AI Agents That Pay For Themselves
-                  </h2>
-                  <p className="text-charcoal/60 text-lg md:text-xl font-medium mb-8 max-w-2xl leading-relaxed">
-                    A practical, no-fluff session on putting AI agents to work in your
-                    day-to-day operations. What to automate first, what tools to use,
-                    and how to get started without a tech team.
-                  </p>
-
-                  <div className="space-y-4 mb-10">
-                    {[
-                      { icon: <CalendarIcon />, text: 'June 17 · 11am PST · Save your spot now' },
-                      { icon: <ClockIcon />, text: 'Short, practical session, no fluff' },
-                      { icon: <SparkIcon />, text: 'Walk away with steps you can use that week' },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-primary/15 rounded-xl flex items-center justify-center shrink-0 text-black">
-                          {item.icon}
-                        </div>
-                        <p className="text-base font-semibold text-charcoal/70">{item.text}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <QuickForm
-                    source="AI Workshop RSVP – June 17"
-                    submitLabel="Send Me the Details"
-                    loadingLabel="Sending..."
-                    successMessage="Check your inbox! We just sent you the link to register and everything you need for June 17."
-                    emailOnly
-                    finePrint="We'll email you the registration link and workshop details"
-                  />
-                </div>
-
-              </div>
-            </div>
           </div>
         </section>
 
