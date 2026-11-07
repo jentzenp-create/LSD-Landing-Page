@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forty Advantages × Local Sun Digital · Growth Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 24px; color: #fff;
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px); font-weight: 500;
+      color: var(--text-muted); max-width: 580px;
+      margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: #fff; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 600px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, #1A1A1A 0%, #1E1A0A 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: #fff; }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px; text-align: center;
+    }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/forty-advantages-funnel-build/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Forty Advantages</span> · October 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Growth Proposal · Local Sun Digital
+    </div>
+    <h1>From Cold Lead to <span class="gold">Trust It</span> Buyer — One Connected Funnel</h1>
+    <p class="hero-sub">You've already built the product — seven manuals, the forms, the webinar content. What's missing is everything between someone seeing your name on Constant Contact and clicking "buy." We build that, run it, and keep it running, so you can stay focused on content instead of admin.</p>
+    <div class="badge-row">
+      <span class="badge">Funnel Build</span>
+      <span class="badge">Webinar-to-Sale System</span>
+      <span class="badge">Ongoing Site Admin</span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROBLEM ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Gap</div>
+      <h2 class="section-title">The Product Is Ready. The Path to It Isn't.</h2>
+      <p class="section-sub">Forty Advantages has the assessment, the manuals, the slide decks, and a proven webinar story — but right now it all lives behind one WordPress site with nothing connecting a cold lead to a paying member.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <div class="card-title">No Funnel Exists Yet</div>
+        <p class="card-body">Outside the WordPress site, there's no path from a Constant Contact email to a webinar signup to a purchase. Every lead currently has to find their own way in.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg>
+        </div>
+        <div class="card-title">Buyers Need Confidence, Not Just Information</div>
+        <p class="card-body">Your own trade show experience and the competitor's track record both point the same direction: nobody buys the Trust It package without the 1-hour webinar first. The funnel has to build belief, not just awareness.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg>
+        </div>
+        <div class="card-title">Your Time Is the Scarce Resource</div>
+        <p class="card-body">You've spent a year and a half on the product — you shouldn't be doing website admin or sitting on strategy calls for a $500 self-study package. Someone else needs to own that layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 1 — FUNNEL BUILD ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Full Funnel Build</div>
+      <div class="pkg-price">4,000 ITEX</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      One-time build-out of the complete path from first touch to purchase, layered onto your existing fortyadvantages.com WordPress site — no new domain, no rebuild from scratch. Built with room to grow into the 4 new add-on offerings you mentioned (blended families, second marriages, etc.) and the targeted homeowner mailing lists you're planning for future advertising.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l9 6 9-6M4 5h16v14H4z"/></svg>
+        </div>
+        <div class="card-title">Constant Contact → Landing Page Integration</div>
+        <p class="card-body">Opt-in and nurture pages built on your WordPress site, wired into Constant Contact so every email click lands somewhere built to convert, not a generic homepage.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg>
+        </div>
+        <div class="card-title">Webinar Registration & Follow-Up</div>
+        <p class="card-body">A registration page and automated reminder/follow-up sequence for the 1-hour webinar — the step your own data says is the real closer.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <div class="card-title">Offer Pages for All Three Tiers</div>
+        <p class="card-body">Dedicated sales pages for the $500 self-study package, $1,500 mentorship, and the $10,000 collaborator tier — built to carry the webinar's momentum into a decision.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>
+        </div>
+        <div class="card-title">Copy Pass on Existing Assets</div>
+        <p class="card-body">A review of your manuals, slide decks, and site copy to sharpen the language around buyer confidence — you keep final say, we just bring the ideas.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 012-2h8l6 6v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="card-title">Tracking & Reporting Setup</div>
+        <p class="card-body">Basic funnel analytics in place from day one, so you can see subscribers, registrants, and conversions against your own Year 1 targets without guessing.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <div class="card-title">WordPress Admin Handoff</div>
+        <p class="card-body">Built directly into your existing site and handed off with admin access set up cleanly, so day-to-day changes don't require touching anything fragile.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="card-title">Structured to Flex for New Add-Ons</div>
+        <p class="card-body">The funnel architecture is set up so your upcoming add-on offerings — blended families, second marriages, and the other asset-protection situations — can slot in as new offer pages later, and so targeted campaigns to your future homeowner mailing lists have somewhere built to land.</p>
+      </div>
+    </div>
+    <div class="stat-callout">
+      <div>
+        <div class="stat-num">Dec 31</div>
+        <div class="stat-label">Target launch</div>
+      </div>
+      <p class="stat-note">Scoped and sequenced to be live by your December 31, 2026 target, with the webinar funnel prioritized first since it's the piece your sales data says matters most.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 2 — ONGOING MAINTENANCE ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">Ongoing Admin & Maintenance</div>
+      <div class="pkg-price">500 ITEX / mo</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      Once the funnel is live, someone needs to keep it running, updated, and reported on — without pulling you into it. That's this package.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16"/></svg>
+        </div>
+        <div class="card-title">Website & Funnel Admin</div>
+        <p class="card-body">Routine WordPress and funnel upkeep — plugin and page updates, broken links, form checks — so the site stays healthy without it landing on your desk.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>
+        </div>
+        <div class="card-title">Content & Offer Updates</div>
+        <p class="card-body">Minor content edits to landing pages, offer pages, and webinar copy as you refine the pitch — swapping in new slides or wording without a new build each time.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l3-3 3 2 5-6"/></svg>
+        </div>
+        <div class="card-title">Monthly Funnel Report</div>
+        <p class="card-body">A short monthly check-in against your own benchmarks — subscribers, registrants, enrollment rate — so you know where things stand without a strategy call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">Built for Founders Who'd Rather Not Touch the Website</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">End-to-End, Not Piecemeal</div>
+          <p class="why-desc">You asked for someone who can own everything from the first Constant Contact email to the purchase — that's exactly how this is scoped, as one connected system instead of separate vendors for each piece.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Protects Your Time</div>
+          <p class="why-desc">We handle the admin, the build, and the upkeep so you can stay on content and relationships — not strategy calls for a $500 package.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Builds for the Webinar-First Buyer</div>
+          <p class="why-desc">We design the funnel around what you've already learned the hard way — that confidence, not just information, is what moves someone from lead to buyer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub">Structured as a one-time build plus a flat monthly retainer, payable in ITEX.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 680px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Full Funnel Build
+          <small>One-time · Constant Contact integration, webinar funnel, offer pages, tracking, admin handoff</small>
+        </div>
+        <div class="pricing-amt">4,000 ITEX</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Ongoing Admin & Maintenance
+          <small>Monthly · site/funnel upkeep, content updates, reporting</small>
+        </div>
+        <div class="pricing-amt">500 ITEX / mo</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Total to Launch</div>
+        <div class="pricing-amt">4,000 ITEX</div>
+      </div>
+      <div class="pricing-note">4,000 ITEX due to start the build; 500 ITEX/month begins once the funnel is live. Open to revisiting terms as the funnel starts converting and cash flow follows.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's Get Trust It In Front of More Buyers</h2>
+    <p class="cta-sub">Send over the slides, and let's lock in the build timeline against your December 31st launch.</p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Forty Advantages Proposal - Let's Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Forty Advantages Proposal - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/proposals/forty-advantages-funnel-build/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Forty Advantages</span>
+</footer>
+
+</body>
+</html>
