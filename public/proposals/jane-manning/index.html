@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jane Manning × Local Sun Digital · A body for the work</title>
+<meta name="description" content="A proposal for Jane Manning: a beautiful shop for Sea Anatomy, an AI business partner for inventory and planning, and ongoing distribution." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://localsundigital.com/proposals/jane-manning" />
+<meta property="og:title" content="Jane Manning × Local Sun Digital" />
+<meta property="og:description" content="Your work already has a heartbeat. Here is a body for it." />
+<meta property="og:image" content="https://localsundigital.com/proposals/jane-manning/img/site-2.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EADBC2'/%3E%3Cpath d='M16 4c-3 6 3 9 0 14s3 8 0 10' stroke='%23185C59' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='21' cy='11' r='3' fill='%23C8402F'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --birch:#EADBC2; --bone:#F7F2E8; --ink:#172033; --muted:#544C40; --vein:#185C59; --vein-soft:#2F8A84;
+  --coral:#C8402F; --sea:#0F1A2B; --line:rgba(23,32,51,.16);
+  --ground:var(--birch); --text:var(--ink); --text-muted:var(--muted); --rule:var(--line);
+  --display:"Cormorant Garamond", "Times New Roman", serif;
+  --sans:"Instrument Sans", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+  --channel:72px; --max:1320px; --gut:24px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--birch);-webkit-text-size-adjust:100%}
+body{background:var(--ground);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--vein);color:var(--bone)}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--bone);padding:10px 14px;font:500 14px var(--sans);text-decoration:none}
+.skip:focus{top:12px}
+
+/* wood grain on the ground, very faint */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background:repeating-linear-gradient(92deg,rgba(120,88,50,.05) 0 2px,transparent 2px 9px),repeating-linear-gradient(88deg,rgba(255,255,255,.08) 0 1px,transparent 1px 23px)}
+
+.wrap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:0 var(--gut) 0 calc(var(--channel) + var(--gut))}
+.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.fig{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--vein);display:inline-flex;gap:10px;align-items:center}
+.fig::before{content:"";width:22px;height:1px;background:currentColor}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.015em;line-height:.98}
+h2{font-size:clamp(44px,6.2vw,96px);letter-spacing:-.025em}
+h3{font-size:clamp(28px,2.6vw,38px);line-height:1.05}
+em{font-style:italic}
+p{max-width:62ch}
+.lede{font-size:clamp(19px,1.5vw,22px);line-height:1.5;color:var(--text-muted)}
+.lnk{text-decoration:underline;text-decoration-color:var(--vein-soft);text-underline-offset:4px;text-decoration-thickness:1.5px}
+@media (hover:hover){.lnk:hover{text-decoration-thickness:3px}}
+
+/* ---------- header ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;transition:transform .5s var(--ease)}
+.top .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;height:60px;max-width:var(--max);margin:0 auto;padding:0 var(--gut) 0 calc(var(--channel) + var(--gut))}
+.top::before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--birch) 86%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .4s}
+.top.scrolled::before{opacity:1}
+.top.hide{transform:translateY(-100%)}
+.brand{position:relative;font-family:var(--display);font-size:21px;font-weight:500;text-decoration:none;letter-spacing:-.01em}
+.brand span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin-left:8px;text-transform:uppercase}
+.top nav{position:relative;display:flex;gap:26px}
+.top nav a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;position:relative;padding:6px 0}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--vein);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.top nav a.on::after{transform:scaleX(1)}
+@media (hover:hover){.top nav a:hover::after{transform:scaleX(1)}}
+.top nav a:focus-visible::after{transform:scaleX(1)}
+
+/* ---------- vine ---------- */
+#vine{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:2;overflow:visible}
+#vine .stem{fill:none;stroke:var(--vein);stroke-width:2.2;stroke-linecap:round}
+#vine .stem2{fill:none;stroke:var(--vein-soft);stroke-width:1.1;stroke-linecap:round;opacity:.7}
+#vine .bud circle.o{fill:#E3B341;stroke:var(--ink);stroke-width:1}
+#vine .bud circle.i{fill:var(--bone)}
+#vine .bud path{fill:var(--vein-soft);stroke:var(--vein);stroke-width:.8}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:17px 26px;font:600 15px var(--sans);letter-spacing:.01em;text-decoration:none;color:var(--bone);background:var(--ink);overflow:hidden;isolation:isolate;border-radius:2px}
+.btn::before{content:"";position:absolute;inset:0;background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);z-index:-1}
+.btn svg{transition:translate .45s var(--ease)}
+@media (hover:hover){.btn:hover::before{transform:scaleX(1)}.btn:hover svg{translate:5px 0}}
+.btn:focus-visible::before{transform:scaleX(1)}
+.btn:active{scale:.98}
+.btn.ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px currentColor}
+.btn.ghost::before{background:var(--vein)}
+@media (hover:hover){.btn.ghost:hover{color:var(--bone)}}
+.btn.ghost:focus-visible{color:var(--bone)}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;padding-top:120px;padding-bottom:72px;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.hero-copy{grid-column:1/8}
+.hero h1{font-size:clamp(54px,6.3vw,108px);letter-spacing:-.035em;line-height:.9;margin:22px 0 30px;text-indent:-.04em}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line > span{display:block}
+.hero h1 em{color:var(--vein)}
+.hero .lede{max-width:46ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.hero-meta{display:flex;gap:28px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-meta div{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.hero-meta b{display:block;font-family:var(--display);font-size:30px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink);margin-top:2px}
+.plate{grid-column:8/13;position:relative}
+.plate-frame{position:relative;aspect-ratio:1500/1540;overflow:hidden;border-radius:2px;box-shadow:0 1px 0 rgba(0,0,0,.05),0 30px 60px -30px rgba(23,32,51,.45)}
+.plate-frame img{width:100%;height:100%;object-fit:cover}
+.plate figcaption{margin-top:12px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+.tag{position:absolute;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.tag i{display:block;height:1px;background:var(--ink);width:56px;transform-origin:var(--o,right)}
+.tag b{font-weight:500;background:var(--bone);padding:4px 8px;border-radius:2px;box-shadow:0 0 0 1px var(--line)}
+.tag.t1{top:9%;left:-34%}
+.tag.t2{top:44%;left:-30%}
+.tag.t3{top:80%;right:-10%;--o:left}
+
+/* ---------- heard ---------- */
+.heard{padding-block:140px 120px;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.heard-head{grid-column:1/13;margin-bottom:56px}
+.heard-head h2{max-width:14ch;margin-top:18px}
+.heard-head h2 em{color:var(--vein)}
+.notes{grid-column:1/6;list-style:none;display:grid;gap:34px;align-content:start}
+.notes li{padding-left:34px;position:relative}
+.notes li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:14px;border-radius:50%;background:#E3B341;box-shadow:inset 0 0 0 3px var(--bone),0 0 0 1px var(--ink)}
+.notes h3{font-size:30px;margin-bottom:8px}
+.notes p{color:var(--text-muted)}
+.today{grid-column:7/13;position:relative;align-self:start}
+.browser{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 0 0 1px var(--line),0 40px 70px -40px rgba(23,32,51,.55)}
+.browser .chrome{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#f1ece3;border-bottom:1px solid #e2dacb}
+.browser .chrome i{width:10px;height:10px;border-radius:50%;background:#d8cfbf}
+.browser .chrome span{margin-left:12px;flex:1;background:#fff;border-radius:4px;padding:4px 10px;font:12px var(--mono);color:#6d6457;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.today .pin{position:absolute;display:flex;gap:10px;align-items:flex-start;max-width:230px;font-size:14px;line-height:1.4}
+.today .pin b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font:600 13px var(--sans);box-shadow:0 0 0 4px rgba(200,64,47,.18)}
+.today .pin span{background:var(--ink);color:var(--bone);padding:9px 12px;border-radius:2px}
+.today .p1{top:15%;right:-2%}
+.today .p2{top:52%;left:-8%}
+.today .p3{bottom:24%;right:-4%}
+.today-cap{margin-top:52px;color:var(--text-muted);font-size:15px}
+
+/* ---------- chapter heads ---------- */
+.chapter{position:relative;z-index:1}
+.ch-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end;margin-bottom:64px}
+.ch-head .t{grid-column:1/9}
+.ch-head .t h2{margin-top:18px}
+.ch-head .price{grid-column:9/13;justify-self:end;text-align:right}
+.ch-head .price b{display:block;font-family:var(--display);font-size:clamp(56px,6vw,92px);font-weight:500;line-height:1;letter-spacing:-.03em}
+.ch-head .price span{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted)}
+
+/* ---------- spine (light plate) ---------- */
+.light{--ground:var(--bone);background:var(--bone);border-block:1px solid var(--line)}
+.spine{padding:140px 0 150px}
+.includes{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);margin-bottom:96px}
+.includes .intro{grid-column:1/5}
+.includes .intro p{color:var(--text-muted)}
+.inc-list{grid-column:6/13;list-style:none;border-top:1px solid var(--line)}
+.inc-list li{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.inc-list .k{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--vein);padding-top:4px}
+.inc-list strong{font-weight:600;display:block;margin-bottom:2px}
+.inc-list span{color:var(--text-muted);font-size:16px}
+
+.demo-label{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+.demo-label h3{font-size:clamp(30px,3vw,44px)}
+.demo-label p{font-size:14px;color:var(--text-muted)}
+.shop{position:relative}
+.shop .browser .chrome span{color:#3d3a34}
+.store{background:#FBF8F2;color:#1f2430;position:relative;overflow:hidden;height:clamp(540px,calc(100svh - 150px),760px)}
+.store-scroll{height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.store-scroll:focus-visible{outline-offset:-3px}
+.store-nav{position:sticky;top:0;z-index:3;background:#FBF8F2}
+.store-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 28px;border-bottom:1px solid #ece4d6;font-size:13px}
+.store-nav .logo{font-family:var(--display);font-size:22px;letter-spacing:.14em;text-transform:uppercase}
+.store-nav .links{display:flex;gap:22px;color:#5c5548}
+.store-nav .bagbtn{display:flex;align-items:center;gap:8px;font-weight:600;padding:6px 4px}
+.bagbtn .count{min-width:20px;height:20px;border-radius:10px;background:#1f2430;color:#fff;font-size:11px;display:grid;place-items:center;padding:0 6px}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:28px 28px 36px;align-items:start}
+.gallery{display:grid;grid-template-columns:72px 1fr;gap:14px}
+.thumbs{display:grid;gap:10px;align-content:start}
+.thumbs button{aspect-ratio:3/4;overflow:hidden;border-radius:2px;box-shadow:0 0 0 1px #e3dbcc;opacity:.65;transition:opacity .3s,box-shadow .3s}
+.thumbs button[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 2px #1f2430}
+@media (hover:hover){.thumbs button:hover{opacity:1}}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.main-img{aspect-ratio:3/4;max-height:calc(clamp(540px,calc(100svh - 150px),760px) - 130px);overflow:hidden;border-radius:2px;background:#eee7da}
+.main-img img{width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.info .crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:#6b6355}
+.info h4{font-family:var(--display);font-weight:500;font-size:44px;line-height:1;letter-spacing:-.02em;margin:10px 0 8px}
+.info .pr{font-size:20px;font-weight:600;margin-bottom:6px}
+.info .ed{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#7a2d22;background:#f6e3dd;padding:5px 10px;border-radius:20px;margin-bottom:22px}
+.info .ed::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral)}
+.info .story{font-family:var(--display);font-size:22px;line-height:1.3;font-style:italic;color:#3b3a36;margin-bottom:22px;max-width:30ch}
+.opt-label{font-size:13px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between}
+.opt-label span{font-weight:400;color:#6b6355}
+.sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.sizes button{min-width:50px;height:44px;border-radius:22px;box-shadow:inset 0 0 0 1px #cfc6b6;font-size:14px;font-weight:500;transition:box-shadow .25s,background .25s,color .25s}
+.sizes button[aria-pressed="true"]{background:#1f2430;color:#fff;box-shadow:none}
+@media (hover:hover){.sizes button:hover{box-shadow:inset 0 0 0 1.5px #1f2430}}
+.sizes button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.add{width:100%;justify-content:center;background:#1f2430}
+.perks{list-style:none;margin-top:20px;display:grid;gap:9px;font-size:14px;color:#4f4a40}
+.perks li{display:flex;gap:10px;align-items:flex-start}
+.perks svg{flex:none;margin-top:3px;color:var(--vein)}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;box-shadow:-30px 0 60px -30px rgba(0,0,0,.35);transform:translateX(102%);transition:transform .6s var(--ease);display:flex;flex-direction:column;z-index:5}
+.drawer.open{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid #eee5d6;font-weight:600}
+.drawer-head button{width:36px;height:36px;display:grid;place-items:center;border-radius:50%}
+@media (hover:hover){.drawer-head button:hover{background:#f3eee5}}
+.steps{display:flex;gap:6px;padding:14px 22px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#9a917f}
+.steps span{flex:1;padding-top:8px;border-top:2px solid #e9e1d2;transition:border-color .4s,color .4s}
+.steps span.on{border-color:var(--vein);color:var(--vein)}
+.drawer-body{flex:1;overflow:auto;padding:8px 22px 22px}
+.line-item{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #f0e9dd}
+.line-item img{width:70px;height:88px;object-fit:cover;border-radius:2px}
+.line-item b{font-weight:600;display:block}
+.line-item small{color:#6b6355}
+.drawer-foot{padding:18px 22px;border-top:1px solid #eee5d6;display:grid;gap:12px}
+.drawer-foot .sum{display:flex;justify-content:space-between;font-size:15px}
+.drawer-foot .sum.big{font-weight:600;font-size:18px}
+.drawer-foot .btn{justify-content:center;width:100%}
+.pane{display:none}.pane.on{display:block}
+.fake-field{border:1px solid #ddd3c2;border-radius:4px;padding:12px;margin-top:10px;font-size:14px;color:#8a826f}
+.pay-row{display:flex;gap:8px;margin-top:10px}
+.pay-row div{flex:1;border:1px solid #ddd3c2;border-radius:4px;padding:12px;font-size:13px;text-align:center;color:#3b3a36}
+.pay-row div.sel{border-color:#1f2430;box-shadow:inset 0 0 0 1px #1f2430}
+.done{text-align:center;padding:26px 6px}
+.done .seal{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:#e4efe9;display:grid;place-items:center;color:var(--vein)}
+.done h5{font-family:var(--display);font-size:30px;font-weight:500;margin-bottom:8px}
+.done p{font-size:14px;color:#5c5548;margin:0 auto}
+.collection{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:0 28px 36px}
+.collection h5{grid-column:1/-1;font-family:var(--display);font-size:28px;font-weight:500;padding-top:28px;border-top:1px solid #ece4d6}
+.pcard{text-decoration:none;display:block}
+.pcard .ph{aspect-ratio:1;overflow:hidden;border-radius:2px;background:#eee7da}
+.pcard img{width:100%;height:100%;object-fit:cover;transition:scale .9s var(--ease)}
+@media (hover:hover){.pcard:hover img{scale:1.06}}
+.pcard:focus-visible img{scale:1.06}
+.pcard b{display:block;margin-top:10px;font-size:14px;font-weight:600}
+.pcard small{color:#6b6355;font-size:13px}
+.disclaimer{margin-top:18px;font-size:13.5px;color:var(--text-muted)}
+
+/* ---------- nervous system (dark) ---------- */
+.dark{--ground:var(--sea);--text:#EFE7D8;--text-muted:#B9B2A4;--line:rgba(239,231,216,.16);background:var(--sea);color:var(--text)}
+.dark .fig{color:#7FC4BC}
+.dark h2 em{color:#7FC4BC}
+.nerve{padding:140px 0 150px;position:relative;overflow:hidden}
+.nerve::after{content:"";position:absolute;right:-10%;top:-10%;width:60%;height:120%;background:url("/proposals/jane-manning/img/art-01.jpg") center/cover;opacity:.08;mix-blend-mode:screen;pointer-events:none;mask-image:radial-gradient(closest-side,#000,transparent)}
+.nerve-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:start;position:relative;z-index:1}
+.chat{grid-column:1/7;background:#16243A;border-radius:6px;box-shadow:0 0 0 1px rgba(239,231,216,.1),0 40px 80px -40px rgba(0,0,0,.7);overflow:hidden}
+.chat-top{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid rgba(239,231,216,.1)}
+.chat-top .av{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#7FC4BC,#185C59);display:grid;place-items:center}
+.chat-top b{font-weight:600;font-size:15px;display:block}
+.chat-top small{font-size:12px;color:#9fb3ad}
+.chat-top .replay{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(239,231,216,.25);transition:background .3s}
+@media (hover:hover){.chat-top .replay:hover{background:rgba(239,231,216,.1)}}
+.msgs{padding:22px 18px 26px;display:flex;flex-direction:column;gap:12px;min-height:560px}
+.msg{max-width:84%;padding:12px 15px;border-radius:14px;font-size:15px;line-height:1.45}
+.msg.me{align-self:flex-end;background:#EFE7D8;color:#172033;border-bottom-right-radius:4px}
+.msg.ai{align-self:flex-start;background:#22334E;border-bottom-left-radius:4px}
+.msg.ai .stock{display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;align-items:center;margin-top:10px;font-size:13px}
+.msg.ai .stock i{display:block;height:6px;border-radius:3px;background:#7FC4BC}
+.msg.ai .stock i.low{background:#E8846F}
+.msg .act{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.msg .act span{font-size:12.5px;padding:6px 10px;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(127,196,188,.5);color:#BFE3DE}
+.typing{align-self:flex-start;display:flex;gap:5px;padding:14px 16px;background:#22334E;border-radius:14px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9fb3ad;animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.does{grid-column:8/13}
+.does .lede{margin-bottom:34px}
+.does ul{list-style:none;border-top:1px solid var(--line)}
+.does li{padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;gap:14px}
+.does li svg{color:#7FC4BC;margin-top:3px}
+.does strong{display:block;font-weight:600;color:var(--text)}
+.does li span{color:var(--text-muted);font-size:16px}
+.helper{margin-top:30px;padding:20px 22px;border-radius:4px;background:rgba(127,196,188,.08);box-shadow:inset 0 0 0 1px rgba(127,196,188,.25);font-size:15.5px;color:var(--text-muted)}
+.helper b{color:var(--text)}
+
+/* ---------- circulation ---------- */
+.circ{padding-block:150px 140px}
+.circ-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.diagram{grid-column:1/7;position:relative}
+.diagram svg{width:100%;height:auto;overflow:visible}
+.diagram .ring{fill:none;stroke:var(--line);stroke-dasharray:2 6}
+.diagram .art{stroke:var(--coral);stroke-width:1.6;fill:none;stroke-linecap:round}
+.diagram .node circle{fill:var(--bone);stroke:var(--ink);stroke-width:1}
+.diagram .node text{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;fill:var(--ink)}
+.diagram .heart text{font-family:var(--display);font-size:30px;font-style:italic;fill:var(--bone)}
+.circ-copy{grid-column:8/13}
+.circ-copy .lede{margin:24px 0 30px}
+.monthly{list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.monthly li{padding:16px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:baseline}
+.monthly li b{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--vein);flex:none;width:110px}
+
+/* ---------- investment ---------- */
+.invest{padding:140px 0}
+.ledger{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.ledger .head{grid-column:1/6}
+.ledger .head p{color:var(--text-muted);margin-top:22px}
+.rows{grid-column:7/13;border-top:1.5px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto;gap:18px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.row h3{font-size:32px}
+.row small{display:block;font-size:15px;color:var(--text-muted);margin-top:6px;max-width:44ch}
+.row .amt{font-family:var(--display);font-size:46px;letter-spacing:-.02em;white-space:nowrap}
+.row .amt span{font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--text-muted);margin-left:4px}
+.row.total{border-bottom:1.5px solid var(--ink)}
+.row.total h3{font-style:italic}
+.phases{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut);margin-top:90px;counter-reset:ph}
+.phase{border-top:1px solid var(--ink);padding-top:18px}
+.phase .mono{color:var(--vein)}
+.phase h4{font-family:var(--display);font-size:28px;font-weight:500;margin:10px 0 8px;line-height:1.05}
+.phase p{font-size:15.5px;color:var(--text-muted)}
+.yours{margin-top:90px;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);padding:34px;background:var(--bone);border-radius:2px;box-shadow:0 0 0 1px var(--line)}
+.yours h3{grid-column:1/5;font-size:34px}
+.yours ul{grid-column:5/13;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+.yours li{display:flex;gap:12px;font-size:16px}
+.yours li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:3px;box-shadow:inset 0 0 0 1.5px var(--vein)}
+
+/* ---------- cta + footer ---------- */
+.cta{padding:150px 0 130px;text-align:left}
+.cta-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end}
+.cta h2{grid-column:1/9;font-size:clamp(54px,8vw,128px);letter-spacing:-.035em;line-height:.92}
+.cta h2 em{color:#7FC4BC}
+.cta .side{grid-column:9/13}
+.cta .side p{color:var(--text-muted);margin-bottom:26px}
+.cta .btn{background:var(--coral)}
+.cta .btn::before{background:#EFE7D8}
+@media (hover:hover){.cta .btn:hover{color:var(--sea)}}
+.cta .btn:focus-visible{color:var(--sea)}
+.cta .btn.ghost{background:transparent;color:var(--text);margin-top:12px}
+.cta .btn.ghost::before{background:#7FC4BC}
+footer{border-top:1px solid var(--line);padding:28px 0 40px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+footer img{height:34px;width:auto;opacity:.75}
+footer small{font-size:12.5px;color:var(--text-muted)}
+
+/* ---------- reveal base ---------- */
+.js [data-reveal]{opacity:0;translate:0 28px}
+.js .hero h1 .line > span{translate:0 105%}
+.js .plate-frame{clip-path:inset(100% 0 0 0)}
+.js .tag i{scale:0 1}.js .tag b{opacity:0}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .tag.t1,.tag.t2{left:auto;right:calc(100% - 24px)}
+}
+@media (max-width:900px){
+  :root{--channel:22px;--gut:18px}
+  .top nav{display:none}
+  .hero{grid-template-columns:1fr;padding-top:96px;min-height:auto;gap:48px}
+  .hero-copy,.plate{grid-column:1/-1}
+  .hero h1{font-size:clamp(50px,14.5vw,84px)}
+  .plate{margin-left:18%}
+  .tag.t1{top:8%;left:-22%;right:auto}.tag.t2{top:46%;left:-22%;right:auto}.tag.t3{right:0;top:auto;bottom:16%}
+  .tag i{width:26px}
+  .heard{padding-block:100px 90px}
+  .notes,.today{grid-column:1/-1}
+  .today{margin-top:40px}
+  .today .pin{position:static;margin-top:12px;max-width:none}
+  .today .pin span{flex:1}
+  .today-cap{margin-top:22px}
+  .ch-head{grid-template-columns:1fr;gap:22px;margin-bottom:44px}
+  .ch-head .t,.ch-head .price{grid-column:1/-1;justify-self:start;text-align:left}
+  .spine,.nerve,.invest{padding:100px 0}
+  .circ{padding-block:100px}
+  .includes{grid-template-columns:1fr;gap:30px;margin-bottom:64px}
+  .includes .intro,.inc-list{grid-column:1/-1}
+  .inc-list li{grid-template-columns:1fr;gap:4px}
+  .pdp{grid-template-columns:1fr;gap:26px;padding:22px 16px 30px}
+  .gallery{grid-template-columns:1fr;}
+  .thumbs{grid-auto-flow:column;grid-auto-columns:64px;order:2}
+  .store-nav{padding:14px 16px}
+  .store-nav .links{display:none}
+  .info h4{font-size:36px}
+  .collection{grid-template-columns:1fr 1fr;padding:0 16px 26px;gap:14px}
+  .nerve-grid,.circ-grid,.ledger,.cta-grid{grid-template-columns:1fr}
+  .chat,.does,.diagram,.circ-copy,.ledger .head,.rows,.cta h2,.cta .side{grid-column:1/-1}
+  .does{margin-top:50px}
+  .msgs{min-height:520px}
+  .circ-copy{margin-top:40px}
+  .rows{margin-top:36px}
+  .phases,.ch-head .t,.heard-head{grid-column:1/-1}
+  .row .amt{font-size:36px}
+  .phases{grid-template-columns:1fr 1fr;margin-top:64px;gap:30px 18px}
+  .yours{grid-template-columns:1fr;padding:24px;margin-top:64px;gap:20px}
+  .yours h3,.yours ul{grid-column:1/-1}
+  .yours ul{grid-template-columns:1fr}
+  .cta{padding:110px 0 90px}
+  .cta .side{margin-top:30px}
+  .monthly li{flex-direction:column;gap:4px}
+}
+@media (max-width:520px){ .phases{grid-template-columns:1fr} .brand span{display:none} .hero-meta{gap:20px} }
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .js [data-reveal]{opacity:1;translate:none}
+  .js .hero h1 .line > span{translate:none}
+  .js .plate-frame{clip-path:none}
+  .js .tag i{scale:1}.js .tag b{opacity:1}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" id="top">
+  <div class="bar">
+    <a class="brand" href="#main">Jane Manning <span>× Local Sun Digital</span></a>
+    <nav aria-label="Proposal sections">
+      <a href="#heard">What I heard</a>
+      <a href="#spine">The shop</a>
+      <a href="#nerve">The agent</a>
+      <a href="#circulation">Reach</a>
+      <a href="#invest">Investment</a>
+    </nav>
+  </div>
+</header>
+
+<svg id="vine" aria-hidden="true"></svg>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="wrap hero" data-node>
+  <div class="hero-copy">
+    <span class="fig" data-intro>Proposal for Jane Manning · November 2026</span>
+    <h1>
+      <span class="line"><span>Your work already</span></span>
+      <span class="line"><span>has a heartbeat.</span></span>
+      <span class="line"><span><em>Let’s give it a body.</em></span></span>
+    </h1>
+    <p class="lede" data-intro>A shop as beautiful as the paintings, an AI partner that keeps track of every shirt and every idea, and a steady way to get your message in front of new people. You stay in the studio. The rest runs on its own.</p>
+    <div class="hero-cta" data-intro>
+      <a class="btn" href="#spine">See the shop I’d build
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn ghost" href="#invest">Jump to investment</a>
+    </div>
+    <div class="hero-meta" data-intro>
+      <div>Build<b>$3,000</b></div>
+      <div>Care &amp; growth<b>$500 / mo</b></div>
+      <div>Starts with<b>Sea Anatomy tees</b></div>
+    </div>
+  </div>
+  <figure class="plate">
+    <div class="plate-frame"><img src="/proposals/jane-manning/img/site-2.jpg" alt="Jane Manning painting of a human spine with vines, roses, a bee and seed pods growing through it, on a birch panel" width="1500" height="1540" fetchpriority="high" /></div>
+    <span class="tag t1"><b>Fig. 1 · The shop</b><i></i></span>
+    <span class="tag t2"><b>Fig. 2 · The agent</b><i></i></span>
+    <span class="tag t3" style="--o:left"><i></i><b>Fig. 3 · Reach</b></span>
+    <figcaption><span>Sea Anatomy, acrylic on wood</span><span>J. Manning</span></figcaption>
+  </figure>
+</section>
+
+<!-- WHAT I HEARD -->
+<section class="wrap heard" id="heard" data-node>
+  <div class="heard-head" data-reveal>
+    <span class="fig">What I heard on our call</span>
+    <h2>You have the tree. <em>Now let’s get the fruit off it.</em></h2>
+  </div>
+  <ul class="notes">
+    <li data-reveal>
+      <h3>The message is already there</h3>
+      <p>Your paintings say something people feel right away: our bodies are an internal universe, and we’re lucky to live in them. When people meet you, they get hooked. They just have nowhere to go next.</p>
+    </li>
+    <li data-reveal>
+      <h3>The tees are the first door</h3>
+      <p>Organic, limited runs, art you can wear for $45 to $55. Not everyone buys a painting, but plenty of people will buy the shirt and tell the story every time they wear it. You have stock, some of it at the spa in Sebastopol, and new paintings ready to print.</p>
+    </li>
+    <li data-reveal>
+      <h3>The business side drains you</h3>
+      <p>How many shirts are left, what shipped, when to reorder, which painting becomes the next shirt. You’d rather paint, and you should. That part can be handled for you.</p>
+    </li>
+  </ul>
+  <figure class="today" data-reveal>
+    <div class="browser">
+      <div class="chrome"><i></i><i></i><i></i><span>janemanningart.com/the-work</span></div>
+      <img src="/proposals/jane-manning/img/current-site.jpg" alt="Screenshot of the current Jane Manning Art website, showing the Sea Anatomy series description" width="800" height="506" loading="lazy" />
+    </div>
+    <div class="pin p1"><b>1</b><span>The Shop link in the menu doesn’t go anywhere yet.</span></div>
+    <div class="pin p2"><b>2</b><span>The Paintings page is empty, and the footer still says 2016.</span></div>
+    <div class="pin p3"><b>3</b><span>No way to buy a shirt, join a list, or book you to speak.</span></div>
+    <figcaption class="today-cap">The work is beautiful. The site around it just never got finished, so every visitor leaves empty handed.</figcaption>
+  </figure>
+</section>
+
+<!-- FIG 1 SPINE -->
+<section class="chapter light spine" id="spine" data-node>
+  <div class="wrap">
+    <div class="ch-head" data-reveal>
+      <div class="t">
+        <span class="fig">Fig. 1 · The spine</span>
+        <h2>A shop as beautiful <em>as the work.</em></h2>
+      </div>
+      <div class="price"><b>$3,000</b><span>one time · website + shopping flow</span></div>
+    </div>
+
+    <div class="includes">
+      <div class="intro" data-reveal>
+        <p class="lede">The spine is what holds everything up. For you, that’s a website where someone can fall in love with a painting, pick their size, and check out in under a minute, with your story told the whole way through.</p>
+      </div>
+      <ul class="inc-list">
+        <li data-reveal><span class="k">The look</span><div><strong>A full redesign around your art</strong><span>Your paintings lead every page. Your words about the body and nature carry through, so it feels like walking into your studio, not a store.</span></div></li>
+        <li data-reveal><span class="k">The shop</span><div><strong>The whole buying experience, start to finish</strong><span>Product pages with model photos, sizes, limited edition counts, a simple bag, fast checkout with cards, Apple Pay and Google Pay, order emails, and shipping set up.</span></div></li>
+        <li data-reveal><span class="k">Inventory</span><div><strong>Stock that keeps itself counted</strong><span>Every sale updates what’s left, including shirts sitting at the spa. Low stock warnings before you run out, not after.</span></div></li>
+        <li data-reveal><span class="k">Doors</span><div><strong>Clear paths for each part of you</strong><span>Sea Anatomy tees, original paintings and prints, and room for Playwright and the children’s books later, without cluttering the page. A confused mind says no, so each door stays simple.</span></div></li>
+        <li data-reveal><span class="k">Platform</span><div><strong>The right home for selling</strong><span>We’ll recover your Squarespace login and decide together whether to stay or move to a platform built for shops (likely Shopify). Either way, your domain stays yours.</span></div></li>
+        <li data-reveal><span class="k">Hand off</span><div><strong>Training you can actually use</strong><span>A short walkthrough so you can add a new shirt or painting yourself in a few minutes, plus a written cheat sheet.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="demo-label" data-reveal>
+      <h3>A little taste, using your photos</h3>
+      <p>Click around. Pick a size, add it to the bag, check out.</p>
+    </div>
+    <div class="shop" data-reveal>
+      <div class="browser">
+        <div class="chrome"><i></i><i></i><i></i><span>janemanningart.com/shop/the-spine-tee</span></div>
+        <div class="store" id="store">
+          <div class="store-scroll" id="storeScroll" tabindex="0" aria-label="Shop preview, scrolls">
+          <div class="store-nav">
+            <span class="logo">Sea Anatomy</span>
+            <span class="links"><span>Tees</span><span>Paintings</span><span>Prints</span><span>The artist</span></span>
+            <button class="bagbtn" id="bagBtn" aria-label="Open bag">Bag <span class="count" id="bagCount">0</span></button>
+          </div>
+          <div class="pdp">
+            <div class="gallery">
+              <div class="thumbs" role="group" aria-label="Product photos">
+                <button aria-pressed="true" data-src="/proposals/jane-manning/img/model-26.jpg" data-alt="Model wearing the charcoal tee, spine print on the back"><img src="/proposals/jane-manning/img/model-26.jpg" alt="" loading="lazy" /></button>
+                <button aria-pressed="false" data-src="/proposals/jane-manning/img/site-2.jpg" data-alt="The original spine painting on wood"><img src="/proposals/jane-manning/img/site-2.jpg" alt="" loading="lazy" /></button>
+                <button aria-pressed="false" data-src="/proposals/jane-manning/img/shirt-22.jpg" data-alt="The tee laid flat on a wood floor"><img src="/proposals/jane-manning/img/shirt-22.jpg" alt="" loading="lazy" /></button>
+              </div>
+              <div class="main-img"><img id="mainImg" src="/proposals/jane-manning/img/model-26.jpg" alt="Model wearing the charcoal tee, spine print on the back" width="360" height="480" loading="lazy" /></div>
+            </div>
+            <div class="info">
+              <span class="crumb">Sea Anatomy · Organic tee</span>
+              <h4>The Spine</h4>
+              <div class="pr">$48</div>
+              <span class="ed">Limited run · 14 of 50 left</span>
+              <p class="story">“Bones are only made possible by life.” Printed from the original painting on soft organic cotton you can sleep in.</p>
+              <div class="opt-label">Size <span id="sizeNote">Choose one</span></div>
+              <div class="sizes" role="group" aria-label="Size">
+                <button aria-pressed="false">XS</button><button aria-pressed="false">S</button><button aria-pressed="false">M</button><button aria-pressed="false">L</button><button aria-pressed="false" disabled aria-label="XL, sold out">XL</button>
+              </div>
+              <button class="btn add" id="addBtn">Add to bag · $48
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <ul class="perks">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>100% organic cotton, nothing synthetic touching your skin</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Ships in tree-free packaging made from limestone and recycled resin</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Each run is numbered, then retired</li>
+              </ul>
+            </div>
+          </div>
+          <div class="collection">
+            <h5>More from the collection</h5>
+            <a class="pcard" href="#spine" data-noop><div class="ph"><img src="/proposals/jane-manning/img/shirt-19.jpg" alt="Navy tee with a brain and roots print" loading="lazy" /></div><b>The Mind</b><small>Navy · $48</small></a>
+            <a class="pcard" href="#spine" data-noop><div class="ph"><img src="/proposals/jane-manning/img/shirt-24.jpg" alt="White scoop neck tee with a small chest print" loading="lazy" /></div><b>Bloom, scoop neck</b><small>White · $45</small></a>
+            <a class="pcard" href="#spine" data-noop><div class="ph"><img src="/proposals/jane-manning/img/model-18.jpg" alt="Model wearing a white tee with a small heart print" loading="lazy" /></div><b>The Heart</b><small>White · $45</small></a>
+            <a class="pcard" href="#spine" data-noop><div class="ph"><img src="/proposals/jane-manning/img/art-20.jpg" alt="Painting of a pelvis with roses and a bee" loading="lazy" /></div><b>Pelvis, original</b><small>Painting · inquire</small></a>
+          </div>
+          </div>
+
+          <aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true">
+            <div class="drawer-head"><span id="drawerTitle">Your bag</span><button id="closeBag" aria-label="Close bag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+            <div class="steps" aria-hidden="true"><span class="on">Bag</span><span>Details</span><span>Pay</span><span>Done</span></div>
+            <div class="drawer-body">
+              <div class="pane on" data-pane="0">
+                <div class="line-item"><img src="/proposals/jane-manning/img/model-26.jpg" alt="" /><div><b>The Spine</b><small id="liSize">Size M · Charcoal</small></div><b>$48</b></div>
+                <p style="font-size:13.5px;color:#6b6355;margin-top:14px">Free shipping over $90. Add a second tee?</p>
+              </div>
+              <div class="pane" data-pane="1">
+                <div class="fake-field">Email</div><div class="fake-field">Full name</div><div class="fake-field">Shipping address</div>
+                <p style="font-size:13px;color:#6b6355;margin-top:12px">Saved for next time, so returning buyers skip this step.</p>
+              </div>
+              <div class="pane" data-pane="2">
+                <div class="pay-row"><div class="sel">Apple Pay</div><div>Google Pay</div><div>Card</div></div>
+                <p style="font-size:13px;color:#6b6355;margin-top:14px">One tap on a phone. No account needed.</p>
+              </div>
+              <div class="pane" data-pane="3">
+                <div class="done"><div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></div><h5>Thank you</h5><p>Your Spine tee is being packed in tree-free packaging. Your agent just logged the sale and updated stock to 13.</p></div>
+              </div>
+            </div>
+            <div class="drawer-foot">
+              <div class="sum"><span>Subtotal</span><span>$48.00</span></div>
+              <div class="sum big"><span>Total</span><span>$48.00</span></div>
+              <button class="btn" id="nextStep">Checkout</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <p class="disclaimer">Mockup built with your own photos to show the feel. Names, prices and stock counts are placeholders. Not a live store.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 2 NERVOUS SYSTEM -->
+<section class="chapter dark nerve" id="nerve" data-node>
+  <div class="wrap">
+    <div class="ch-head" data-reveal>
+      <div class="t">
+        <span class="fig">Fig. 2 · The nervous system</span>
+        <h2>A business partner <em>that remembers everything.</em></h2>
+      </div>
+      <div class="price"><b>Included</b><span>set up in the build · tuned monthly</span></div>
+    </div>
+    <div class="nerve-grid">
+      <div class="chat" data-reveal role="region" aria-label="Example conversation with your AI agent">
+        <div class="chat-top">
+          <span class="av" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EFE7D8" stroke-width="2"><path d="M12 3c-2 4 2 6 0 9s2 6 0 9"/><circle cx="16" cy="8" r="1.6" fill="#EFE7D8"/></svg></span>
+          <div><b>Your studio agent</b><small>Knows your stock, orders and paintings</small></div>
+          <button class="replay" id="replay">Replay</button>
+        </div>
+        <div class="msgs" id="msgs" aria-live="off">
+          <div class="msg me">How many Spine shirts do I have left?</div>
+          <div class="msg ai">You have 14 left.
+            <div class="stock"><span>Home studio</span><i style="width:100%"></i><span>9</span><span>Sebastopol spa</span><i style="width:55%"></i><span>5</span><span>Size M</span><i class="low" style="width:20%"></i><span>2</span></div>
+            <div style="margin-top:10px">Mediums are going fastest. At this pace you’ll be out of M in about 3 weeks.</div>
+            <div class="act"><span>Draft a reorder</span><span>Move 2 from the spa</span></div>
+          </div>
+          <div class="msg me">Did the 3 orders from the weekend ship?</div>
+          <div class="msg ai">Two shipped Monday. One is waiting on a size L, which is at the spa. Want me to message whoever is packing this week with the pickup note?</div>
+          <div class="msg me">I just finished the new pelvis painting. Should it be a shirt?</div>
+          <div class="msg ai">It fits. Your heart and spine designs sell best, and you don’t have a pelvis tee yet. Here’s a plan: scan it this week, a small run of 30 in white and natural, launch it the week of your next talk.
+            <div class="act"><span>Add to the production plan</span><span>Write the product story</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="does">
+        <p class="lede" data-reveal>Like the organs in your paintings, it quietly does its job so the rest of you can thrive. You talk to it the way you’d talk to an assistant, by text or voice, and it keeps track so you don’t carry it in your head.</p>
+        <ul>
+          <li data-reveal><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg><div><strong>Inventory, wherever it lives</strong><span>Home, the spa, a gallery, a pop up. What’s where, what’s low, what to reorder and when.</span></div></li>
+          <li data-reveal><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><div><strong>Every sale and every shipment</strong><span>Logged automatically from the shop, so you always know what’s been bought and what’s out the door.</span></div></li>
+          <li data-reveal><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg><div><strong>A planning partner for new work</strong><span>Tell it about a new painting. It helps you decide if it becomes a shirt, a print, or stays an original, and lays out the steps.</span></div></li>
+          <li data-reveal><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19c4-8 12-8 16 0"/><circle cx="12" cy="7" r="3"/></svg><div><strong>Fewer decisions on your plate</strong><span>It brings you the two or three choices that matter each week and handles the rest. Less business fatigue, more painting.</span></div></li>
+        </ul>
+        <div class="helper" data-reveal><b>Built for your helpers too.</b> Whoever packs and ships orders can ask it what’s due today and check things off, so nothing depends on your memory.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 3 CIRCULATION -->
+<section class="chapter wrap circ" id="circulation" data-node>
+  <div class="ch-head" data-reveal>
+    <div class="t">
+      <span class="fig">Fig. 3 · Circulation</span>
+      <h2>Your job isn’t to sell. <em>It’s to be heard.</em></h2>
+    </div>
+    <div class="price"><b>$500</b><span>per month · after launch</span></div>
+  </div>
+  <div class="circ-grid">
+    <figure class="diagram" data-reveal>
+      <svg viewBox="0 0 520 520" role="img" aria-labelledby="circT">
+        <title id="circT">Diagram: your message at the center, flowing out to podcasts, speaking, the Acres of Diamonds Roundtable, Instagram, and the shop</title>
+        <circle class="ring" cx="260" cy="260" r="200" />
+        <circle class="ring" cx="260" cy="260" r="120" />
+        <g class="arts">
+          <path class="art" d="M260 260 C 230 190, 190 120, 150 80" />
+          <path class="art" d="M260 260 C 330 210, 400 170, 450 160" />
+          <path class="art" d="M260 260 C 340 300, 400 360, 430 420" />
+          <path class="art" d="M260 260 C 220 340, 170 400, 120 430" />
+          <path class="art" d="M260 260 C 190 260, 120 250, 60 250" />
+        </g>
+        <g class="heart"><circle cx="260" cy="260" r="68" fill="#C8402F" /><text x="260" y="270" text-anchor="middle">your message</text></g>
+        <g class="node"><circle cx="150" cy="80" r="9" /><text x="166" y="72">Podcasts</text></g>
+        <g class="node"><circle cx="450" cy="160" r="9" /><text x="446" y="140" text-anchor="end">Speaking</text></g>
+        <g class="node"><circle cx="430" cy="420" r="9" /><text x="424" y="452" text-anchor="end">The shop</text></g>
+        <g class="node"><circle cx="120" cy="430" r="9" /><text x="136" y="462">Roundtable</text></g>
+        <g class="node"><circle cx="60" cy="250" r="9" /><text x="54" y="226">Instagram</text></g>
+      </svg>
+    </figure>
+    <div class="circ-copy">
+      <p class="lede" data-reveal>You’re at your best in conversation. So the monthly work is about putting you in more rooms, and keeping the shop and agent sharp so every new fan has somewhere to go.</p>
+      <ul class="monthly">
+        <li data-reveal><b>Distribution</b><span>Pitching you as a guest on podcasts in our network, and finding speaking slots where your message fits.</span></li>
+        <li data-reveal><b>Community</b><span>An introduction to the Acres of Diamonds Roundtable, a relationship first group that opens doors to bigger audiences.</span></li>
+        <li data-reveal><b>Care</b><span>Hosting, updates, new products and paintings added, and anything that breaks gets fixed.</span></li>
+        <li data-reveal><b>Optimize</b><span>Watching what sells and where people drop off, then improving the shop and the agent every month.</span></li>
+        <li data-reveal><b>Check in</b><span>A monthly call to look at the numbers in plain language and plan the next drop.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="chapter light invest" id="invest" data-node>
+  <div class="wrap">
+    <div class="ledger">
+      <div class="head" data-reveal>
+        <span class="fig">The investment</span>
+        <h2>Simple, <em>and yours to choose.</em></h2>
+        <p>One build to get everything working and beautiful, then a monthly plan that keeps it growing. If you want to start with the build alone, that works too.</p>
+      </div>
+      <div class="rows">
+        <div class="row" data-reveal><div><h3>The build</h3><small>Full website redesign, the complete shopping and checkout flow, inventory tracking, and your AI agent set up and trained on your business.</small></div><div class="amt">$3,000<span>once</span></div></div>
+        <div class="row" data-reveal><div><h3>Care &amp; growth</h3><small>Maintenance, monthly optimization, agent upkeep, plus podcast, speaking and community introductions. Starts after launch. Cancel any time.</small></div><div class="amt">$500<span>/ mo</span></div></div>
+        <div class="row total" data-reveal><div><h3>To get started</h3><small>The monthly plan begins once the new shop is live.</small></div><div class="amt">$3,000</div></div>
+      </div>
+      <div class="phases">
+        <div class="phase" data-reveal><span class="mono">Step one</span><h4>Gather</h4><p>Recover the Squarespace login, count the inventory (home and spa), and collect photos and paintings.</p></div>
+        <div class="phase" data-reveal><span class="mono">Step two</span><h4>Design &amp; build</h4><p>The new site and shop, with your review along the way. Nothing goes live without your yes.</p></div>
+        <div class="phase" data-reveal><span class="mono">Step three</span><h4>Launch &amp; teach</h4><p>Go live, test real orders, and a walkthrough with you and whoever helps you ship.</p></div>
+        <div class="phase" data-reveal><span class="mono">Then, monthly</span><h4>Grow</h4><p>Podcasts, stages, the Roundtable, new drops. Roughly 4 to 6 weeks from start to launch.</p></div>
+      </div>
+      <div class="yours" style="grid-column:1/-1" data-reveal>
+        <h3>What I’ll need from you</h3>
+        <ul>
+          <li>The Squarespace login (or your friend’s help recovering it)</li>
+          <li>A rough count of shirts by design and size</li>
+          <li>Your favorite paintings for the next shirts</li>
+          <li>Thirty minutes to talk through your story</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dark cta" data-node>
+  <div class="wrap cta-grid">
+    <h2 data-reveal>You paint. <em>We’ll grow the rest.</em></h2>
+    <div class="side" data-reveal>
+      <p>Let’s set a quick follow-up call to walk through this together, answer questions, and shape it to fit.</p>
+      <a class="btn" href="mailto:jentzen@localsundigital.com?subject=Jane%20Manning%20proposal%20%C2%B7%20let%27s%20talk">Book our follow-up
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><br />
+      <a class="btn ghost" href="mailto:jentzen@localsundigital.com?subject=Jane%20Manning%20proposal%20%C2%B7%20question">Ask a question first</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <img src="/proposals/jane-manning/LSD-logo.svg" alt="Local Sun Digital" width="120" height="34" />
+    <small>Prepared for Jane Manning · November 2026 · All artwork and photos © Jane Manning, used with permission for this proposal.</small>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* ---------- shop mock (works without GSAP) ---------- */
+  const mainImg = $('#mainImg');
+  $$('.thumbs button').forEach(b => b.addEventListener('click', () => {
+    $$('.thumbs button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+    mainImg.style.opacity = 0;
+    setTimeout(() => { mainImg.src = b.dataset.src; mainImg.alt = b.dataset.alt; mainImg.style.opacity = 1; }, 180);
+  }));
+  let size = null;
+  $$('.sizes button').forEach(b => b.addEventListener('click', () => {
+    $$('.sizes button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true'); size = b.textContent; $('#sizeNote').textContent = size === 'M' ? 'Only 2 left' : 'In stock';
+  }));
+  const drawer = $('#drawer'), next = $('#nextStep'), steps = $$('.steps span'), panes = $$('.pane');
+  let step = 0;
+  const labels = ['Checkout', 'Continue to payment', 'Pay $48.00', 'Keep shopping'];
+  const setStep = n => {
+    step = n;
+    steps.forEach((s, i) => s.classList.toggle('on', i <= n));
+    panes.forEach((p, i) => p.classList.toggle('on', i === n));
+    next.textContent = labels[n];
+    $('#drawerTitle').textContent = n === 3 ? 'Order confirmed' : 'Your bag';
+  };
+  const store = $('#store');
+  const frameIntoView = () => {
+    const r = store.getBoundingClientRect();
+    if (r.top < 70 || r.bottom > innerHeight) {
+      const y = scrollY + r.top - Math.max(70, (innerHeight - r.height) / 2);
+      scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    }
+  };
+  const openBag = () => { frameIntoView(); drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); setTimeout(() => $('#closeBag').focus({ preventScroll: true }), 300); };
+  const closeBag = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); $('#bagBtn').focus({ preventScroll: true }); };
+  $('#addBtn').addEventListener('click', () => {
+    if (!size) { size = 'M'; const m = $$('.sizes button')[2]; m.click(); }
+    $('#liSize').textContent = `Size ${size} · Charcoal`;
+    $('#bagCount').textContent = '1'; setStep(0); openBag();
+  });
+  $('#bagBtn').addEventListener('click', () => { if ($('#bagCount').textContent === '0') return; openBag(); });
+  $('#closeBag').addEventListener('click', closeBag);
+  drawer.addEventListener('keydown', e => { if (e.key === 'Escape') closeBag(); });
+  next.addEventListener('click', () => {
+    if (step < 3) setStep(step + 1);
+    else { closeBag(); setStep(0); $('#bagCount').textContent = '0'; }
+  });
+  $$('[data-noop]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+  /* ---------- header ---------- */
+  const top = $('#top');
+  let lastY = 0;
+
+  if (!window.gsap) { document.documentElement.classList.remove('js'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => {
+    const y = self.scroll();
+    top.classList.toggle('scrolled', y > 40);
+    top.classList.toggle('hide', y > 400 && self.direction === 1 && !drawer.classList.contains('open'));
+    lastY = y;
+  }});
+  const navLinks = $$('.top nav a');
+  navLinks.forEach(a => {
+    const sec = $(a.getAttribute('href'));
+    ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%', onToggle: s => a.classList.toggle('on', s.isActive) });
+  });
+
+  /* ---------- vine: the one driver ---------- */
+  const svg = $('#vine');
+  const NS = 'http://www.w3.org/2000/svg';
+  let stem, stem2, buds = [], samples = [], total = 0;
+  const build = () => {
+    const H = document.documentElement.scrollHeight;
+    const wrapEl = $('.wrap');
+    const left = wrapEl.getBoundingClientRect().left + window.scrollX;
+    const ch = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--channel')) || 72;
+    const cx = left + ch * 0.5;
+    const amp = ch * 0.28;
+    svg.setAttribute('height', H); svg.style.height = H + 'px';
+    svg.setAttribute('viewBox', `0 0 ${document.documentElement.clientWidth} ${H}`);
+    svg.innerHTML = '';
+    const nodes = $$('[data-node]').map(n => n.getBoundingClientRect().top + window.scrollY);
+    const pts = [[cx, 90]];
+    nodes.forEach((y, i) => { pts.push([cx + (i % 2 ? amp : -amp), y + 150]); pts.push([cx + (i % 2 ? -amp : amp) * .6, y + 150 + Math.max(260, ((nodes[i + 1] || H) - y) * .5)]); });
+    pts.push([cx, H - 40]);
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], my = (y0 + y1) / 2;
+      d += ` C${x0},${my} ${x1},${my} ${x1},${y1}`;
+    }
+    stem = document.createElementNS(NS, 'path'); stem.setAttribute('d', d); stem.setAttribute('class', 'stem');
+    stem2 = document.createElementNS(NS, 'path'); stem2.setAttribute('d', d); stem2.setAttribute('class', 'stem2');
+    stem2.setAttribute('transform', `translate(${amp * .35} 0)`);
+    svg.append(stem2, stem);
+    total = stem.getTotalLength();
+    samples = []; for (let l = 0; l <= total; l += 24) samples.push([l, stem.getPointAtLength(l).y]);
+    [stem, stem2].forEach(p => { p.style.strokeDasharray = total; p.style.strokeDashoffset = reduce ? 0 : total; });
+    buds = nodes.map((y, i) => {
+      const len = lenAtY(y + 150);
+      const p = stem.getPointAtLength(len);
+      const g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'bud');
+      const side = i % 2 ? 1 : -1;
+      g.innerHTML = `<path d="M0,0 C${side * 10},-14 ${side * 26},-12 ${side * 30},-2 C${side * 22},6 ${side * 8},6 0,0Z"/><circle class="o" cx="${side * 6}" cy="10" r="6.5"/><circle class="i" cx="${side * 7.5}" cy="8.5" r="2"/>`;
+      g.setAttribute('transform', `translate(${p.x} ${p.y})`);
+      const inner = document.createElementNS(NS, 'g'); inner.append(...g.childNodes); g.append(inner);
+      svg.append(g);
+      if (!reduce) gsap.set(inner, { scale: 0, transformOrigin: '0px 0px' });
+      return { inner, len, open: reduce, phase: i * 1.7 };
+    });
+  };
+  const lenAtY = y => { for (const [l, py] of samples) if (py >= y) return l; return total; };
+  const draw = () => {
+    if (reduce || !stem) return;
+    const y = window.scrollY + innerHeight * .72;
+    const len = lenAtY(y);
+    stem.style.strokeDashoffset = total - len;
+    stem2.style.strokeDashoffset = total - len * .985;
+    buds.forEach(b => {
+      if (!b.open && len >= b.len) { b.open = true; gsap.to(b.inner, { scale: 1, duration: 1.1, ease: 'expo.out' }); }
+    });
+  };
+  build(); draw();
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: draw });
+  let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { build(); draw(); ScrollTrigger.refresh(); }, 200); });
+  // idle: buds sway on the one clock
+  if (!reduce) gsap.ticker.add(t => { buds.forEach(b => { if (b.open) gsap.set(b.inner, { rotation: Math.sin(t * .9 + b.phase) * 7 }); }); });
+
+  if (reduce) return;
+
+  /* ---------- hero intro ---------- */
+  gsap.set('.hero h1 .line > span', { translate: 'none', y: 0, yPercent: 105 });
+  gsap.set('[data-reveal]', { translate: 'none', y: 28 });
+  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  tl.to('.hero h1 .line > span', { yPercent: 0, duration: 1.25, stagger: .09 })
+    .to('.plate-frame', { clipPath: 'inset(0% 0 0 0)', duration: 1.5 }, .1)
+    .from('[data-intro]', { opacity: 0, y: 18, duration: 1, stagger: .08 }, .35)
+    .to('.tag i', { scale: 1, duration: .9, stagger: .15 }, .9)
+    .to('.tag b', { opacity: 1, duration: .6, stagger: .15 }, 1.05);
+  gsap.to('.plate-frame img', { yPercent: 6, scale: 1.06, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* ---------- reveals ---------- */
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true,
+    onEnter: els => gsap.to(els, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: .07 }) });
+
+  /* circulation arteries grow out of the heart */
+  $$('.diagram .art').forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+  gsap.set('.diagram .node', { opacity: 0 });
+  ScrollTrigger.create({ trigger: '.diagram', start: 'top 70%', once: true, onEnter: () => {
+    gsap.to('.diagram .art', { strokeDashoffset: 0, duration: 1.6, ease: 'expo.out', stagger: .12 });
+    gsap.to('.diagram .node', { opacity: 1, duration: .6, stagger: .12, delay: .6 });
+  }});
+  const heart = $('.diagram .heart circle');
+  gsap.ticker.add(t => { const s = 1 + Math.max(0, Math.sin(t * 2.4)) * .035; gsap.set(heart, { scale: s, svgOrigin: '260 260' }); });
+
+  /* ---------- chat plays when seen ---------- */
+  const msgs = $$('#msgs > .msg');
+  const box = $('#msgs');
+  let chatTl;
+  const playChat = () => {
+    if (chatTl) chatTl.kill();
+    $$('.typing', box).forEach(t => t.remove());
+    gsap.set(msgs, { opacity: 0, y: 12, display: 'none' });
+    chatTl = gsap.timeline();
+    msgs.forEach(m => {
+      if (m.classList.contains('ai')) {
+        const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>';
+        chatTl.call(() => box.insertBefore(ty, m)).to({}, { duration: .9 }).call(() => ty.remove());
+      }
+      chatTl.set(m, { display: 'block' }).to(m, { opacity: 1, y: 0, duration: .6, ease: 'expo.out' }).to({}, { duration: m.classList.contains('me') ? .5 : 1.1 });
+    });
+  };
+  gsap.set(msgs, { opacity: 0, display: 'none' });
+  ScrollTrigger.create({ trigger: '.chat', start: 'top 65%', once: true, onEnter: playChat });
+  $('#replay').addEventListener('click', playChat);
+})();
+</script>
+</body>
+</html>
