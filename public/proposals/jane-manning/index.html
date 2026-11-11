@@ -71,11 +71,16 @@ p{max-width:62ch}
 
 /* ---------- vine ---------- */
 #vine{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:2;overflow:visible}
-#vine .stem{fill:none;stroke:var(--vein);stroke-width:2.2;stroke-linecap:round}
-#vine .stem2{fill:none;stroke:var(--vein-soft);stroke-width:1.1;stroke-linecap:round;opacity:.7}
-#vine .bud circle.o{fill:#E3B341;stroke:var(--ink);stroke-width:1}
-#vine .bud circle.i{fill:var(--bone)}
-#vine .bud path{fill:var(--vein-soft);stroke:var(--vein);stroke-width:.8}
+#vine .s-art,#vine .s-biz,#vine .rung{fill:none;stroke-linecap:round}
+#vine .s-art{stroke:var(--vein-soft);stroke-width:2.4}
+#vine .s-biz{stroke:#C9962E;stroke-width:1.8}
+#vine .back{opacity:.38}
+#vine .rung{stroke:#C9962E;stroke-width:.8;opacity:.32}
+#vine .knot{fill:#C9962E;stroke:var(--vein-soft);stroke-width:1.5}
+#vine .organ .disc{fill:var(--bone)}
+#vine .organ .ring{fill:none;stroke:var(--vein-soft);stroke-width:1;opacity:.55}
+#vine .organ path{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+#vine .organ.coral path{stroke:var(--coral)}
 
 /* ---------- buttons ---------- */
 .btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:17px 26px;font:600 15px var(--sans);letter-spacing:.01em;text-decoration:none;color:var(--bone);background:var(--ink);overflow:hidden;isolation:isolate;border-radius:2px}
@@ -108,8 +113,8 @@ p{max-width:62ch}
 .tag{position:absolute;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
 .tag i{display:block;height:1px;background:var(--ink);width:56px;transform-origin:var(--o,right)}
 .tag b{font-weight:500;background:var(--bone);padding:4px 8px;border-radius:2px;box-shadow:0 0 0 1px var(--line)}
-.tag.t1{top:9%;left:-34%}
-.tag.t2{top:44%;left:-30%}
+.tag.t1{top:9%;left:-5%}
+.tag.t2{top:44%;left:-5%}
 .tag.t3{top:80%;right:-10%;--o:left}
 
 /* ---------- heard ---------- */
@@ -336,7 +341,6 @@ footer small{font-size:12.5px;color:var(--text-muted)}
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
-  .tag.t1,.tag.t2{left:auto;right:calc(100% - 24px)}
 }
 @media (max-width:900px){
   :root{--channel:22px;--gut:18px}
@@ -497,7 +501,7 @@ footer small{font-size:12.5px;color:var(--text-muted)}
         <li data-reveal><span class="k">Inventory</span><div><strong>Stock that keeps itself counted</strong><span>Every sale updates what’s left, including shirts sitting at the spa. Low stock warnings before you run out, not after.</span></div></li>
         <li data-reveal><span class="k">Doors</span><div><strong>Clear paths for each part of you</strong><span>Sea Anatomy tees, original paintings and prints, and room for Playwright and the children’s books later, without cluttering the page. A confused mind says no, so each door stays simple.</span></div></li>
         <li data-reveal><span class="k">Platform</span><div><strong>The right home for selling</strong><span>We’ll recover your Squarespace login and decide together whether to stay or move to a platform built for shops (likely Shopify). Either way, your domain stays yours.</span></div></li>
-        <li data-reveal><span class="k">Hand off</span><div><strong>Training you can actually use</strong><span>A short walkthrough so you can add a new shirt or painting yourself in a few minutes, plus a written cheat sheet.</span></div></li>
+        <li data-reveal><span class="k">Hand off</span><div><strong>Ready for you and your helper</strong><span>A walkthrough of orders, shipping and the agent for you and whoever helps you ship. New shirts and paintings get added for you as part of the monthly plan.</span></div></li>
       </ul>
     </div>
 
@@ -686,12 +690,13 @@ footer small{font-size:12.5px;color:var(--text-muted)}
       <div class="rows">
         <div class="row" data-reveal><div><h3>The build</h3><small>Full website redesign, the complete shopping and checkout flow, inventory tracking, and your AI agent set up and trained on your business.</small></div><div class="amt">$3,000<span>once</span></div></div>
         <div class="row" data-reveal><div><h3>Care &amp; growth</h3><small>Maintenance, monthly optimization, agent upkeep, plus podcast, speaking and community introductions. Starts after launch. Cancel any time.</small></div><div class="amt">$500<span>/ mo</span></div></div>
+        <div class="row" data-reveal><div><h3>Outside tools</h3><small>Separate from my fee. The AI agent runs on its own subscription, usually about $20 to $50 a month, and the shop may need a few small tools of its own (like the store platform and card processing). These are billed to you directly at their regular price, and I’ll list each one before we start so there are no surprises.</small></div><div class="amt">Varies<span>/ mo</span></div></div>
         <div class="row total" data-reveal><div><h3>To get started</h3><small>The monthly plan begins once the new shop is live.</small></div><div class="amt">$3,000</div></div>
       </div>
       <div class="phases">
         <div class="phase" data-reveal><span class="mono">Step one</span><h4>Gather</h4><p>Recover the Squarespace login, count the inventory (home and spa), and collect photos and paintings.</p></div>
         <div class="phase" data-reveal><span class="mono">Step two</span><h4>Design &amp; build</h4><p>The new site and shop, with your review along the way. Nothing goes live without your yes.</p></div>
-        <div class="phase" data-reveal><span class="mono">Step three</span><h4>Launch &amp; teach</h4><p>Go live, test real orders, and a walkthrough with you and whoever helps you ship.</p></div>
+        <div class="phase" data-reveal><span class="mono">Step three</span><h4>Launch &amp; hand off</h4><p>Go live, test real orders, and a walkthrough with you and whoever helps you ship.</p></div>
         <div class="phase" data-reveal><span class="mono">Then, monthly</span><h4>Grow</h4><p>Podcasts, stages, the Roundtable, new drops. Roughly 4 to 6 weeks from start to launch.</p></div>
       </div>
       <div class="yours" style="grid-column:1/-1" data-reveal>
@@ -802,17 +807,30 @@ footer small{font-size:12.5px;color:var(--text-muted)}
     ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%', onToggle: s => a.classList.toggle('on', s.isActive) });
   });
 
-  /* ---------- vine: the one driver ---------- */
+  /* ---------- vine: the one driver ----------
+     Two strands (art + business) twist down the page; at each section an
+     organ drawing opens on a small plate. */
   const svg = $('#vine');
   const NS = 'http://www.w3.org/2000/svg';
-  let stem, stem2, buds = [], samples = [], total = 0;
+  const ORGAN_ART = {
+    heart: { cls: 'coral', d: ['M0,14 C-14,4 -16,-8 -8,-12 C-3,-14 0,-10 0,-7 C0,-10 3,-14 8,-12 C16,-8 14,4 0,14Z', 'M-2,-9 C-3,-15 -1,-18 3,-18', 'M3,-11 C4,-15 7,-16 10,-15', 'M-4,0 C-2,4 1,6 4,6'] },
+    ear: { d: ['M7,-11 C6,-18 -7,-18 -9,-7 C-11,3 -3,5 -3,11 C-3,16 4,17 6,12', 'M3,-7 C2,-12 -5,-11 -5,-5 C-5,-1 -1,-1 -1,3', 'M-1,3 C1,5 2,7 1,9'] },
+    spine: { d: ['M-6,-16 h12 a3.5,3.5 0 0 1 0,7 h-12 a3.5,3.5 0 0 1 0,-7Z', 'M-6,-3.5 h12 a3.5,3.5 0 0 1 0,7 h-12 a3.5,3.5 0 0 1 0,-7Z', 'M-6,9 h12 a3.5,3.5 0 0 1 0,7 h-12 a3.5,3.5 0 0 1 0,-7Z', 'M-9,-12.5 L-14,-15 M9,-12.5 L14,-15 M-9,0 L-14,-2.5 M9,0 L14,-2.5 M-9,12.5 L-14,10 M9,12.5 L14,10'] },
+    neuron: { d: ['M4,0 A4,4 0 1 1 -4,0 A4,4 0 1 1 4,0Z', 'M-3,-3 L-9,-9 L-14,-8 M-9,-9 L-10,-15', 'M3,-3 L8,-10 L13,-11 M8,-10 L7,-16', 'M-4,1 L-13,3 L-16,0', 'M2,4 L4,9 L4,15 M4,15 L0,18 M4,15 L8,18'] },
+    vessel: { d: ['M0,-17 C0,-8 0,-2 0,4', 'M0,4 C-2,8 -8,10 -12,16', 'M0,4 C2,8 8,10 12,16', 'M0,-7 C-4,-9 -8,-7 -13,-11', 'M0,-2 C4,-4 8,-2 13,-6', 'M-6,10 C-8,12 -8,14 -7,17'] },
+    lungs: { d: ['M0,-17 V-5 M0,-5 C-2,-3 -4,-2 -5,0 M0,-5 C2,-3 4,-2 5,0', 'M-4,-9 C-12,-7 -14,5 -13,12 C-10,15 -5,13 -3,10 C-3,4 -3,-3 -4,-9Z', 'M4,-9 C12,-7 14,5 13,12 C10,15 5,13 3,10 C3,4 3,-3 4,-9Z'] },
+    bloom: { cls: 'coral', d: [0, 72, 144, 216, 288].map(a => 'M0,0 C-5,-6 -3,-14 0,-15 C3,-14 5,-6 0,0Z|' + a).concat(['M2.6,0 A2.6,2.6 0 1 1 -2.6,0 A2.6,2.6 0 1 1 2.6,0Z']) },
+  };
+  const ORGAN_ORDER = ['heart', 'ear', 'spine', 'neuron', 'vessel', 'lungs', 'bloom'];
+  let stem, organs = [], samples = [], total = 0;
+  let helix = null, clipRect = null;
   const build = () => {
     const H = document.documentElement.scrollHeight;
     const wrapEl = $('.wrap');
     const left = wrapEl.getBoundingClientRect().left + window.scrollX;
     const ch = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--channel')) || 72;
     const cx = left + ch * 0.5;
-    const amp = ch * 0.28;
+    const amp = ch * 0.14;
     svg.setAttribute('height', H); svg.style.height = H + 'px';
     svg.setAttribute('viewBox', `0 0 ${document.documentElement.clientWidth} ${H}`);
     svg.innerHTML = '';
@@ -826,41 +844,104 @@ footer small{font-size:12.5px;color:var(--text-muted)}
       d += ` C${x0},${my} ${x1},${my} ${x1},${y1}`;
     }
     stem = document.createElementNS(NS, 'path'); stem.setAttribute('d', d); stem.setAttribute('class', 'stem');
-    stem2 = document.createElementNS(NS, 'path'); stem2.setAttribute('d', d); stem2.setAttribute('class', 'stem2');
-    stem2.setAttribute('transform', `translate(${amp * .35} 0)`);
-    svg.append(stem2, stem);
     total = stem.getTotalLength();
     samples = []; for (let l = 0; l <= total; l += 24) samples.push([l, stem.getPointAtLength(l).y]);
-    [stem, stem2].forEach(p => { p.style.strokeDasharray = total; p.style.strokeDashoffset = reduce ? 0 : total; });
-    buds = nodes.map((y, i) => {
+
+    {
+      // two strands twisting around a hidden centre line
+      const center = []; for (let l = 0; l <= total; l += 9) { const p = stem.getPointAtLength(l); center.push([p.x, p.y]); }
+      const defs = document.createElementNS(NS, 'defs');
+      defs.innerHTML = '<clipPath id="vineClip"><rect x="-9999" y="0" width="99999" height="0"/></clipPath>';
+      svg.append(defs);
+      clipRect = defs.querySelector('rect');
+      const g = document.createElementNS(NS, 'g'); g.setAttribute('clip-path', 'url(#vineClip)');
+      const mk = c => { const p = document.createElementNS(NS, 'path'); p.setAttribute('class', c); g.append(p); return p; };
+      const rungs = mk('rung'), aBack = mk('s-art back'), bBack = mk('s-biz back'), aFront = mk('s-art'), bFront = mk('s-biz');
+      const knot = document.createElementNS(NS, 'circle'); knot.setAttribute('class', 'knot'); knot.setAttribute('r', ch > 40 ? 4.5 : 2.5);
+      knot.setAttribute('cx', cx); knot.setAttribute('cy', H - 40); g.append(knot);
+      svg.append(g);
+      helix = { center, A: ch * (ch > 40 ? 0.2 : 0.24), P: ch > 40 ? 300 : 220, y0: 90, y1: H - 40, rungs, aBack, bBack, aFront, bFront };
+      if (reduce) clipRect.setAttribute('height', H);
+      shapeHelix(0);
+    }
+
+    organs = [];
+    nodes.forEach((y, i) => {
       const len = lenAtY(y + 150);
       const p = stem.getPointAtLength(len);
-      const g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'bud');
-      const side = i % 2 ? 1 : -1;
-      g.innerHTML = `<path d="M0,0 C${side * 10},-14 ${side * 26},-12 ${side * 30},-2 C${side * 22},6 ${side * 8},6 0,0Z"/><circle class="o" cx="${side * 6}" cy="10" r="6.5"/><circle class="i" cx="${side * 7.5}" cy="8.5" r="2"/>`;
-      g.setAttribute('transform', `translate(${p.x} ${p.y})`);
-      const inner = document.createElementNS(NS, 'g'); inner.append(...g.childNodes); g.append(inner);
-      svg.append(g);
-      if (!reduce) gsap.set(inner, { scale: 0, transformOrigin: '0px 0px' });
-      return { inner, len, open: reduce, phase: i * 1.7 };
+      {
+        const art = ORGAN_ART[ORGAN_ORDER[Math.min(i, ORGAN_ORDER.length - 1)]];
+        const g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'organ' + (art.cls ? ' ' + art.cls : ''));
+        const s = ch > 40 ? 1 : 0.5;
+        g.setAttribute('transform', `translate(${p.x} ${p.y}) scale(${s})`);
+        const inner = document.createElementNS(NS, 'g');
+        const disc = document.createElementNS(NS, 'circle'); disc.setAttribute('r', 24); disc.setAttribute('class', 'disc');
+        const ring = document.createElementNS(NS, 'circle'); ring.setAttribute('r', 27.5); ring.setAttribute('class', 'ring');
+        inner.append(ring, disc);
+        const lines = art.d.map(str => {
+          const [pd, rot] = str.split('|');
+          const pe = document.createElementNS(NS, 'path'); pe.setAttribute('d', pd);
+          if (rot) pe.setAttribute('transform', `rotate(${rot})`);
+          inner.append(pe); return pe;
+        });
+        g.append(inner); svg.append(g);
+        const lens = lines.map(l => l.getTotalLength());
+        if (!reduce) {
+          gsap.set([disc, ring], { scale: 0, svgOrigin: '0 0' });
+          lines.forEach((l, k) => { l.style.strokeDasharray = lens[k]; l.style.strokeDashoffset = lens[k]; });
+        }
+        organs.push({ inner, disc, ring, lines, len, open: reduce, phase: i * 1.3, heart: i === 0 });
+      }
     });
   };
+  // rebuild the two strands; t drifts the twist slowly on the ticker
+  const shapeHelix = t => {
+    if (!helix) return;
+    const { center, A, P, y0, y1 } = helix;
+    let aF = '', aB = '', bF = '', bB = '', r = '';
+    let pa = null, pb = null;
+    center.forEach(([x, y], k) => {
+      const env = Math.min(1, Math.max(0, (y - y0) / 220)) * Math.min(1, Math.max(0, (y1 - y) / 320));
+      const ph = (y / P) * Math.PI * 2 + t;
+      const off = Math.sin(ph) * A * env;
+      const frontA = Math.cos(ph) >= 0;
+      const xa = (x + off).toFixed(1), xb = (x - off).toFixed(1), yy = y.toFixed(1);
+      if (pa) {
+        if (frontA) { aF += `M${pa[0]},${pa[1]}L${xa},${yy}`; bB += `M${pb[0]},${pb[1]}L${xb},${yy}`; }
+        else { aB += `M${pa[0]},${pa[1]}L${xa},${yy}`; bF += `M${pb[0]},${pb[1]}L${xb},${yy}`; }
+      }
+      if (k % 3 === 0 && env > .25 && Math.abs(Math.sin(ph)) > .35) r += `M${xa},${yy}L${xb},${yy}`;
+      pa = [xa, yy]; pb = [xb, yy];
+    });
+    helix.aFront.setAttribute('d', aF); helix.aBack.setAttribute('d', aB);
+    helix.bFront.setAttribute('d', bF); helix.bBack.setAttribute('d', bB);
+    helix.rungs.setAttribute('d', r);
+  };
   const lenAtY = y => { for (const [l, py] of samples) if (py >= y) return l; return total; };
+  const openOrgan = o => {
+    o.open = true;
+    gsap.to([o.ring, o.disc], { scale: 1, duration: 1, ease: 'expo.out', stagger: .06 });
+    o.lines.forEach((l, k) => gsap.to(l, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.out', delay: .25 + k * .12 }));
+  };
   const draw = () => {
     if (reduce || !stem) return;
     const y = window.scrollY + innerHeight * .72;
     const len = lenAtY(y);
-    stem.style.strokeDashoffset = total - len;
-    stem2.style.strokeDashoffset = total - len * .985;
-    buds.forEach(b => {
-      if (!b.open && len >= b.len) { b.open = true; gsap.to(b.inner, { scale: 1, duration: 1.1, ease: 'expo.out' }); }
-    });
+    clipRect.setAttribute('height', Math.max(0, y));
+    organs.forEach(o => { if (!o.open && len >= o.len) openOrgan(o); });
   };
   build(); draw();
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: draw });
   let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { build(); draw(); ScrollTrigger.refresh(); }, 200); });
-  // idle: buds sway on the one clock
-  if (!reduce) gsap.ticker.add(t => { buds.forEach(b => { if (b.open) gsap.set(b.inner, { rotation: Math.sin(t * .9 + b.phase) * 7 }); }); });
+  // idle, on the one clock: organs breathe (the heart beats), strands slowly twist
+  if (!reduce) gsap.ticker.add(t => {
+    organs.forEach(o => {
+      if (!o.open) return;
+      const beat = o.heart ? Math.max(0, Math.sin(t * 5.2)) ** 6 * .08 + Math.max(0, Math.sin(t * 5.2 - 1)) ** 6 * .04 : Math.sin(t * 1.1 + o.phase) * .025;
+      gsap.set(o.inner, { scale: 1 + beat, rotation: o.heart ? 0 : Math.sin(t * .7 + o.phase) * 3, svgOrigin: '0 0' });
+    });
+    shapeHelix(t * .35);
+  });
 
   if (reduce) return;
 
