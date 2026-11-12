@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tucker Bookkeeping × Local Sun Digital · Cold Email Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+
+      /* Secondary accents — section tinting & chart color only, never the
+         primary CTA/button color. See brand.md "Visual variety practice". */
+      --accent-blue: #4F8CFF;
+      --accent-blue-dim: rgba(79, 140, 255, 0.12);
+      --accent-blue-border: rgba(79, 140, 255, 0.35);
+      --accent-teal: #2FD6B0;
+      --accent-teal-dim: rgba(47, 214, 176, 0.12);
+      --accent-teal-border: rgba(47, 214, 176, 0.35);
+      --accent-rose: #FF5C5C;
+      --accent-rose-dim: rgba(255, 92, 92, 0.12);
+      --accent-rose-border: rgba(255, 92, 92, 0.35);
+
+      /* Light-section tokens — see .section-light below */
+      --cream: #F7F2E7;
+      --gold-ink: #9C6B00;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 24px; color: var(--text);
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px); font-weight: 500;
+      color: var(--text-muted); max-width: 560px;
+      margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 600px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── SECTION TINTS ──
+       Apply ONE of these to a <section class="section ..."> to break up flat
+       black. Alternate by what the section is about (see brand.md): never
+       stack two tinted sections back-to-back without a plain one between. */
+    .section-tint-gold { background: radial-gradient(ellipse 900px 500px at 50% 0%, var(--gold-dim), transparent 70%); }
+    .section-tint-blue { background: radial-gradient(ellipse 900px 500px at 80% 0%, var(--accent-blue-dim), transparent 70%); }
+    .section-tint-teal { background: radial-gradient(ellipse 900px 500px at 20% 100%, var(--accent-teal-dim), transparent 70%); }
+    .section-tint-rose { background: radial-gradient(ellipse 900px 500px at 80% 100%, var(--accent-rose-dim), transparent 70%); }
+
+    /* ── LIGHT SECTION ──
+       Redefines the shared tokens for everything inside it, so .card,
+       .stat-tile, .check-list etc. all flip to dark-text-on-cream for free
+       because they're already built from these variables. Use 1-2 per
+       page, as a breather between dark sections — never the whole page. */
+    .section-light {
+      background: var(--cream);
+      --bg: var(--cream);
+      --surface: #FFFFFF;
+      --surface-2: #F1EADA;
+      --border: rgba(14,14,14,0.09);
+      --border-gold: rgba(156,107,0,0.4);
+      --text: #17140D;
+      --text-muted: rgba(23,20,13,0.62);
+      --text-dim: rgba(23,20,13,0.4);
+      --gold: var(--gold-ink);
+      --gold-dim: rgba(156,107,0,0.12);
+      --accent-blue-dim: rgba(40,90,200,0.1);
+      --accent-teal-dim: rgba(20,140,110,0.1);
+      --accent-rose-dim: rgba(200,40,40,0.1);
+      color: var(--text);
+    }
+    .section-light .card:hover { box-shadow: 0 12px 32px rgba(23,20,13,0.1), 0 0 0 1px var(--border-gold); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, var(--surface) 0%, var(--gold-dim) 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: var(--text); }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px; text-align: center;
+    }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+
+    /* ── Tucker additions (built from shared tokens only) ── */
+    .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px; }
+    .chart-card svg { width: 100%; height: auto; display: block; }
+    .chart-caption { font-size: 13px; color: var(--text-dim); margin-top: 16px; line-height: 1.6; }
+    .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .tl-step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; }
+    .tl-when { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .tl-bar { height: 4px; border-radius: 99px; background: var(--border); margin-bottom: 18px; overflow: hidden; }
+    .tl-bar span { display: block; height: 100%; background: var(--gold); border-radius: 99px; }
+    .guarantee { background: linear-gradient(135deg, var(--gold-dim), var(--surface)); border: 1px solid var(--border-gold); border-radius: var(--radius-card); padding: 32px 36px; margin-top: 32px; display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+    .guarantee h3 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .guarantee p { font-size: 15px; color: var(--text-muted); line-height: 1.7; max-width: 720px; }
+    .sample-email { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px 28px; font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+    .sample-email .subj { font-size: 12px; font-weight: 700; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+    .chart-lbl { font: 600 14px Inter, sans-serif; fill: var(--text); }
+    .chart-sub { font: 400 12px Inter, sans-serif; fill: var(--text-muted); }
+    .chart-val { font: 800 15px Inter, sans-serif; fill: var(--text); }
+    .fn-num { font: 900 30px Inter, sans-serif; fill: var(--text); }
+    .fn-num.dark { fill: #0E0E0E; }
+    .fn-lbl { font: 600 13px Inter, sans-serif; fill: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <img src="/proposals/tucker-bookkeeping/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Tucker Bookkeeping</span> · November 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div><div class="hero-line h"></div><div class="hero-line h"></div>
+    <div class="hero-line v"></div><div class="hero-line v"></div><div class="hero-line v"></div>
+    <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div>Cold Email Proposal · Local Sun Digital</div>
+    <h1>Start conversations with Illinois clients, <span class="gold">without cold calling.</span></h1>
+    <p class="hero-sub">A done-for-you cold email system aimed at Illinois real estate and insurance agents. Built to land in the inbox, timed for tax season, and wired so interested replies go straight into your HubSpot.</p>
+    <div class="badge-row">
+      <span class="badge">Cold Email Campaign · $500/mo</span>
+      <span class="badge">HubSpot Form Fix · $50 one-time</span>
+      <span class="badge">Illinois-wide · Remote-first</span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE GAP ── -->
+<section class="section section-tint-blue">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Where You Are Today</div>
+      <h2 class="section-title">The skills are there. The leads aren't coming in yet.</h2>
+      <p class="section-sub">You've tried social media, postcards and email on your own. None of it has turned into steady conversations. Here's why, and what changes.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/></svg></div>
+        <div class="card-title">Your past emails likely never reached the inbox</div>
+        <p class="card-body">Zero replies usually means the spam folder, not a bad message. Getting delivered takes separate sending domains, warmed-up inboxes and a verified list. It's close to a full-time job, and it's the part I handle.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 2M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg></div>
+        <div class="card-title">Every step depends on you pushing it forward</div>
+        <p class="card-body">Promoting yourself is the hardest part of running a practice. This system starts the conversation for you, so you only step in when someone has already said they're interested.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-6M13 17V7M17 17v-3M5 21h14"/></svg></div>
+        <div class="card-title">Postcards and social cost time without a clear return</div>
+        <p class="card-body">Cold email is measurable from week one: how many people got it, replied and booked. If something isn't working, we see it in the numbers and change it fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO WE'LL REACH (light) ── -->
+<section class="section section-light">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Who We'll Reach</div>
+        <h2 class="section-title">Start with the people who share your licenses.</h2>
+        <p class="section-sub" style="margin-bottom:20px;">You hold a real estate license and an insurance broker license. That makes you one of them, and it's the strongest trust signal you have. Agents also have messy taxes: commission income, 1099s, mileage and self-employment tax.</p>
+        <p class="section-sub" style="margin-bottom:20px;">Before writing this, I checked how many verified contacts actually exist. Within 30 miles of you there are only about 60, which isn't enough to run a campaign. Statewide, there are thousands. So we go Illinois-wide and remote-first, and you stay focused on one state's tax code.</p>
+        <p class="section-sub">Real estate and insurance agents go first. General small business owners come next, as their own campaign, so we can compare which group responds best.</p>
+      </div>
+      <div class="chart-card">
+        <svg viewBox="0 0 380 320" role="img" aria-label="Verified Illinois contacts by segment">
+          <text x="0" y="18" class="chart-lbl">Small business owners</text><text x="0" y="36" class="chart-sub">1 to 10 staff, any industry · Phase 2</text>
+          <rect x="0" y="46" width="300" height="16" rx="8" style="fill:var(--accent-blue)"/><text x="310" y="59" class="chart-val">8,684</text>
+
+          <text x="0" y="98" class="chart-lbl">Real estate agents</text><text x="0" y="116" class="chart-sub">Phase 1</text>
+          <rect x="0" y="126" width="77" height="16" rx="8" style="fill:var(--gold)"/><text x="87" y="139" class="chart-val">2,236</text>
+
+          <text x="0" y="178" class="chart-lbl">Insurance agents</text><text x="0" y="196" class="chart-sub">Phase 1</text>
+          <rect x="0" y="206" width="18" height="16" rx="8" style="fill:var(--gold)"/><text x="28" y="219" class="chart-val">528</text>
+
+          <text x="0" y="258" class="chart-lbl">Within 30 miles of you</text><text x="0" y="276" class="chart-sub">All target groups combined</text>
+          <rect x="0" y="286" width="6" height="16" rx="3" style="fill:var(--accent-rose)"/><text x="16" y="299" class="chart-val">~60</text>
+        </svg>
+        <p class="chart-caption">Verified-email contacts in Illinois, counted November 2026. Every address is checked again right before sending, so a share of these get filtered out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PACKAGE 1 ── -->
+<section class="section section-tint-gold">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Done-for-You Cold Email Campaign</div>
+      <div class="pkg-price">$500 / month</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom:36px; max-width:640px;">Everything from setting up the sending system to routing interested replies. Domains, inboxes and lead data are included, so there are no extra software bills.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg></div>
+        <div class="card-title">Sending setup that protects your name</div>
+        <p class="card-body">2 dedicated sending domains with 2 inboxes each, fully authenticated and warmed up for 2 weeks before the first email. Your main website domain is never used, so its reputation stays clean. If one domain has trouble, the other keeps sending.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a4 4 0 00-5-3.9M9 20H2v-2a4 4 0 015-3.9M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div class="card-title">A verified Illinois list, refreshed monthly</div>
+        <p class="card-body">I find and verify Illinois agents and business owners every month, removing bad addresses before they ever get an email. Fewer bounces keeps the inboxes healthy.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.1 2.1 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        <div class="card-title">Copy written in your voice</div>
+        <p class="card-body">Short, personal emails built around tax season, your licenses and being veteran-owned. Two different versions are tested against each other, and we keep the winner.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+        <div class="card-title">About 1,700 emails a month</div>
+        <p class="card-body">Roughly 550 new people each month, each getting a first email and short follow-ups. The volume is kept gentle on purpose: it protects the inboxes and makes the Illinois list last.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h8M8 14h5M21 12a9 9 0 01-13.5 7.8L3 21l1.2-4.5A9 9 0 1121 12z"/></svg></div>
+        <div class="card-title">Interested replies land in HubSpot</div>
+        <p class="card-body">When someone says yes, they're flagged, added to your HubSpot and sent your booking link. You also get short reply scripts, so answering never feels like a sales pitch.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div>
+        <div class="card-title">Monthly results and tuning</div>
+        <p class="card-body">A plain-English report each month: emails sent, replies, interested leads and booked calls. Whatever underperforms gets rewritten, not just tweaked.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;" class="two-col">
+      <div>
+        <div class="section-label">A first draft of the message</div>
+        <h3 class="card-title" style="font-size:22px;">Short, personal, one easy question.</h3>
+        <p class="section-sub">This is the kind of email an agent would get. We'll finalize the wording together before anything goes out.</p>
+      </div>
+      <div class="sample-email">
+        <div class="subj">Subject: your 1099s this year</div>
+        Hi {first name},<br><br>
+        Quick one. I'm a licensed agent too, so I know commission income makes tax time messy.<br><br>
+        I run Tucker Bookkeeping here in Illinois, and I'm helping a few agents get their books caught up and tax-ready before the January rush. Veteran-owned, and I keep it simple.<br><br>
+        Worth a 15 minute call to see where you stand?
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The First 90 Days</div>
+      <h2 class="section-title">A 90-day pilot, with a clear decision at the end.</h2>
+      <p class="section-sub">Cold email needs a couple of weeks to warm up and a few hundred sends to show what's working. Ninety days gives us a fair read.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-bar"><span style="width:15%"></span></div>
+        <div class="tl-when">Weeks 1 to 2</div>
+        <div class="card-title">Setup and warmup</div>
+        <p class="card-body">Domains and inboxes go live and start warming up. I build the first list and we finalize the copy. Your HubSpot form gets fixed.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-bar"><span style="width:33%"></span></div>
+        <div class="tl-when">Weeks 3 to 4</div>
+        <div class="card-title">First emails go out</div>
+        <p class="card-body">Sending starts at about half volume and ramps up. Starting this month means sending by early December, right before tax season.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-bar"><span style="width:66%"></span></div>
+        <div class="tl-when">Month 2</div>
+        <div class="card-title">Test and double down</div>
+        <p class="card-body">Full volume. The two message versions are compared, and the stronger one gets more of the sending.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-bar"><span style="width:100%"></span></div>
+        <div class="tl-when">Month 3</div>
+        <div class="card-title">Review together</div>
+        <p class="card-body">We look at the numbers side by side and decide: keep going, change direction, or stop. No long contract after that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHAT TO EXPECT ── -->
+<section class="section section-tint-teal">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">What to Expect</div>
+      <h2 class="section-title">Honest numbers, not hype.</h2>
+      <p class="section-sub" style="margin:0 auto;">These ranges come from campaigns I run today, not industry averages. Once the system is fully running, a typical month looks like this.</p>
+    </div>
+    <div class="chart-card" style="margin-bottom:32px;">
+      <svg viewBox="0 0 900 210" role="img" aria-label="Monthly funnel: about 1,700 emails, 550 people, 15 to 20 replies, 1 to 4 booked calls">
+        <polygon points="0,20 210,40 210,160 0,180" style="fill:var(--accent-teal);opacity:.9"/>
+        <polygon points="230,40 440,62 440,138 230,160" style="fill:var(--accent-teal);opacity:.7"/>
+        <polygon points="460,62 670,82 670,118 460,138" style="fill:var(--accent-teal);opacity:.45"/>
+        <polygon points="690,82 900,92 900,108 690,118" style="fill:var(--gold)"/>
+        <text x="105" y="110" text-anchor="middle" class="fn-num dark">~1,700</text>
+        <text x="335" y="110" text-anchor="middle" class="fn-num dark">~550</text>
+        <text x="565" y="110" text-anchor="middle" class="fn-num" style="font-size:26px">15 to 20</text>
+        <text x="795" y="70" text-anchor="middle" class="fn-num">1 to 4</text>
+        <text x="105" y="204" text-anchor="middle" class="fn-lbl">Emails sent</text>
+        <text x="335" y="204" text-anchor="middle" class="fn-lbl">New people reached</text>
+        <text x="565" y="204" text-anchor="middle" class="fn-lbl">Replies</text>
+        <text x="795" y="146" text-anchor="middle" class="fn-lbl">Booked calls</text>
+      </svg>
+      <p class="chart-caption">Expected monthly ranges once sending is at full volume (month 2 on). Month 1 is mostly warmup, so expect less. Not every reply is a yes; the interested ones are what become calls.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Why one client matters</div>
+        <p class="card-body">A single ongoing bookkeeping client, plus their tax return, is usually worth more over a year than the whole 90-day pilot costs. The pilot's job is to land that first client and prove the system works.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">What I need from you</div>
+        <p class="card-body">Answer interested replies the same day (I'll give you the scripts), keep a few 15 minute slots open on your calendar, and approve the copy before it goes out. Fast replies are the biggest factor in booking calls.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">What I can't promise</div>
+        <p class="card-body">No one can guarantee how many people sign on. What I can promise is a system that reaches the inbox, honest reporting, and changes when the numbers say something isn't working.</p>
+      </div>
+    </div>
+    <div class="guarantee">
+      <div class="icon-wrap" style="margin:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg></div>
+      <div>
+        <h3>My commitment to you</h3>
+        <p>If the campaign doesn't produce at least 5 interested replies in its first 60 days of sending, month 3 is on me. You're taking a chance on a new system, so I'm sharing the risk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PACKAGE 2 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">HubSpot Form Fix</div>
+      <div class="pkg-price">$50 one-time</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom:36px; max-width:640px;">You've already built the form in HubSpot. I'll get it working on your WordPress site so every website lead lands in HubSpot automatically. It's a quick job for me, so it's priced as a thank-you, not a project.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg></div>
+        <div class="card-title">Connect the form to your site</div>
+        <p class="card-body">Your existing HubSpot form, embedded and working on your WordPress site.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="card-title">Test it end to end</div>
+        <p class="card-body">A real test submission, confirmed in your HubSpot contacts, so you know it works.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0a3 3 0 11-6 0"/></svg></div>
+        <div class="card-title">New-lead alerts</div>
+        <p class="card-body">An email to you every time someone fills out the form, so no lead sits unanswered.</p>
+      </div>
+    </div>
+    <div class="stat-callout">
+      <div>
+        <span class="bonus-tag">Bonus</span>
+        <div class="card-title" style="margin-bottom:6px;">An intro to a weekly professionals group</div>
+        <p class="stat-note">A financial advisor I work with hosts Tuesday introductions for accounting, legal and real estate professionals. Whether or not we work together, I'm happy to invite you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section section-tint-gold">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">Cold email is what I do every day.</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/></svg></div>
+        <div class="why-body">
+          <div class="why-title">Getting delivered is the job</div>
+          <p class="why-desc">I manage over 100 warmed-up sending inboxes for live campaigns. Reaching the inbox is the part most people skip, and it's where I spend most of my time.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div>
+        <div class="why-body">
+          <div class="why-title">Real data, not guesses</div>
+          <p class="why-desc">I checked the Illinois numbers before writing this proposal. The plan is sized to the list that actually exists, so it doesn't run dry in two months.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></div>
+        <div class="why-body">
+          <div class="why-title">Built around how you work</div>
+          <p class="why-desc">You don't have to become a salesperson. The system starts every conversation, and you show up as the expert when someone already wants to talk.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub" style="margin:0 auto;">One monthly price with nothing extra to buy. Domains, inboxes and lead data are all included.</p>
+    </div>
+    <div class="pricing-table" style="max-width:680px; margin:0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">Done-for-You Cold Email Campaign<small>Sending setup, verified Illinois lists, copy, reply routing and monthly reporting</small></div>
+        <div class="pricing-amt">$500 / mo</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">HubSpot Form Fix<small>WordPress connection, end-to-end test, new-lead alerts</small></div>
+        <div class="pricing-amt">$50 one-time</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">First month<small>Then $500 / month</small></div>
+        <div class="pricing-amt">$550</div>
+      </div>
+      <div class="pricing-note">90-day pilot (3 months at $500), then month to month. Includes the 60-day reply commitment above.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom:16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's get you in front of clients before tax season.</h2>
+    <p class="cta-sub">Say yes this week and the inboxes start warming up right away, so we're sending by early December.</p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Tucker%20Bookkeeping%20Proposal%20-%20Let%27s%20Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Tucker%20Bookkeeping%20Proposal%20-%20Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="/proposals/tucker-bookkeeping/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Tucker Bookkeeping</span>
+</footer>
+
+</body>
+</html>
