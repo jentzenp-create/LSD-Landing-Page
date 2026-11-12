@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oasis Beauty Medical Aesthetics × Local Sun Digital · Growth Retainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+
+      --accent-blue: #4F8CFF;
+      --accent-blue-dim: rgba(79, 140, 255, 0.12);
+      --accent-blue-border: rgba(79, 140, 255, 0.35);
+      --accent-teal: #2FD6B0;
+      --accent-teal-dim: rgba(47, 214, 176, 0.12);
+      --accent-teal-border: rgba(47, 214, 176, 0.35);
+      --accent-rose: #FF5C5C;
+      --accent-rose-dim: rgba(255, 92, 92, 0.12);
+      --accent-rose-border: rgba(255, 92, 92, 0.35);
+
+      --cream: #F7F2E7;
+      --gold-ink: #9C6B00;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,14,14,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.04em; }
+    .nav-label span { color: var(--gold); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero { position: relative; overflow: hidden; padding: 100px 24px 90px; text-align: center; }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 { font-size: clamp(36px, 6vw, 68px); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--text); }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); font-weight: 500; color: var(--text-muted); max-width: 600px; margin: 0 auto 36px; line-height: 1.65; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    .section-tint-gold { background: radial-gradient(ellipse 900px 500px at 50% 0%, var(--gold-dim), transparent 70%); }
+    .section-tint-blue { background: radial-gradient(ellipse 900px 500px at 80% 0%, var(--accent-blue-dim), transparent 70%); }
+    .section-tint-teal { background: radial-gradient(ellipse 900px 500px at 20% 100%, var(--accent-teal-dim), transparent 70%); }
+    .section-tint-rose { background: radial-gradient(ellipse 900px 500px at 80% 100%, var(--accent-rose-dim), transparent 70%); }
+
+    .section-light {
+      background: var(--cream);
+      --bg: var(--cream);
+      --surface: #FFFFFF;
+      --surface-2: #F1EADA;
+      --border: rgba(14,14,14,0.09);
+      --border-gold: rgba(156,107,0,0.4);
+      --text: #17140D;
+      --text-muted: rgba(23,20,13,0.62);
+      --text-dim: rgba(23,20,13,0.4);
+      --gold: var(--gold-ink);
+      --gold-dim: rgba(156,107,0,0.12);
+      --accent-blue-dim: rgba(40,90,200,0.1);
+      --accent-teal-dim: rgba(20,140,110,0.1);
+      --accent-rose-dim: rgba(200,40,40,0.1);
+      color: var(--text);
+    }
+    .section-light .card:hover { box-shadow: 0 12px 32px rgba(23,20,13,0.1), 0 0 0 1px var(--border-gold); }
+
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, var(--surface) 0%, var(--gold-dim) 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-list li strong { color: var(--text); }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num { width: 40px; height: 40px; border-radius: 10px; background: var(--gold); color: #000; font-size: 18px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pkg-title { font-size: 22px; font-weight: 800; color: var(--text); }
+    .pkg-price { margin-left: auto; background: var(--gold-dim); border: 1px solid var(--border-gold); border-radius: 99px; padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold); }
+
+    .bonus-tag { display: inline-block; background: var(--gold); color: #000; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 99px; padding: 3px 10px; margin-bottom: 10px; }
+
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 8px; }
+    .stat-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; }
+    .stat-tile .then { font-size: 14px; color: var(--text-dim); text-decoration: line-through; }
+    .stat-tile .now { font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1.1; margin: 4px 0; }
+    .stat-tile .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 520px; }
+    .stat-note strong { color: var(--text); }
+
+    .bar-chart { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .bar-item { display: grid; grid-template-columns: 170px 1fr 56px; align-items: center; gap: 14px; }
+    .bar-item-label { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+    .bar-track { height: 10px; background: var(--surface-2); border-radius: 99px; overflow: hidden; position: relative; }
+    .bar-fill { height: 100%; border-radius: 99px; }
+    .bar-item-val { font-size: 13px; font-weight: 700; color: var(--text); text-align: right; white-space: nowrap; }
+
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, var(--gold-dim), var(--surface)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    .why-card { display: flex; align-items: flex-start; gap: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px 32px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    table.kw-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    table.kw-table th { text-align: left; padding: 12px 16px; background: var(--surface-2); color: var(--text-muted); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+    table.kw-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+    table.kw-table td.kw { color: var(--text); font-weight: 600; }
+    table.kw-table tr:last-child td { border-bottom: none; }
+    .pill { display: inline-flex; padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 700; }
+    .pill.then { background: var(--accent-rose-dim); color: var(--accent-rose); }
+    .pill.now { background: var(--accent-teal-dim); color: var(--accent-teal); }
+
+    .cta-section { background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%); border-top: 1px solid var(--border-gold); padding: 100px 24px; text-align: center; }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #000; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 99px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 15px; font-weight: 600; text-decoration: none; transition: color 0.2s ease; margin-top: 20px; }
+    .btn-ghost:hover { color: var(--text); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; max-width: 1100px; margin: 0 auto; }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    @media (max-width: 720px) {
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .bar-item { grid-template-columns: 110px 1fr 44px; }
+      table.kw-table { font-size: 12px; }
+    }
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <img src="/proposals/oasis-beauty-retainer/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Oasis Beauty Medical Aesthetics</span> · November 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div><div class="hero-line h"></div><div class="hero-line h"></div>
+    <div class="hero-line v"></div><div class="hero-line v"></div><div class="hero-line v"></div>
+    <div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div>Growth Retainer · Local Sun Digital</div>
+    <h1>You started fixing it. <span class="gold">Let's finish the job.</span></h1>
+    <p class="hero-sub">Since the audit, your own changes already moved real keywords — not placebo metrics, actual positions. This is the plan to turn that early motion into a steady stream of non-branded searches that end in a booked appointment.</p>
+    <div class="badge-row">
+      <span class="badge">Topical Content Authority</span>
+      <span class="badge">Google Business Profile Growth</span>
+      <span class="badge">Monthly Rank Tracking</span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROGRESS SINCE THE AUDIT (teal = positive/opportunity) ── -->
+<section class="section section-tint-teal">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Progress Since The Audit</div>
+      <h2 class="section-title">Your changes are already showing up in the data.</h2>
+      <p class="section-sub">In the weeks since the audit, Oasis Beauty disavowed the toxic backlink network, added call/text CTAs sitewide, split services into dedicated pages, added financing, and moved the app promo out of the way. Semrush already shows it.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-tile">
+        <div class="then">190 keywords</div>
+        <div class="now">215</div>
+        <div class="stat-label">total keywords ranked, top 100</div>
+      </div>
+      <div class="stat-tile">
+        <div class="then">3 in top 3</div>
+        <div class="now">5</div>
+        <div class="stat-label">keywords in positions 1&ndash;3</div>
+      </div>
+      <div class="stat-tile">
+        <div class="then">~85 visits/mo</div>
+        <div class="now">103</div>
+        <div class="stat-label">est. monthly organic visits</div>
+      </div>
+    </div>
+
+    <div class="stat-callout">
+      <svg width="110" height="110" viewBox="0 0 110 110" aria-label="med spa henderson now ranks position 10">
+        <circle cx="55" cy="55" r="46" fill="none" stroke="var(--border)" stroke-width="12"/>
+        <circle cx="55" cy="55" r="46" fill="none" stroke="var(--accent-teal)" stroke-width="12"
+                stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="26"
+                transform="rotate(-90 55 55)"/>
+        <text x="55" y="62" text-anchor="middle" font-size="26" font-weight="900" fill="var(--text)">#10</text>
+      </svg>
+      <div class="stat-note"><strong>"med spa henderson" now ranks #10</strong> &mdash; the first non-branded search term to crack page 1 since the audit. Every other non-branded term is still off page 1, which is exactly the gap this retainer closes.</div>
+    </div>
+
+    <ul class="check-list" style="margin-top:36px; max-width:720px;">
+      <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Disavowed the 60 lowest-quality domains</strong> from the toxic backlink network flagged in the audit.</span></li>
+      <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Call and text buttons added</strong> to the main nav and the top of every service page.</span></li>
+      <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Dedicated pages built for individual services</strong> (microneedling, chemical peels, and more) instead of burying them on the homepage.</span></li>
+      <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Financing options added to the homepage</strong>, and the rewards-app pitch moved further down the page so it's not competing with the booking path.</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHAT'S STILL MISSING (blue = evidence/data) ── -->
+<section class="section section-tint-blue">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">What The Data Still Shows</div>
+      <h2 class="section-title">The free fixes moved the needle. They can't finish the job alone.</h2>
+      <p class="section-sub">On-site changes fixed the technical gap. What's left is the thing on-site work can't fake: enough real content and profile signals for Google to trust Oasis Beauty for searches that aren't its own name.</p>
+    </div>
+
+    <table class="kw-table">
+      <thead>
+        <tr><th>Keyword</th><th>Volume/mo</th><th>At Audit</th><th>Now</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="kw">med spa henderson nv</td><td>140</td><td><span class="pill then">Not ranking</span></td><td><span class="pill now">#15</span></td></tr>
+        <tr><td class="kw">medical spa henderson nv</td><td>110</td><td><span class="pill then">#15</span></td><td><span class="pill then">#15</span></td></tr>
+        <tr><td class="kw">botox henderson nv</td><td>320</td><td><span class="pill then">Not ranking</span></td><td><span class="pill then">#60</span></td></tr>
+        <tr><td class="kw">laser hair removal henderson nv</td><td>110</td><td><span class="pill then">Not ranking</span></td><td><span class="pill then">#53</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="bar-chart">
+      <div class="bar-item"><div class="bar-item-label">med spa henderson nv</div><div class="bar-track"><div class="bar-fill" style="width:86%; background:var(--accent-teal);"></div></div><div class="bar-item-val">#15</div></div>
+      <div class="bar-item"><div class="bar-item-label">medical spa henderson nv</div><div class="bar-track"><div class="bar-fill" style="width:86%; background:var(--accent-blue);"></div></div><div class="bar-item-val">#15</div></div>
+      <div class="bar-item"><div class="bar-item-label">laser hair removal henderson nv</div><div class="bar-track"><div class="bar-fill" style="width:48%; background:var(--accent-blue);"></div></div><div class="bar-item-val">#53</div></div>
+      <div class="bar-item"><div class="bar-item-label">botox henderson nv</div><div class="bar-track"><div class="bar-fill" style="width:40%; background:var(--accent-blue);"></div></div><div class="bar-item-val">#60</div></div>
+    </div>
+    <p style="font-size:13px; color:var(--text-dim); margin-top:16px; max-width:640px;">Bar length = distance toward page 1 (position 100 = 0%, position 1 = 100%). Moving from "not ranking" into double digits is real progress &mdash; closing the rest of that gap is what topical content and a stronger Google Business Profile are built for.</p>
+
+    <p style="font-size:13px; color:var(--text-dim); margin-top:20px; max-width:640px;">One note on the backlink disavow: Semrush's backlink counts won't visibly drop right away &mdash; a disavow file tells Google to ignore those links when ranking the site, it doesn't delete them from the web or from third-party tools like Semrush. The risk is already neutralized on Google's end; the reporting tools just take longer to reflect it.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE RETAINER ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Topical Authority &amp; GBP Growth Retainer</div>
+      <div class="pkg-price">$500/mo</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:680px;">
+      Everything in this retainer is hands-on work &mdash; research, writing, and profile optimization. No paid link-building, no ad spend, nothing billed through a third party. What you pay for is the work itself.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg></div>
+        <div class="card-title">Ongoing Keyword &amp; Topic Research</div>
+        <p class="card-body">Every month: fresh keyword research to find the next highest-intent, lowest-competition local searches Oasis Beauty should own next &mdash; and a content calendar that targets them on purpose, not at random.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div>
+        <div class="card-title">New &amp; Optimized Service Content</div>
+        <p class="card-body">New service/location pages and blog content built around real local searches (Botox, laser hair removal, the "henderson nv" / "las vegas" modifiers), plus rewrites of existing pages that are close but not converting.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 01-5.8-1.6"/></svg></div>
+        <div class="card-title">Google Business Profile Optimization</div>
+        <p class="card-body">Monthly GBP posts, Q&amp;A seeding, services/categories audit, and a review-growth push &mdash; the fastest lever left, since the profile itself is already strong at 4.9 stars.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div class="card-title">Monthly Rank-Tracking Report</div>
+        <p class="card-body">A short, plain-English monthly report on the keywords and Map Pack searches that matter &mdash; so progress is something you can see, not something you have to take on faith.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="card-title">No Paid Link-Building, No Markup</div>
+        <p class="card-body">The backlink cleanup is done. We won't sell you "link building" on top of this &mdash; the next gain comes from content and profile strength, not from buying more links.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD (gold = neutral/default beat) ── -->
+<section class="section section-tint-gold">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Keep Going With Local Sun Digital</div>
+      <h2 class="section-title">We already know exactly where you stand.</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg></div>
+        <div class="why-body">
+          <div class="why-title">No re-discovery period</div>
+          <p class="why-desc">We already ran the audit, found the toxic links, and mapped the quick wins. A new agency starts over; this retainer starts from where the data already is.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5"/></svg></div>
+        <div class="why-body">
+          <div class="why-title">Nothing hidden in the price</div>
+          <p class="why-desc">$500/month covers labor, not line items you can't see. No ad spend passthrough, no link-vendor markup &mdash; just the research, writing, and profile work itself.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/></svg></div>
+        <div class="why-body">
+          <div class="why-title">Compounding, not one-off</div>
+          <p class="why-desc">Topical authority stacks month over month &mdash; each new page makes the next one easier to rank, instead of every article being its own isolated bet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT (light section = calm breather before the ask) ── -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub">One retainer, two phases &mdash; the work doesn't change, just the focus.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 680px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Months 1&ndash;2 &middot; Foundation
+          <small>Full keyword map, content calendar, and a top-to-bottom GBP rebuild</small>
+        </div>
+        <div class="pricing-amt">$500/mo</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Month 3+ &middot; Ongoing Growth
+          <small>Continued content cadence, GBP management, and monthly reporting</small>
+        </div>
+        <div class="pricing-amt">$500/mo</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">Monthly Investment</div>
+        <div class="pricing-amt">$500/mo</div>
+      </div>
+      <div class="pricing-note">No contract lock-in &mdash; this continues month to month for as long as it's working for you.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's keep the momentum going.</h2>
+    <p class="cta-sub">You already did the hard part &mdash; made the changes. Let's make sure Google notices.</p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Oasis Beauty Retainer - Let's Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Oasis Beauty Retainer - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="/proposals/oasis-beauty-retainer/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Oasis Beauty Medical Aesthetics</span>
+</footer>
+
+</body>
+</html>
