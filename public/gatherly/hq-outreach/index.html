@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gatherly × Local Sun Digital · Immersive HQ Outreach Agreement</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --border: rgba(255,255,255,0.08);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.62);
+      --text-dim: rgba(255,255,255,0.4);
+
+      /* Gatherly palette */
+      --g-blue: #00AAEE;
+      --g-blue-deep: #0088C2;
+      --g-blue-dim: rgba(0, 170, 238, 0.14);
+      --g-blue-border: rgba(0, 170, 238, 0.4);
+      --g-navy: #0B1220;
+      --g-navy-2: #15203A;
+      --g-navy-3: #1C2B4D;
+      --g-light: #EEF2F7;
+      --g-light-2: #E4E8F0;
+      --g-ink: #0B1220;
+      --g-ink-muted: #4A5568;
+
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--g-navy);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,18,32,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    nav img { height: 44px; object-fit: contain; }
+    .nav-label { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.03em; text-align: right; }
+    .g-word { color: var(--g-blue); font-weight: 800; letter-spacing: -0.01em; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 96px 24px 0;
+      text-align: center;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(0,170,238,0.28), transparent 60%),
+        radial-gradient(700px 420px at 90% 30%, rgba(242,183,5,0.16), transparent 60%),
+        linear-gradient(180deg, var(--g-navy) 0%, var(--g-navy-2) 100%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 99px; padding: 7px 16px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px; color: #fff;
+    }
+    .eyebrow .x { color: var(--text-dim); }
+    .eyebrow .lsd { color: var(--gold); }
+    h1 { font-size: clamp(36px, 6vw, 68px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 24px; }
+    .grad-text {
+      background: linear-gradient(90deg, var(--g-blue) 0%, #6FD3FF 45%, var(--gold) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); font-weight: 500; color: var(--text-muted); max-width: 640px; margin: 0 auto 32px; line-height: 1.65; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 56px; }
+    .badge { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 8px 16px; font-size: 13px; font-weight: 600; }
+    .badge.blue { color: var(--g-blue); background: var(--g-blue-dim); border: 1px solid var(--g-blue-border); }
+    .badge.gold { color: var(--gold); background: var(--gold-dim); border: 1px solid var(--border-gold); }
+    .hero-art {
+      position: relative; max-width: 1040px; margin: 0 auto;
+      border-radius: 24px 24px 0 0; overflow: hidden;
+      border: 1px solid rgba(0,170,238,0.3); border-bottom: none;
+      box-shadow: 0 -20px 80px rgba(0,170,238,0.25);
+    }
+    .hero-art::after { content: ''; position: absolute; inset: auto 0 0 0; height: 35%; background: linear-gradient(180deg, transparent, var(--g-light)); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 96px 0; position: relative; }
+    .section-label { font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; color: var(--g-blue); }
+    .section-label.gold { color: var(--gold); }
+    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 16px; }
+    .section-sub { font-size: 17px; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    .bg-light { background: linear-gradient(180deg, var(--g-light) 0%, var(--g-light-2) 100%); color: var(--g-ink); }
+    .bg-light .section-sub { color: var(--g-ink-muted); }
+    .bg-light .section-label { color: var(--g-blue-deep); }
+    .bg-blue {
+      background:
+        radial-gradient(800px 420px at 85% 0%, rgba(0,170,238,0.25), transparent 65%),
+        radial-gradient(700px 400px at 5% 85%, rgba(242,183,5,0.10), transparent 65%),
+        linear-gradient(160deg, var(--g-navy-3) 0%, var(--g-navy) 100%);
+    }
+
+    /* ── CAMPAIGN CARDS (light section) ── */
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 900px) { .feat-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .feat-grid { grid-template-columns: 1fr; } }
+    .feat {
+      position: relative; overflow: hidden;
+      background: #fff; border: 1px solid rgba(11,18,32,0.08);
+      border-radius: var(--radius-card); padding: 28px 26px;
+      box-shadow: 0 6px 24px rgba(11,18,32,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feat::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--g-blue), var(--gold)); }
+    .feat:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(11,18,32,0.12); }
+    .icon-wrap {
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+      background: rgba(0,170,238,0.1); border: 1px solid rgba(0,170,238,0.3); color: var(--g-blue-deep);
+    }
+    .icon-wrap.gold { background: rgba(242,183,5,0.14); border-color: rgba(242,183,5,0.45); color: #B88A00; }
+    .feat-title { font-size: 16.5px; font-weight: 800; color: var(--g-ink); margin-bottom: 8px; line-height: 1.3; }
+    .feat-desc { font-size: 14.5px; color: var(--g-ink-muted); line-height: 1.65; }
+
+    /* ── LAUNCH BAND (gold) ── */
+    .launch-band {
+      position: relative; overflow: hidden; padding: 80px 0;
+      background:
+        radial-gradient(600px 300px at 85% 20%, rgba(255,255,255,0.35), transparent 60%),
+        linear-gradient(120deg, #F2B705 0%, #FFCF3A 45%, #FFB800 100%);
+      color: var(--g-ink);
+    }
+    .launch-grid { display: grid; grid-template-columns: repeat(3, 1fr) 1.4fr; gap: 28px; align-items: center; }
+    @media (max-width: 900px) { .launch-grid { grid-template-columns: repeat(3, 1fr); } .launch-note { grid-column: 1 / -1; } }
+    @media (max-width: 560px) { .launch-grid { grid-template-columns: 1fr; } }
+    .launch-pill { display: inline-block; background: var(--g-ink); color: var(--gold); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 99px; padding: 6px 14px; margin-bottom: 26px; }
+    .launch-num { font-size: clamp(40px, 5.5vw, 60px); font-weight: 900; letter-spacing: -0.035em; line-height: 1; }
+    .launch-label { font-size: 14px; font-weight: 700; margin-top: 8px; color: rgba(11,18,32,0.72); }
+    .launch-note { font-size: 15.5px; line-height: 1.65; color: rgba(11,18,32,0.8); }
+    .launch-note strong { color: var(--g-ink); }
+
+    /* ── AGREEMENT DOCUMENT (paper on blue) ── */
+    .agreement-doc {
+      background: #fff; color: var(--g-ink);
+      border-radius: 24px;
+      padding: 52px;
+      max-width: 880px; margin: 0 auto;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,170,238,0.25);
+      position: relative; overflow: hidden;
+    }
+    .agreement-doc::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 6px; background: linear-gradient(90deg, var(--g-blue), #6FD3FF 50%, var(--gold)); }
+    @media (max-width: 640px) { .agreement-doc { padding: 34px 20px 28px; } }
+    .agreement-parties {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 700px) { .agreement-parties { grid-template-columns: 1fr; } }
+    .party-block { padding: 18px 20px; border-radius: 14px; background: linear-gradient(135deg, rgba(0,170,238,0.10), rgba(0,170,238,0.03)); border: 1px solid rgba(0,170,238,0.22); }
+    .party-block:last-child { background: linear-gradient(135deg, rgba(242,183,5,0.16), rgba(242,183,5,0.04)); border-color: rgba(242,183,5,0.4); }
+    .party-role { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g-blue-deep); margin-bottom: 4px; }
+    .party-block:last-child .party-role { color: #A67C00; }
+    .party-name { font-size: 16px; font-weight: 800; color: var(--g-ink); }
+    .party-sub { font-size: 13px; color: var(--g-ink-muted); }
+
+    .agreement-doc h3 {
+      font-size: 16.5px; font-weight: 800; color: var(--g-ink);
+      margin: 34px 0 10px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .clause-num {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 900; color: var(--g-navy);
+      background: linear-gradient(135deg, var(--g-blue), #6FD3FF);
+    }
+    .agreement-doc p { font-size: 14.5px; color: var(--g-ink-muted); line-height: 1.75; margin-bottom: 10px; }
+    .agreement-doc strong { color: var(--g-ink); font-weight: 800; }
+    .agreement-doc ul { list-style: none; margin: 10px 0 14px; display: flex; flex-direction: column; gap: 9px; }
+    .agreement-doc ul li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--g-ink-muted); line-height: 1.6; }
+    .doc-check {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+      background: rgba(0,170,238,0.12); border: 1px solid rgba(0,170,238,0.35); color: var(--g-blue-deep);
+    }
+    .doc-x { background: rgba(11,18,32,0.05); border-color: rgba(11,18,32,0.15); color: var(--g-ink-muted); }
+    .callout-inline {
+      background: linear-gradient(120deg, rgba(0,170,238,0.10), rgba(242,183,5,0.14));
+      border: 1px solid rgba(0,170,238,0.25);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px; margin: 14px 0 0;
+      font-size: 14px; color: var(--g-ink); line-height: 1.65;
+    }
+
+    /* ── ACCEPTANCE ── */
+    .accept-card {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(500px 260px at 100% 0%, rgba(0,170,238,0.25), transparent 65%),
+        radial-gradient(500px 260px at 0% 100%, rgba(242,183,5,0.16), transparent 65%),
+        var(--g-navy-2);
+      border: 1px solid var(--g-blue-border);
+      border-radius: 24px;
+      padding: 44px 48px;
+      max-width: 880px; margin: 40px auto 0;
+      box-shadow: 0 30px 90px rgba(0,170,238,0.18);
+    }
+    @media (max-width: 640px) { .accept-card { padding: 30px 20px; } }
+    .accept-title { font-size: 26px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .accept-sub { font-size: 14.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 28px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+    .field label {
+      display: block; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 6px;
+    }
+    .field input[type="text"] {
+      width: 100%;
+      background: rgba(11,18,32,0.7);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 15px; font-family: inherit; color: #fff;
+      outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field input[type="text"]:focus { border-color: var(--g-blue); box-shadow: 0 0 0 3px rgba(0,170,238,0.2); }
+    .field input[type="text"]::placeholder { color: var(--text-dim); }
+
+    .accept-check { display: flex; align-items: flex-start; gap: 12px; margin: 22px 0 24px; cursor: pointer; }
+    .accept-check input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--g-blue); margin-top: 2px; cursor: pointer; flex-shrink: 0; }
+    .accept-check span { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .accept-date { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+    .accept-date strong { color: var(--text-muted); font-weight: 600; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(90deg, var(--g-blue), #3CC4FF); color: var(--g-navy);
+      font-size: 16px; font-weight: 800; font-family: inherit;
+      padding: 17px 38px; border-radius: 99px; border: none; cursor: pointer;
+      box-shadow: 0 10px 34px rgba(0,170,238,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .btn-primary:hover:not(:disabled) { transform: scale(1.04); box-shadow: 0 14px 44px rgba(0,170,238,0.55); }
+    .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+    .btn-hint { font-size: 12px; color: var(--text-dim); margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--g-navy); border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 1120px; margin: 0 auto; padding: 30px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    footer img { height: 34px; opacity: 0.7; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; }
+      nav img { height: 36px; }
+      .nav-label { font-size: 11px; }
+      .hero { padding: 64px 16px 0; }
+      .section { padding: 68px 0; }
+      .launch-band { padding: 60px 0; }
+      .container { padding: 0 16px; }
+    }
+
+    .print-signature { display: none; }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      nav, footer, .hero, .launch-band, .accept-card, .section:not(#agreement) { display: none; }
+      .section, .bg-blue { padding: 0; background: #fff; }
+      .section-header { margin-bottom: 24px; }
+      .section-title { color: #000; }
+      .section-sub { color: #333; }
+      .agreement-doc { box-shadow: none; padding: 0; max-width: none; }
+      .agreement-doc::before { display: none; }
+      .print-signature {
+        display: block; margin-top: 28px; padding-top: 20px;
+        border-top: 1px solid #ccc; font-size: 14px; color: #000;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/gatherly/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Service Agreement · <span class="g-word">Gatherly</span></span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="lsd">Local Sun Digital</span><span class="x">×</span><span class="g-word">Gatherly</span></div>
+    <h1>Immersive HQ, Meet<br/><span class="grad-text">the Right Communities</span></h1>
+    <p class="hero-sub">Immersive HQ launches November 17. This is the monthly cold email campaign that goes after Skool groups and independent coaching communities and books demos with them. Here's the scope, the agreement, and one click to start.</p>
+    <div class="badge-row">
+      <span class="badge blue">Goal: Demo Bookings</span>
+      <span class="badge blue">Skool Groups &amp; Coaching Communities</span>
+      <span class="badge gold">$500/mo · Month to Month</span>
+    </div>
+  </div>
+  <div class="hero-art">
+    <img src="/proposals/gatherly-hq-partnership/hero-hq.jpg" alt="Illustration of an immersive virtual office with lounges, meeting pods and a stage" />
+  </div>
+</section>
+
+<!-- ── WHAT'S INCLUDED (light) ── -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Campaign</div>
+      <h2 class="section-title">What Happens Every Month</h2>
+      <p class="section-sub">One focused campaign with one job: getting the communities that run on Zoom to book an Immersive HQ demo.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="icon-wrap"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div class="feat-title">Two Defined Segments</div>
+        <div class="feat-desc">Skool groups and independent coaching communities that meet on Zoom every week and depend on one host to open the room.</div>
+      </div>
+      <div class="feat">
+        <div class="icon-wrap"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></div>
+        <div class="feat-title">Lead Sourcing</div>
+        <div class="feat-desc">Contact lists built for both segments, including coaching programs found through sources like the Facebook Ads Library and community calendars.</div>
+      </div>
+      <div class="feat">
+        <div class="icon-wrap"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div>
+        <div class="feat-title">Sequences Written for HQ</div>
+        <div class="feat-desc">Copy that positions Immersive HQ two ways: a home for the community's meetings, and a workspace for the team that runs it.</div>
+      </div>
+      <div class="feat">
+        <div class="icon-wrap gold"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+        <div class="feat-title">Demo-Booking CTA</div>
+        <div class="feat-desc">Every sequence points to one next step: booking an Immersive HQ demo with the Gatherly team.</div>
+      </div>
+      <div class="feat">
+        <div class="icon-wrap"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div>
+        <div class="feat-title">Reply Handling</div>
+        <div class="feat-desc">Positive replies get answered and routed to a demo booking, so interested prospects don't sit in an inbox.</div>
+      </div>
+      <div class="feat">
+        <div class="icon-wrap"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+        <div class="feat-title">Monthly Report &amp; Tuning</div>
+        <div class="feat-desc">Sends, replies and demos booked each month, with copy and targeting adjusted based on what's working.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LAUNCH BAND (gold) ── -->
+<section class="launch-band">
+  <div class="container">
+    <div class="launch-pill">Timed to Launch</div>
+    <div class="launch-grid">
+      <div><div class="launch-num">Nov 17</div><div class="launch-label">Immersive HQ goes live</div></div>
+      <div><div class="launch-num">$79</div><div class="launch-label">Entry plan, up to 10 people</div></div>
+      <div><div class="launch-num">$149</div><div class="launch-label">50-person plan for bigger groups</div></div>
+      <p class="launch-note">The campaign starts as soon as the first payment clears, so the first sequences are ready when HQ goes live. Most coaching communities run 40 to 50 people a call, so <strong>larger groups get pointed to the 50-person plan</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICE AGREEMENT ── -->
+<section class="section bg-blue" id="agreement">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Agreement</div>
+      <h2 class="section-title">Service Agreement</h2>
+      <p class="section-sub">Plain language, no surprises. Review the terms below, then accept and check out to get started.</p>
+    </div>
+
+    <div class="agreement-doc">
+      <div class="agreement-parties">
+        <div class="party-block">
+          <div class="party-role">Provider</div>
+          <div class="party-name">Local Sun Digital</div>
+          <div class="party-sub">"Provider"</div>
+        </div>
+        <div class="party-block">
+          <div class="party-role">Client</div>
+          <div class="party-name">Gatherly Virtual Events Inc.</div>
+          <div class="party-sub">"Client"</div>
+        </div>
+        <div class="party-block">
+          <div class="party-role">Effective Date</div>
+          <div class="party-name">Date of first payment</div>
+          <div class="party-sub">Executed upon acceptance and payment</div>
+        </div>
+      </div>
+
+      <h3><span class="clause-num">1</span> Scope of Services</h3>
+      <p>Provider will run a monthly cold email outreach campaign promoting Client's Immersive HQ product, including:</p>
+      <ul>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Targeting two segments: Skool groups and independent coaching communities</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Sourcing and verifying contact lists for those segments</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Writing and testing email sequences, with demo bookings as the primary call to action</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Sending campaigns on the cold email infrastructure Provider previously set up for Client</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Responding to positive replies and routing them to Client's demo booking link</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>A short monthly report covering sends, replies and demos booked, plus ongoing optimization</li>
+      </ul>
+
+      <h3><span class="clause-num">2</span> Not Included</h3>
+      <p>Branded roundtable hosting, affiliate partner recruiting and onboarding, sponsorships, landing page development and video production are <strong>not</strong> part of this agreement. Roundtables may be added in a separate agreement, tentatively in January.</p>
+
+      <h3><span class="clause-num">3</span> Fees &amp; Payment Terms</h3>
+      <p>Client agrees to pay Provider <strong>$500 per month</strong>, billed as a recurring subscription through the checkout link on this page. The first payment is due on acceptance, and each following payment is charged automatically on the same date each month. Work begins upon receipt of the first payment.</p>
+
+      <h3><span class="clause-num">4</span> Software / Platform Costs</h3>
+      <p>The email sending platform cost continues to be covered by Client, as set out in the original setup agreement. Any new third-party software or tool costs must be approved by Client before purchase.</p>
+
+      <h3><span class="clause-num">5</span> Client Responsibilities</h3>
+      <p>Client agrees to:</p>
+      <ul>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Provide a demo booking link and confirm who on Client's team takes the demos</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Share Immersive HQ pricing, positioning and any launch materials needed for messaging</li>
+        <li><span class="doc-check"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Give timely feedback on sequences before they go out</li>
+      </ul>
+
+      <h3><span class="clause-num">6</span> Email Compliance</h3>
+      <p>Provider follows industry best practices for cold outreach, including opt-out handling and sending hygiene. However, Client is responsible for the legal review of outbound email compliance in the jurisdictions where Client operates and targets recipients, including but not limited to CAN-SPAM, GDPR, and CASL. Provider does not provide legal advice.</p>
+
+      <h3><span class="clause-num">7</span> No Guarantee of Results</h3>
+      <p>Provider will use reasonable professional efforts to run and optimize the campaign. However, Provider does not guarantee any specific number of replies, demos, subscriptions, or revenue outcomes.</p>
+
+      <h3><span class="clause-num">8</span> Term and Cancellation</h3>
+      <p>This Agreement runs month to month starting on the Effective Date. Either party may cancel in writing at any time, effective at the end of the current paid month. No further charges are made after cancellation, and fees already paid are non-refundable.</p>
+
+      <h3><span class="clause-num">9</span> Intellectual Property</h3>
+      <p>Client will own Client-specific campaign copy and lead lists created under this agreement for months that have been paid, excluding Provider's pre-existing processes, frameworks, templates, and know-how.</p>
+
+      <h3><span class="clause-num">10</span> Confidentiality</h3>
+      <p>Both parties agree to keep confidential any non-public business, technical, or commercial information shared during the engagement.</p>
+
+      <h3><span class="clause-num">11</span> Independent Contractor</h3>
+      <p>Provider is acting as an independent contractor and not as an employee, partner, or legal representative of Client.</p>
+
+      <h3><span class="clause-num">12</span> Acceptance &amp; Electronic Execution</h3>
+      <p>This Agreement is executed electronically. By entering their name and title below, checking the acceptance box, and completing payment through the checkout link on this page, Client's authorized representative agrees to be bound by all terms of this Agreement. Electronic acceptance carries the same legal effect as a handwritten signature.</p>
+      <div class="callout-inline">
+        The Effective Date of this Agreement is the date Client completes the first payment. Provider countersigns by accepting payment and beginning work.
+      </div>
+
+      <div class="print-signature" id="print-signature">
+        <strong>Accepted electronically by:</strong> <span id="print-name">____________________</span><br/>
+        <strong>Title:</strong> <span id="print-title">____________________</span><br/>
+        <strong>Date:</strong> <span id="print-date"></span>
+      </div>
+    </div>
+
+    <!-- ── ACCEPTANCE ── -->
+    <div class="accept-card">
+      <div class="accept-title">Accept &amp; <span class="grad-text">Get Started</span></div>
+      <p class="accept-sub">Enter your details, confirm your acceptance, and continue to secure checkout. Your name and acceptance are attached to the payment record.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="signer-name">Full Name</label>
+          <input type="text" id="signer-name" placeholder="Your full legal name" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="signer-title">Title</label>
+          <input type="text" id="signer-title" placeholder="e.g. Founder &amp; CEO" autocomplete="organization-title" />
+        </div>
+      </div>
+
+      <label class="accept-check">
+        <input type="checkbox" id="agree-box" />
+        <span>I am authorized to sign on behalf of Gatherly Virtual Events Inc., I have read and agree to the Service Agreement above, and I understand that completing payment executes this Agreement and starts a $500/month subscription.</span>
+      </label>
+
+      <p class="accept-date">Acceptance date: <strong id="today-date"></strong></p>
+
+      <button class="btn-primary" id="checkout-btn" disabled>
+        Agree &amp; Continue to Payment
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </button>
+      <p class="btn-hint">Secure checkout powered by Stripe · $500/month · cancel anytime in writing</p>
+      <p class="btn-hint" style="margin-top: 6px;"><a href="#" id="print-link" style="color: var(--text-muted); text-decoration: underline;">Print or save a PDF copy of this agreement</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <img src="/gatherly/LSD-logo.svg" alt="Local Sun Digital" />
+    <span class="footer-note">Questions before you sign? Email <a href="mailto:jentzen@localsundigital.com" style="color: var(--g-blue); text-decoration: none;">jentzen@localsundigital.com</a></span>
+  </div>
+</footer>
+
+<script>
+  var STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/14A28rg3y81McL8db20kE0P';
+
+  var nameInput = document.getElementById('signer-name');
+  var titleInput = document.getElementById('signer-title');
+  var agreeBox = document.getElementById('agree-box');
+  var checkoutBtn = document.getElementById('checkout-btn');
+
+  document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  function updateButton() {
+    var ready = nameInput.value.trim().length >= 2 &&
+                titleInput.value.trim().length >= 2 &&
+                agreeBox.checked;
+    checkoutBtn.disabled = !ready;
+  }
+
+  nameInput.addEventListener('input', updateButton);
+  titleInput.addEventListener('input', updateButton);
+  agreeBox.addEventListener('change', updateButton);
+
+  function fillPrintSignature() {
+    if (nameInput.value.trim()) document.getElementById('print-name').textContent = nameInput.value.trim();
+    if (titleInput.value.trim()) document.getElementById('print-title').textContent = titleInput.value.trim();
+    document.getElementById('print-date').textContent = new Date().toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  }
+
+  document.getElementById('print-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    fillPrintSignature();
+    window.print();
+  });
+
+  checkoutBtn.addEventListener('click', function () {
+    // Attach the signer to the Stripe payment as client_reference_id (alphanumeric, dashes, underscores)
+    var ref = (nameInput.value.trim() + '-' + titleInput.value.trim())
+      .replace(/[^a-zA-Z0-9 _-]/g, '')
+      .replace(/\s+/g, '_')
+      .slice(0, 190);
+    var url = STRIPE_PAYMENT_LINK + (STRIPE_PAYMENT_LINK.indexOf('?') === -1 ? '?' : '&') +
+      'client_reference_id=' + encodeURIComponent(ref);
+    window.location.href = url;
+  });
+</script>
+
+</body>
+</html>
