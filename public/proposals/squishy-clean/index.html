@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Squishy Clean × Local Sun Digital · Launch Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+
+      /* Secondary accents — section tinting & chart color only, never the
+         primary CTA/button color. See brand.md "Visual variety practice". */
+      --accent-blue: #4F8CFF;
+      --accent-blue-dim: rgba(79, 140, 255, 0.12);
+      --accent-blue-border: rgba(79, 140, 255, 0.35);
+      --accent-teal: #2FD6B0;
+      --accent-teal-dim: rgba(47, 214, 176, 0.12);
+      --accent-teal-border: rgba(47, 214, 176, 0.35);
+      --accent-rose: #FF5C5C;
+      --accent-rose-dim: rgba(255, 92, 92, 0.12);
+      --accent-rose-border: rgba(255, 92, 92, 0.35);
+
+      /* Light-section tokens — see .section-light below */
+      --cream: #F7F2E7;
+      --gold-ink: #9C6B00;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 24px; color: var(--text);
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px); font-weight: 500;
+      color: var(--text-muted); max-width: 560px;
+      margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 600px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── SECTION TINTS ──
+       Apply ONE of these to a <section class="section ..."> to break up flat
+       black. Alternate by what the section is about (see brand.md): never
+       stack two tinted sections back-to-back without a plain one between. */
+    .section-tint-gold { background: radial-gradient(ellipse 900px 500px at 50% 0%, var(--gold-dim), transparent 70%); }
+    .section-tint-blue { background: radial-gradient(ellipse 900px 500px at 80% 0%, var(--accent-blue-dim), transparent 70%); }
+    .section-tint-teal { background: radial-gradient(ellipse 900px 500px at 20% 100%, var(--accent-teal-dim), transparent 70%); }
+    .section-tint-rose { background: radial-gradient(ellipse 900px 500px at 80% 100%, var(--accent-rose-dim), transparent 70%); }
+
+    /* ── LIGHT SECTION ──
+       Redefines the shared tokens for everything inside it, so .card,
+       .stat-tile, .check-list etc. all flip to dark-text-on-cream for free
+       because they're already built from these variables. Use 1-2 per
+       page, as a breather between dark sections — never the whole page. */
+    .section-light {
+      background: var(--cream);
+      --bg: var(--cream);
+      --surface: #FFFFFF;
+      --surface-2: #F1EADA;
+      --border: rgba(14,14,14,0.09);
+      --border-gold: rgba(156,107,0,0.4);
+      --text: #17140D;
+      --text-muted: rgba(23,20,13,0.62);
+      --text-dim: rgba(23,20,13,0.4);
+      --gold: var(--gold-ink);
+      --gold-dim: rgba(156,107,0,0.12);
+      --accent-blue-dim: rgba(40,90,200,0.1);
+      --accent-teal-dim: rgba(20,140,110,0.1);
+      --accent-rose-dim: rgba(200,40,40,0.1);
+      color: var(--text);
+    }
+    .section-light .card:hover { box-shadow: 0 12px 32px rgba(23,20,13,0.1), 0 0 0 1px var(--border-gold); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, var(--surface) 0%, var(--gold-dim) 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: var(--text); }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px; text-align: center;
+    }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+
+    /* ═══ SQUISHY CLEAN · design pass 2 ═══
+       Concept: "Squish and rebound." The page behaves like the product.
+       Signature: the hero bottle is a working pump (click / tap / Enter):
+       the head presses, the bottle squashes, foam bubbles rise and pop.
+       Motion verb: squish, then rebound (one overshoot ease everywhere).
+       Idle: the bottle puffs a small breath of foam every few seconds while
+       the hero is on screen; off under reduced motion.
+       Product-illustration tokens only below. Gold stays the CTA color. */
+    :root {
+      --product-purple: #8B5CF6;
+      --product-purple-deep: #5B2BC4;
+      --product-purple-dim: rgba(139, 92, 246, 0.14);
+      --product-purple-border: rgba(139, 92, 246, 0.4);
+      --gummy-pink: #FF7AC8;
+      --gummy-cyan: #6FE7FF;
+      --oud-brown: #7A4A22;
+      --oud-dim: rgba(122, 74, 34, 0.22);
+      --rebound: cubic-bezier(.34, 1.56, .64, 1);
+      --soft: cubic-bezier(.165, .84, .44, 1);
+    }
+    .section-light {
+      --product-purple-dim: rgba(91, 43, 196, 0.1);
+      --product-purple-border: rgba(91, 43, 196, 0.35);
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip { position: absolute; left: 16px; top: -60px; z-index: 200; background: var(--gold); color: #000; font-weight: 800; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
+    .skip:focus { top: 12px; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+    html, body { overflow-x: clip; }
+    body { font-size: 16px; }
+    .section-title { letter-spacing: -0.03em; }
+
+    /* ── HERO ── */
+    .hero.sq { text-align: left; padding: 72px 24px 64px; min-height: min(88vh, 860px); display: flex; align-items: center; }
+    .hero-mesh { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(70px); }
+    .orb.o1 { width: 560px; height: 560px; background: radial-gradient(circle, rgba(139,92,246,0.22), transparent 70%); top: -140px; right: -80px; }
+    .orb.o2 { width: 420px; height: 420px; background: radial-gradient(circle, var(--gold-dim), transparent 70%); bottom: -160px; left: -100px; }
+    .orb.o3 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(255,122,200,0.16), transparent 70%); top: 38%; left: 42%; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; width: 100%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero.sq h1 { font-size: clamp(44px, 7.4vw, 104px); line-height: 0.95; letter-spacing: -0.045em; margin: 0 0 28px -0.04em; }
+    .hero.sq h1 .line { display: block; }
+    .grad-text {
+      background: linear-gradient(90deg, var(--gummy-pink), var(--product-purple) 48%, var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      padding-bottom: 0.08em;
+    }
+    .hero.sq h1 .w { display: inline-block; white-space: nowrap; }
+    .sq-l { display: inline-block; transform-origin: 50% 90%; transition: transform .55s var(--rebound); }
+    @media (hover: hover) { .sq-l:hover { transform: scale(1.18, .78); transition-duration: .18s; } }
+    .hero.sq .hero-sub { margin: 0 0 32px; max-width: 520px; font-size: clamp(17px, 1.6vw, 19px); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13px; font-weight: 600; color: var(--text-dim); }
+    .hero-meta b { color: var(--text); font-weight: 700; }
+
+    .pump-stage { position: relative; display: flex; justify-content: center; }
+    .pump-btn { all: unset; cursor: pointer; display: block; width: 100%; max-width: 400px; position: relative; -webkit-tap-highlight-color: transparent; border-radius: 24px; }
+    .pump-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 6px; }
+    .pump-btn svg { width: 100%; height: auto; overflow: visible; display: block; }
+    .pump-hint {
+      position: absolute; left: 50%; bottom: -6px; translate: -50% 0;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text-muted); background: rgba(14,14,14,0.7); border: 1px solid var(--border);
+      border-radius: 99px; padding: 6px 12px; white-space: nowrap; pointer-events: none;
+      transition: opacity .4s var(--soft);
+    }
+    .pump-hint .k { color: var(--gold); }
+    .pumped .pump-hint { opacity: 0.35; }
+    .bubble { animation: floatUp 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .bubble.b2 { animation-delay: -1.5s; animation-duration: 7s; }
+    .bubble.b3 { animation-delay: -3s; animation-duration: 5.5s; }
+    .bubble.b4 { animation-delay: -4.5s; animation-duration: 8s; }
+    @keyframes floatUp { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    /* ── TAPE (marquee) ── */
+    .tape { position: relative; z-index: 2; overflow: hidden; padding: 14px 0; rotate: -1.6deg; margin: -10px -20px 0; background: linear-gradient(90deg, var(--gummy-pink), var(--product-purple) 50%, var(--gold)); }
+    .tape-track { display: flex; width: max-content; animation: tape 32s linear infinite; }
+    .tape span { font-size: clamp(15px, 1.6vw, 19px); font-weight: 900; letter-spacing: -0.01em; color: #120a1f; padding: 0 22px; white-space: nowrap; }
+    .tape span::after { content: "\2022"; margin-left: 44px; opacity: .5; }
+    @keyframes tape { to { transform: translateX(-50%); } }
+
+    /* ── REVEAL (squish in, rebound) ── */
+    .js [data-reveal] { opacity: 0; transform: translateY(28px) scale(.97, 1.03); transition: opacity .7s var(--soft), transform .9s var(--rebound); }
+    .js [data-reveal].in { opacity: 1; transform: none; }
+    .js [data-reveal][data-d="1"] { transition-delay: .06s; }
+    .js [data-reveal][data-d="2"] { transition-delay: .12s; }
+    .js [data-reveal][data-d="3"] { transition-delay: .18s; }
+
+    /* ── OPPORTUNITY: editorial number ── */
+    .big-stat { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+    .mega { font-size: clamp(84px, 16vw, 210px); font-weight: 900; line-height: .82; letter-spacing: -0.06em; margin-left: -0.05em;
+      background: linear-gradient(180deg, var(--text) 30%, var(--accent-blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mega-cap { font-size: 17px; color: var(--text-muted); margin-top: 18px; max-width: 460px; line-height: 1.55; }
+    .mega-cap b { color: var(--text); }
+    .side-stats { display: flex; flex-direction: column; gap: 16px; }
+    .stat-tile {
+      border-radius: var(--radius-card); padding: 24px 26px; border: 1px solid var(--border);
+      background: linear-gradient(150deg, var(--product-purple-dim), var(--surface) 70%);
+    }
+    .stat-tile.gold { background: linear-gradient(150deg, var(--gold-dim), var(--surface) 70%); border-color: var(--border-gold); }
+    .stat-big { font-size: 40px; font-weight: 900; line-height: 1; letter-spacing: -0.035em; color: var(--text); margin-bottom: 8px; }
+    .stat-tile .stat-label { margin-top: 0; font-size: 14px; }
+    .src { font-size: 12px; color: var(--text-dim); margin-top: 8px; }
+
+    .diagram-card { background: linear-gradient(160deg, var(--surface), var(--surface-2)); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; }
+    .diagram-card svg { width: 100%; height: auto; display: block; }
+    .diagram-cap { font-size: 13px; color: var(--text-dim); text-align: center; margin-top: 14px; }
+    .flow-list { display: none; }
+
+    /* ── LABEL DIRECTION ── */
+    .spectrum-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px 28px 24px; margin-bottom: 40px; }
+    .spectrum-wrap svg { width: 100%; height: auto; display: block; }
+    .verdicts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--text); }
+    .verdict { padding: 26px 28px 8px 0; }
+    .verdict + .verdict { padding-left: 28px; border-left: 1px solid var(--border); }
+    .verdict h3 { font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .verdict p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+    .verdict p strong { color: var(--text); }
+
+    /* ── KIT (packages) ── */
+    .kit-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 48px; }
+    .pkg { display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center; padding: 56px 0; border-top: 1px solid var(--border); }
+    .pkg:first-of-type { border-top: none; padding-top: 0; }
+    .pkg.flip { grid-template-columns: 1fr 300px; }
+    .pkg.flip .pkg-art { order: 2; }
+    .pkg-art svg { width: 100%; height: auto; display: block; }
+    .pkg .package-header { margin-bottom: 18px; }
+    .pkg-desc { font-size: 16px; color: var(--text-muted); margin-bottom: 26px; max-width: 600px; line-height: 1.6; }
+    .pkg-price.sugg::before { content: "Suggested "; font-weight: 600; opacity: .7; font-size: 12px; }
+    .step-list { list-style: none; counter-reset: s; display: grid; gap: 14px; }
+    .step-list li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 12px; font-size: 15px; color: var(--text-muted); line-height: 1.55; }
+    .step-list li::before { content: counter(s); width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border-gold); background: var(--gold-dim); color: var(--gold); font-size: 13px; font-weight: 800; display: grid; place-items: center; }
+    .step-list strong { color: var(--text); }
+
+    .engine-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; background: var(--surface); }
+    .engine-cell { padding: 28px 30px; border-bottom: 1px solid var(--border); }
+    .engine-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+    .engine-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .engine-cell h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--text); letter-spacing: -0.01em; }
+    .engine-cell p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .addon-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-teal); border: 1px solid var(--accent-teal-border); background: var(--accent-teal-dim); border-radius: 99px; padding: 3px 10px; vertical-align: middle; }
+
+    /* ── TIMELINE ── */
+    .timeline svg { width: 100%; height: auto; display: block; }
+    .tl-list { display: none; }
+
+    /* ── WOOD DUBAI ── */
+    .section-oud { background: radial-gradient(ellipse 800px 420px at 85% 10%, var(--oud-dim), transparent 70%), radial-gradient(ellipse 600px 400px at 10% 90%, var(--gold-dim), transparent 70%); }
+    .phase-tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); background: linear-gradient(90deg, var(--oud-dim), var(--gold-dim)); border: 1px solid var(--border-gold); border-radius: 99px; padding: 5px 12px; margin-bottom: 14px; }
+    .oud-art svg { width: 100%; max-width: 340px; height: auto; display: block; margin: 0 auto; }
+
+    /* ── WHY: one sentence, three proofs ── */
+    .why-row { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
+    .why-lines { list-style: none; display: grid; }
+    .why-lines li { padding: 20px 0; border-top: 1px solid var(--border); font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+    .why-lines li:last-child { border-bottom: 1px solid var(--border); }
+    .why-lines strong { display: block; color: var(--text); font-size: 18px; letter-spacing: -0.01em; margin-bottom: 4px; }
+
+    /* ── PRICING ── */
+    /* Price anchors: regular rate struck through in red beside the launch price */
+    :root { --was-red: #FF6B6B; }
+    .section-light { --was-red: #C42B22; }
+    .was, .was-big { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--was-red); color: var(--was-red); font-weight: 700; }
+    .was { margin-right: 8px; font-size: 0.82em; }
+
+    /* Investment: three steps, lots of air, one number per line */
+    .inv-step { max-width: 880px; margin: 56px auto 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .section-header + .inv-step { margin-top: 8px; }
+    .inv-step span { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--product-purple); color: #fff; font-size: 13px; letter-spacing: 0; }
+    .inv-pieces { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .inv-piece { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px 24px; display: flex; flex-direction: column; }
+    .inv-piece h3, .inv-extra h3 { font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; margin-bottom: 8px; }
+    .inv-piece p, .inv-extra p { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
+    .inv-piece .inv-price { margin-top: auto; padding-top: 24px; }
+    .inv-price { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+    .inv-price .was { font-size: 16px; margin: 0; }
+    .inv-price b { font-size: 30px; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
+    .inv-math { max-width: 880px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 12px 40px; }
+    .inv-line { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; border-bottom: 1px dashed var(--border); }
+    .inv-lbl { font-size: 16px; font-weight: 600; color: var(--text); }
+    .inv-lbl small { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-top: 4px; }
+    .inv-val { font-size: 22px; font-weight: 800; color: var(--text); white-space: nowrap; }
+    .inv-line.kit .inv-val { font-size: 28px; color: var(--product-purple-deep); }
+    .inv-line.credit .inv-val { color: #127A62; }
+    .inv-line.due { border-bottom: none; border-top: 2px solid var(--text); margin-top: -1px; padding: 28px 0 20px; }
+    .inv-line.due .inv-lbl { font-size: 20px; font-weight: 900; }
+    .inv-line.due .inv-val { font-size: 44px; font-weight: 900; letter-spacing: -0.03em; background: linear-gradient(90deg, var(--product-purple-deep), #D63AA0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .inv-extras { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .inv-extra { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px; border: 1px dashed var(--border); border-radius: var(--radius-card); }
+    .inv-extra .inv-price b { font-size: 22px; }
+    .inv-extra .inv-price .was { font-size: 14px; }
+    @media (max-width: 900px) {
+      .inv-pieces, .inv-extras { grid-template-columns: 1fr; }
+      .inv-piece .inv-price { padding-top: 16px; }
+    }
+    @media (max-width: 720px) {
+      .inv-math { padding: 4px 20px; }
+      .inv-line.due .inv-val { font-size: 36px; }
+      .inv-extra { flex-direction: column; align-items: flex-start; }
+    }
+    .hero-meta .was { margin-right: 4px; }
+    .launch-banner { max-width: 680px; margin: 0 auto 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 14px; padding: 14px 20px; border-radius: 99px; background: linear-gradient(90deg, rgba(255,122,200,0.16), rgba(139,92,246,0.14), var(--gold-dim)); border: 1px solid var(--border-gold); font-size: 14px; color: var(--text); font-weight: 600; text-align: center; }
+    .launch-banner b { font-weight: 900; }
+    .pricing-row.bundle .pricing-amt { font-size: 24px; }
+    .pricing-row.bundle { background: linear-gradient(135deg, var(--product-purple-dim), transparent); }
+    .pricing-row.credit .pricing-amt { color: #127A62; }
+    .pricing-row.opt { background: var(--surface-2); }
+    .save { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 800; color: #127A62; background: rgba(20,140,110,0.12); border-radius: 99px; padding: 2px 8px; vertical-align: middle; }
+    .terms { max-width: 680px; margin: 22px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 13px; color: var(--text-muted); }
+    .terms span::before { content: "\2713  "; color: var(--gold); font-weight: 800; }
+
+    /* ── SQUISH: primary buttons & cards ── */
+    @keyframes squish { 0% { transform: scale(1); } 30% { transform: scale(1.08, .9); } 55% { transform: scale(.96, 1.05); } 75% { transform: scale(1.02, .98); } 100% { transform: scale(1.03); } }
+    .btn-primary { transition: box-shadow .3s var(--soft); }
+    @media (hover: hover) {
+      .btn-primary:hover { transform: none; animation: squish .55s var(--soft) forwards; box-shadow: 0 10px 36px rgba(242,183,5,0.4); }
+      .btn-primary:hover svg { translate: 4px 0; }
+      .stat-tile, .engine-cell { transition: transform .5s var(--rebound); }
+      .stat-tile:hover { transform: scale(1.02, .98); }
+    }
+    .btn-primary:focus-visible { animation: squish .55s var(--soft) forwards; }
+    .btn-primary:active { transform: scale(1.06, .9); animation: none; }
+    .btn-primary svg { transition: translate .3s var(--soft); }
+    .btn-ghost { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--border-gold); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bubble, .scroll-cue, .tape-track { animation: none; }
+      .sq-l, .btn-primary, .stat-tile { transition: none !important; animation: none !important; }
+      .sq-l:hover { transform: none; }
+      .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+      .btn-primary:hover { box-shadow: 0 0 0 3px var(--gold-dim); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 12px; }
+      .hero.sq { min-height: 0; padding-top: 48px; }
+      .pump-btn { max-width: 300px; }
+      .big-stat, .why-row { grid-template-columns: 1fr; gap: 28px; }
+      .pkg, .pkg.flip { grid-template-columns: 1fr; gap: 28px; }
+      .pkg.flip .pkg-art { order: 0; }
+      .pkg-art svg { max-width: 260px; margin: 0 auto; }
+      .verdicts { grid-template-columns: 1fr; }
+      .verdict, .verdict + .verdict { padding: 22px 0; border-left: none; border-bottom: 1px solid var(--border); }
+    }
+    @media (max-width: 720px) {
+      .diagram-card.flow svg { display: none; }
+      .flow-list { display: grid; gap: 10px; list-style: none; }
+      .flow-list li { padding: 14px 16px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); font-size: 15px; color: var(--text-muted); }
+      .flow-list li.lsd { border-color: var(--border-gold); background: linear-gradient(135deg, var(--gold-dim), var(--surface)); }
+      .flow-list strong { color: var(--text); }
+      .timeline svg { display: none; }
+      .tl-list { display: flex; }
+      .engine-grid { grid-template-columns: 1fr; }
+      .engine-cell:nth-child(odd) { border-right: none; }
+      .engine-cell:nth-last-child(2) { border-bottom: 1px solid var(--border); }
+      .spectrum-wrap { padding: 20px 12px 14px; }
+      .hero-meta { gap: 6px 16px; }
+    }
+  </style>
+  <meta name="description" content="Launch proposal for Squishy Clean: label refresh, Shopify launch page and faceless promo videos, prepared by Local Sun Digital." />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the proposal</a>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/squishy-clean/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Squishy Clean</span> · November 2026</span>
+</nav>
+
+<main id="main">
+
+<!-- ── HERO ── -->
+<section class="hero sq" id="hero">
+  <div class="hero-mesh" aria-hidden="true">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        Launch proposal · Local Sun Digital
+      </div>
+      <h1>
+        <span class="sr-only">Fun on camera. Premium on the shelf.</span>
+        <span class="line" aria-hidden="true"><span class="w"><span class="sq-l">F</span><span class="sq-l">u</span><span class="sq-l">n</span></span> <span class="w"><span class="sq-l">o</span><span class="sq-l">n</span></span> <span class="w"><span class="sq-l">c</span><span class="sq-l">a</span><span class="sq-l">m</span><span class="sq-l">e</span><span class="sq-l">r</span><span class="sq-l">a</span><span class="sq-l">.</span></span></span>
+        <span class="line grad-text" aria-hidden="true">Premium on the shelf.</span>
+      </h1>
+      <p class="hero-sub">A label, a Shopify launch page and a set of scroll-stopping promo videos that get Squishy Clean in front of buyers before the Christmas rush, and make $24.95 feel like an easy yes.</p>
+      <div class="hero-meta">
+        <span><b>Launch Kit</b> <span class="was"><span class="sr-only">Regularly </span>$3,900</span>$1,950</span>
+        <span><b>First drafts</b> Nov 20 to 22</span>
+        <span><b>Goal</b> FBA before Christmas</span>
+      </div>
+    </div>
+
+    <!-- Signature: a working pump. Concept art, not the final label. -->
+    <div class="pump-stage" id="pumpStage">
+      <button class="pump-btn" id="pumpBtn" type="button" aria-label="Pump the Squishy Clean bottle">
+        <svg viewBox="0 0 380 470" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="liquid" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color:var(--product-purple)" />
+              <stop offset="1" style="stop-color:var(--product-purple-deep)" />
+            </linearGradient>
+            <radialGradient id="irid" cx="35%" cy="30%" r="70%">
+              <stop offset="0" stop-color="#fff" stop-opacity="0.95" />
+              <stop offset="0.35" style="stop-color:var(--gummy-cyan)" stop-opacity="0.55" />
+              <stop offset="0.7" style="stop-color:var(--gummy-pink)" stop-opacity="0.45" />
+              <stop offset="1" style="stop-color:var(--product-purple)" stop-opacity="0.25" />
+            </radialGradient>
+            <linearGradient id="bearG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--gummy-pink)" />
+              <stop offset="1" style="stop-color:var(--product-purple)" />
+            </linearGradient>
+            <g id="bear">
+              <circle cx="-14" cy="-34" r="8" /><circle cx="14" cy="-34" r="8" />
+              <circle cx="0" cy="-20" r="17" />
+              <ellipse cx="0" cy="10" rx="20" ry="24" />
+              <ellipse cx="-21" cy="2" rx="7" ry="11" transform="rotate(25 -21 2)" />
+              <ellipse cx="21" cy="2" rx="7" ry="11" transform="rotate(-25 21 2)" />
+              <ellipse cx="-11" cy="32" rx="9" ry="7" /><ellipse cx="11" cy="32" rx="9" ry="7" />
+            </g>
+          </defs>
+          <ellipse id="shadow" cx="190" cy="440" rx="120" ry="14" fill="#000" opacity="0.45" />
+          <g id="tilt">
+            <g id="pumpHead">
+              <rect x="112" y="46" width="100" height="18" rx="9" fill="#F4F1FA" />
+              <rect x="181" y="60" width="18" height="48" fill="#E4DFEE" />
+            </g>
+            <g id="bottleBody">
+              <rect x="150" y="100" width="80" height="44" rx="12" fill="#FFFFFF" />
+              <rect x="150" y="128" width="80" height="6" fill="#000" opacity="0.06" />
+              <rect x="104" y="140" width="172" height="290" rx="38" fill="url(#liquid)" />
+              <rect x="118" y="156" width="14" height="250" rx="7" fill="#fff" opacity="0.18" />
+              <path d="M110 176 Q130 166 150 176 T190 176 T230 176 T270 176" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="3" />
+              <rect x="120" y="206" width="140" height="176" rx="16" style="fill:var(--cream)" />
+              <text x="190" y="242" text-anchor="middle" font-family="Inter, sans-serif" font-size="25" font-weight="900" style="fill:var(--product-purple-deep)" letter-spacing="-0.5">SQUISHY</text>
+              <text x="190" y="268" text-anchor="middle" font-family="Inter, sans-serif" font-size="25" font-weight="900" style="fill:var(--product-purple-deep)" letter-spacing="-0.5">CLEAN</text>
+              <text x="190" y="286" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" font-weight="700" fill="#6b5a86" letter-spacing="0.6">FOAMING SQUISHY WASH</text>
+              <g transform="translate(190 330) scale(0.62)" fill="url(#bearG)"><use href="#bear" /></g>
+              <text x="190" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" style="fill:var(--gummy-pink)" letter-spacing="1.2">YUMMY GUMMY SCENT</text>
+            </g>
+            <circle class="bubble" cx="66" cy="200" r="24" fill="url(#irid)" />
+            <circle class="bubble b2" cx="322" cy="160" r="16" fill="url(#irid)" />
+            <circle class="bubble b3" cx="306" cy="304" r="28" fill="url(#irid)" />
+            <circle class="bubble b4" cx="56" cy="336" r="13" fill="url(#irid)" />
+            <g transform="translate(326 406) scale(0.9)" fill="url(#bearG)" opacity="0.95"><use href="#bear" /></g>
+          </g>
+          <g id="foam"></g>
+        </svg>
+      </button>
+      <span class="pump-hint" aria-hidden="true">Tap to <span class="k">pump</span></span>
+    </div>
+  </div>
+</section>
+
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span>Clean your squishies</span><span>Yummy gummy scent</span><span>Toy-safe foam</span><span>Made for TikTok</span><span>Shopify + Amazon FBA</span>
+    <span>Clean your squishies</span><span>Yummy gummy scent</span><span>Toy-safe foam</span><span>Made for TikTok</span><span>Shopify + Amazon FBA</span>
+  </div>
+</div>
+
+<!-- ── THE OPPORTUNITY ── -->
+<section class="section section-tint-blue" style="padding-top:110px;">
+  <div class="container">
+    <div class="big-stat">
+      <div data-reveal>
+        <h2 class="sr-only">The opportunity</h2>
+        <div class="mega" data-count="98" data-suffix="M">98M</div>
+        <p class="mega-cap"><b>Amazon searches for NeeDohs in the last 360 days</b>, per your Amazon agency. Every one of those toys picks up crumbs and cat hair, and parents are cleaning them with dish soap.</p>
+      </div>
+      <div class="side-stats">
+        <div class="stat-tile" data-reveal data-d="1">
+          <div class="stat-big">31K / mo</div>
+          <div class="stat-label">Units sold by one gummy-scented teen deodorant that went viral on TikTok, about $500K a month.</div>
+        </div>
+        <div class="stat-tile gold" data-reveal data-d="2">
+          <div class="stat-big">$24.95</div>
+          <div class="stat-label">Your price point. The niche is the justification: it's exactly what a squishy owner needs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram-card flow" data-reveal>
+      <svg viewBox="0 0 920 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Launch loop: promo videos, TikTok creators, Shopify page, checkout, cart recovery and email, then repeat buyers">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" style="fill:var(--text-dim)" />
+          </marker>
+          <linearGradient id="nodeGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" style="stop-color:var(--gold-dim)" />
+            <stop offset="1" style="stop-color:var(--surface)" />
+          </linearGradient>
+        </defs>
+        <g font-family="Inter, sans-serif" text-anchor="middle">
+          <g>
+            <rect x="10" y="60" width="160" height="96" rx="16" fill="url(#nodeGold)" style="stroke:var(--border-gold)" stroke-width="1.5" />
+            <text x="90" y="98" font-size="15" font-weight="800" style="fill:var(--text)">Faceless promo</text>
+            <text x="90" y="118" font-size="15" font-weight="800" style="fill:var(--text)">videos</text>
+            <text x="90" y="140" font-size="11" style="fill:var(--gold)" font-weight="700">LSD BUILDS</text>
+          </g>
+          <g>
+            <rect x="195" y="60" width="160" height="96" rx="16" style="fill:var(--surface-2);stroke:var(--border)" stroke-width="1.5" />
+            <text x="275" y="98" font-size="15" font-weight="800" style="fill:var(--text)">TikTok creators</text>
+            <text x="275" y="118" font-size="13" style="fill:var(--text-muted)">show the bottle</text>
+            <text x="275" y="140" font-size="11" style="fill:var(--text-dim)" font-weight="700">YOUR TEAM</text>
+          </g>
+          <g>
+            <rect x="380" y="60" width="160" height="96" rx="16" fill="url(#nodeGold)" style="stroke:var(--border-gold)" stroke-width="1.5" />
+            <text x="460" y="98" font-size="15" font-weight="800" style="fill:var(--text)">Shopify launch</text>
+            <text x="460" y="118" font-size="15" font-weight="800" style="fill:var(--text)">page</text>
+            <text x="460" y="140" font-size="11" style="fill:var(--gold)" font-weight="700">LSD BUILDS</text>
+          </g>
+          <g>
+            <rect x="565" y="60" width="160" height="96" rx="16" style="fill:var(--surface-2);stroke:var(--border)" stroke-width="1.5" />
+            <text x="645" y="98" font-size="15" font-weight="800" style="fill:var(--text)">Checkout</text>
+            <text x="645" y="118" font-size="13" style="fill:var(--text-muted)">Shopify or Amazon</text>
+            <text x="645" y="140" font-size="11" style="fill:var(--text-dim)" font-weight="700">THE SALE</text>
+          </g>
+          <g>
+            <rect x="750" y="60" width="160" height="96" rx="16" fill="url(#nodeGold)" style="stroke:var(--border-gold)" stroke-width="1.5" />
+            <text x="830" y="98" font-size="15" font-weight="800" style="fill:var(--text)">Cart recovery</text>
+            <text x="830" y="118" font-size="15" font-weight="800" style="fill:var(--text)">+ email</text>
+            <text x="830" y="140" font-size="11" style="fill:var(--gold)" font-weight="700">LSD BUILDS</text>
+          </g>
+          <line x1="172" y1="108" x2="192" y2="108" style="stroke:var(--text-dim)" stroke-width="2" marker-end="url(#arr)" />
+          <line x1="357" y1="108" x2="377" y2="108" style="stroke:var(--text-dim)" stroke-width="2" marker-end="url(#arr)" />
+          <line x1="542" y1="108" x2="562" y2="108" style="stroke:var(--text-dim)" stroke-width="2" marker-end="url(#arr)" />
+          <line x1="727" y1="108" x2="747" y2="108" style="stroke:var(--text-dim)" stroke-width="2" marker-end="url(#arr)" />
+          <path d="M830 160 C830 250, 90 250, 90 162" fill="none" style="stroke:var(--accent-blue)" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arr)" />
+          <text x="460" y="262" font-size="13" font-weight="700" style="fill:var(--accent-blue)">Buyers and reviews feed the next round of videos, and the next product</text>
+          <text x="460" y="30" font-size="12" font-weight="700" letter-spacing="2" style="fill:var(--text-dim)">HOW A $24.95 BOTTLE GETS SOLD, AND SOLD AGAIN</text>
+        </g>
+      </svg>
+      <ol class="flow-list">
+        <li class="lsd"><strong>Faceless promo videos</strong> · LSD builds</li>
+        <li><strong>TikTok creators</strong> show the bottle · your team</li>
+        <li class="lsd"><strong>Shopify launch page</strong> · LSD builds</li>
+        <li><strong>Checkout</strong> on Shopify or Amazon</li>
+        <li class="lsd"><strong>Cart recovery + email</strong> · LSD builds</li>
+        <li>Buyers and reviews feed the next round</li>
+      </ol>
+      <p class="diagram-cap">Gold is what Local Sun Digital builds. Influencer distribution stays with your team.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── LABEL DIRECTION (light) ── -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <h2 class="section-title" style="max-width:760px;">You don't have to pick between fun and premium.</h2>
+      <p class="section-sub">Both current versions get half of it right. The colorful one pops on camera, but its icon row reads "dollar store." The sophisticated one feels expensive, but it disappears in a TikTok. The refresh lands in between.</p>
+    </div>
+
+    <div class="spectrum-wrap" data-reveal>
+      <svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spectrum from fun to premium, with the refreshed label placed between the two current versions">
+        <defs>
+          <linearGradient id="spec" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" style="stop-color:var(--gummy-pink)" />
+            <stop offset="0.35" style="stop-color:var(--gummy-cyan)" />
+            <stop offset="0.7" style="stop-color:var(--product-purple)" />
+            <stop offset="1" style="stop-color:var(--product-purple-deep)" />
+          </linearGradient>
+          <g id="mini">
+            <rect x="-8" y="-58" width="16" height="10" rx="3" fill="#fff" stroke="#d8d0e6" />
+            <rect x="-22" y="-48" width="44" height="72" rx="12" />
+            <rect x="-15" y="-30" width="30" height="36" rx="5" fill="#fff" opacity="0.92" />
+          </g>
+        </defs>
+        <g font-family="Inter, sans-serif">
+          <rect x="40" y="150" width="820" height="14" rx="7" fill="url(#spec)" />
+          <text x="40" y="196" font-size="13" font-weight="800" style="fill:var(--text)">FUN</text>
+          <text x="40" y="214" font-size="12" style="fill:var(--text-muted)">Loud on TikTok</text>
+          <text x="860" y="196" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--text)">PREMIUM</text>
+          <text x="860" y="214" text-anchor="end" font-size="12" style="fill:var(--text-muted)">Feels like $24.95</text>
+          <g transform="translate(130 110)" style="fill:var(--gummy-pink)" opacity="0.8"><use href="#mini" /></g>
+          <circle cx="130" cy="157" r="9" fill="#fff" style="stroke:var(--text-dim)" stroke-width="2" />
+          <text x="130" y="30" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--text-muted)">Current fun version</text>
+          <g transform="translate(770 110)" style="fill:var(--product-purple-deep)" opacity="0.6"><use href="#mini" /></g>
+          <circle cx="770" cy="157" r="9" fill="#fff" style="stroke:var(--text-dim)" stroke-width="2" />
+          <text x="770" y="30" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--text-muted)">Current premium version</text>
+          <g transform="translate(540 104) scale(1.15)" style="fill:var(--product-purple)"><use href="#mini" /></g>
+          <circle cx="540" cy="157" r="13" style="fill:var(--gold);stroke:var(--surface)" stroke-width="4" />
+          <text x="540" y="22" text-anchor="middle" font-size="14" font-weight="900" style="fill:var(--gold)">THE REFRESH</text>
+          <text x="540" y="40" text-anchor="middle" font-size="11" style="fill:var(--text-muted)">pops on camera, priced like a premium buy</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="verdicts">
+      <div class="verdict" data-reveal>
+        <h3>Keep</h3>
+        <p><strong>The purple liquid and the iridescent bubbles.</strong> Both read as premium on camera. The front gets a simpler, bolder layout so the name and gummy character carry across a phone screen.</p>
+      </div>
+      <div class="verdict" data-reveal data-d="1">
+        <h3>Change</h3>
+        <p><strong>The icon row.</strong> "Toy safe," "gentle foam" and "removes dust and dirt" stay, rebuilt as one clean icon set instead of clip-art badges. The border gets tested both ways, with and without, so you can pick on the real bottle.</p>
+      </div>
+      <div class="verdict" data-reveal data-d="2">
+        <h3>Lock</h3>
+        <p><strong>Compliance.</strong> "Squishy Clean" on the bottle, never NeeDohs. Scent wording like "yummy gummy" if required. Back panel set from your compliance copy and the printer's exact specs once they land Thursday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE LAUNCH KIT ── -->
+<section class="section">
+  <div class="container">
+    <div class="kit-head" data-reveal>
+      <div>
+        <div class="section-label">The Launch Kit</div>
+        <h2 class="section-title" style="margin-bottom:0;">Three pieces, one launch.</h2>
+      </div>
+      <p class="section-sub" style="max-width:420px;">Each piece works on its own. Together they're $3,900 of work at our regular rates, and you get all three for half that, $1,950, at launch pricing.</p>
+    </div>
+
+    <!-- 1 · Label -->
+    <article class="pkg">
+      <div class="pkg-art" data-reveal aria-hidden="true">
+        <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg">
+          <g font-family="Inter, sans-serif">
+            <rect x="10" y="20" width="132" height="250" rx="14" style="fill:var(--cream)" />
+            <text x="76" y="64" text-anchor="middle" font-size="19" font-weight="900" style="fill:var(--product-purple-deep)">SQUISHY</text>
+            <text x="76" y="86" text-anchor="middle" font-size="19" font-weight="900" style="fill:var(--product-purple-deep)">CLEAN</text>
+            <g transform="translate(76 150) scale(0.7)" fill="url(#bearG)"><use href="#bear" /></g>
+            <g style="fill:var(--product-purple)" opacity="0.85">
+              <circle cx="40" cy="232" r="11" /><circle cx="76" cy="232" r="11" /><circle cx="112" cy="232" r="11" />
+            </g>
+            <g fill="#fff"><path d="M35 232l4 4 7-8" stroke="#fff" stroke-width="2.4" fill="none" /><circle cx="76" cy="232" r="4" /><path d="M106 238l12-12" stroke="#fff" stroke-width="2.4" /></g>
+            <rect x="158" y="20" width="132" height="250" rx="14" style="fill:var(--surface-2);stroke:var(--border)" />
+            <g style="fill:var(--text-dim)">
+              <rect x="172" y="44" width="70" height="7" rx="3" style="fill:var(--text-muted)" />
+              <rect x="172" y="60" width="104" height="5" rx="2" /><rect x="172" y="71" width="96" height="5" rx="2" /><rect x="172" y="82" width="100" height="5" rx="2" />
+              <rect x="172" y="104" width="58" height="7" rx="3" style="fill:var(--text-muted)" />
+              <rect x="172" y="120" width="104" height="5" rx="2" /><rect x="172" y="131" width="88" height="5" rx="2" />
+              <rect x="172" y="153" width="64" height="7" rx="3" style="fill:var(--text-muted)" />
+              <rect x="172" y="169" width="104" height="5" rx="2" /><rect x="172" y="180" width="104" height="5" rx="2" /><rect x="172" y="191" width="72" height="5" rx="2" />
+            </g>
+            <rect x="172" y="222" width="64" height="30" rx="3" fill="#fff" />
+            <g fill="#111"><rect x="176" y="226" width="2" height="22" /><rect x="181" y="226" width="3" height="22" /><rect x="187" y="226" width="1.5" height="22" /><rect x="191" y="226" width="3" height="22" /><rect x="197" y="226" width="2" height="22" /><rect x="202" y="226" width="4" height="22" /><rect x="209" y="226" width="1.5" height="22" /><rect x="213" y="226" width="3" height="22" /><rect x="219" y="226" width="2" height="22" /><rect x="224" y="226" width="3" height="22" /><rect x="230" y="226" width="2" height="22" /></g>
+            <text x="76" y="300" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="2" style="fill:var(--text-dim)">FRONT</text>
+            <text x="224" y="300" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="2" style="fill:var(--text-dim)">BACK</text>
+          </g>
+        </svg>
+      </div>
+      <div data-reveal data-d="1">
+        <div class="package-header">
+          <div class="pkg-num">1</div>
+          <h3 class="pkg-title">Label Refresh</h3>
+          <div class="pkg-price"><span class="was"><span class="sr-only">Regularly </span>$900</span>$450</div>
+        </div>
+        <p class="pkg-desc">A refinement of the label you already have, not new hand-drawn artwork. Built to grab creators' attention and to be print-ready for the factory in Georgia in time for a pre-Christmas FBA order.</p>
+        <ol class="step-list">
+          <li><span><strong>Front label redesign.</strong> Name, function and gummy or squishy imagery, balanced between fun and premium. Two directions to review this weekend.</span></li>
+          <li><span><strong>Back panel layout.</strong> Directions, warnings, ingredients and claims set cleanly from your compliance copy.</span></li>
+          <li><span><strong>Print-ready files</strong> to the printer's specs, plus one update after Christmas if the formula changes.</span></li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- 2 · Shopify -->
+    <article class="pkg flip">
+      <div class="pkg-art" data-reveal aria-hidden="true">
+        <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="pageHero" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color:var(--gummy-pink)" stop-opacity="0.6" />
+              <stop offset="1" style="stop-color:var(--product-purple-deep)" />
+            </linearGradient>
+          </defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="60" y="10" width="180" height="310" rx="26" style="fill:var(--surface-2);stroke:var(--border-gold)" stroke-width="2" />
+            <rect x="70" y="20" width="160" height="290" rx="18" style="fill:var(--surface)" />
+            <rect x="70" y="20" width="160" height="150" rx="18" fill="url(#pageHero)" />
+            <rect x="70" y="150" width="160" height="20" fill="url(#pageHero)" />
+            <rect x="132" y="50" width="36" height="12" rx="4" fill="#fff" />
+            <rect x="118" y="60" width="64" height="96" rx="16" fill="#fff" opacity="0.25" />
+            <rect x="126" y="90" width="48" height="40" rx="6" fill="#fff" opacity="0.9" />
+            <text x="150" y="114" text-anchor="middle" font-size="9" font-weight="900" style="fill:var(--product-purple-deep)">SQUISHY</text>
+            <text x="84" y="194" font-size="12" font-weight="900" style="fill:var(--text)">Clean your squishies.</text>
+            <text x="84" y="210" font-size="9" style="fill:var(--text-muted)">Smells like gummy bears. Toy safe.</text>
+            <text x="84" y="236" font-size="16" font-weight="900" style="fill:var(--text)">$24.95</text>
+            <rect x="84" y="248" width="132" height="26" rx="13" style="fill:var(--gold)" />
+            <text x="150" y="265" text-anchor="middle" font-size="10" font-weight="800" fill="#000">Add to cart</text>
+            <text x="150" y="292" text-anchor="middle" font-size="9" font-weight="700" style="fill:var(--text-muted)">or buy on Amazon</text>
+          </g>
+        </svg>
+      </div>
+      <div data-reveal data-d="1">
+        <div class="package-header">
+          <div class="pkg-num">2</div>
+          <h3 class="pkg-title">Shopify Launch Page</h3>
+          <div class="pkg-price"><span class="was"><span class="sr-only">Regularly </span>$1,800</span>$1,200</div>
+        </div>
+        <p class="pkg-desc">Your Amazon agency is right: you want a page you own. TikTok traffic lands here, so you keep more of every $24.95 sale instead of giving Amazon its cut, and buyers who'd rather check out on Amazon get a button for that.</p>
+        <ol class="step-list">
+          <li><span><strong>Landing page</strong> that names the problem (crumbs, cat hair, that new-toy paint smell), then the fix and the scent, with the promo videos built in.</span></li>
+          <li><span><strong>Purchase page</strong> set up for phone shoppers arriving from creator videos, with room for bundles when the next products launch.</span></li>
+          <li><span><strong>Email capture</strong> so visitors who don't buy today still join the list from day one.</span></li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- 3 · Videos -->
+    <article class="pkg">
+      <div class="pkg-art" data-reveal aria-hidden="true">
+        <svg viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="screen" x1="0" y1="0" x2="0.6" y2="1">
+              <stop offset="0" style="stop-color:var(--gummy-pink)" stop-opacity="0.55" />
+              <stop offset="0.5" style="stop-color:var(--product-purple)" stop-opacity="0.75" />
+              <stop offset="1" style="stop-color:var(--product-purple-deep)" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(40 0)">
+            <rect x="4" y="4" width="212" height="412" rx="34" style="fill:var(--surface-2);stroke:var(--border-gold)" stroke-width="2" />
+            <rect x="16" y="16" width="188" height="388" rx="24" fill="url(#screen)" />
+            <rect x="84" y="26" width="52" height="8" rx="4" fill="#000" opacity="0.35" />
+            <rect x="92" y="120" width="36" height="14" rx="4" fill="#fff" />
+            <rect x="76" y="132" width="68" height="128" rx="18" fill="#fff" opacity="0.2" />
+            <rect x="84" y="164" width="52" height="60" rx="8" fill="#fff" opacity="0.85" />
+            <text x="110" y="192" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="900" style="fill:var(--product-purple-deep)">SQUISHY</text>
+            <text x="110" y="206" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="900" style="fill:var(--product-purple-deep)">CLEAN</text>
+            <path d="M58 150 Q44 196 58 240" fill="none" stroke="#fff" stroke-opacity="0.6" stroke-width="3" stroke-linecap="round" />
+            <path d="M162 150 Q176 196 162 240" fill="none" stroke="#fff" stroke-opacity="0.6" stroke-width="3" stroke-linecap="round" />
+            <circle class="bubble" cx="48" cy="100" r="14" fill="url(#irid)" />
+            <circle class="bubble b3" cx="170" cy="92" r="10" fill="url(#irid)" />
+            <circle class="bubble b2" cx="160" cy="280" r="16" fill="url(#irid)" />
+            <rect x="34" y="318" width="152" height="26" rx="13" fill="#000" opacity="0.4" />
+            <text x="110" y="335" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#fff">smells like gummy bears</text>
+            <rect x="34" y="372" width="152" height="4" rx="2" fill="#fff" opacity="0.25" />
+            <rect x="34" y="372" width="98" height="4" rx="2" style="fill:var(--gold)" />
+            <text x="186" y="392" text-anchor="end" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#fff" opacity="0.8">0:10</text>
+          </g>
+        </svg>
+      </div>
+      <div data-reveal data-d="1">
+        <div class="package-header">
+          <div class="pkg-num">3</div>
+          <h3 class="pkg-title">Faceless Promo Videos</h3>
+          <div class="pkg-price"><span class="was"><span class="sr-only">Regularly </span>$1,200</span>$600</div>
+        </div>
+        <p class="pkg-desc">Four short, bouncy videos of about 10 seconds each, set to fun music with no on-camera talent. Built for TikTok and Reels, reused on the Shopify page, and easy for your creators to remix.</p>
+        <ol class="step-list">
+          <li><span><strong>Product spin and foam animations</strong> where the purple bottle and the bubbles are the star.</span></li>
+          <li><span><strong>Hook-first edits</strong> built on the real problem: crumbs, cat hair and the paint smell new toys come with.</span></li>
+          <li><span><strong>Three cuts of each video</strong> (vertical, square and page hero), so 4 videos cover every placement.</span></li>
+        </ol>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ── CONVERSION ENGINE (teal) ── -->
+<section class="section section-tint-teal">
+  <div class="container">
+    <div class="package-header" data-reveal>
+      <div class="pkg-num">+</div>
+      <h2 class="pkg-title">Conversion Engine <span class="addon-tag" style="margin-left:6px;">Optional add-on</span></h2>
+      <div class="pkg-price"><span class="was"><span class="sr-only">Regularly </span>$1,200</span>$650 setup</div>
+    </div>
+    <p class="pkg-desc" data-reveal>Your creators bring the traffic. This turns clicks that don't buy right away into sales, and finds more people to talk about the product.</p>
+    <div class="engine-grid" data-reveal>
+      <div class="engine-cell">
+        <h3>Lost-checkout recovery</h3>
+        <p>Automatic follow-ups for shoppers who start checking out and leave, so a distracted parent doesn't turn into a lost sale.</p>
+      </div>
+      <div class="engine-cell">
+        <h3>Welcome and launch emails</h3>
+        <p>A short sequence for new subscribers, plus an audience that's ready when the next products in your pipeline launch.</p>
+      </div>
+      <div class="engine-cell">
+        <h3>Creator outreach list</h3>
+        <p>Scrapers find the toy, parenting and squishy accounts most likely to promote it, then a cold email sequence goes out to them. It adds to your influencer team without replacing it.</p>
+      </div>
+      <div class="engine-cell">
+        <h3>Text campaigns, later</h3>
+        <p>Text drops for launch days and restocks once there's an opted-in list, so it stays compliant. Quoted per campaign.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center" data-reveal>
+      <h2 class="section-title">Racing the Christmas clock</h2>
+      <p class="section-sub">Good enough to ship now, refined after the holidays. The label locks once the compliance results and printer specs come back.</p>
+    </div>
+    <div class="diagram-card timeline" data-reveal>
+      <svg viewBox="0 0 1000 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Launch timeline from the November 16 kickoff to Christmas">
+        <defs>
+          <linearGradient id="tl" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" style="stop-color:var(--gold)" />
+            <stop offset="0.6" style="stop-color:var(--product-purple)" />
+            <stop offset="1" style="stop-color:var(--accent-rose)" />
+          </linearGradient>
+        </defs>
+        <g font-family="Inter, sans-serif" text-anchor="middle">
+          <rect x="60" y="96" width="880" height="6" rx="3" fill="url(#tl)" />
+          <circle cx="80" cy="99" r="11" style="fill:var(--gold)" />
+          <text x="80" y="66" font-size="13" font-weight="800" style="fill:var(--text)">Nov 16</text>
+          <text x="80" y="134" font-size="12" style="fill:var(--text-muted)">Kickoff calls</text>
+          <circle cx="250" cy="99" r="11" style="fill:var(--surface);stroke:var(--gold)" stroke-width="3" />
+          <text x="250" y="66" font-size="13" font-weight="800" style="fill:var(--text)">Thu, Nov 19</text>
+          <text x="250" y="134" font-size="12" style="fill:var(--text-muted)">Compliance done,</text>
+          <text x="250" y="150" font-size="12" style="fill:var(--text-muted)">label copy + specs in</text>
+          <circle cx="420" cy="99" r="11" style="fill:var(--surface);stroke:var(--gold)" stroke-width="3" />
+          <text x="420" y="66" font-size="13" font-weight="800" style="fill:var(--text)">Nov 20 to 22</text>
+          <text x="420" y="134" font-size="12" style="fill:var(--text-muted)">First label + page</text>
+          <text x="420" y="150" font-size="12" style="fill:var(--text-muted)">drafts for review</text>
+          <circle cx="590" cy="99" r="11" style="fill:var(--surface);stroke:var(--product-purple)" stroke-width="3" />
+          <text x="590" y="66" font-size="13" font-weight="800" style="fill:var(--text)">Week of Nov 23</text>
+          <text x="590" y="134" font-size="12" style="fill:var(--text-muted)">Revisions, print files,</text>
+          <text x="590" y="150" font-size="12" style="fill:var(--text-muted)">first promo videos</text>
+          <circle cx="760" cy="99" r="11" style="fill:var(--surface);stroke:var(--product-purple)" stroke-width="3" />
+          <text x="760" y="66" font-size="13" font-weight="800" style="fill:var(--text)">Early Dec</text>
+          <text x="760" y="134" font-size="12" style="fill:var(--text-muted)">Shopify live, first</text>
+          <text x="760" y="150" font-size="12" style="fill:var(--text-muted)">FBA order ships</text>
+          <circle cx="920" cy="99" r="14" style="fill:var(--accent-rose)" />
+          <text x="920" y="66" font-size="13" font-weight="800" style="fill:var(--accent-rose)">Christmas</text>
+          <text x="920" y="134" font-size="12" style="fill:var(--text-muted)">Holiday sales</text>
+        </g>
+      </svg>
+      <ul class="check-list tl-list">
+        <li><span class="check-icon"></span><span><strong>Nov 16:</strong> Kickoff calls</span></li>
+        <li><span class="check-icon"></span><span><strong>Thu, Nov 19:</strong> Compliance done, label copy + specs in</span></li>
+        <li><span class="check-icon"></span><span><strong>Nov 20 to 22:</strong> First label + page drafts for review</span></li>
+        <li><span class="check-icon"></span><span><strong>Week of Nov 23:</strong> Revisions, print files, first promo videos</span></li>
+        <li><span class="check-icon"></span><span><strong>Early Dec:</strong> Shopify live, first FBA order ships</span></li>
+        <li><span class="check-icon"></span><span><strong>Christmas:</strong> Holiday sales</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHASE 2: WOOD DUBAI ── -->
+<section class="section section-oud">
+  <div class="container">
+    <div class="two-col">
+      <div data-reveal>
+        <div class="phase-tag">Phase 2 · After Squishy Clean</div>
+        <h2 class="section-title">Wood Dubai, same playbook</h2>
+        <p class="section-sub" style="margin-bottom:28px;">Your friend's oud perfume already has a strong Dubai-inspired look. Once the scent is final, everything built for Squishy Clean gets reused, aimed at Arabic-American shoppers and men who love woody oud scents.</p>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>2-page Shopify site</strong> in the same format as Squishy Clean</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>English and Arabic copy</strong> for shoppers who prefer to read in Arabic</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Three spin-and-spray videos</strong> for the site and social</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" style="color:var(--gold)"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Estimated <span class="was"><span class="sr-only">Regularly </span>$3,000</span>$1,500</strong> at the same launch pricing, quoted separately once the scent is ready</span></li>
+        </ul>
+      </div>
+      <div class="oud-art" data-reveal data-d="1" aria-hidden="true">
+        <svg viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color:var(--oud-brown)" />
+              <stop offset="1" stop-color="#1c120a" />
+            </linearGradient>
+            <linearGradient id="capG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" style="stop-color:var(--gold-ink)" />
+              <stop offset="0.5" style="stop-color:var(--gold)" />
+              <stop offset="1" style="stop-color:var(--gold-ink)" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="170" cy="356" rx="96" ry="10" fill="#000" opacity="0.5" />
+          <g style="fill:var(--gold)">
+            <circle cx="86" cy="70" r="3" opacity="0.7" /><circle cx="66" cy="58" r="2" opacity="0.5" />
+            <circle cx="72" cy="86" r="2.5" opacity="0.6" /><circle cx="48" cy="72" r="1.8" opacity="0.4" />
+            <circle cx="56" cy="44" r="1.5" opacity="0.35" /><circle cx="36" cy="92" r="1.5" opacity="0.3" />
+            <circle cx="96" cy="50" r="1.8" opacity="0.5" />
+          </g>
+          <rect x="132" y="40" width="76" height="70" rx="8" fill="url(#capG)" />
+          <rect x="120" y="60" width="14" height="10" rx="3" fill="url(#capG)" />
+          <rect x="150" y="108" width="40" height="18" style="fill:var(--gold-ink)" />
+          <path d="M100 126 H240 L262 160 V320 Q262 344 238 344 H102 Q78 344 78 320 V160 Z" fill="url(#glass)" style="stroke:var(--border-gold)" stroke-width="2" />
+          <path d="M98 168 V318" stroke="#fff" stroke-opacity="0.18" stroke-width="8" stroke-linecap="round" />
+          <rect x="120" y="186" width="100" height="120" rx="6" fill="none" style="stroke:var(--gold)" stroke-width="1.5" opacity="0.8" />
+          <path d="M170 200 L182 214 L170 228 L158 214 Z" fill="none" style="stroke:var(--gold)" stroke-width="1.5" />
+          <text x="170" y="266" text-anchor="middle" font-size="34" font-weight="700" style="fill:var(--gold)" font-family="'Segoe UI', Tahoma, sans-serif">عود</text>
+          <text x="170" y="290" text-anchor="middle" font-size="10" letter-spacing="3" font-weight="700" style="fill:var(--gold)" font-family="Inter, sans-serif">WOOD DUBAI</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY LSD ── -->
+<section class="section">
+  <div class="container">
+    <div class="why-row">
+      <div data-reveal>
+        <div class="section-label">Why Local Sun Digital</div>
+        <h2 class="section-title">One partner from label to launch.</h2>
+        <p class="section-sub">Your dad trusted us with his own launch. We'd like to do the same for yours.</p>
+      </div>
+      <ul class="why-lines" data-reveal data-d="1">
+        <li><strong>Moves at launch speed</strong>A first version in days, not weeks, because getting through Christmas matters more than perfect on round one.</li>
+        <li><strong>Design and conversion together</strong>The same team builds the label, the page and the follow-up emails, so the look and the sales path match.</li>
+        <li><strong>Ready for what's next</strong>Everything is built as a repeatable system for the products already in your pipeline, starting with Wood Dubai.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVESTMENT (light) ── -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header center" data-reveal>
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub">Three pieces, one kit, half our regular rate because the brand is just launching.</p>
+    </div>
+
+    <!-- Step 1: what's in the kit -->
+    <div class="inv-step" data-reveal><span>1</span>What's in the Launch Kit</div>
+    <div class="inv-pieces">
+      <article class="inv-piece" data-reveal>
+        <h3>Label Refresh</h3>
+        <p>Front and back label, print-ready files, one post-Christmas update</p>
+        <div class="inv-price"><span class="was"><span class="sr-only">Regularly </span>$900</span><b>$450</b></div>
+      </article>
+      <article class="inv-piece" data-reveal data-d="1">
+        <h3>Shopify Launch Page</h3>
+        <p>Landing page, purchase page and email capture</p>
+        <div class="inv-price"><span class="was"><span class="sr-only">Regularly </span>$1,800</span><b>$1,200</b></div>
+      </article>
+      <article class="inv-piece" data-reveal data-d="2">
+        <h3>Faceless Promo Videos</h3>
+        <p>4 videos, each cut for vertical, square and the page hero</p>
+        <div class="inv-price"><span class="was"><span class="sr-only">Regularly </span>$1,200</span><b>$600</b></div>
+      </article>
+    </div>
+
+    <!-- Step 2: the math, one line at a time -->
+    <div class="inv-step" data-reveal><span>2</span>What you pay</div>
+    <div class="inv-math" data-reveal>
+      <div class="inv-line">
+        <span class="inv-lbl">Regular value of all three</span>
+        <span class="inv-val was-big"><span class="sr-only">Regularly </span>$3,900</span>
+      </div>
+      <div class="inv-line kit">
+        <span class="inv-lbl">Launch Kit price <span class="save">Half off</span></span>
+        <span class="inv-val">$1,950</span>
+      </div>
+      <div class="inv-line credit">
+        <span class="inv-lbl">ITEX Saul already sent</span>
+        <span class="inv-val">&minus; 200 ITEX</span>
+      </div>
+      <div class="inv-line due">
+        <span class="inv-lbl">Cash balance<small>50% to start, 50% at launch</small></span>
+        <span class="inv-val">$1,750</span>
+      </div>
+    </div>
+
+    <!-- Step 3: optional extras, kept apart so the main number stays clean -->
+    <div class="inv-step" data-reveal><span>3</span>Optional, whenever you're ready</div>
+    <div class="inv-extras">
+      <div class="inv-extra" data-reveal>
+        <div><h3>Conversion Engine</h3><p>Cart recovery, welcome emails, creator outreach list</p></div>
+        <div class="inv-price"><span class="was"><span class="sr-only">Regularly </span>$1,200</span><b>$650</b></div>
+      </div>
+      <div class="inv-extra" data-reveal data-d="1">
+        <div><h3>Wood Dubai, Phase 2</h3><p>Estimate, quoted once the scent is final</p></div>
+        <div class="inv-price"><span class="was"><span class="sr-only">Regularly </span>$3,000</span><b>$1,500</b></div>
+      </div>
+    </div>
+
+    <div class="terms" data-reveal>
+      <span>Two revision rounds per piece</span>
+      <span>You own every file</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's get Squishy Clean<br />on shelves for Christmas.</h2>
+    <p class="cta-sub">Say the word and the first label drafts are in your inbox by the weekend.</p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Squishy%20Clean%20Proposal%20-%20Let's%20Start" class="btn-primary">
+        Start the Launch Kit
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Squishy%20Clean%20Proposal%20-%20Question" class="btn-ghost">
+        Have a question? Let's talk.
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="/proposals/squishy-clean/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Squishy Clean</span>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Reveals: squish in, rebound. */
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+    const c = e.target.querySelector('[data-count]') || (e.target.matches('[data-count]') ? e.target : null);
+    if (c && !reduce) counters.push({ el: c, to: +c.dataset.count, sfx: c.dataset.suffix || '', t0: performance.now() });
+  }), { threshold: 0.18 });
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+  /* Signature: the pump. One clock drives spring, foam, tilt and counters. */
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const btn = document.getElementById('pumpBtn');
+  const stage = document.getElementById('pumpStage');
+  const head = document.getElementById('pumpHead');
+  const body = document.getElementById('bottleBody');
+  const tilt = document.getElementById('tilt');
+  const foam = document.getElementById('foam');
+  const counters = [];
+  const bubbles = [];
+  let x = 0, v = 0, heroOn = true, lastUser = -1e9, lastIdle = 0, aim = 0, lean = 0;
+
+  const spawn = (n, power) => {
+    for (let i = 0; i < n && bubbles.length < 70; i++) {
+      const c = document.createElementNS(SVGNS, 'circle');
+      c.setAttribute('fill', 'url(#irid)');
+      foam.appendChild(c);
+      bubbles.push({ el: c, x: 114 + Math.random() * 6, y: 52 + Math.random() * 8,
+        vx: -(0.6 + Math.random() * 2.2) * power, vy: (Math.random() - 0.7) * 1.6 * power,
+        r: 3 + Math.random() * 8 * power, life: 0, max: 80 + Math.random() * 90 });
+    }
+  };
+
+  const pump = (user) => {
+    if (user) { lastUser = performance.now(); stage.classList.add('pumped'); }
+    if (reduce) { spawn(6, 0.8); bubbles.forEach((b) => { b.x -= 30 + Math.random() * 40; b.y -= Math.random() * 40; b.max = 60; }); return; }
+    v += user ? 0.32 : 0.1;
+    spawn(user ? 14 : 4, user ? 1 : 0.55);
+  };
+  btn.addEventListener('click', () => pump(true));
+
+  if (!reduce) addEventListener('pointermove', (e) => { aim = (e.clientX / innerWidth - 0.5); }, { passive: true });
+  new IntersectionObserver(([e]) => { heroOn = e.isIntersecting; }).observe(document.getElementById('hero'));
+
+  let prev = performance.now();
+  const frame = (now) => {
+    const r = Math.min(3, (now - prev) / 16.67); prev = now;
+    if (heroOn) {
+      /* spring: press then rebound past rest */
+      v += (-0.09 * x - 0.16 * v) * r; x += v * r;
+      head.setAttribute('transform', `translate(0 ${(x * 18).toFixed(2)})`);
+      const sx = 1 + x * 0.035, sy = 1 - x * 0.05;
+      body.setAttribute('transform', `translate(190 430) scale(${sx.toFixed(4)} ${sy.toFixed(4)}) translate(-190 -430)`);
+      lean += (aim - lean) * 0.06 * r;
+      tilt.setAttribute('transform', `rotate(${(lean * 5).toFixed(2)} 190 430)`);
+      /* idle: a small breath of foam every few seconds */
+      if (!reduce && now - lastUser > 6000 && now - lastIdle > 4200) { lastIdle = now; pump(false); }
+    }
+    for (let i = bubbles.length - 1; i >= 0; i--) {
+      const b = bubbles[i];
+      b.life += r;
+      if (!reduce) { b.vx *= Math.pow(0.97, r); b.vy -= 0.035 * r; b.x += b.vx * r; b.y += b.vy * r; b.r *= Math.pow(1.004, r); }
+      const k = b.life / b.max;
+      const pop = k > 0.92 ? 1 + (k - 0.92) * 6 : 1;
+      b.el.setAttribute('cx', b.x.toFixed(1)); b.el.setAttribute('cy', b.y.toFixed(1));
+      b.el.setAttribute('r', (b.r * pop).toFixed(2));
+      b.el.setAttribute('opacity', (k < 0.7 ? 1 : Math.max(0, 1 - (k - 0.7) / 0.3)).toFixed(2));
+      if (k >= 1) { b.el.remove(); bubbles.splice(i, 1); }
+    }
+    for (let i = counters.length - 1; i >= 0; i--) {
+      const c = counters[i], p = Math.min(1, (now - c.t0) / 1400), e = 1 - Math.pow(1 - p, 4);
+      c.el.textContent = Math.round(c.to * e) + c.sfx;
+      if (p >= 1) counters.splice(i, 1);
+    }
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
