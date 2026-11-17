@@ -494,7 +494,7 @@
     :root { --was-red: #FF6B6B; }
     .section-light { --was-red: #C42B22; }
     .was, .was-big { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--was-red); color: var(--was-red); font-weight: 700; }
-    .was { margin-right: 8px; font-size: 0.82em; }
+    .was { margin-right: 8px; font-size: 0.95em; }
 
     /* Investment: three steps, lots of air, one number per line */
     .inv-step { max-width: 880px; margin: 56px auto 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
@@ -506,7 +506,7 @@
     .inv-piece p, .inv-extra p { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
     .inv-piece .inv-price { margin-top: auto; padding-top: 24px; }
     .inv-price { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
-    .inv-price .was { font-size: 16px; margin: 0; }
+    .inv-price .was { font-size: 21px; margin: 0; }
     .inv-price b { font-size: 30px; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
     .inv-math { max-width: 880px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 12px 40px; }
     .inv-line { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; border-bottom: 1px dashed var(--border); }
@@ -515,13 +515,14 @@
     .inv-val { font-size: 22px; font-weight: 800; color: var(--text); white-space: nowrap; }
     .inv-line.kit .inv-val { font-size: 28px; color: var(--product-purple-deep); }
     .inv-line.credit .inv-val { color: #127A62; }
+    .inv-val.was-big { color: var(--was-red); }
     .inv-line.due { border-bottom: none; border-top: 2px solid var(--text); margin-top: -1px; padding: 28px 0 20px; }
     .inv-line.due .inv-lbl { font-size: 20px; font-weight: 900; }
     .inv-line.due .inv-val { font-size: 44px; font-weight: 900; letter-spacing: -0.03em; background: linear-gradient(90deg, var(--product-purple-deep), #D63AA0); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .inv-extras { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .inv-extra { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px; border: 1px dashed var(--border); border-radius: var(--radius-card); }
     .inv-extra .inv-price b { font-size: 22px; }
-    .inv-extra .inv-price .was { font-size: 14px; }
+    .inv-extra .inv-price .was { font-size: 18px; }
     @media (max-width: 900px) {
       .inv-pieces, .inv-extras { grid-template-columns: 1fr; }
       .inv-piece .inv-price { padding-top: 16px; }
@@ -618,9 +619,9 @@
         Launch proposal · Local Sun Digital
       </div>
       <h1>
-        <span class="sr-only">Fun on camera. Premium on the shelf.</span>
-        <span class="line" aria-hidden="true"><span class="w"><span class="sq-l">F</span><span class="sq-l">u</span><span class="sq-l">n</span></span> <span class="w"><span class="sq-l">o</span><span class="sq-l">n</span></span> <span class="w"><span class="sq-l">c</span><span class="sq-l">a</span><span class="sq-l">m</span><span class="sq-l">e</span><span class="sq-l">r</span><span class="sq-l">a</span><span class="sq-l">.</span></span></span>
-        <span class="line grad-text" aria-hidden="true">Premium on the shelf.</span>
+        <span class="sr-only">Stop the scroll. Start the squish.</span>
+        <span class="line" aria-hidden="true"><span class="w"><span class="sq-l">S</span><span class="sq-l">t</span><span class="sq-l">o</span><span class="sq-l">p</span></span> <span class="w"><span class="sq-l">t</span><span class="sq-l">h</span><span class="sq-l">e</span></span> <span class="w"><span class="sq-l">s</span><span class="sq-l">c</span><span class="sq-l">r</span><span class="sq-l">o</span><span class="sq-l">l</span><span class="sq-l">l</span><span class="sq-l">.</span></span></span>
+        <span class="line grad-text" aria-hidden="true">Start the squish.</span>
       </h1>
       <p class="hero-sub">A label, a Shopify launch page and a set of scroll-stopping promo videos that get Squishy Clean in front of buyers before the Christmas rush, and make $24.95 feel like an easy yes.</p>
       <div class="hero-meta">
@@ -1219,7 +1220,7 @@
 <section class="cta-section">
   <div class="container">
     <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
-    <h2 class="cta-title">Let's get Squishy Clean<br />on shelves for Christmas.</h2>
+    <h2 class="cta-title">Let's get Squishy Clean<br />in carts by Christmas.</h2>
     <p class="cta-sub">Say the word and the first label drafts are in your inbox by the weekend.</p>
     <div>
       <a href="mailto:jentzen@localsundigital.com?subject=Squishy%20Clean%20Proposal%20-%20Let's%20Start" class="btn-primary">
