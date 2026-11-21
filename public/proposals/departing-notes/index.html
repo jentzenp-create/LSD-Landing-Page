@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Departing Notes × Local Sun Digital · Growth Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F2B705;
+      --gold-dim: rgba(242, 183, 5, 0.15);
+      --gold-glow: rgba(242, 183, 5, 0.25);
+      --bg: #0E0E0E;
+      --surface: #1A1A1A;
+      --surface-2: #222222;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(242, 183, 5, 0.35);
+      --text: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.55);
+      --text-dim: rgba(255,255,255,0.35);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+
+      /* Secondary accents — section tinting & chart color only, never the
+         primary CTA/button color. See brand.md "Visual variety practice". */
+      --accent-blue: #4F8CFF;
+      --accent-blue-dim: rgba(79, 140, 255, 0.12);
+      --accent-blue-border: rgba(79, 140, 255, 0.35);
+      --accent-teal: #2FD6B0;
+      --accent-teal-dim: rgba(47, 214, 176, 0.12);
+      --accent-teal-border: rgba(47, 214, 176, 0.35);
+      --accent-rose: #FF5C5C;
+      --accent-rose-dim: rgba(255, 92, 92, 0.12);
+      --accent-rose-border: rgba(255, 92, 92, 0.35);
+
+      /* Light-section tokens — see .section-light below */
+      --cream: #F7F2E7;
+      --gold-ink: #9C6B00;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav img { height: 48px; object-fit: contain; }
+    .nav-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .nav-label span { color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 90px;
+      text-align: center;
+    }
+    .hero-bg-lines { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-line { position: absolute; background: rgba(242, 183, 5, 0.08); transform-origin: center; }
+    .hero-line.h { width: 100%; height: 1px; left: 0; }
+    .hero-line.v { width: 1px; height: 100%; top: 0; }
+    .hero-line.h:nth-child(1) { top: 20%; }
+    .hero-line.h:nth-child(2) { top: 60%; }
+    .hero-line.h:nth-child(3) { top: 85%; }
+    .hero-line.v:nth-child(4) { left: 15%; }
+    .hero-line.v:nth-child(5) { left: 50%; }
+    .hero-line.v:nth-child(6) { left: 85%; }
+    .hero-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .hero-dot:nth-child(7)  { top: 20%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(8)  { top: 20%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(9)  { top: 20%; left: 85%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(10) { top: 60%; left: 15%; transform: translate(-50%,-50%); }
+    .hero-dot:nth-child(11) { top: 60%; left: 85%; transform: translate(-50%,-50%); }
+
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-dim); border: 1px solid var(--border-gold);
+      border-radius: 99px; padding: 6px 14px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 24px; color: var(--text);
+    }
+    h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px); font-weight: 500;
+      color: var(--text-muted); max-width: 560px;
+      margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 52px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      color: var(--gold); background: var(--gold-dim);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: 80px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 42px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 600px; }
+    .section-header { margin-bottom: 52px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ── SECTION TINTS ──
+       Apply ONE of these to a <section class="section ..."> to break up flat
+       black. Alternate by what the section is about (see brand.md): never
+       stack two tinted sections back-to-back without a plain one between. */
+    .section-tint-gold { background: radial-gradient(ellipse 900px 500px at 50% 0%, var(--gold-dim), transparent 70%); }
+    .section-tint-blue { background: radial-gradient(ellipse 900px 500px at 80% 0%, var(--accent-blue-dim), transparent 70%); }
+    .section-tint-teal { background: radial-gradient(ellipse 900px 500px at 20% 100%, var(--accent-teal-dim), transparent 70%); }
+    .section-tint-rose { background: radial-gradient(ellipse 900px 500px at 80% 100%, var(--accent-rose-dim), transparent 70%); }
+
+    /* ── LIGHT SECTION ──
+       Redefines the shared tokens for everything inside it, so .card,
+       .stat-tile, .check-list etc. all flip to dark-text-on-cream for free
+       because they're already built from these variables. Use 1-2 per
+       page, as a breather between dark sections — never the whole page. */
+    .section-light {
+      background: var(--cream);
+      --bg: var(--cream);
+      --surface: #FFFFFF;
+      --surface-2: #F1EADA;
+      --border: rgba(14,14,14,0.09);
+      --border-gold: rgba(156,107,0,0.4);
+      --text: #17140D;
+      --text-muted: rgba(23,20,13,0.62);
+      --text-dim: rgba(23,20,13,0.4);
+      --gold: var(--gold-ink);
+      --gold-dim: rgba(156,107,0,0.12);
+      --accent-blue-dim: rgba(40,90,200,0.1);
+      --accent-teal-dim: rgba(20,140,110,0.1);
+      --accent-rose-dim: rgba(200,40,40,0.1);
+      color: var(--text);
+    }
+    .section-light .card:hover { box-shadow: 0 12px 32px rgba(23,20,13,0.1), 0 0 0 1px var(--border-gold); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-gold); }
+    .card.gold-border { border-color: var(--border-gold); background: linear-gradient(135deg, var(--surface) 0%, var(--gold-dim) 100%); }
+
+    .icon-wrap {
+      width: 48px; height: 48px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .icon-wrap svg { color: var(--gold); }
+
+    .card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── CHECKLIST ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+    .check-icon {
+      width: 22px; height: 22px; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── PACKAGE SECTIONS ── */
+    .package-header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .pkg-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold); color: #000;
+      font-size: 18px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-title { font-size: 22px; font-weight: 800; color: var(--text); }
+    .pkg-price {
+      margin-left: auto; background: var(--gold-dim);
+      border: 1px solid var(--border-gold); border-radius: 99px;
+      padding: 6px 18px; font-size: 15px; font-weight: 800; color: var(--gold);
+    }
+
+    .bonus-tag {
+      display: inline-block; background: var(--gold); color: #000;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    .stat-callout {
+      background: linear-gradient(135deg, rgba(242,183,5,0.12), rgba(242,183,5,0.04));
+      border: 1px solid var(--border-gold); border-radius: var(--radius-card);
+      padding: 32px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-num { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .stat-note { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row.total { background: linear-gradient(135deg, rgba(242,183,5,0.1), rgba(242,183,5,0.03)); border-top: 1px solid var(--border-gold); }
+    .pricing-pkg { font-size: 15px; font-weight: 600; color: var(--text); }
+    .pricing-pkg small { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+    .pricing-amt { font-size: 18px; font-weight: 800; color: var(--gold); white-space: nowrap; }
+    .pricing-row.total .pricing-pkg { font-size: 17px; font-weight: 800; }
+    .pricing-row.total .pricing-amt { font-size: 26px; }
+    .pricing-note { font-size: 12px; color: var(--text-dim); font-style: italic; text-align: center; padding: 16px 32px; border-top: 1px solid var(--border); }
+
+    /* ── WHY LSD ── */
+    .why-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 28px 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-card:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+    .why-body { flex: 1; }
+    .why-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .why-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #161106 0%, #0E0E0E 100%);
+      border-top: 1px solid var(--border-gold);
+      padding: 100px 24px; text-align: center;
+    }
+    .cta-title { font-size: clamp(28px, 5vw, 52px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 40px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #000;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 36px; border-radius: 99px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(242,183,5,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: color 0.2s ease; margin-top: 20px;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; max-width: 1100px; margin: 0 auto;
+    }
+    footer img { height: 36px; opacity: 0.6; }
+    .footer-note { font-size: 12px; color: var(--text-dim); }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+      .pricing-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .hero { padding: 70px 16px 60px; }
+      .section { padding: 60px 0; }
+      .card { padding: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .card { border: 1px solid #ddd; background: #fafafa; }
+      nav { display: none; }
+    }
+
+    /* ── DEPARTING NOTES: page-specific components (token-only colors) ── */
+    .hero-art { display: flex; justify-content: center; margin: 0 auto 40px; max-width: 420px; }
+    .hero-art svg { width: 100%; height: auto; }
+
+    .tier-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: center; }
+    .tier-col-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+    .tier-stack { display: flex; flex-direction: column; gap: 10px; }
+    .tier-pill {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 14px 18px;
+    }
+    .tier-pill strong { display: block; font-size: 15px; color: var(--text); }
+    .tier-pill span { font-size: 13px; color: var(--text-muted); }
+    .tier-pill.cut { opacity: 0.55; }
+    .tier-pill.cut span { text-decoration: line-through; }
+    .tier-pill.keep { border-color: var(--border-gold); background: linear-gradient(135deg, var(--surface) 0%, var(--gold-dim) 100%); }
+    .tier-arrow { color: var(--gold); }
+    @media (max-width: 720px) {
+      .tier-compare { grid-template-columns: 1fr; }
+      .tier-arrow { transform: rotate(90deg); justify-self: center; }
+    }
+
+    .viz-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; }
+    .viz-card svg { width: 100%; height: auto; display: block; }
+    .viz-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .viz-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+
+    .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+    .tl-step { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; }
+    .tl-when { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .tl-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .tl-body { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    .quote-block {
+      max-width: 760px; margin: 48px auto 0; padding: 28px 32px;
+      border-left: 3px solid var(--gold); background: linear-gradient(90deg, var(--gold-dim), transparent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 17px; color: var(--text); line-height: 1.65; font-weight: 500;
+    }
+    .quote-block small { display: block; margin-top: 10px; font-size: 13px; color: var(--text-muted); font-weight: 600; }
+
+    .proj-list { display: flex; flex-direction: column; gap: 14px; }
+    .proj-row { display: grid; grid-template-columns: 200px 1fr 110px; gap: 16px; align-items: center; }
+    .proj-label { font-size: 14px; font-weight: 600; color: var(--text); }
+    .proj-label small { display: block; font-size: 12px; font-weight: 500; color: var(--text-dim); }
+    .proj-bar { height: 14px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
+    .proj-bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent-blue), var(--gold)); }
+    .proj-val { font-size: 15px; font-weight: 800; color: var(--gold); text-align: right; white-space: nowrap; }
+    @media (max-width: 600px) {
+      .proj-row { grid-template-columns: 1fr auto; }
+      .proj-bar { grid-column: 1 / -1; grid-row: 2; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <img src="/proposals/departing-notes/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="nav-label">Prepared for <span>Departing Notes</span> · November 2026</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-lines" aria-hidden="true">
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line h"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-line v"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Growth Proposal · Local Sun Digital
+    </div>
+
+    <!-- Hero graphic: a sealed note opening into a QR keychain tag -->
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 200" fill="none">
+        <defs>
+          <radialGradient id="dnGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="210" cy="100" rx="200" ry="95" fill="url(#dnGlow)"/>
+        <!-- envelope -->
+        <rect x="110" y="55" width="150" height="100" rx="10" fill="var(--surface)" stroke="var(--border-gold)" stroke-width="2"/>
+        <path d="M110 65 L185 118 L260 65" stroke="var(--gold)" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M185 30 q-14 -14 -26 -2 q-10 12 26 34 q36 -22 26 -34 q-12 -12 -26 2z" fill="var(--gold)" opacity="0.9"/>
+        <!-- connector -->
+        <path d="M262 105 C 290 105, 290 80, 312 80" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 5"/>
+        <!-- keychain tag -->
+        <circle cx="322" cy="62" r="7" stroke="var(--gold)" stroke-width="2.5"/>
+        <rect x="300" y="72" width="64" height="80" rx="10" fill="var(--surface-2)" stroke="var(--border-gold)" stroke-width="2"/>
+        <g fill="var(--gold)">
+          <rect x="310" y="84" width="14" height="14" rx="2"/>
+          <rect x="340" y="84" width="14" height="14" rx="2"/>
+          <rect x="310" y="114" width="14" height="14" rx="2"/>
+          <rect x="331" y="105" width="5" height="5"/>
+          <rect x="340" y="114" width="5" height="5"/>
+          <rect x="349" y="122" width="5" height="5"/>
+          <rect x="331" y="123" width="5" height="5"/>
+          <rect x="340" y="132" width="14" height="5"/>
+        </g>
+        <!-- small hearts floating -->
+        <circle cx="80" cy="70" r="3" fill="var(--gold)" opacity="0.5"/>
+        <circle cx="60" cy="130" r="2" fill="var(--gold)" opacity="0.4"/>
+        <circle cx="385" cy="40" r="2.5" fill="var(--gold)" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <h1>The product is built.<br/><span class="gold">Now let's make it easy to say yes.</span></h1>
+    <p class="hero-sub">A simpler offer, a clear story, and an attorney partnership engine that puts Departing Notes in the hands of estate planners who genuinely care about their clients.</p>
+    <div class="badge-row">
+      <span class="badge">Launch Marketing Kit</span>
+      <span class="badge">Attorney Partnership Engine</span>
+      <span class="badge">MVP Launch Review</span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── THE GAP ── -->
+<section class="section section-tint-blue">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The Gap</div>
+      <h2 class="section-title">A beautiful platform with too many doors in.</h2>
+      <p class="section-sub">You and Jude built something real by hand: the vault, the AI letter companion, the QR keychain, the release portal, the professional network. The next challenge isn't building more. It's helping families and attorneys understand it in seconds.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+        </div>
+        <div class="card-title">Four plans, five AI tools</div>
+        <p class="card-body">Free, Keychain, Legacy Plus and the full package each carry a different AI feature (budget calculator, FindWise, Estate Logic). For someone who just wants to leave a letter, that's a lot of decisions before the first word is written.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        </div>
+        <div class="card-title">The heart of it is buried</div>
+        <p class="card-body">The real reason Departing Notes exists is healing: write the letter now, and maybe send it now. That message is the strongest thing you have, and right now it competes with budgeting and financial literacy for attention.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>
+        </div>
+        <div class="card-title">No path to attorneys yet</div>
+        <p class="card-body">The 10-pack and 20-pack lifetime lockers are a great fit for estate planners, but pricing is intentionally hidden and there's no outreach bringing attorneys to the application form. The program needs its own front door and a steady stream of conversations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SIMPLIFY (light breather) ── -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Our Recommendation</div>
+      <h2 class="section-title">From four tiers to three.</h2>
+      <p class="section-sub">Lead with the note, the vault and the keychain. Keep the AI guide everywhere as a helper, not a headline. Retire the tools that make Departing Notes sound like a finance app.</p>
+    </div>
+
+    <div class="tier-compare">
+      <div>
+        <div class="tier-col-label">Today</div>
+        <div class="tier-stack">
+          <div class="tier-pill"><strong>Free</strong><span>Basic vault + AI letter companion</span></div>
+          <div class="tier-pill"><strong>$25 Keychain</strong><span>One will + core documents + letters</span></div>
+          <div class="tier-pill cut"><strong>Legacy Plus</strong><span>Budget calculator + FindWise academy</span></div>
+          <div class="tier-pill cut"><strong>Full package</strong><span>Estate Logic AI as a consumer feature</span></div>
+        </div>
+      </div>
+      <div class="tier-arrow" aria-hidden="true">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div>
+        <div class="tier-col-label">Proposed</div>
+        <div class="tier-stack">
+          <div class="tier-pill keep"><strong>Free · Leave a Note</strong><span>One letter, unlimited recipients, forever free</span></div>
+          <div class="tier-pill keep"><strong>Keychain</strong><span>Vault + QR keychain + emergency notification</span></div>
+          <div class="tier-pill keep"><strong>Legacy</strong><span>Unlimited letters &amp; documents, bulk upload, priority release</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:14px; color:var(--text-muted); margin-top:32px; max-width:680px; margin-left:auto; margin-right:auto;">
+      Final plan names and price points are yours to decide. We'll draft the pricing page copy and plan comparison, and Jude's team keeps ownership of the build.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 1 ── -->
+<section class="section">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">1</div>
+      <div class="pkg-title">Launch Marketing Kit</div>
+      <div class="pkg-price">$2,000 one-time</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      Everything a visitor needs to understand Departing Notes and choose a plan, plus a launch review of the MVP so the first families have a smooth experience. We deliver copy, video and specs; Jude's team implements on the site.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+        </div>
+        <div class="card-title">New homepage copy</div>
+        <p class="card-body">A rewrite built around "leave a note, just in case," with a clear how-it-works flow, trust signals around security and the release process, and one primary call to action.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+        </div>
+        <div class="card-title">Two explainer videos</div>
+        <p class="card-body">A 60 to 90 second value-proposition video for the homepage and social, plus a short plan breakdown video that walks through the three tiers and the keychain.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 10v10"/></svg>
+        </div>
+        <div class="card-title">Simplified pricing page</div>
+        <p class="card-body">Three-tier comparison, plan descriptions and FAQ copy, written so a non-technical visitor picks a plan in under a minute. Includes recommendations for the referral and promo code placement.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>
+        </div>
+        <div class="card-title">Attorney program landing page</div>
+        <p class="card-body">A dedicated page that sells the benefits of the lifetime locker to estate planners (client retention, referrals, a meaningful closing gift) while keeping bulk pricing behind the application, as you intended.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+        </div>
+        <div class="card-title">MVP launch review</div>
+        <p class="card-body">A hands-on test of the full journey: signup, vault upload, letter writing, QR scan, release portal and the email release trigger. You get a prioritized punch list for Jude, not a rebuild.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PACKAGE 2 ── -->
+<section class="section section-tint-gold">
+  <div class="container">
+    <div class="package-header">
+      <div class="pkg-num">2</div>
+      <div class="pkg-title">Attorney Partnership Engine</div>
+      <div class="pkg-price">$1,000 / month</div>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); margin-bottom: 36px; max-width:640px;">
+      A repeatable cold outreach system that finds attorneys, financial advisors and insurance agents who care about their clients, starts real conversations, and sends them to the professional application for Mike to approve.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
+        </div>
+        <div class="card-title">Attorney list building</div>
+        <p class="card-body">We source estate planning and elder law attorneys from public directories, filter by practice area and region, and verify contact details before anyone gets an email.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </div>
+        <div class="card-title">Outreach infrastructure &amp; copy</div>
+        <p class="card-body">Dedicated sending domains, 10 warmed inboxes and a short sequence written in your voice: the healing mission first, the client-retention benefit second, the application link last. All domain and inbox costs are covered.</p>
+      </div>
+      <div class="card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        </div>
+        <div class="card-title">Monthly reporting &amp; consulting</div>
+        <p class="card-body">A monthly results summary (sent, replies, applications) plus ongoing marketing advice alongside Jude, so new ideas get a second opinion before they get built.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:32px;">
+      <!-- Funnel: illustrative stages, no invented targets -->
+      <div class="viz-card">
+        <div class="viz-title">How a partner gets made</div>
+        <div class="viz-sub">Each stage narrows to the attorneys who fit your standard.</div>
+        <svg viewBox="0 0 400 220" aria-label="Funnel from attorney directory to approved partner">
+          <path d="M20 10 H380 L350 60 H50 Z" fill="var(--gold)" opacity="0.18" stroke="var(--border-gold)"/>
+          <text x="200" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text)">Verified attorney list</text>
+          <path d="M55 66 H345 L315 116 H85 Z" fill="var(--gold)" opacity="0.32" stroke="var(--border-gold)"/>
+          <text x="200" y="97" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text)">Personal outreach sequence</text>
+          <path d="M90 122 H310 L280 172 H120 Z" fill="var(--gold)" opacity="0.5" stroke="var(--border-gold)"/>
+          <text x="200" y="153" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text)">Replies &amp; applications</text>
+          <path d="M125 178 H275 L255 214 H145 Z" fill="var(--gold)" stroke="var(--border-gold)"/>
+          <text x="200" y="201" text-anchor="middle" font-size="13" font-weight="800" fill="var(--bg)">Approved by Mike</text>
+        </svg>
+      </div>
+
+      <!-- Per-account price by package, from the Sept 9 call -->
+      <div class="viz-card">
+        <div class="viz-title">Why attorneys buy in bulk</div>
+        <div class="viz-sub">Lifetime locker, price per client account.</div>
+        <svg viewBox="0 0 400 220" aria-label="Bar chart: single $245, 10-pack $225, 20-pack $200 per account">
+          <line x1="40" y1="190" x2="380" y2="190" stroke="var(--border)" stroke-width="2"/>
+          <!-- scale: $250 = 160px tall -->
+          <rect x="70"  y="33"  width="70" height="157" rx="8" fill="var(--text-dim)"/>
+          <rect x="175" y="46"  width="70" height="144" rx="8" fill="var(--gold)" opacity="0.65"/>
+          <rect x="280" y="62"  width="70" height="128" rx="8" fill="var(--gold)"/>
+          <text x="105" y="24" text-anchor="middle" font-size="16" font-weight="800" fill="var(--text)">$245</text>
+          <text x="210" y="37" text-anchor="middle" font-size="16" font-weight="800" fill="var(--text)">$225</text>
+          <text x="315" y="53" text-anchor="middle" font-size="16" font-weight="800" fill="var(--text)">$200</text>
+          <text x="105" y="210" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text-muted)">Single</text>
+          <text x="210" y="210" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text-muted)">10-pack</text>
+          <text x="315" y="210" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text-muted)">20-pack</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INBOX SETUP & WARM-UP ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Inbox Setup &amp; Warm-Up</div>
+      <h2 class="section-title">Built in week one. Sending by month two.</h2>
+      <p class="section-sub">Cold email only works when it lands in the inbox, not spam. So before a single attorney hears from us, we build a dedicated sending setup and warm it up for 21 days. Your main departingnotes domain is never put at risk.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <ul class="check-list">
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong style="color:var(--text);">Week 1: domains &amp; inboxes.</strong> We register 5 lookalike sending domains and set up 10 professional inboxes (2 per domain), each with a real name and signature.</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong style="color:var(--text);">Week 1: authentication.</strong> SPF, DKIM and DMARC records configured on every domain, plus forwarding back to your main site so every link looks legitimate.</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong style="color:var(--text);">Days 1 to 21: warm-up.</strong> Each inbox exchanges real conversations with a warm-up network, starting at a handful a day and ramping up, so email providers learn to trust it.</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong style="color:var(--text);">Meanwhile: list &amp; copy.</strong> While inboxes warm, we build and verify the attorney list and write the outreach sequence for your approval.</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong style="color:var(--text);">Month 2: outreach live.</strong> Sending ramps to about 30 emails per inbox per day, with warm-up kept running in the background to protect deliverability.</span></li>
+          <li><span class="check-icon"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span><strong style="color:var(--text);">All costs covered.</strong> Domains, inboxes, warm-up and sending software, and attorney data are included in the $1,000 retainer.</span></li>
+        </ul>
+      </div>
+
+      <!-- Daily volume across all 10 inboxes: x = day 0-35, y = emails/day (max 400) -->
+      <div class="viz-card">
+        <div class="viz-title">Daily email volume, all 10 inboxes</div>
+        <div class="viz-sub">Warm-up builds trust for 21 days, then real outreach takes over.</div>
+        <svg viewBox="0 0 400 230" aria-label="Chart: warm-up emails ramp from 50 to 400 per day over 21 days, then cold outreach ramps to 300 per day by day 28">
+          <line x1="40" y1="180" x2="380" y2="180" stroke="var(--border)" stroke-width="2"/>
+          <line x1="40" y1="60" x2="380" y2="60" stroke="var(--border)" stroke-dasharray="3 5"/>
+          <line x1="40" y1="20" x2="380" y2="20" stroke="var(--border)" stroke-dasharray="3 5"/>
+          <text x="34" y="64" text-anchor="end" font-size="11" fill="var(--text-dim)">300</text>
+          <text x="34" y="24" text-anchor="end" font-size="11" fill="var(--text-dim)">400</text>
+          <text x="34" y="184" text-anchor="end" font-size="11" fill="var(--text-dim)">0</text>
+          <polygon points="40,180 40,160 244,20 254,140 380,140 380,180" fill="var(--gold)" opacity="0.22"/>
+          <polyline points="40,160 244,20 254,140 380,140" fill="none" stroke="var(--gold)" stroke-width="2" opacity="0.6"/>
+          <polygon points="244,180 312,60 380,60 380,180" fill="var(--gold)" opacity="0.85"/>
+          <line x1="244" y1="10" x2="244" y2="180" stroke="var(--text-muted)" stroke-dasharray="4 4"/>
+          <text x="140" y="120" text-anchor="middle" font-size="12" font-weight="700" fill="var(--text)">Warm-up</text>
+          <text x="330" y="110" text-anchor="middle" font-size="12" font-weight="800" fill="var(--bg)">Outreach</text>
+          <text x="40" y="198" text-anchor="middle" font-size="11" fill="var(--text-muted)">Day 1</text>
+          <text x="244" y="198" text-anchor="middle" font-size="11" fill="var(--text-muted)">Day 21</text>
+          <text x="380" y="198" text-anchor="end" font-size="11" fill="var(--text-muted)">Day 35</text>
+          <text x="244" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="var(--gold)">Month 2: outreach goes live</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PARTNER CHANNELS (light breather) ── -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Partner Channels</div>
+      <h2 class="section-title">Three audiences, not one bet.</h2>
+      <p class="section-sub">Attorneys can be hard to reach. So we split the monthly volume across three professions that already talk to families about legacy, then shift volume to whichever one responds best.</p>
+    </div>
+
+    <!-- 6,000 emails/mo split evenly: x 20-380 = 360px, 120px each -->
+    <div class="viz-card" style="max-width:760px; margin:0 auto 32px;">
+      <div class="viz-title">How ~6,000 monthly emails are split at launch</div>
+      <div class="viz-sub">Rebalanced each month based on replies and applications.</div>
+      <svg viewBox="0 0 400 90" aria-label="Even split: 2,000 emails each to attorneys, financial advisors and life insurance agents">
+        <rect x="20"  y="10" width="118" height="40" rx="8" fill="var(--gold)"/>
+        <rect x="141" y="10" width="118" height="40" rx="8" fill="var(--gold)" opacity="0.65"/>
+        <rect x="262" y="10" width="118" height="40" rx="8" fill="var(--gold)" opacity="0.38"/>
+        <text x="79"  y="35" text-anchor="middle" font-size="13" font-weight="800" fill="var(--bg)">~2,000</text>
+        <text x="200" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="var(--bg)">~2,000</text>
+        <text x="321" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="var(--text)">~2,000</text>
+        <text x="79"  y="72" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text-muted)">Estate attorneys</text>
+        <text x="200" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text-muted)">Financial advisors</text>
+        <text x="321" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text-muted)">Life insurance agents</text>
+      </svg>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Estate planning attorneys</div>
+        <p class="card-body"><strong style="color:var(--text);">Angle:</strong> a lifetime locker as a closing gift that keeps clients loyal and sends referrals. The original program, kept as one of three tracks.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Financial advisors</div>
+        <p class="card-body"><strong style="color:var(--text);">Angle:</strong> "Give clients something meaningful to go with their plan." Many run their own practice and read their own inbox, and it ties into the financial education gateway you envisioned.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Life insurance agents</div>
+        <p class="card-body"><strong style="color:var(--text);">Angle:</strong> "Your policy protects them financially. Their note protects them emotionally." Agents are salespeople who answer email, and lists come straight from state licensing data.</p>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:14px; color:var(--text-muted); margin-top:32px; max-width:700px; margin-left:auto; margin-right:auto;">
+      <strong style="color:var(--text);">Test track:</strong> a small goodwill campaign to hospice teams and senior living activity directors, offering legacy letter workshops. It's less about revenue, more about the stories and testimonials that make every other channel stronger.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── VOLUME & PROJECTIONS ── -->
+<section class="section section-tint-blue">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Volume &amp; Projections</div>
+      <h2 class="section-title">What a month of outreach can look like.</h2>
+      <p class="section-sub">Once the inboxes are warm, here's the capacity of the system and a conservative range of results based on typical B2B cold email benchmarks.</p>
+    </div>
+
+    <div class="stat-callout" style="margin-top:0; justify-content:space-around; text-align:center;">
+      <div><div class="stat-num">10</div><div class="stat-label">warmed inboxes</div></div>
+      <div><div class="stat-num">300</div><div class="stat-label">emails per business day</div></div>
+      <div><div class="stat-num">~6,000</div><div class="stat-label">professionals reached per month</div></div>
+    </div>
+
+    <div class="viz-card" style="margin-top:32px;">
+      <div class="viz-title">Projected monthly results at full volume</div>
+      <div class="viz-sub">Ranges, not promises. Month 2 is the learning month; results usually improve as we refine the message.</div>
+      <div class="proj-list">
+        <div class="proj-row">
+          <div class="proj-label">Emails sent</div>
+          <div class="proj-bar"><span style="width:100%;"></span></div>
+          <div class="proj-val">~6,000</div>
+        </div>
+        <div class="proj-row">
+          <div class="proj-label">Replies <small>2 to 3%</small></div>
+          <div class="proj-bar"><span style="width:62%;"></span></div>
+          <div class="proj-val">120 to 180</div>
+        </div>
+        <div class="proj-row">
+          <div class="proj-label">Interested professionals <small>0.5 to 1%</small></div>
+          <div class="proj-bar"><span style="width:40%;"></span></div>
+          <div class="proj-val">30 to 60</div>
+        </div>
+        <div class="proj-row">
+          <div class="proj-label">Applications submitted</div>
+          <div class="proj-bar"><span style="width:24%;"></span></div>
+          <div class="proj-val">10 to 20</div>
+        </div>
+        <div class="proj-row">
+          <div class="proj-label">New approved partners</div>
+          <div class="proj-bar"><span style="width:12%;"></span></div>
+          <div class="proj-val">3 to 8</div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--text-dim); margin-top:18px;">Bars use a compressed scale so the smaller stages stay readable.</p>
+    </div>
+
+    <div class="grid-3" style="margin-top:32px;">
+      <div class="card gold-border">
+        <div class="card-title">One 10-pack</div>
+        <p class="card-body"><strong style="color:var(--gold); font-size:22px;">$2,250</strong><br/>A single attorney buying a 10-pack at $225 per account more than covers two months of the retainer.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="card-title">Three partners a month</div>
+        <p class="card-body"><strong style="color:var(--gold); font-size:22px;">$6,750</strong><br/>The low end of the projection, if each new partner buys one 10-pack.</p>
+      </div>
+      <div class="card gold-border">
+        <div class="card-title">Plus every client they bring</div>
+        <p class="card-body"><strong style="color:var(--gold); font-size:22px;">10 to 20 families</strong><br/>Each pack puts Departing Notes in front of new families, who share it with the people they write to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ROADMAP ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">The First 90 Days</div>
+      <h2 class="section-title">Product first, then partners.</h2>
+      <p class="section-sub">We agreed the MVP has to work end to end before anything else. The 21-day inbox warm-up runs alongside that work, so outreach is ready the moment the product is.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-when">Week 1</div>
+        <div class="tl-title">Kickoff &amp; inbox setup</div>
+        <p class="tl-body">Domains registered, 10 inboxes authenticated and the 21-day warm-up started. MVP launch review with Jude begins.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-when">Weeks 2–4</div>
+        <div class="tl-title">Simplify &amp; tell the story</div>
+        <p class="tl-body">Punch list delivered, three-tier pricing copy, homepage copy, attorney landing page and both explainer videos. Attorney list built and outreach copy approved while inboxes warm.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-when">Month 2</div>
+        <div class="tl-title">Outreach goes live</div>
+        <p class="tl-body">Warm-up complete. Sending ramps to about 300 emails a day, pointing attorneys to the new landing page and application.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-when">Month 3</div>
+        <div class="tl-title">Learn &amp; refine</div>
+        <p class="tl-body">Review replies and applications, sharpen the message, and expand to new regions or practice areas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY LSD ── -->
+<section class="section section-tint-teal">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Local Sun Digital</div>
+      <h2 class="section-title">We add to your team, not replace it.</h2>
+    </div>
+    <div class="grid-3">
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><circle cx="17" cy="10" r="3"/><path d="M2 20c1-4 4-6 7-6s6 2 7 6M15 20c.5-2.5 2-4 4-4"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Jude keeps the build</div>
+          <p class="why-desc">You trust Jude and his team, and they did great work. We focus on marketing, copy and outreach, and hand clear specs to them.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">Outreach is our specialty</div>
+          <p class="why-desc">We run cold outreach systems for partnership programs today, so the attorney channel starts from a proven playbook instead of trial and error.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap" style="flex-shrink:0;">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        </div>
+        <div class="why-body">
+          <div class="why-title">We believe in the mission</div>
+          <p class="why-desc">Helping people heal relationships before it's too late is worth doing well. We'll protect that message in every word we write.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      Never leave home without saying goodbye.
+      <small>The Departing Notes promise, and the line we'll build the story around.</small>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── INVESTMENT ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">What It Costs. What You Get.</h2>
+      <p class="section-sub">In line with what we discussed: a one-time project to get launch-ready, then a month-to-month retainer to grow the attorney network.</p>
+    </div>
+    <div class="pricing-table" style="max-width: 680px; margin: 0 auto;">
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Launch Marketing Kit
+          <small>Homepage copy, 2 videos, pricing page, attorney landing page, MVP review</small>
+        </div>
+        <div class="pricing-amt">$2,000</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-pkg">
+          Attorney Partnership Engine
+          <small>Domains, inboxes, 21-day warm-up, list building, outreach, reporting &amp; consulting</small>
+        </div>
+        <div class="pricing-amt">$1,000 / mo</div>
+      </div>
+      <div class="pricing-row total">
+        <div class="pricing-pkg">To Get Started<small>Then $1,000 / month, cancel anytime</small></div>
+        <div class="pricing-amt">$3,000</div>
+      </div>
+      <div class="pricing-note">The retainer starts at kickoff so inbox warm-up begins in week one. Every outreach cost (domains, inboxes, warm-up and sending tools, attorney data) is covered by the retainer, with no extra bills. Website development stays with Jude's team.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="margin-bottom: 16px;">Ready when you are</p>
+    <h2 class="cta-title">Let's help more families say goodbye well.</h2>
+    <p class="cta-sub">$3,000 to get started. Reply and we'll set up a kickoff with you and Jude, and have inboxes warming that same week.</p>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Departing Notes Proposal - Let's Talk" class="btn-primary">
+        Get Started
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div>
+      <a href="mailto:jentzen@localsundigital.com?subject=Departing Notes Proposal - Question" class="btn-ghost">
+        Have a question? Let's talk.
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="/proposals/departing-notes/LSD-logo.svg" alt="Local Sun Digital" />
+  <span class="footer-note">© 2026 Local Sun Digital · Prepared exclusively for Departing Notes</span>
+</footer>
+
+</body>
+</html>
