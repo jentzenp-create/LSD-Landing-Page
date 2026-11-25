@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quinn for Jackie Harris · Local Sun Digital</title>
+<meta name="description" content="Quinn, a custom AI agent for Jackie Harris: every inbox across every business, read overnight and handed back as one WhatsApp message." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://localsundigital.com/proposals/jackie-harris" />
+<meta property="og:title" content="Quinn, for Jackie Harris" />
+<meta property="og:description" content="Everything from every business, read for you and handed back as one message." />
+<meta property="og:image" content="https://localsundigital.com/proposals/jackie-harris/img/og.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0F1012" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F1012'/%3E%3Ccircle cx='15' cy='15' r='8' fill='none' stroke='%23F2B705' stroke-width='3'/%3E%3Cpath d='M19 19l6 6' stroke='%23F2B705' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="/proposals/jackie-harris/img/dawn.jpg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Quinn for Jackie Harris","publisher":{"@type":"Organization","name":"Local Sun Digital","url":"https://localsundigital.com"}}</script>
+<style>
+:root{
+  --night:#0F1012; --ink2:#17181B; --ink3:#202227; --paper:#EFEAE0; --paper2:#E4DDD0;
+  --gold:#F2B705; --dawn:#E8893A; --signal:#47D18C;
+  --ground:var(--night); --text:#F4F1EA; --muted:rgba(244,241,234,.66); --dim:rgba(244,241,234,.6);
+  --line:rgba(244,241,234,.12); --surface:var(--ink2); --surface2:var(--ink3); --accent:var(--gold);
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --sans:"Inter", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+  --max:1280px; --gut:24px; --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night);-webkit-text-size-adjust:100%}
+body{background:var(--ground);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--gold);color:var(--night)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--gold);color:var(--night);padding:10px 14px;font:600 14px var(--sans);text-decoration:none;border-radius:8px}
+.skip:focus{top:12px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.light{--ground:var(--paper);--text:#17181B;--muted:rgba(23,24,27,.7);--dim:rgba(23,24,27,.66);--line:rgba(23,24,27,.14);--surface:#F8F5EE;--surface2:var(--paper2);--accent:#8A5A00;background:var(--paper);color:var(--text)}
+section{position:relative}
+.sec{padding:clamp(96px,13vw,176px) 0}
+.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.label{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:.95;font-variation-settings:"opsz" 96}
+h1{font-size:clamp(46px,7.6vw,118px);letter-spacing:-.045em}
+h2{font-size:clamp(40px,5.6vw,84px);letter-spacing:-.04em}
+h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em;line-height:1.05;font-weight:650}
+p{max-width:60ch}
+.lede{font-size:clamp(18px,1.45vw,21px);line-height:1.5;color:var(--muted)}
+.body{color:var(--muted)}
+.body + .body{margin-top:14px}
+.lnk{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;text-decoration-color:var(--accent)}
+@media (hover:hover){.lnk:hover{text-decoration-thickness:3px}}
+.gold{color:var(--accent)}
+
+/* buttons: label slides up like a letter into a slot */
+.btn{--bg:var(--gold);--fg:var(--night);position:relative;display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 26px;border-radius:999px;background:var(--bg);color:var(--fg);font:600 16px var(--sans);text-decoration:none;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease)}
+.btn .t{position:relative;display:block;overflow:hidden;height:1.3em;line-height:1.3em}
+.btn .t span{display:block;transition:transform .55s var(--ease)}
+.btn .t span + span{position:absolute;left:0;top:100%}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:#fff;transform:translateY(101%);border-radius:inherit;transition:transform .55s var(--ease)}
+.btn svg{width:18px;height:18px;transition:transform .55s var(--ease)}
+.btn.ghost{--bg:transparent;--fg:var(--text);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost::before{background:var(--text)}
+@media (hover:hover){
+  .btn:hover .t span{transform:translateY(-100%)}
+  .btn:hover::before{transform:translateY(0)}
+  .btn:hover svg{transform:translateX(4px)}
+  .btn.ghost:hover{color:var(--ground)}
+}
+.btn:focus-visible .t span{transform:translateY(-100%)}
+.btn:active{transform:scale(.97)}
+
+/* ---------- header ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;transition:transform .5s var(--ease)}
+.top::before{content:"";position:absolute;inset:0;background:rgba(15,16,18,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(244,241,234,.1);opacity:0;transition:opacity .4s}
+.top.scrolled::before{opacity:1}
+.top.hide{transform:translateY(-100%)}
+.top .bar{position:relative;display:flex;justify-content:space-between;align-items:center;height:64px;max-width:var(--max);margin:0 auto;padding:0 var(--gut);color:#F4F1EA}
+.brand{display:flex;align-items:center;gap:10px;min-height:40px;text-decoration:none;font:700 19px var(--display);letter-spacing:-.02em}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px rgba(71,209,140,.18)}
+.brand small{font:400 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:rgba(244,241,234,.6)}
+.top nav{display:flex;gap:26px}
+.top nav a{position:relative;font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:8px 0}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.top nav a.on::after,.top nav a:focus-visible::after{transform:scaleX(1);transform-origin:left}
+@media (hover:hover){.top nav a:hover::after{transform:scaleX(1);transform-origin:left}}
+@media (max-width:760px){.top nav a:not(.keep){display:none}.brand small{display:none}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:120px 0 clamp(40px,6vw,72px);overflow:hidden;background:#0b0b0c}
+.hero .photo{position:absolute;inset:0;overflow:hidden}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.hero .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.92) 0%,rgba(11,11,12,.7) 38%,rgba(11,11,12,.1) 72%),linear-gradient(0deg,rgba(11,11,12,.95) 0%,rgba(11,11,12,0) 45%)}
+.hero .wrap{position:relative;width:100%;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end}
+.hero .copy{grid-column:1 / span 8}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.hero h1 .line > span{display:block}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lede{margin-top:26px;max-width:46ch}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.hero .meta b{display:block;color:var(--text);font:500 15px var(--sans);letter-spacing:0;text-transform:none;margin-top:4px}
+.notif{grid-column:9 / span 4;align-self:center;justify-self:end;width:min(360px,100%);background:rgba(23,24,27,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(244,241,234,.14);border-radius:22px;padding:16px 18px 18px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.notif header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#FFD54D,var(--gold) 45%,var(--dawn));color:var(--night);font:800 15px var(--display)}
+.notif header b{font:600 15px var(--sans)}
+.notif header .tm{margin-left:auto;font:400 12px var(--mono);color:var(--dim)}
+.notif p{font-size:15.5px;line-height:1.45;color:var(--muted)}
+.notif p strong{color:var(--text);font-weight:600}
+@media (max-width:900px){
+  .hero .copy{grid-column:1 / -1}
+  .notif{grid-column:1 / -1;justify-self:start;order:-1;margin-bottom:6px}
+  .hero .photo::after{background:linear-gradient(0deg,rgba(11,11,12,.96) 0%,rgba(11,11,12,.72) 55%,rgba(11,11,12,.35) 100%)}
+}
+
+/* ---------- heard ---------- */
+.heard .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.heard .head{grid-column:1 / span 6}
+.heard .head .body{margin-top:22px}
+.heard figure{grid-column:8 / span 5;grid-row:1 / span 2;position:relative}
+.heard figure img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.heard figcaption{margin-top:12px}
+.heard ul{grid-column:1 / span 6;list-style:none;margin-top:48px;border-top:1px solid var(--line)}
+.heard li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.heard li .label{padding-top:3px}
+.heard li p{color:var(--text);font-size:17.5px}
+@media (max-width:900px){.heard .head,.heard ul,.heard figure{grid-column:1 / -1;grid-row:auto}.heard figure{margin-top:40px}.heard li{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- the sort (signature) ---------- */
+.sort{height:520vh;background:linear-gradient(180deg,var(--night) 0%,#121316 50%,var(--night) 100%)}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.stage .wrap{height:100%;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.chapters{grid-column:1 / span 4;position:relative;min-height:340px}
+.chap{position:absolute;inset:0 0 auto 0}
+.chap .label{display:flex;gap:10px;align-items:center;color:var(--gold)}
+.chap .label::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.chap h2{font-size:clamp(38px,4.4vw,66px);margin-top:16px}
+.chap .body{margin-top:18px;max-width:36ch}
+.field{grid-column:5 / span 8;position:relative;height:min(78svh,720px)}
+.mail{position:absolute;width:250px;padding:13px 15px;border-radius:14px;background:var(--paper);color:#17181B;box-shadow:0 18px 40px rgba(0,0,0,.35);z-index:3}
+.mail .from{display:flex;justify-content:space-between;gap:8px;font:500 11px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:rgba(23,24,27,.55)}
+.mail .from b{font-weight:500;color:var(--tag,#8A5A00)}
+.mail p{margin-top:6px;font:600 14.5px/1.3 var(--sans)}
+.mail[data-k="re"]{--tag:#2C6A9A}.mail[data-k="cr"]{--tag:#8A5A00}.mail[data-k="tee"]{--tag:#9A3B5E}.mail[data-k="bk"]{--tag:#3D7A4E}.mail[data-k="aod"]{--tag:#6B4FA0}.mail[data-k="x"]{--tag:#6b6b6b;opacity:.92}
+.phone{position:absolute;left:50%;top:50%;width:300px;height:600px;margin:-300px 0 0 -150px;border-radius:44px;background:#050506;padding:12px;box-shadow:0 0 0 1.5px rgba(244,241,234,.14),0 40px 120px rgba(0,0,0,.6);z-index:2}
+.phone .scr{position:relative;height:100%;border-radius:33px;background:#111214;overflow:hidden;display:flex;flex-direction:column}
+.phone .bar{display:flex;align-items:center;gap:10px;padding:34px 16px 12px;border-bottom:1px solid rgba(244,241,234,.08);color:#F4F1EA}
+.phone .bar .av{width:30px;height:30px;font-size:13px}
+.phone .bar b{font:600 14px var(--sans);display:block}
+.phone .bar small{font:400 11.5px var(--sans);color:var(--signal)}
+.phone .feed{flex:1;padding:14px 12px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.reading{align-self:center;font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:rgba(244,241,234,.55);padding:6px 10px;border-radius:999px;background:rgba(244,241,234,.06)}
+.digest{background:#1E2A24;color:#EAF3EE;border-radius:16px 16px 16px 4px;padding:12px 13px;font-size:13.2px;line-height:1.42}
+.digest .dl{display:block}
+.digest .dl + .dl{margin-top:7px}
+.digest strong{color:#fff}
+.digest .t{display:block;text-align:right;font:400 10.5px var(--mono);color:rgba(234,243,238,.66);margin-top:6px}
+.illus{position:absolute;right:var(--gut);bottom:18px;color:var(--dim)}
+/* static / reduced */
+html:not(.js) .sort,.rm .sort{height:auto;padding:120px 0}
+html:not(.js) .stage,.rm .stage{position:relative;height:auto}
+html:not(.js) .chapters,.rm .chapters{min-height:0}
+html:not(.js) .chap,.rm .chap{position:static;margin-bottom:40px}
+html:not(.js) .mail,.rm .mail{display:none}
+html:not(.js) .field,.rm .field{height:640px}
+@media (max-width:900px){
+  .stage .wrap{grid-template-columns:1fr;align-content:start;padding-top:84px;gap:0}
+  .chapters{grid-column:1;min-height:200px}
+  .chap h2{font-size:clamp(32px,8.4vw,44px);margin-top:10px}
+  .chap .body{font-size:15.5px;margin-top:10px}
+  .field{grid-column:1;height:calc(100svh - 300px);min-height:380px}
+  .phone{transform:scale(.62);transform-origin:50% 50%}
+  .mail{width:min(168px,48%);padding:9px 10px}
+  .mail p{font-size:12.5px}
+  html:not(.js) .field,.rm .field{height:420px}
+}
+
+/* ---------- chat (light) ---------- */
+.talk .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.talk .copy{grid-column:1 / span 5}
+.talk .copy .body{margin-top:22px}
+.talk .copy ul{list-style:none;margin-top:30px;display:grid;gap:12px}
+.talk .copy li{display:flex;gap:12px;align-items:baseline;color:var(--text)}
+.talk .copy li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);transform:translateY(-2px)}
+.chat{grid-column:7 / span 6;background:#111214;border-radius:28px;padding:22px 18px;min-height:520px;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(23,24,27,.25)}
+.chat .bar{display:flex;align-items:center;gap:10px;padding:0 6px 16px;border-bottom:1px solid rgba(244,241,234,.08);color:#F4F1EA}
+.chat .bar b{font:600 15px var(--sans);display:block}
+.chat .bar small{font:400 12px var(--sans);color:var(--signal)}
+.chat .bar button{margin-left:auto;font:500 11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:rgba(244,241,234,.7);padding:8px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(244,241,234,.18);transition:background .3s,color .3s}
+@media (hover:hover){.chat .bar button:hover{background:#F4F1EA;color:#111214}}
+#msgs{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding-top:16px}
+.msg{max-width:84%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.45}
+.msg.me{align-self:flex-end;background:#2B5A43;color:#F1FAF4;border-bottom-right-radius:5px}
+.msg.q{align-self:flex-start;background:#22242A;color:#F4F1EA;border-bottom-left-radius:5px}
+.msg .draft{display:block;margin-top:8px;padding:10px 12px;border-left:2px solid var(--gold);background:rgba(244,241,234,.05);border-radius:6px;color:rgba(244,241,234,.86);font-size:14px}
+.msg small{display:block;margin-top:5px;font:400 10.5px var(--mono);opacity:.82;text-align:right}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:13px 14px;background:#22242A;border-radius:18px}
+.typing i{width:6px;height:6px;border-radius:50%;background:rgba(244,241,234,.55);animation:tp 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+@media (max-width:900px){.talk .copy,.chat{grid-column:1 / -1}.chat{margin-top:44px;min-height:470px}}
+
+/* ---------- unlimited ---------- */
+.unl .top-row{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.unl .top-row h2{grid-column:1 / span 7}
+.unl .top-row .side{grid-column:9 / span 4;align-self:end}
+.compare{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);margin-top:72px}
+.cmp{grid-column:span 6;padding:30px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.cmp.win{background:radial-gradient(120% 140% at 0% 0%,rgba(242,183,5,.14),transparent 55%),var(--surface);border-color:rgba(242,183,5,.35)}
+.cmp .label{margin-bottom:14px}
+.cmp h3 span{color:var(--dim);font-weight:500}
+.cmp .body{margin-top:12px}
+.cmp .meter{margin-top:24px;display:grid;gap:8px}
+.cmp .meter div{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.cmp .meter i{display:block;height:100%;border-radius:inherit;background:var(--dim);transform-origin:left}
+.cmp.win .meter i{background:linear-gradient(90deg,var(--gold),var(--dawn))}
+.cmp .meter small{font:400 12px var(--mono);color:var(--dim);display:flex;justify-content:space-between}
+.stairs{margin-top:96px;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end}
+.stairs .chart{grid-column:1 / span 7}
+.stairs .chart svg{width:100%;height:auto;overflow:visible}
+.stairs ol{grid-column:9 / span 4;list-style:none;counter-reset:r}
+.stairs li{counter-increment:r;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:15px 0;border-top:1px solid var(--line)}
+.stairs li::before{content:"R" counter(r);font:500 12.5px var(--mono);color:var(--dawn);padding-top:3px}
+.stairs li b{display:block;font-weight:600}
+.stairs li span{color:var(--muted);font-size:15px}
+.stairs li.now::before{color:var(--gold)}
+.stairs li.now b::after{content:"First 30 days";margin-left:10px;font:500 10.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 7px;border-radius:99px;vertical-align:2px}
+.step-lbl{font:500 12px var(--mono);fill:var(--muted)}
+.axis{font:400 11.5px var(--mono);fill:var(--dim)}
+@media (max-width:900px){.unl .top-row h2,.unl .top-row .side,.cmp,.stairs .chart,.stairs ol{grid-column:1 / -1}.unl .top-row .side{margin-top:20px}.stairs ol{margin-top:36px}.cmp{padding:24px}}
+
+/* ---------- loop ---------- */
+.loop{background:radial-gradient(80% 70% at 80% 30%,rgba(232,137,58,.12),transparent 60%),var(--night)}
+.loop .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.loop .copy{grid-column:1 / span 5}
+.loop .copy .body{margin-top:22px}
+.loop .ring{grid-column:7 / span 6}
+.loop svg{width:100%;height:auto;overflow:visible}
+.node-t{font:600 17px var(--sans);fill:var(--text)}
+.node-s{font:400 13px var(--sans);fill:var(--muted)}
+@media (max-width:900px){.loop .copy,.loop .ring{grid-column:1 / -1}.loop .ring{margin-top:40px}}
+
+/* ---------- handled ---------- */
+.handled .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.handled figure{grid-column:1 / span 5;position:relative}
+.handled figure img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.handled .copy{grid-column:7 / span 6}
+.handled .copy .body{margin-top:22px}
+.checks{list-style:none;margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:0 var(--gut)}
+.checks li{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.checks svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--signal)}
+.checks b{display:block;font-weight:600}
+.checks span{color:var(--muted);font-size:15px}
+@media (max-width:900px){.handled figure,.handled .copy{grid-column:1 / -1}.handled .copy{margin-top:40px}.checks{grid-template-columns:1fr}}
+
+/* ---------- calculator (light) ---------- */
+.calc .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:start}
+.calc .copy{grid-column:1 / span 5}
+.calc .copy .body{margin-top:22px}
+.calc .panel{grid-column:7 / span 6;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:32px}
+.ctl + .ctl{margin-top:26px}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;font-weight:600}
+.ctl label output{font:500 15px var(--mono);color:var(--accent)}
+input[type=range]{width:100%;margin-top:12px;accent-color:#8A5A00;height:28px}
+.result{margin-top:30px;padding-top:26px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.result .big{font:700 clamp(44px,5vw,68px)/1 var(--display);letter-spacing:-.04em;font-variation-settings:"opsz" 96}
+.result .big small{font-size:.38em;letter-spacing:-.01em;font-weight:600;margin-left:4px}
+.result p{font-size:14.5px;color:var(--muted);margin-top:8px}
+.bars{margin-top:24px;display:grid;gap:10px}
+.bars div{display:grid;grid-template-columns:92px 1fr;align-items:center;gap:12px;font:400 12px var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
+.bars span{height:14px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bars i{display:block;height:100%;border-radius:inherit;background:#17181B;transform-origin:left;transition:transform .7s var(--ease)}
+.bars .q i{background:linear-gradient(90deg,#C98A00,var(--dawn))}
+.fine{margin-top:18px;font-size:13px;color:var(--dim)}
+@media (max-width:900px){.calc .copy,.calc .panel{grid-column:1 / -1}.calc .panel{margin-top:36px;padding:24px}}
+
+/* ---------- investment ---------- */
+.inv .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.inv .head{grid-column:1 / span 5}
+.inv .head .body{margin-top:22px}
+.ledger{grid-column:7 / span 6;border-top:1.5px solid var(--text)}
+.row{display:grid;grid-template-columns:1fr auto;gap:8px 24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.row b{font:650 20px var(--display);letter-spacing:-.015em;font-variation-settings:"opsz" 30}
+.row .amt{font:700 24px var(--display);letter-spacing:-.02em;text-align:right;white-space:nowrap}
+.row .amt small{font:400 13px var(--sans);color:var(--dim);letter-spacing:0}
+.row p{grid-column:1 / -1;color:var(--muted);font-size:15.5px}
+.row ul{grid-column:1 / -1;list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.row ul li{font:400 13px var(--sans);padding:6px 11px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.row.total{border-bottom:0;padding-top:28px}
+.row.total .amt{font-size:clamp(40px,4.6vw,60px);color:var(--gold)}
+.terms{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:6px}
+.terms span{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:15px}
+.terms span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--signal)}
+@media (max-width:900px){.inv .head,.ledger{grid-column:1 / -1}.ledger{margin-top:40px}}
+
+/* ---------- partners ---------- */
+.partners{padding:0 0 clamp(80px,10vw,140px)}
+.partners .grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);border-top:1px solid var(--line);padding-top:40px}
+.partners .label{margin-bottom:10px}
+.partners h3{font-size:clamp(22px,2vw,28px)}
+.partners p{color:var(--muted);margin-top:10px;font-size:15.5px}
+@media (max-width:760px){.partners .grid{grid-template-columns:1fr;gap:36px}}
+
+/* ---------- cta ---------- */
+.cta{padding:clamp(110px,14vw,200px) 0;overflow:hidden;background:radial-gradient(70% 90% at 50% 120%,rgba(242,183,5,.22),transparent 60%),radial-gradient(50% 60% at 15% 0%,rgba(232,137,58,.12),transparent 60%),var(--night)}
+.cta h2{font-size:clamp(48px,8vw,128px);max-width:12ch}
+.cta .lede{margin-top:26px}
+.cta .acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.cta .contact{margin-top:42px;display:flex;flex-wrap:wrap;gap:10px 32px;color:var(--dim)}
+.cta .contact a{display:inline-block;padding:6px 0;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .3s}
+@media (hover:hover){.cta .contact a:hover{border-color:var(--gold)}}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--dim);font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer img{height:28px;width:auto}
+
+/* reveals (only hidden when JS + motion) */
+.js:not(.rm) [data-reveal]{opacity:0}
+@media (prefers-reduced-motion:reduce){.typing i{animation:none}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm')</script>
+<a class="skip" href="#main">Skip to the proposal</a>
+
+<header class="top" id="top">
+  <div class="bar">
+    <a class="brand" href="#main" aria-label="Quinn for Jackie Harris, back to top"><i aria-hidden="true"></i>Quinn <small>for Jackie Harris</small></a>
+    <nav aria-label="Sections">
+      <a href="#heard">What we heard</a>
+      <a href="#sort">How Quinn works</a>
+      <a href="#roadmap">Roadmap</a>
+      <a class="keep" href="#investment">Investment</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="h1">
+  <div class="photo" aria-hidden="true"><img src="/proposals/jackie-harris/img/dawn.jpg" alt="" width="1536" height="864" fetchpriority="high" /></div>
+  <div class="wrap">
+    <div class="copy">
+      <p class="label" data-intro>A proposal from Local Sun Digital &amp; Acres of Diamonds</p>
+      <h1 id="h1" style="margin-top:20px">
+        <span class="line"><span>Good morning,</span></span>
+        <span class="line"><span>Jackie. It's all</span></span>
+        <span class="line"><span><em>handled.</em></span></span>
+      </h1>
+      <p class="lede" data-intro>Meet Quinn: your own AI agent. She reads every inbox across every business overnight and hands it back as one WhatsApp message. You answer in a sentence. She does the rest.</p>
+      <div class="meta mono" data-intro>
+        <div>Prepared for<b>Jackie Harris &amp; Angel</b></div>
+        <div>Prepared by<b>Jentzen Pepple &amp; Joe Wexler</b></div>
+        <div>Date<b>November 2026</b></div>
+      </div>
+    </div>
+    <aside class="notif" aria-label="Example message from Quinn">
+      <header><span class="av" aria-hidden="true">Q</span><b>Quinn</b><span class="tm">7:00 am</span></header>
+      <p>Good morning, Jackie. <strong>47 emails came in overnight. 6 need you.</strong> The rest are sorted, filed or answered. Want the list?</p>
+    </aside>
+  </div>
+</section>
+
+<!-- WHAT WE HEARD -->
+<section class="sec heard" id="heard" aria-labelledby="heard-h">
+  <div class="wrap grid">
+    <div class="head">
+      <p class="label" data-reveal>Where we are</p>
+      <h2 id="heard-h" style="margin-top:18px" data-reveal>You told us what you want. We wrote it down.</h2>
+      <p class="body lede" data-reveal>Since the spring we've demoed Athena with your room, sat down with your board and scoped Quinn with you and Angel. You've told us you're ready, so this page is the plan, start to finish, in one place.</p>
+    </div>
+    <figure data-reveal>
+      <img src="/proposals/jackie-harris/img/desk.jpg" alt="An overhead view of a crowded desk at night: scattered envelopes, receipts, sticky notes, house keys, a folded t-shirt and two phones." width="1280" height="960" loading="lazy" />
+      <figcaption class="label">Five businesses, one inbox, one person reading it</figcaption>
+    </figure>
+    <ul>
+      <li data-reveal><span class="label">The ask</span><p>You want the AI to do everything for you, not hand you one more tool to manage.</p></li>
+      <li data-reveal><span class="label">Who uses it</span><p>Mostly you and Angel. You give Quinn the email work. Angel wants the information.</p></li>
+      <li data-reveal><span class="label">The work</span><p>Credit management courses and content, real estate, the t-shirt line and your own bookkeeping, all landing in the same places.</p></li>
+      <li data-reveal><span class="label">The feel</span><p>Athena's sister, built only for you. Not a superstar generalist, a crew that knows your house.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE SORT (signature) -->
+<section class="sort" id="sort" aria-labelledby="sort-h">
+  <div class="stage">
+    <div class="wrap">
+      <div class="chapters">
+        <div class="chap" data-chap="0">
+          <p class="label">6:00 pm · the pile</p>
+          <h2 id="sort-h">Every business writes to you.</h2>
+          <p class="body">Students with credit questions. A title company. Shirt orders. Receipts. Round table invites. Most of it doesn't need you. Some of it really does.</p>
+        </div>
+        <div class="chap" data-chap="1">
+          <p class="label">Overnight · the sort</p>
+          <h2>Quinn reads every single one.</h2>
+          <p class="body">She knows which business each email belongs to, what's urgent, what's noise and what she can answer herself. Receipts get filed. Promos get muted.</p>
+        </div>
+        <div class="chap" data-chap="2">
+          <p class="label">7:00 am · the message</p>
+          <h2>You wake up to one message.</h2>
+          <p class="body">Grouped by business, with drafts ready for anything that needs your voice. Reply with a number, a yes or a sentence.</p>
+        </div>
+      </div>
+      <div class="field" aria-hidden="true">
+        <div class="mail" data-k="cr"><div class="from"><b>Credit course</b><span>6:02p</span></div><p>Module 3 question: how do I dispute a late payment?</p></div>
+        <div class="mail" data-k="re"><div class="from"><b>Real estate</b><span>6:10p</span></div><p>Closing docs are ready for signature</p></div>
+        <div class="mail" data-k="tee"><div class="from"><b>T-shirts</b><span>6:14p</span></div><p>New order: 2 tees, size M</p></div>
+        <div class="mail" data-k="x"><div class="from"><b>Promo</b><span>6:20p</span></div><p>Last chance: 40% off everything</p></div>
+        <div class="mail" data-k="bk"><div class="from"><b>Books</b><span>6:31p</span></div><p>Your receipt: printer ink, $84.17</p></div>
+        <div class="mail" data-k="aod"><div class="from"><b>AOD</b><span>6:45p</span></div><p>Round table Thursday at 4:30, are you in?</p></div>
+        <div class="mail" data-k="re"><div class="from"><b>Real estate</b><span>7:12p</span></div><p>Showing request: Saturday 11 am?</p></div>
+        <div class="mail" data-k="cr"><div class="from"><b>Credit course</b><span>7:40p</span></div><p>New enrollment: Credit Foundations</p></div>
+        <div class="mail" data-k="tee"><div class="from"><b>T-shirts</b><span>8:05p</span></div><p>Printer restock quote attached</p></div>
+        <div class="mail" data-k="x"><div class="from"><b>Newsletter</b><span>9:30p</span></div><p>This week in marketing</p></div>
+        <div class="mail" data-k="bk"><div class="from"><b>Books</b><span>10:02p</span></div><p>October statement is ready</p></div>
+        <div class="mail" data-k="aod"><div class="from"><b>Angel</b><span>11:18p</span></div><p>Did the summit list come through?</p></div>
+        <div class="phone">
+          <div class="scr">
+            <div class="bar"><span class="av" aria-hidden="true">Q</span><div><b>Quinn</b><small id="qstatus">online</small></div></div>
+            <div class="feed">
+              <span class="reading" id="reading">Read 0 of 47</span>
+              <div class="digest" id="digest">
+                <span class="dl">Good morning, Jackie. <strong>47 emails overnight, 6 need you.</strong></span>
+                <span class="dl"><strong>Real estate:</strong> closing docs ready to sign. Showing request Sat 11 am. Confirm?</span>
+                <span class="dl"><strong>Credit course:</strong> 2 student questions, drafts ready for your OK.</span>
+                <span class="dl"><strong>T-shirts:</strong> 3 orders. Restock quote is in.</span>
+                <span class="dl"><strong>Books:</strong> 9 receipts filed.</span>
+                <span class="dl"><strong>Muted:</strong> 28 promos and newsletters.</span>
+                <span class="t">7:00 am</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="illus label">Illustrative example</p>
+  </div>
+</section>
+
+<!-- TALK (light) -->
+<section class="sec talk light" aria-labelledby="talk-h">
+  <div class="wrap grid">
+    <div class="copy">
+      <p class="label" data-reveal>Release 1, live in 30 days</p>
+      <h2 id="talk-h" style="margin-top:18px" data-reveal>Talk to her like you'd talk to Angel.</h2>
+      <p class="body lede" data-reveal>No dashboard, no new app, no login. Quinn lives in WhatsApp, where you already are. Ask for a draft, change a word, say send.</p>
+      <ul data-reveal>
+        <li>Watches your inbox around the clock</li>
+        <li>Sends you a WhatsApp digest on your schedule</li>
+        <li>Drafts replies from a voice note or one line</li>
+        <li>Nothing goes out until you say so</li>
+      </ul>
+    </div>
+    <div class="chat" data-reveal>
+      <div class="bar"><span class="av" aria-hidden="true">Q</span><div><b>Quinn</b><small>online</small></div><button type="button" id="replay">Replay</button></div>
+      <div id="msgs" aria-live="polite">
+        <div class="msg me">Reply to the title company. Thursday at 2 works for signing.<small>7:04 am</small></div>
+        <div class="msg q">Here's the draft:<span class="draft">Hi Dana, thanks for the quick turnaround. Thursday at 2:00 pm works for me to sign. Please send the location or a link and I'll be there. Best, Jackie</span><small>7:04 am</small></div>
+        <div class="msg me">Perfect. Send it.<small>7:05 am</small></div>
+        <div class="msg q">Sent. I put Thursday 2:00 pm on your calendar and filed the thread under Real Estate.<small>7:05 am</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNLIMITED -->
+<section class="sec unl" id="roadmap" aria-labelledby="unl-h">
+  <div class="wrap">
+    <div class="top-row">
+      <h2 id="unl-h" data-reveal>You don't have to pick which business comes first.</h2>
+      <p class="side body lede" data-reveal>In the spring we scoped one agent for one job, and choosing which job stalled everything. So we changed the model. One monthly plan, unlimited agents, and Quinn learns one new skill at a time, in whatever order you want.</p>
+    </div>
+
+    <div class="compare">
+      <div class="cmp" data-reveal>
+        <p class="label">How we scoped it in the spring</p>
+        <h3>One-off builds <span>· $5,000 to $7,000 each</span></h3>
+        <p class="body">Each agent does one thing. Three businesses means three builds, $15,000 to $21,000 up front, and a new quote every time you want something else.</p>
+        <div class="meter"><div><i style="width:33%"></i></div><small><span>Jobs covered</span><span>1 per build</span></small></div>
+      </div>
+      <div class="cmp win" data-reveal>
+        <p class="label gold">Quinn, today</p>
+        <h3>Unlimited agents <span>· $5,000 a month</span></h3>
+        <p class="body">Every business, every job, as many agents as it takes. Usage is unlimited, all API and hosting costs are included, and she keeps getting better every month.</p>
+        <div class="meter"><div><i style="width:100%"></i></div><small><span>Jobs covered</span><span>As many as you ask for</span></small></div>
+      </div>
+    </div>
+
+    <div class="stairs">
+      <div class="chart" data-reveal>
+        <svg viewBox="0 0 640 360" role="img" aria-labelledby="st-t st-d">
+          <title id="st-t">Quinn's capability grows with each release</title>
+          <desc id="st-d">A step chart rising over six releases. Release one covers the inbox, digest and drafts. Each later release adds a new skill. Illustrative order, Jackie picks what comes next.</desc>
+          <defs><linearGradient id="stg" x1="0" x2="1"><stop offset="0" stop-color="#F2B705"/><stop offset="1" stop-color="#E8893A"/></linearGradient>
+          <linearGradient id="stf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F2B705" stop-opacity=".22"/><stop offset="1" stop-color="#F2B705" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="rgba(244,241,234,.1)">
+            <line x1="40" y1="320" x2="620" y2="320"/><line x1="40" y1="240" x2="620" y2="240"/><line x1="40" y1="160" x2="620" y2="160"/><line x1="40" y1="80" x2="620" y2="80"/>
+          </g>
+          <path id="stair-fill" fill="url(#stf)" d="M40 320 V280 H137 V240 H233 V200 H330 V160 H427 V120 H523 V70 H620 V320 Z"/>
+          <path id="stair" fill="none" stroke="url(#stg)" stroke-width="3" stroke-linejoin="round" d="M40 320 V280 H137 V240 H233 V200 H330 V160 H427 V120 H523 V70 H620"/>
+          <g class="step-lbl">
+            <text x="48" y="270">Inbox</text><text x="145" y="230">Calls</text><text x="241" y="190">Content</text><text x="338" y="150">Books</text><text x="435" y="110">Angel</text><text x="531" y="60">Sales</text>
+          </g>
+          <circle id="stair-dot" cx="620" cy="70" r="6" fill="#F2B705"/>
+          <g class="axis"><text x="40" y="344">Month 1</text><text x="560" y="344">Month 6+</text></g>
+        </svg>
+        <p class="label" style="margin-top:10px">Illustrative order and pace. You choose what comes next.</p>
+      </div>
+      <ol data-reveal>
+        <li class="now"><div><b>Inbox, digest &amp; drafts</b><span>Email monitoring, WhatsApp digest, replies drafted by WhatsApp.</span></div></li>
+        <li><div><b>Call notes</b><span>Quinn sits in on calls, summarizes them and answers questions after, like Athena does.</span></div></li>
+        <li><div><b>Course content</b><span>Lessons, posts and emails for the credit management courses, in your voice.</span></div></li>
+        <li><div><b>Bookkeeping</b><span>Receipts and statements pulled from email and filed to the box for you.</span></div></li>
+        <li><div><b>Angel's brief</b><span>The information Angel wants, sent to her own WhatsApp.</span></div></li>
+        <li><div><b>Real estate &amp; shirts</b><span>Lead replies, showing requests, order updates. Your list, your order.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- LOOP -->
+<section class="sec loop" aria-labelledby="loop-h">
+  <div class="wrap grid">
+    <div class="copy">
+      <p class="label" data-reveal>How it works</p>
+      <h2 id="loop-h" style="margin-top:18px" data-reveal>Ask on Monday. We're building by Wednesday.</h2>
+      <p class="body lede" data-reveal>One feature at a time, fully tested before the next one starts. When a release is live and working, you send the next request and it enters the build queue.</p>
+      <p class="body" data-reveal>Work starts within 24 to 48 hours of a request. Bigger skills take longer to finish, and we'll tell you how long before we start.</p>
+    </div>
+    <div class="ring" data-reveal>
+      <svg viewBox="-100 0 720 520" role="img" aria-labelledby="lp-t lp-d">
+        <title id="lp-t">The release loop</title>
+        <desc id="lp-d">A circle with four stops: you ask, we build, you test, it goes live. Then the loop starts again with the next request.</desc>
+        <circle cx="260" cy="260" r="170" fill="none" stroke="rgba(244,241,234,.12)" stroke-width="2"/>
+        <circle id="loop-arc" cx="260" cy="260" r="170" fill="none" stroke="url(#lpg)" stroke-width="3" stroke-linecap="round" transform="rotate(-90 260 260)" stroke-dasharray="1068" stroke-dashoffset="0"/>
+        <defs><linearGradient id="lpg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#F2B705"/><stop offset="1" stop-color="#E8893A"/></linearGradient></defs>
+        <g id="loop-orbit"><circle cx="260" cy="90" r="7" fill="#F2B705"/><circle cx="260" cy="90" r="16" fill="#F2B705" opacity=".18"/></g>
+        <g>
+          <circle cx="260" cy="90" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
+          <text class="node-t" x="260" y="44" text-anchor="middle">You ask</text>
+          <text class="node-s" x="260" y="64" text-anchor="middle">A WhatsApp, a call, a voice note</text>
+          <circle cx="430" cy="260" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
+          <text class="node-t" x="446" y="244">We build</text>
+          <text class="node-s" x="446" y="264">Starts in 24 to 48 hrs</text>
+          <circle cx="260" cy="430" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
+          <text class="node-t" x="260" y="466" text-anchor="middle">You test it</text>
+          <text class="node-s" x="260" y="486" text-anchor="middle">With your real inbox, your way</text>
+          <circle cx="90" cy="260" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
+          <text class="node-t" x="74" y="244" text-anchor="end">It goes live</text>
+          <text class="node-s" x="74" y="264" text-anchor="end">Then the next one</text>
+        </g>
+        <text x="260" y="252" text-anchor="middle" style="font:700 44px var(--display);letter-spacing:-.03em" fill="#F4F1EA">Quinn</text>
+        <text x="260" y="282" text-anchor="middle" class="node-s">gets one skill better</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- HANDLED -->
+<section class="sec handled" aria-labelledby="hd-h">
+  <div class="wrap grid">
+    <figure data-reveal>
+      <img src="/proposals/jackie-harris/img/cafe.jpg" alt="A woman at a sunlit cafe table glances at her phone, a latte beside her, the street softly blurred behind." width="1024" height="1280" loading="lazy" />
+    </figure>
+    <div class="copy">
+      <p class="label" data-reveal>What we run for you</p>
+      <h2 id="hd-h" style="margin-top:18px" data-reveal>You get the afternoon back. We keep the lights on.</h2>
+      <p class="body lede" data-reveal>Everything behind Quinn is ours to manage. No surprise bills for usage, no keys or servers for you to think about.</p>
+      <ul class="checks">
+        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Integrations</b><span>Email, WhatsApp, calendar and the AI models, connected and managed.</span></div></li>
+        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Security</b><span>Your inbox stays yours. Nothing is sent without your OK.</span></div></li>
+        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Hosting &amp; uptime</b><span>Quinn runs around the clock, watched by us.</span></div></li>
+        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Maintenance</b><span>Updates, fixes and model upgrades, included.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR (light) -->
+<section class="sec calc light" aria-labelledby="calc-h">
+  <div class="wrap grid">
+    <div class="copy">
+      <p class="label" data-reveal>Do the math with your numbers</p>
+      <h2 id="calc-h" style="margin-top:18px" data-reveal>What your inbox costs you now.</h2>
+      <p class="body lede" data-reveal>Move the sliders to match a normal day. This is your time, so it's your estimate, not ours.</p>
+    </div>
+    <div class="panel" data-reveal>
+      <div class="ctl">
+        <label for="em">Emails a day, all businesses <output id="emO" for="em">60</output></label>
+        <input id="em" type="range" min="10" max="250" step="5" value="60" />
+      </div>
+      <div class="ctl">
+        <label for="mn">Minutes each, reading and replying <output id="mnO" for="mn">2</output></label>
+        <input id="mn" type="range" min="1" max="6" step="0.5" value="2" />
+      </div>
+      <div class="result">
+        <div><div class="big" id="hNow">60<small>hrs</small></div><p>a month in your inbox today</p></div>
+        <div><div class="big" id="hQ" style="color:#8A5A00">3<small>hrs</small></div><p>a month reading Quinn's digest, about 5 minutes a day plus approvals</p></div>
+      </div>
+      <div class="bars" aria-hidden="true">
+        <div><b>Today</b><span><i id="bNow" style="transform:scaleX(1)"></i></span></div>
+        <div class="q"><b>With Quinn</b><span><i id="bQ" style="transform:scaleX(.05)"></i></span></div>
+      </div>
+      <p class="fine">Assumes 30 days a month and about 6 minutes a day with Quinn. Actual time depends on how much you hand her.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="sec inv" id="investment" aria-labelledby="inv-h">
+  <div class="wrap grid">
+    <div class="head">
+      <p class="label" data-reveal>Investment</p>
+      <h2 id="inv-h" style="margin-top:18px" data-reveal>One price. Everything included.</h2>
+      <p class="body lede" data-reveal>A monthly subscription with a card on file. No contract. If Quinn stops earning her keep, cancel anytime.</p>
+      <div class="terms" style="margin-top:26px" data-reveal><span>No contract</span><span>Cancel anytime</span><span>No usage caps</span><span>Release 1 in 30 days</span></div>
+    </div>
+    <div class="ledger">
+      <div class="row" data-reveal>
+        <b>Quinn, unlimited</b><span class="amt">$5,000 <small>/ month</small></span>
+        <ul><li>Unlimited agents</li><li>Unlimited usage</li><li>New feature work every month</li><li>All API &amp; infrastructure costs</li><li>Hosting, security, maintenance</li><li>Support from Jentzen &amp; Joe</li></ul>
+      </div>
+      <div class="row total" data-reveal>
+        <b>To get started</b><span class="amt">$5,000</span>
+        <p>That's it. No setup fee. Then $5,000 a month for as long as Quinn is worth it to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners" aria-labelledby="pt-h">
+  <div class="wrap">
+    <h2 id="pt-h" class="label" style="margin-bottom:26px">Who's on your team</h2>
+    <div class="grid">
+      <div data-reveal><p class="label">Local Sun Digital · Jentzen Pepple</p><h3>Builds and runs Quinn.</h3><p>Agent design, integrations, every release and the day-to-day care that keeps her sharp.</p></div>
+      <div data-reveal><p class="label">Acres of Diamonds · Joe Wexler</p><h3>The people side of it.</h3><p>A human working alongside Quinn at the start, handing more to her as she proves herself, with the AOD network behind you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" aria-labelledby="cta-h">
+  <div class="wrap">
+    <h2 id="cta-h" data-reveal>Say the word and Quinn starts reading.</h2>
+    <p class="lede" data-reveal>Start your subscription below and we'll set up your kickoff call. Release 1 lands within 30 days.</p>
+    <div class="acts" data-reveal>
+      <!-- STRIPE: replace href with the Stripe payment link -->
+      <a class="btn" id="start-quinn" href="#stripe-link-coming-soon"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn ghost" href="tel:+16198863278"><span class="t"><span>Questions? Call Jentzen</span><span>619 886 3278</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="contact mono" data-reveal>
+      <span>Jentzen Pepple · <a href="mailto:jentzen@localsundigital.com">jentzen@localsundigital.com</a></span>
+      <span><a href="https://localsundigital.com">localsundigital.com</a></span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/proposals/jackie-harris/LSD-logo.svg" alt="Local Sun Digital" width="120" height="28" />
+    <span>Prepared for Jackie Harris · November 2026 · Example messages and counts are illustrative.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = document.documentElement.classList.contains('rm');
+
+  /* ---------- calculator (works without GSAP) ---------- */
+  const em = $('#em'), mn = $('#mn');
+  const calc = () => {
+    const now = Math.round(em.value * mn.value * 30 / 60);
+    const q = 3;
+    $('#emO').textContent = em.value; $('#mnO').textContent = mn.value;
+    $('#hNow').innerHTML = now + '<small>hrs</small>';
+    $('#hQ').innerHTML = q + '<small>hrs</small>';
+    const max = Math.max(now, q);
+    $('#bNow').style.transform = `scaleX(${now / max})`;
+    $('#bQ').style.transform = `scaleX(${Math.max(.03, q / max)})`;
+  };
+  em.addEventListener('input', calc); mn.addEventListener('input', calc); calc();
+
+  if (!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- header: hide on down, show on up, mark current ---------- */
+  const top = $('#top');
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => {
+    top.classList.toggle('scrolled', s.scroll() > 40);
+    top.classList.toggle('hide', s.direction === 1 && s.scroll() > 400);
+  }});
+  $$('.top nav a').forEach(a => {
+    const sec = $(a.getAttribute('href'));
+    ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%', onToggle: s => a.classList.toggle('on', s.isActive) });
+  });
+
+  /* ---------- the sort: one driver, scroll progress of the stage ---------- */
+  const field = $('.field'), mails = $$('.mail'), phone = $('.phone'), reading = $('#reading'), lines = $$('#digest .dl, #digest .t'), digest = $('#digest');
+  const mob = () => innerWidth <= 900;
+  // scatter layout, percentages of the field; chosen to frame the phone
+  const D = [[2,6,-6],[60,2,5],[0,40,4],[66,30,-4],[8,74,-3],[62,64,6],[26,0,3],[70,86,-5],[-2,22,7],[40,82,-2],[24,58,-7],[58,46,3]];
+  const M = [[0,0,-5],[50,4,4],[2,28,3],[50,30,-4],[0,60,-3],[50,64,5],[24,14,3],[50,88,-5],[2,90,6],[26,76,-2],[6,44,-6],[48,48,3]];
+  const place = () => {
+    const P = mob() ? M : D;
+    mails.forEach((m, i) => { m.style.left = P[i][0] + '%'; m.style.top = P[i][1] + '%'; m.dataset.r = P[i][2]; });
+  };
+  place();
+  const target = m => {
+    const f = field.getBoundingClientRect(), p = phone.getBoundingClientRect();
+    const cx = p.left + p.width / 2 - f.left, cy = p.top + p.height * .62 - f.top;
+    return { x: cx - (m.offsetLeft + m.offsetWidth / 2), y: cy - (m.offsetTop + m.offsetHeight / 2) };
+  };
+  if (reduce) {
+    gsap.set(lines, { opacity: 1 }); reading.textContent = 'Read 47 of 47';
+  } else {
+    gsap.set(lines, { opacity: 0, y: 8 });
+    gsap.set(digest, { opacity: 0 });
+    gsap.set('[data-chap="1"], [data-chap="2"]', { autoAlpha: 0, y: 24 });
+    mails.forEach(m => gsap.set(m, { rotation: +m.dataset.r }));
+    const n = mails.length;
+    const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' }, scrollTrigger: {
+      trigger: '.sort', start: 'top top', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true,
+      onRefresh: place,
+      onUpdate: s => {
+        const k = gsap.utils.clamp(0, 1, (s.progress - .14) / .58);
+        reading.textContent = k >= 1 ? 'Read 47 of 47' : `Read ${Math.round(k * 47)} of 47`;
+        $('#qstatus').textContent = k > 0 && k < 1 ? 'reading...' : (k >= 1 ? 'typing...' : 'online');
+        if (s.progress > .9) $('#qstatus').textContent = 'online';
+      }
+    }});
+    tl.to({}, { duration: .8 });
+    tl.to('[data-chap="0"]', { autoAlpha: 0, y: -24, duration: .5 }, .9)
+      .to('[data-chap="1"]', { autoAlpha: 1, y: 0, duration: .5 }, 1.2);
+    mails.forEach((m, i) => {
+      tl.to(m, { x: () => target(m).x, y: () => target(m).y, rotation: 0, scale: .16, duration: 1, ease: 'power3.in' }, 1.2 + i * .38)
+        .to(m, { autoAlpha: 0, duration: .25, ease: 'none' }, 1.2 + i * .38 + .8);
+    });
+    const end = 1.2 + (n - 1) * .38 + 1.1;
+    tl.to(reading, { autoAlpha: .0, duration: .3 }, end)
+      .to('[data-chap="1"]', { autoAlpha: 0, y: -24, duration: .5 }, end)
+      .to('[data-chap="2"]', { autoAlpha: 1, y: 0, duration: .5 }, end + .3)
+      .to(digest, { opacity: 1, duration: .4 }, end + .2)
+      .to(lines, { opacity: 1, y: 0, duration: .5, stagger: .28, ease: 'expo.out' }, end + .35)
+      .to({}, { duration: 1.4 });
+    // idle: unsorted mail drifts like paper on a draft (one clock)
+    const seeds = mails.map(() => Math.random() * 6.28);
+    const io = { on: false };
+    ScrollTrigger.create({ trigger: '.sort', start: 'top bottom', end: 'bottom top', onToggle: s => io.on = s.isActive });
+    gsap.ticker.add(t => {
+      if (!io.on) return;
+      mails.forEach((m, i) => { if (gsap.getProperty(m, 'scale') > .98) gsap.set(m, { yPercent: Math.sin(t * .9 + seeds[i]) * 4, xPercent: Math.cos(t * .6 + seeds[i]) * 1.5 }); });
+    });
+  }
+
+  /* ---------- loop: the dot keeps orbiting (one clock) ---------- */
+  const orbit = $('#loop-orbit');
+  if (!reduce) {
+    const lo = { on: false };
+    ScrollTrigger.create({ trigger: '.loop', start: 'top bottom', end: 'bottom top', onToggle: s => lo.on = s.isActive });
+    gsap.ticker.add(t => { if (lo.on) gsap.set(orbit, { rotation: (t * 22) % 360, svgOrigin: '260 260' }); });
+    const arc = $('#loop-arc');
+    gsap.fromTo(arc, { strokeDashoffset: 1068 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '.loop', start: 'top 75%', end: 'center 45%', scrub: .6 } });
+  }
+
+  if (reduce) return;
+
+  /* ---------- hero intro ---------- */
+  gsap.set('.hero h1 .line > span', { yPercent: 110 });
+  const tl0 = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  tl0.to('.hero h1 .line > span', { yPercent: 0, duration: 1.3, stagger: .1 })
+     .from('.hero .photo img', { scale: 1.12, duration: 2.4, ease: 'power2.out' }, 0)
+     .from('[data-intro]', { opacity: 0, y: 20, duration: 1, stagger: .09 }, .35)
+     .from('.notif', { x: 40, opacity: 0, duration: 1.1 }, .9);
+  gsap.to('.hero .photo img', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* ---------- reveals ---------- */
+  gsap.set('[data-reveal]', { y: 28 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true,
+    onEnter: els => gsap.to(els, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: .07 }) });
+  // keyboard users never land on something still hidden
+  document.addEventListener('focusin', e => {
+    const r = e.target.closest('[data-reveal]');
+    if (r && +gsap.getProperty(r, 'opacity') < 1) gsap.to(r, { opacity: 1, y: 0, duration: .35, overwrite: true });
+  });
+
+  /* ---------- comparison meters + staircase draw ---------- */
+  $$('.cmp .meter i').forEach(i => gsap.from(i, { scaleX: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: i, start: 'top 85%', once: true } }));
+  const stair = $('#stair'), L = stair.getTotalLength();
+  gsap.set(stair, { strokeDasharray: L, strokeDashoffset: L });
+  gsap.set('#stair-fill', { opacity: 0 }); gsap.set('.step-lbl text', { opacity: 0 }); gsap.set('#stair-dot', { scale: 0, svgOrigin: '620 70' });
+  ScrollTrigger.create({ trigger: '.stairs', start: 'top 72%', once: true, onEnter: () => {
+    gsap.to(stair, { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut' });
+    gsap.to('.step-lbl text', { opacity: 1, duration: .5, stagger: .3, delay: .2 });
+    gsap.to('#stair-fill', { opacity: 1, duration: 1.2, delay: 1.2 });
+    gsap.to('#stair-dot', { scale: 1, duration: .6, ease: 'back.out(2)', delay: 2.1 });
+  }});
+
+  /* ---------- chat plays when seen ---------- */
+  const msgs = $$('#msgs > .msg'), box = $('#msgs');
+  let chatTl;
+  const playChat = () => {
+    if (chatTl) chatTl.kill();
+    $$('.typing', box).forEach(t => t.remove());
+    gsap.set(msgs, { opacity: 0, y: 12, display: 'none' });
+    chatTl = gsap.timeline();
+    msgs.forEach(m => {
+      if (m.classList.contains('q')) {
+        const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>';
+        chatTl.call(() => box.insertBefore(ty, m)).to({}, { duration: 1 }).call(() => ty.remove());
+      }
+      chatTl.set(m, { display: 'block' }).to(m, { opacity: 1, y: 0, duration: .6, ease: 'expo.out' }).to({}, { duration: m.classList.contains('me') ? .5 : 1.2 });
+    });
+  };
+  gsap.set(msgs, { opacity: 0, display: 'none' });
+  ScrollTrigger.create({ trigger: '.chat', start: 'top 65%', once: true, onEnter: playChat });
+  $('#replay').addEventListener('click', playChat);
+})();
+</script>
+</body>
+</html>
