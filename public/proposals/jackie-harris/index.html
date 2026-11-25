@@ -90,6 +90,11 @@ p{max-width:60ch}
 .top nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
 .top nav a.on::after,.top nav a:focus-visible::after{transform:scaleX(1);transform-origin:left}
 @media (hover:hover){.top nav a:hover::after{transform:scaleX(1);transform-origin:left}}
+.top nav{align-items:center}
+.top nav a.pill{padding:9px 16px;border-radius:999px;background:var(--gold);color:var(--night);font-weight:600;transition:background .35s,transform .35s var(--ease)}
+.top nav a.pill::after{display:none}
+@media (hover:hover){.top nav a.pill:hover{background:#fff;transform:translateY(-1px)}}
+.top nav a.pill:active{transform:scale(.96)}
 @media (max-width:760px){.top nav a:not(.keep){display:none}.brand small{display:none}}
 
 /* ---------- hero ---------- */
@@ -103,6 +108,9 @@ p{max-width:60ch}
 .hero h1 .line > span{display:block}
 .hero h1 em{font-style:normal;color:var(--gold)}
 .hero .lede{margin-top:26px;max-width:46ch}
+.hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:30px}
+.hero-acts .see{color:var(--muted);font-size:15.5px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line);padding:8px 0;transition:color .3s,text-decoration-color .3s}
+@media (hover:hover){.hero-acts .see:hover{color:var(--text);text-decoration-color:var(--gold)}}
 .hero .meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
 .hero .meta b{display:block;color:var(--text);font:500 15px var(--sans);letter-spacing:0;text-transform:none;margin-top:4px}
 .notif{grid-column:9 / span 4;align-self:center;justify-self:end;width:min(360px,100%);background:rgba(23,24,27,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(244,241,234,.14);border-radius:22px;padding:16px 18px 18px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
@@ -334,7 +342,8 @@ footer img{height:28px;width:auto}
       <a href="#heard">What we heard</a>
       <a href="#sort">How Quinn works</a>
       <a href="#roadmap">Roadmap</a>
-      <a class="keep" href="#investment">Investment</a>
+      <a href="#investment">Investment</a>
+      <a class="keep pill stripe-link" href="#stripe-link-coming-soon">Start Quinn</a>
     </nav>
   </div>
 </header>
@@ -353,8 +362,13 @@ footer img{height:28px;width:auto}
         <span class="line"><span><em>handled.</em></span></span>
       </h1>
       <p class="lede" data-intro>Meet Quinn: your own AI agent. She reads every inbox across every business overnight and hands it back as one WhatsApp message. You answer in a sentence. She does the rest.</p>
+      <div class="hero-acts" data-intro>
+        <!-- STRIPE: replace href on every .stripe-link with the Stripe payment link -->
+        <a class="btn stripe-link" href="#stripe-link-coming-soon"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="see" href="#heard">Or read the full plan first</a>
+      </div>
       <div class="meta mono" data-intro>
-        <div>Prepared for<b>Jackie Harris &amp; Angel</b></div>
+        <div>Prepared for<b>Jackie Harris &amp; team</b></div>
         <div>Prepared by<b>Jentzen Pepple &amp; Joe Wexler</b></div>
         <div>Date<b>November 2026</b></div>
       </div>
@@ -372,7 +386,7 @@ footer img{height:28px;width:auto}
     <div class="head">
       <p class="label" data-reveal>Where we are</p>
       <h2 id="heard-h" style="margin-top:18px" data-reveal>You told us what you want. We wrote it down.</h2>
-      <p class="body lede" data-reveal>Since the spring we've demoed Athena with your room, sat down with your board and scoped Quinn with you and Angel. You've told us you're ready, so this page is the plan, start to finish, in one place.</p>
+      <p class="body lede" data-reveal>Since the spring we've demoed Athena with your room, sat down with your board and scoped Quinn with you and your team. You've told us you're ready, so this page is the plan, start to finish, in one place.</p>
     </div>
     <figure data-reveal>
       <img src="/proposals/jackie-harris/img/desk.jpg" alt="An overhead view of a crowded desk at night: scattered envelopes, receipts, sticky notes, house keys, a folded t-shirt and two phones." width="1280" height="960" loading="lazy" />
@@ -380,7 +394,7 @@ footer img{height:28px;width:auto}
     </figure>
     <ul>
       <li data-reveal><span class="label">The ask</span><p>You want the AI to do everything for you, not hand you one more tool to manage.</p></li>
-      <li data-reveal><span class="label">Who uses it</span><p>Mostly you and Angel. You give Quinn the email work. Angel wants the information.</p></li>
+      <li data-reveal><span class="label">Who uses it</span><p>You and your team. You hand Quinn the email work. Your team gets the information they need.</p></li>
       <li data-reveal><span class="label">The work</span><p>Credit management courses and content, real estate, the t-shirt line and your own bookkeeping, all landing in the same places.</p></li>
       <li data-reveal><span class="label">The feel</span><p>Athena's sister, built only for you. Not a superstar generalist, a crew that knows your house.</p></li>
     </ul>
@@ -420,7 +434,7 @@ footer img{height:28px;width:auto}
         <div class="mail" data-k="tee"><div class="from"><b>T-shirts</b><span>8:05p</span></div><p>Printer restock quote attached</p></div>
         <div class="mail" data-k="x"><div class="from"><b>Newsletter</b><span>9:30p</span></div><p>This week in marketing</p></div>
         <div class="mail" data-k="bk"><div class="from"><b>Books</b><span>10:02p</span></div><p>October statement is ready</p></div>
-        <div class="mail" data-k="aod"><div class="from"><b>Angel</b><span>11:18p</span></div><p>Did the summit list come through?</p></div>
+        <div class="mail" data-k="aod"><div class="from"><b>Team</b><span>11:18p</span></div><p>Did the summit list come through?</p></div>
         <div class="phone">
           <div class="scr">
             <div class="bar"><span class="av" aria-hidden="true">Q</span><div><b>Quinn</b><small id="qstatus">online</small></div></div>
@@ -449,7 +463,7 @@ footer img{height:28px;width:auto}
   <div class="wrap grid">
     <div class="copy">
       <p class="label" data-reveal>Release 1, live in 30 days</p>
-      <h2 id="talk-h" style="margin-top:18px" data-reveal>Talk to her like you'd talk to Angel.</h2>
+      <h2 id="talk-h" style="margin-top:18px" data-reveal>Talk to her like you'd talk to your team.</h2>
       <p class="body lede" data-reveal>No dashboard, no new app, no login. Quinn lives in WhatsApp, where you already are. Ask for a draft, change a word, say send.</p>
       <ul data-reveal>
         <li>Watches your inbox around the clock</li>
@@ -506,7 +520,7 @@ footer img{height:28px;width:auto}
           <path id="stair-fill" fill="url(#stf)" d="M40 320 V280 H137 V240 H233 V200 H330 V160 H427 V120 H523 V70 H620 V320 Z"/>
           <path id="stair" fill="none" stroke="url(#stg)" stroke-width="3" stroke-linejoin="round" d="M40 320 V280 H137 V240 H233 V200 H330 V160 H427 V120 H523 V70 H620"/>
           <g class="step-lbl">
-            <text x="48" y="270">Inbox</text><text x="145" y="230">Calls</text><text x="241" y="190">Content</text><text x="338" y="150">Books</text><text x="435" y="110">Angel</text><text x="531" y="60">Sales</text>
+            <text x="48" y="270">Inbox</text><text x="145" y="230">Calls</text><text x="241" y="190">Content</text><text x="338" y="150">Books</text><text x="435" y="110">Team</text><text x="531" y="60">Sales</text>
           </g>
           <circle id="stair-dot" cx="620" cy="70" r="6" fill="#F2B705"/>
           <g class="axis"><text x="40" y="344">Month 1</text><text x="560" y="344">Month 6+</text></g>
@@ -518,7 +532,7 @@ footer img{height:28px;width:auto}
         <li><div><b>Call notes</b><span>Quinn sits in on calls, summarizes them and answers questions after, like Athena does.</span></div></li>
         <li><div><b>Course content</b><span>Lessons, posts and emails for the credit management courses, in your voice.</span></div></li>
         <li><div><b>Bookkeeping</b><span>Receipts and statements pulled from email and filed to the box for you.</span></div></li>
-        <li><div><b>Angel's brief</b><span>The information Angel wants, sent to her own WhatsApp.</span></div></li>
+        <li><div><b>Team brief</b><span>The updates your team needs, sent to their own WhatsApp.</span></div></li>
         <li><div><b>Real estate &amp; shirts</b><span>Lead replies, showing requests, order updates. Your list, your order.</span></div></li>
       </ol>
     </div>
@@ -652,7 +666,7 @@ footer img{height:28px;width:auto}
     <p class="lede" data-reveal>Start your subscription below and we'll set up your kickoff call. Release 1 lands within 30 days.</p>
     <div class="acts" data-reveal>
       <!-- STRIPE: replace href with the Stripe payment link -->
-      <a class="btn" id="start-quinn" href="#stripe-link-coming-soon"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn stripe-link" id="start-quinn" href="#stripe-link-coming-soon"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn ghost" href="tel:+16198863278"><span class="t"><span>Questions? Call Jentzen</span><span>619 886 3278</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
     <div class="contact mono" data-reveal>
@@ -698,7 +712,6 @@ footer img{height:28px;width:auto}
   const top = $('#top');
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => {
     top.classList.toggle('scrolled', s.scroll() > 40);
-    top.classList.toggle('hide', s.direction === 1 && s.scroll() > 400);
   }});
   $$('.top nav a').forEach(a => {
     const sec = $(a.getAttribute('href'));

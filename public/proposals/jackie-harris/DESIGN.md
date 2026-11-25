@@ -1,10 +1,10 @@
 # Jackie Harris · Quinn proposal · DESIGN.md (awwwards skill)
 
 ## Brief
-- Subject: Jackie Harris. Connector in the Acres of Diamonds (AOD) circle, several ventures at once: credit management courses and content, real estate, a t-shirt line, her own bookkeeping. Angel is the second user (wants the information, not the email work). Archie does not use it.
+- Subject: Jackie Harris. Connector in the Acres of Diamonds (AOD) circle, several ventures at once: credit management courses and content, real estate, a t-shirt line, her own bookkeeping. Her team is the second audience (wants the information, not the email work).
 - Pitch: Quinn, a custom AI agent ("Athena's sister", built for her). Release 1 = inbox monitoring, WhatsApp digest, drafting replies by WhatsApp. Then one feature at a time, unlimited agents and usage.
-- Price: $5,000/mo, card on file, no contract (from the June Canva quote, reconfirmed with Joe on 2026-11-25). Joe flagged an onboarding fee because she will need a lot of hands-on time.
-- Sources: Granola 2026-06-03 (room demo), 2026-06-03 (Joe debrief: decision paralysis, unlimited model), 2026-06-08 (Quinn scope with Jackie + Angel), 2026-05-26 (real estate site, t-shirts), 2026-11-25 (she is ready, only looking at us, board not needed again).
+- Price: $5,000 to start, then $5,000/mo, card on file, no contract. CTA goes to a Stripe subscription link.
+- Sources: Granola calls from May to November 2026 and the June Canva quote.
 - Job: get a yes on the call where we walk her through it.
 - Stack: single static `index.html` (project convention for /proposals/<slug>), GSAP + ScrollTrigger from cdnjs. No build step.
 
@@ -36,6 +36,6 @@
 ## Placeholders / assumptions
 - Email subjects, counts and the digest text are illustrative (marked on page).
 - No onboarding fee (decided 2026-11-25): $5,000 to start, then $5,000/mo.
-- CTA button `#start-quinn` points to a placeholder; swap in the Stripe payment link.
+- Both `.stripe-link` buttons (hero and closing CTA) point to a placeholder; swap in the Stripe payment link.
 - Cafe photo is AI-generated, no face; swap if it does not suit.
 - Board meetings were not found in Granola; nothing on the page cites them beyond "after the board conversations".
