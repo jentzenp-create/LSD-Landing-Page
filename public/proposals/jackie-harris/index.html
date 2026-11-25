@@ -108,7 +108,14 @@ p{max-width:60ch}
 .hero h1 .line > span{display:block}
 .hero h1 em{font-style:normal;color:var(--gold)}
 .hero .lede{margin-top:26px;max-width:46ch}
-.hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:30px}
+.price-strip{display:flex;flex-wrap:wrap;align-items:center;gap:12px 26px;margin-top:28px;padding:16px 22px;border-radius:18px;background:rgba(23,24,27,.72);border:1px solid rgba(242,183,5,.32);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);max-width:max-content}
+.price-strip .amt{font:700 clamp(30px,3vw,40px)/1 var(--display);letter-spacing:-.03em;color:var(--gold);font-variation-settings:"opsz" 96;white-space:nowrap}
+.price-strip .amt small{font:500 15px var(--sans);letter-spacing:0;color:var(--muted);margin-left:6px}
+.price-strip ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px}
+.price-strip li{display:flex;align-items:center;gap:8px;font-size:14.5px;color:var(--text)}
+.price-strip li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--signal)}
+@media (max-width:900px){.price-strip{max-width:none}.price-strip ul{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}}
+.hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:24px}
 .hero-acts .see{color:var(--muted);font-size:15.5px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line);padding:8px 0;transition:color .3s,text-decoration-color .3s}
 @media (hover:hover){.hero-acts .see:hover{color:var(--text);text-decoration-color:var(--gold)}}
 .hero .meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
@@ -343,7 +350,7 @@ footer img{height:28px;width:auto}
       <a href="#sort">How Quinn works</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#investment">Investment</a>
-      <a class="keep pill stripe-link" href="#stripe-link-coming-soon">Start Quinn</a>
+      <a class="keep pill cta-link" href="mailto:jentzen@localsundigital.com?subject=Quinn%20for%20Jackie%20Harris%3A%20let%27s%20get%20started">Get started</a>
     </nav>
   </div>
 </header>
@@ -362,9 +369,12 @@ footer img{height:28px;width:auto}
         <span class="line"><span><em>handled.</em></span></span>
       </h1>
       <p class="lede" data-intro>Meet Quinn: your own AI agent. She reads every inbox across every business overnight and hands it back as one WhatsApp message. You answer in a sentence. She does the rest.</p>
+      <div class="price-strip" data-intro>
+        <p class="amt">$5,000<small>/ month</small></p>
+        <ul><li>Unlimited agents &amp; usage</li><li>No setup fee</li><li>No contract, cancel anytime</li><li>Live in 30 days</li></ul>
+      </div>
       <div class="hero-acts" data-intro>
-        <!-- STRIPE: replace href on every .stripe-link with the Stripe payment link -->
-        <a class="btn stripe-link" href="#stripe-link-coming-soon"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn cta-link" href="mailto:jentzen@localsundigital.com?subject=Quinn%20for%20Jackie%20Harris%3A%20let%27s%20get%20started"><span class="t"><span>Email Jentzen to get started</span><span>Opens your email</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a class="see" href="#heard">Or read the full plan first</a>
       </div>
       <div class="meta mono" data-intro>
@@ -663,10 +673,9 @@ footer img{height:28px;width:auto}
 <section class="cta" aria-labelledby="cta-h">
   <div class="wrap">
     <h2 id="cta-h" data-reveal>Say the word and Quinn starts reading.</h2>
-    <p class="lede" data-reveal>Start your subscription below and we'll set up your kickoff call. Release 1 lands within 30 days.</p>
+    <p class="lede" data-reveal>Send a quick email and we'll set up your kickoff call. Release 1 lands within 30 days.</p>
     <div class="acts" data-reveal>
-      <!-- STRIPE: replace href with the Stripe payment link -->
-      <a class="btn stripe-link" id="start-quinn" href="#stripe-link-coming-soon"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn cta-link" id="start-quinn" href="mailto:jentzen@localsundigital.com?subject=Quinn%20for%20Jackie%20Harris%3A%20let%27s%20get%20started"><span class="t"><span>Email Jentzen to get started</span><span>Opens your email</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn ghost" href="tel:+16198863278"><span class="t"><span>Questions? Call Jentzen</span><span>619 886 3278</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
     <div class="contact mono" data-reveal>

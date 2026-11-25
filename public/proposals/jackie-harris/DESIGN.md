@@ -3,7 +3,7 @@
 ## Brief
 - Subject: Jackie Harris. Connector in the Acres of Diamonds (AOD) circle, several ventures at once: credit management courses and content, real estate, a t-shirt line, her own bookkeeping. Her team is the second audience (wants the information, not the email work).
 - Pitch: Quinn, a custom AI agent ("Athena's sister", built for her). Release 1 = inbox monitoring, WhatsApp digest, drafting replies by WhatsApp. Then one feature at a time, unlimited agents and usage.
-- Price: $5,000 to start, then $5,000/mo, card on file, no contract. CTA goes to a Stripe subscription link.
+- Price: $5,000 to start, then $5,000/mo, card on file, no contract. CTA is an email to Jentzen for now.
 - Sources: Granola calls from May to November 2026 and the June Canva quote.
 - Job: get a yes on the call where we walk her through it.
 - Stack: single static `index.html` (project convention for /proposals/<slug>), GSAP + ScrollTrigger from cdnjs. No build step.
@@ -36,6 +36,6 @@
 ## Placeholders / assumptions
 - Email subjects, counts and the digest text are illustrative (marked on page).
 - No onboarding fee (decided 2026-11-25): $5,000 to start, then $5,000/mo.
-- Both `.stripe-link` buttons (hero and closing CTA) point to a placeholder; swap in the Stripe payment link.
+- CTA buttons (`.cta-link`: header, hero, closing) open an email to Jentzen. Swap to a Stripe link later if wanted.
 - Cafe photo is AI-generated, no face; swap if it does not suit.
 - Board meetings were not found in Granola; nothing on the page cites them beyond "after the board conversations".
