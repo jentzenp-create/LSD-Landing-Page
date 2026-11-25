@@ -714,7 +714,12 @@ footer img{height:28px;width:auto}
   };
   em.addEventListener('input', calc); mn.addEventListener('input', calc); calc();
 
-  if (!window.gsap) return;
+  // if the animation library is blocked (in-app browsers, content blockers), fall back to the static layout
+  if (!window.gsap || !window.ScrollTrigger) {
+    document.documentElement.classList.add('rm');
+    $('#reading').textContent = 'Read 47 of 47';
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- header: hide on down, show on up, mark current ---------- */
