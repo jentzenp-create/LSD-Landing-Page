@@ -696,7 +696,7 @@ footer img{height:28px;width:auto}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(() => {
+const run = () => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = document.documentElement.classList.contains('rm');
 
@@ -727,7 +727,7 @@ footer img{height:28px;width:auto}
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => {
     top.classList.toggle('scrolled', s.scroll() > 40);
   }});
-  $$('.top nav a').forEach(a => {
+  $$('.top nav a[href^="#"]').forEach(a => {
     const sec = $(a.getAttribute('href'));
     ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%', onToggle: s => a.classList.toggle('on', s.isActive) });
   });
@@ -852,7 +852,15 @@ footer img{height:28px;width:auto}
   gsap.set(msgs, { opacity: 0, display: 'none' });
   ScrollTrigger.create({ trigger: '.chat', start: 'top 65%', once: true, onEnter: playChat });
   $('#replay').addEventListener('click', playChat);
-})();
+};
+// any script error falls back to the static, fully visible layout instead of a half-animated page
+try { run(); } catch (err) {
+  console.error(err);
+  document.documentElement.classList.add('rm');
+  if (window.ScrollTrigger) ScrollTrigger.getAll().forEach(t => t.kill());
+  if (window.gsap) gsap.set('.chap, [data-reveal], [data-intro], .mail, #digest, #digest .dl, #digest .t, #msgs > .msg, .hero h1 .line > span', { clearProps: 'all' });
+  const r = document.getElementById('reading'); if (r) r.textContent = 'Read 47 of 47';
+}
 </script>
 </body>
 </html>
