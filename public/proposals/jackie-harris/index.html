@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Quinn for Jackie Harris · Local Sun Digital</title>
-<meta name="description" content="Quinn, a custom AI agent for Jackie Harris: every inbox across every business, read overnight and handed back as one WhatsApp message." />
+<meta name="description" content="A proposal for Jackie Harris and her board: Quinn, a client-facing AI agent that coaches from her book. Scope, price and timeline." />
 <meta name="robots" content="noindex, nofollow" />
 <link rel="canonical" href="https://localsundigital.com/proposals/jackie-harris" />
 <meta property="og:title" content="Quinn, for Jackie Harris" />
-<meta property="og:description" content="Everything from every business, read for you and handed back as one message." />
+<meta property="og:description" content="Your coaching, without another Zoom call. Scope, price and timeline for board review." />
 <meta property="og:image" content="https://localsundigital.com/proposals/jackie-harris/img/og.jpg" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -129,7 +129,7 @@ p{max-width:60ch}
 .notif p strong{color:var(--text);font-weight:600}
 @media (max-width:900px){
   .hero .copy{grid-column:1 / -1}
-  .notif{grid-column:1 / -1;justify-self:start;order:-1;margin-bottom:6px}
+  .notif{grid-column:1 / -1;justify-self:start;margin-top:36px}
   .hero .photo::after{background:linear-gradient(0deg,rgba(11,11,12,.96) 0%,rgba(11,11,12,.72) 55%,rgba(11,11,12,.35) 100%)}
 }
 
@@ -244,7 +244,7 @@ html:not(.js) .field,.rm .field{height:640px}
 .stairs li b{display:block;font-weight:600}
 .stairs li span{color:var(--muted);font-size:15px}
 .stairs li.now::before{color:var(--gold)}
-.stairs li.now b::after{content:"First 30 days";margin-left:10px;font:500 10.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 7px;border-radius:99px;vertical-align:2px}
+.stairs li.now b::after{content:"First";margin-left:10px;font:500 10.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 7px;border-radius:99px;vertical-align:2px}
 .step-lbl{font:500 12px var(--mono);fill:var(--muted)}
 .axis{font:400 11.5px var(--mono);fill:var(--dim)}
 @media (max-width:900px){.unl .top-row h2,.unl .top-row .side,.cmp,.stairs .chart,.stairs ol{grid-column:1 / -1}.unl .top-row .side{margin-top:20px}.stairs ol{margin-top:36px}.cmp{padding:24px}}
@@ -333,6 +333,65 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--dim);fon
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
 footer img{height:28px;width:auto}
 
+/* ---------- board summary ---------- */
+.board .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:start}
+.board .head{grid-column:1 / span 5;position:sticky;top:96px}
+.board .head .body{margin-top:22px}
+.ask{margin-top:36px;padding:26px;border-radius:22px;background:radial-gradient(120% 140% at 0% 0%,rgba(242,183,5,.12),transparent 55%),var(--surface);border:1px solid rgba(242,183,5,.3)}
+.ask .body{margin:10px 0 20px;font-size:15.5px}
+.facts{grid-column:7 / span 6;border-top:1.5px solid var(--text)}
+.facts div{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.facts dt{padding-top:3px}
+.facts dd{color:var(--muted);font-size:16.5px}
+.facts dd b{color:var(--text);font-weight:600}
+@media (max-width:900px){.board .head,.facts{grid-column:1 / -1}.board .head{position:static}.facts{margin-top:44px}.facts div{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- scope ---------- */
+.scope{background:radial-gradient(70% 60% at 0% 100%,rgba(71,209,140,.07),transparent 60%),var(--night)}
+.scope-head{max-width:760px}
+.scope .cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);margin-top:56px}
+.col{padding:32px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}
+.col.yes{border-color:rgba(71,209,140,.3)}
+.col h3{margin-bottom:18px}
+.col ul{list-style:none}
+.col li{position:relative;padding:15px 0 15px 34px;border-top:1px solid var(--line);color:var(--muted);font-size:15.5px}
+.col li b{color:var(--text);font-weight:600}
+.col li::before{content:"";position:absolute;left:2px;top:19px;width:18px;height:18px;border-radius:50%}
+.col.yes li::before{background:rgba(71,209,140,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%2347D18C' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.col.no li::before{background:rgba(244,241,234,.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10h8' fill='none' stroke='%23F4F1EA' stroke-opacity='.6' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat}
+@media (max-width:900px){.scope .cols{grid-template-columns:1fr}.col{padding:24px}}
+
+/* ---------- agent one spec ---------- */
+.agent{background:radial-gradient(60% 50% at 100% 0%,rgba(79,140,255,.08),transparent 60%),var(--night)}
+.ag-head{max-width:820px}
+.flow{margin-top:60px}
+.flow svg{width:100%;height:auto;overflow:visible}
+.fl-box rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.fl-box rect.ok{stroke:rgba(71,209,140,.55)}
+.fl-box rect.fb{stroke:rgba(232,137,58,.55)}
+.fl-n text{font:500 13px var(--mono);fill:var(--gold)}
+.fl-t text{font:650 19px var(--sans);fill:var(--text)}
+.fl-s text{font:400 14px var(--sans);fill:var(--muted)}
+.flow-narrow{display:none;list-style:none;counter-reset:f}
+.flow-narrow li{counter-increment:f;position:relative;padding:14px 0 14px 46px;border-left:2px solid rgba(242,183,5,.35);margin-left:14px}
+.flow-narrow li::before{content:counter(f);position:absolute;left:-15px;top:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--night);border:2px solid var(--gold);font:500 12px var(--mono);color:var(--gold)}
+.flow-narrow b{display:block;font-weight:600}
+.flow-narrow span{color:var(--muted);font-size:15px}
+@media (max-width:900px){.flow-wide{display:none}.flow-narrow{display:block}}
+.specs{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gut);margin-top:64px}
+.spec{padding:30px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.spec .label{color:var(--gold);margin-bottom:12px}
+.spec .body{margin-top:12px}
+.honest{margin-top:var(--gut);padding:28px 30px;border-radius:22px;border:1px dashed rgba(244,241,234,.22);display:grid;grid-template-columns:160px 1fr;gap:20px}
+.honest p:last-child{color:var(--text);font-size:17px;max-width:none}
+.stack{margin-top:64px;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.stack-head{grid-column:1 / span 4}
+.stack-head .body{margin-top:12px}
+.stack dl{grid-column:6 / span 7;border-top:1.5px solid var(--text)}
+.stack dl div{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.stack dd{color:var(--muted);font-size:16px}
+@media (max-width:900px){.specs{grid-template-columns:1fr}.spec{padding:24px}.honest{grid-template-columns:1fr;gap:8px;padding:22px}.stack-head,.stack dl{grid-column:1 / -1}.stack dl div{grid-template-columns:1fr;gap:6px}}
+
 /* reveals (only hidden when JS + motion) */
 .js:not(.rm) [data-reveal]{opacity:0}
 @media (prefers-reduced-motion:reduce){.typing i{animation:none}}
@@ -346,9 +405,9 @@ footer img{height:28px;width:auto}
   <div class="bar">
     <a class="brand" href="#main" aria-label="Quinn for Jackie Harris, back to top"><i aria-hidden="true"></i>Quinn <small>for Jackie Harris</small></a>
     <nav aria-label="Sections">
-      <a href="#heard">What we heard</a>
-      <a href="#sort">How Quinn works</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#board">Board summary</a>
+      <a href="#agent-one">Agent one</a>
+      <a href="#scope">Scope</a>
       <a href="#investment">Investment</a>
       <a class="keep pill cta-link" href="https://buy.stripe.com/9B64gz18E5TE9yW3As0kE0T">Start Quinn</a>
     </nav>
@@ -364,29 +423,53 @@ footer img{height:28px;width:auto}
     <div class="copy">
       <p class="label" data-intro>A proposal from Local Sun Digital &amp; Acres of Diamonds</p>
       <h1 id="h1" style="margin-top:20px">
-        <span class="line"><span>Good morning,</span></span>
-        <span class="line"><span>Jackie. It's all</span></span>
-        <span class="line"><span><em>handled.</em></span></span>
+        <span class="line"><span>Your coaching,</span></span>
+        <span class="line"><span>without another</span></span>
+        <span class="line"><span><em>Zoom call.</em></span></span>
       </h1>
-      <p class="lede" data-intro>Meet Quinn: your own AI agent. She reads every inbox across every business overnight and hands it back as one WhatsApp message. You answer in a sentence. She does the rest.</p>
+      <p class="lede" data-intro>Quinn is a client-facing AI agent built on your book and resources. She answers client questions and coaches between sessions, so you can take on Working Entrepreneurs without leading every call yourself.</p>
       <div class="price-strip" data-intro>
         <p class="amt">$5,000<small>/ month</small></p>
-        <ul><li>Unlimited agents &amp; usage</li><li>No setup fee</li><li>No contract, cancel anytime</li><li>Live in 30 days</li></ul>
+        <ul><li>Unlimited agents, one at a time</li><li>No setup fee</li><li>No contract, cancel anytime</li><li>Testing 7 to 14 days after onboarding</li></ul>
       </div>
       <div class="hero-acts" data-intro>
         <a class="btn cta-link" href="https://buy.stripe.com/9B64gz18E5TE9yW3As0kE0T"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="see" href="#heard">Or read the full plan first</a>
+        <a class="see" href="#board">See the board summary</a>
       </div>
       <div class="meta mono" data-intro>
-        <div>Prepared for<b>Jackie Harris &amp; team</b></div>
+        <div>Prepared for<b>Jackie Harris &amp; the board</b></div>
         <div>Prepared by<b>Jentzen Pepple &amp; Joe Wexler</b></div>
         <div>Date<b>November 2026</b></div>
       </div>
     </div>
     <aside class="notif" aria-label="Example message from Quinn">
-      <header><span class="av" aria-hidden="true">Q</span><b>Quinn</b><span class="tm">7:00 am</span></header>
-      <p>Good morning, Jackie. <strong>47 emails came in overnight. 6 need you.</strong> The rest are sorted, filed or answered. Want the list?</p>
+      <header><span class="av" aria-hidden="true">Q</span><b>Quinn</b><span class="tm">9:14 pm</span></header>
+      <p>A Working Entrepreneurs client asked how to price her first offer. <strong>Answered from your book.</strong> One question tonight is flagged for you.</p>
     </aside>
+  </div>
+</section>
+
+<!-- BOARD SUMMARY -->
+<section class="sec board" id="board" aria-labelledby="board-h">
+  <div class="wrap grid">
+    <div class="head">
+      <p class="label" data-reveal>For the board</p>
+      <h2 id="board-h" style="margin-top:18px" data-reveal>The whole proposal on one page.</h2>
+      <p class="body lede" data-reveal>Jackie is taking this to her board as C-corporation protocol. Here is the straight version: what's included, what isn't, what it costs and how it starts. The rest of the page explains each part.</p>
+      <div class="ask" data-reveal>
+        <h3>Questions before the meeting?</h3>
+        <p class="body">Send them ahead and we'll answer in writing. Jentzen and Joe are also happy to join the board meeting to answer questions directly.</p>
+        <a class="btn ghost" href="mailto:jentzen@localsundigital.com?subject=Quinn%20proposal%3A%20board%20questions"><span class="t"><span>Send board questions</span><span>Opens your email</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <dl class="facts">
+      <div data-reveal><dt class="label">Scope</dt><dd><b>One subscription, unlimited agents, added one at a time.</b> The first agent is a client-facing AI chatbot built with retrieval augmented generation (RAG): it answers client questions and coaches from Jackie's books and resources, cites its source on every answer, falls back cleanly when the books don't cover a topic, and only lets in clients Jackie approves.</dd></div>
+      <div data-reveal><dt class="label">Not included</dt><dd>An exact copy of the example Jackie sent, her likeness or voice, a standalone app, or fully autonomous client consultations. None of these were settled, so none are promised here.</dd></div>
+      <div data-reveal><dt class="label">Price</dt><dd><b>$5,000 per month.</b> Card on file. No setup fee. No contract, cancel anytime. The first agent is included at that price.</dd></div>
+      <div data-reveal><dt class="label">Onboarding</dt><dd>After the subscription starts, one onboarding call to share materials and define how the agent should look, feel and work.</dd></div>
+      <div data-reveal><dt class="label">Timeline</dt><dd><b>About 7 to 14 days after onboarding</b> to a version Jackie can start testing. An estimate, not a guaranteed launch date. We'd revisit the work together at 3 to 6 months.</dd></div>
+      <div data-reveal><dt class="label">After that</dt><dd>More agents, one at a time, in Jackie's order. A marketing agent for her book or consulting services is one option we discussed.</dd></div>
+    </dl>
   </div>
 </section>
 
@@ -394,19 +477,19 @@ footer img{height:28px;width:auto}
 <section class="sec heard" id="heard" aria-labelledby="heard-h">
   <div class="wrap grid">
     <div class="head">
-      <p class="label" data-reveal>Where we are</p>
-      <h2 id="heard-h" style="margin-top:18px" data-reveal>You told us what you want. We wrote it down.</h2>
-      <p class="body lede" data-reveal>Since the spring we've demoed Athena with your room, sat down with your board and scoped Quinn with you and your team. You've told us you're ready, so this page is the plan, start to finish, in one place.</p>
+      <p class="label" data-reveal>What you told us</p>
+      <h2 id="heard-h" style="margin-top:18px" data-reveal>Consulting first. Everything else after.</h2>
+      <p class="body lede" data-reveal>On our last call you told us what comes first. This revision is built around that one priority.</p>
     </div>
     <figure data-reveal>
-      <img src="/proposals/jackie-harris/img/desk.jpg" alt="An overhead view of a crowded desk at night: scattered envelopes, receipts, sticky notes, house keys, a folded t-shirt and two phones." width="1280" height="960" loading="lazy" />
-      <figcaption class="label">Five businesses, one inbox, one person reading it</figcaption>
+      <img src="/proposals/jackie-harris/img/desk.jpg" alt="An overhead view of a crowded desk at night: scattered envelopes, notes, receipts and two phones." width="1280" height="960" loading="lazy" />
+      <figcaption class="label">Today, every client question waits for you</figcaption>
     </figure>
     <ul>
-      <li data-reveal><span class="label">The ask</span><p>You want the AI to do everything for you, not hand you one more tool to manage.</p></li>
-      <li data-reveal><span class="label">Who uses it</span><p>You and your team. You hand Quinn the email work. Your team gets the information they need.</p></li>
-      <li data-reveal><span class="label">The work</span><p>Credit management courses and content, real estate, the t-shirt line and your own bookkeeping, all landing in the same places.</p></li>
-      <li data-reveal><span class="label">The feel</span><p>Athena's sister, built only for you. Not a superstar generalist, a crew that knows your house.</p></li>
+      <li data-reveal><span class="label">The opportunity</span><p>Consulting with Working Entrepreneurs, without having to lead every Zoom call yourself.</p></li>
+      <li data-reveal><span class="label">Agent one</span><p>A Quinn your clients talk to. She answers their questions and coaches them with your book and the resources you give her.</p></li>
+      <li data-reveal><span class="label">The package</span><p>Same subscription and price. This is the first agent, not a replacement for the rest of what Quinn can become.</p></li>
+      <li data-reveal><span class="label">The process</span><p>Board review first, as C-corporation protocol, then you start the subscription and we book onboarding.</p></li>
     </ul>
   </div>
 </section>
@@ -417,47 +500,44 @@ footer img{height:28px;width:auto}
     <div class="wrap">
       <div class="chapters">
         <div class="chap" data-chap="0">
-          <p class="label">6:00 pm · the pile</p>
-          <h2 id="sort-h">Every business writes to you.</h2>
-          <p class="body">Students with credit questions. A title company. Shirt orders. Receipts. Round table invites. Most of it doesn't need you. Some of it really does.</p>
+          <p class="label">Working Entrepreneurs · the questions</p>
+          <h2 id="sort-h">Every client has questions. Every day.</h2>
+          <p class="body">Pricing, cash flow, credit, confidence. Right now each one waits for you or for the next Zoom call.</p>
         </div>
         <div class="chap" data-chap="1">
-          <p class="label">Overnight · the sort</p>
-          <h2>Quinn reads every single one.</h2>
-          <p class="body">She knows which business each email belongs to, what's urgent, what's noise and what she can answer herself. Receipts get filed. Promos get muted.</p>
+          <p class="label">Quinn · your book, on call</p>
+          <h2>Quinn answers from your book.</h2>
+          <p class="body">She coaches with your book and the resources you give her, in the way you set up during onboarding. When something falls outside your material, she sends it to you.</p>
         </div>
         <div class="chap" data-chap="2">
-          <p class="label">7:00 am · the message</p>
-          <h2>You wake up to one message.</h2>
-          <p class="body">Grouped by business, with drafts ready for anything that needs your voice. Reply with a number, a yes or a sentence.</p>
+          <p class="label">You · where it counts</p>
+          <h2>You step in where it counts.</h2>
+          <p class="body">You get a recap of what clients asked, with the questions that need you flagged. Your Zoom time goes to the conversations that need you.</p>
         </div>
       </div>
       <div class="field" aria-hidden="true">
-        <div class="mail" data-k="cr"><div class="from"><b>Credit course</b><span>6:02p</span></div><p>Module 3 question: how do I dispute a late payment?</p></div>
-        <div class="mail" data-k="re"><div class="from"><b>Real estate</b><span>6:10p</span></div><p>Closing docs are ready for signature</p></div>
-        <div class="mail" data-k="tee"><div class="from"><b>T-shirts</b><span>6:14p</span></div><p>New order: 2 tees, size M</p></div>
-        <div class="mail" data-k="x"><div class="from"><b>Promo</b><span>6:20p</span></div><p>Last chance: 40% off everything</p></div>
-        <div class="mail" data-k="bk"><div class="from"><b>Books</b><span>6:31p</span></div><p>Your receipt: printer ink, $84.17</p></div>
-        <div class="mail" data-k="aod"><div class="from"><b>AOD</b><span>6:45p</span></div><p>Round table Thursday at 4:30, are you in?</p></div>
-        <div class="mail" data-k="re"><div class="from"><b>Real estate</b><span>7:12p</span></div><p>Showing request: Saturday 11 am?</p></div>
-        <div class="mail" data-k="cr"><div class="from"><b>Credit course</b><span>7:40p</span></div><p>New enrollment: Credit Foundations</p></div>
-        <div class="mail" data-k="tee"><div class="from"><b>T-shirts</b><span>8:05p</span></div><p>Printer restock quote attached</p></div>
-        <div class="mail" data-k="x"><div class="from"><b>Newsletter</b><span>9:30p</span></div><p>This week in marketing</p></div>
-        <div class="mail" data-k="bk"><div class="from"><b>Books</b><span>10:02p</span></div><p>October statement is ready</p></div>
-        <div class="mail" data-k="aod"><div class="from"><b>Team</b><span>11:18p</span></div><p>Did the summit list come through?</p></div>
+        <div class="mail" data-k="cr"><div class="from"><b>Cash flow</b><span>9:02a</span></div><p>How much should I keep in reserve before I hire?</p></div>
+        <div class="mail" data-k="re"><div class="from"><b>Pricing</b><span>9:40a</span></div><p>Am I charging too little for my services?</p></div>
+        <div class="mail" data-k="tee"><div class="from"><b>Marketing</b><span>10:15a</span></div><p>Where do I start with my first email list?</p></div>
+        <div class="mail" data-k="x"><div class="from"><b>Scheduling</b><span>11:03a</span></div><p>Can I talk to Jackie about my offer?</p></div>
+        <div class="mail" data-k="bk"><div class="from"><b>Credit</b><span>12:20p</span></div><p>How do I build business credit separate from mine?</p></div>
+        <div class="mail" data-k="aod"><div class="from"><b>Mindset</b><span>1:45p</span></div><p>I keep stalling on my launch. Any advice?</p></div>
+        <div class="mail" data-k="re"><div class="from"><b>Pricing</b><span>2:30p</span></div><p>Should I offer a payment plan?</p></div>
+        <div class="mail" data-k="cr"><div class="from"><b>Cash flow</b><span>3:12p</span></div><p>Which numbers should I check every week?</p></div>
+        <div class="mail" data-k="tee"><div class="from"><b>Marketing</b><span>4:05p</span></div><p>Is it worth paying for ads yet?</p></div>
+        <div class="mail" data-k="x"><div class="from"><b>Resources</b><span>5:30p</span></div><p>Where's the worksheet Jackie mentioned?</p></div>
+        <div class="mail" data-k="bk"><div class="from"><b>Credit</b><span>7:18p</span></div><p>What hurts a business credit score most?</p></div>
+        <div class="mail" data-k="aod"><div class="from"><b>Mindset</b><span>9:14p</span></div><p>How do I stay consistent when I'm tired?</p></div>
         <div class="phone">
           <div class="scr">
             <div class="bar"><span class="av" aria-hidden="true">Q</span><div><b>Quinn</b><small id="qstatus">online</small></div></div>
             <div class="feed">
-              <span class="reading" id="reading">Read 0 of 47</span>
+              <span class="reading" id="reading">Answered 0 of 31</span>
               <div class="digest" id="digest">
-                <span class="dl">Good morning, Jackie. <strong>47 emails overnight, 6 need you.</strong></span>
-                <span class="dl"><strong>Real estate:</strong> closing docs ready to sign. Showing request Sat 11 am. Confirm?</span>
-                <span class="dl"><strong>Credit course:</strong> 2 student questions, drafts ready for your OK.</span>
-                <span class="dl"><strong>T-shirts:</strong> 3 orders. Restock quote is in.</span>
-                <span class="dl"><strong>Books:</strong> 9 receipts filed.</span>
-                <span class="dl"><strong>Muted:</strong> 28 promos and newsletters.</span>
-                <span class="t">7:00 am</span>
+                <span class="dl">Today's client recap, Jackie. <strong>31 questions answered from your book and resources.</strong></span>
+                <span class="dl"><strong>Flagged for you (4):</strong> 2 pricing questions that need your judgment, 1 client asking for a call, 1 topic your materials don't cover yet.</span>
+                <span class="dl"><strong>Top themes:</strong> cash flow, pricing, business credit.</span>
+                <span class="t">9:30 pm</span>
               </div>
             </div>
           </div>
@@ -472,56 +552,161 @@ footer img{height:28px;width:auto}
 <section class="sec talk light" aria-labelledby="talk-h">
   <div class="wrap grid">
     <div class="copy">
-      <p class="label" data-reveal>Release 1, live in 30 days</p>
-      <h2 id="talk-h" style="margin-top:18px" data-reveal>Talk to her like you'd talk to your team.</h2>
-      <p class="body lede" data-reveal>No dashboard, no new app, no login. Quinn lives in WhatsApp, where you already are. Ask for a draft, change a word, say send.</p>
+      <p class="label" data-reveal>Agent one · your consulting agent</p>
+      <h2 id="talk-h" style="margin-top:18px" data-reveal>Your clients get coaching between calls.</h2>
+      <p class="body lede" data-reveal>Clients ask Quinn what they'd ask you. She answers with your material, keeps them moving, and hands them to you when they need you.</p>
       <ul data-reveal>
-        <li>Watches your inbox around the clock</li>
-        <li>Sends you a WhatsApp digest on your schedule</li>
-        <li>Drafts replies from a voice note or one line</li>
-        <li>Nothing goes out until you say so</li>
+        <li>Answers client questions at any hour</li>
+        <li>Coaches from your book and the resources you provide</li>
+        <li>Hands off to you when a client needs a real conversation</li>
+        <li>Look, feel and rules defined by you at onboarding</li>
       </ul>
     </div>
     <div class="chat" data-reveal>
-      <div class="bar"><span class="av" aria-hidden="true">Q</span><div><b>Quinn</b><small>online</small></div><button type="button" id="replay">Replay</button></div>
+      <div class="bar"><span class="av" aria-hidden="true">Q</span><div><b>Quinn</b><small>Jackie's consulting agent</small></div><button type="button" id="replay">Replay</button></div>
       <div id="msgs" aria-live="polite">
-        <div class="msg me">Reply to the title company. Thursday at 2 works for signing.<small>7:04 am</small></div>
-        <div class="msg q">Here's the draft:<span class="draft">Hi Dana, thanks for the quick turnaround. Thursday at 2:00 pm works for me to sign. Please send the location or a link and I'll be there. Best, Jackie</span><small>7:04 am</small></div>
-        <div class="msg me">Perfect. Send it.<small>7:05 am</small></div>
-        <div class="msg q">Sent. I put Thursday 2:00 pm on your calendar and filed the thread under Real Estate.<small>7:05 am</small></div>
+        <div class="msg me">I have three clients ready but I keep putting off sending my prices. Help?<small>Client · 8:41 pm</small></div>
+        <div class="msg q">That's a normal place to get stuck right before a launch. Let's take it one step: what result does a client walk away with? We'll anchor your price to that, not your hours.<span class="draft">Source: Jackie's book · the passage on pricing your offer</span><small>8:41 pm</small></div>
+        <div class="msg me">That helps. Can I talk to Jackie about my offer?<small>Client · 8:44 pm</small></div>
+        <div class="msg q">Of course. I've flagged this for Jackie with a short summary so you won't have to start from scratch.<small>8:44 pm</small></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- UNLIMITED -->
+<!-- AGENT ONE SPEC -->
+<section class="sec agent" id="agent-one" aria-labelledby="ag-h">
+  <div class="wrap">
+    <div class="ag-head">
+      <p class="label" data-reveal>Agent one · how it's built</p>
+      <h2 id="ag-h" style="margin-top:18px" data-reveal>A chatbot that reads your books before it answers.</h2>
+      <p class="body lede" data-reveal>Your first agent is a custom AI chatbot built with retrieval augmented generation (RAG). Before every answer it searches your books and resources, then answers from what it found and shows where it found it.</p>
+    </div>
+
+    <figure class="flow" data-reveal>
+      <svg viewBox="0 0 1200 250" role="img" aria-labelledby="fl-t fl-d" class="flow-wide">
+        <title id="fl-t">How agent one answers a question</title>
+        <desc id="fl-d">Five steps: a signed-in client asks a question, Quinn checks their access, searches Jackie's library, then either answers with citations or uses a clean fallback when the books don't cover it.</desc>
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F2B705"/></marker></defs>
+        <g class="fl-line" fill="none" stroke="#F2B705" stroke-width="2" marker-end="url(#ar)">
+          <path d="M196 90 H246"/><path d="M436 90 H486"/><path d="M676 90 H726"/>
+          <path d="M916 90 C950 90 950 50 978 50"/><path d="M916 90 C950 90 950 175 978 175"/>
+        </g>
+        <g class="fl-box">
+          <rect x="10" y="40" width="186" height="100" rx="18"/><rect x="250" y="40" width="186" height="100" rx="18"/>
+          <rect x="490" y="40" width="186" height="100" rx="18"/><rect x="730" y="40" width="186" height="100" rx="18"/>
+          <rect class="ok" x="982" y="8" width="208" height="86" rx="18"/><rect class="fb" x="982" y="132" width="208" height="86" rx="18"/>
+        </g>
+        <g class="fl-n"><text x="30" y="72">1</text><text x="270" y="72">2</text><text x="510" y="72">3</text><text x="750" y="72">4</text></g>
+        <g class="fl-t">
+          <text x="30" y="100">Client asks</text><text x="270" y="100">Access check</text><text x="510" y="100">Search library</text><text x="750" y="100">Draft answer</text>
+          <text x="1002" y="44">Answer + citations</text><text x="1002" y="168">Clean fallback</text>
+        </g>
+        <g class="fl-s">
+          <text x="30" y="122">Signed in, any device</text><text x="270" y="122">Approved clients only</text><text x="510" y="122">Your books come first</text><text x="750" y="122">Grounded in what it found</text>
+          <text x="1002" y="70">Book and passage shown</text><text x="1002" y="194">Not covered? It says so</text>
+        </g>
+      </svg>
+      <ol class="flow-narrow">
+        <li><b>Client asks</b><span>Signed in, on any device</span></li>
+        <li><b>Access check</b><span>Only your approved clients get in</span></li>
+        <li><b>Search your library</b><span>Your books and resources come first</span></li>
+        <li><b>Draft the answer</b><span>Grounded in the passages it found</span></li>
+        <li><b>Answer with citations</b><span>Or a clean fallback when the books don't cover it</span></li>
+      </ol>
+    </figure>
+
+    <div class="specs">
+      <div class="spec" data-reveal>
+        <p class="label">01 · Reference library</p>
+        <h3>Your books are the primary source.</h3>
+        <p class="body">We load your books and the resources you choose into a private library. Quinn searches it for every question and answers from those passages first.</p>
+      </div>
+      <div class="spec" data-reveal>
+        <p class="label">02 · Citations</p>
+        <h3>Every answer shows its source.</h3>
+        <p class="body">Each answer names the book and passage it came from, so you and your clients can check it. If Quinn can't point to a source, she uses the fallback instead.</p>
+      </div>
+      <div class="spec" data-reveal>
+        <p class="label">03 · Clean fallback</p>
+        <h3>When the books don't have it, she says so.</h3>
+        <p class="body">No guessing dressed up as your advice. Quinn tells the client the topic isn't in your material and can pass the question to you.</p>
+      </div>
+      <div class="spec" data-reveal>
+        <p class="label">04 · Client access</p>
+        <h3>You decide who gets in.</h3>
+        <p class="body">Invite-only client logins. Add or remove a client in seconds, and see who is using it. A Working Entrepreneurs cohort can get its own access group.</p>
+      </div>
+    </div>
+
+    <div class="honest" data-reveal>
+      <p class="label">Straight talk</p>
+      <p>RAG makes your books the first place Quinn looks, but no AI system is a perfect lock to its sources. That's exactly why citations and the fallback are part of the build, not extras: you can always see where an answer came from, and when your books don't cover something, Quinn says so instead of improvising.</p>
+    </div>
+
+    <div class="stack" data-reveal>
+      <div class="stack-head">
+        <h3>Our recommended stack</h3>
+        <p class="body">What we'd use for this job. Final choices are confirmed with you at onboarding.</p>
+      </div>
+      <dl>
+        <div><dt class="label">Library &amp; search</dt><dd>Your books split into passages and stored in a private vector database (Postgres with pgvector on Supabase), using hybrid keyword and meaning search so exact phrases and related ideas both match.</dd></div>
+        <div><dt class="label">Answer model</dt><dd>Claude by Anthropic, using its built-in citations feature so every answer points back to the exact passages it used.</dd></div>
+        <div><dt class="label">Guardrails</dt><dd>Instructions that keep Quinn in your coaching style, a relevance threshold that triggers the fallback, and flagging for anything that needs you.</dd></div>
+        <div><dt class="label">Client access</dt><dd>Supabase Auth with invite-only accounts, access groups per program, and an admin view for you to add, pause or remove clients.</dd></div>
+        <div><dt class="label">Where clients use it</dt><dd>A private, branded web chat that works on phone and desktop. The example you shared informs the design; the look and flow get decided together at onboarding.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE -->
+<section class="sec scope" id="scope" aria-labelledby="scope-h">
+  <div class="wrap">
+    <div class="scope-head">
+      <p class="label" data-reveal>Scope</p>
+      <h2 id="scope-h" style="margin-top:18px" data-reveal>What's included. What isn't.</h2>
+      <p class="body lede" data-reveal>Clear lines so there are no surprises for you or your board.</p>
+    </div>
+    <div class="cols">
+      <div class="col yes" data-reveal>
+        <h3>Included at $5,000 a month</h3>
+        <ul>
+          <li><b>Your first agent:</b> a client-facing RAG chatbot that answers questions and coaches from your books and resources</li>
+          <li><b>Source citations</b> on every answer and a <b>clean fallback</b> when your books don't cover a topic</li>
+          <li><b>Client access controls:</b> invite-only logins you can add, pause or remove</li>
+          <li><b>An onboarding call</b> to gather your materials and define how the agent looks, feels and works</li>
+          <li><b>A testing version</b> about 7 to 14 days after onboarding, refined with you before launch</li>
+          <li><b>Unlimited agents and usage</b>, added one at a time after the first is live</li>
+          <li><b>Hosting, security, maintenance</b> and all AI and infrastructure costs</li>
+          <li><b>A check-in at 3 to 6 months</b> to review the work and decide what's next</li>
+        </ul>
+      </div>
+      <div class="col no" data-reveal>
+        <h3>Not part of this proposal</h3>
+        <ul>
+          <li><b>An exact copy of the example you sent.</b> It can inform the design. The actual experience and requirements get defined together at onboarding.</li>
+          <li><b>Your likeness or voice.</b> Quinn is her own agent unless we scope this separately.</li>
+          <li><b>A standalone app.</b> Where clients reach Quinn is decided at onboarding.</li>
+          <li><b>Fully autonomous consultations.</b> Quinn supports your clients and hands them to you. She doesn't replace your judgment.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS OVER TIME -->
 <section class="sec unl" id="roadmap" aria-labelledby="unl-h">
   <div class="wrap">
     <div class="top-row">
-      <h2 id="unl-h" data-reveal>You don't have to pick which business comes first.</h2>
-      <p class="side body lede" data-reveal>In the spring we scoped one agent for one job, and choosing which job stalled everything. So we changed the model. One monthly plan, unlimited agents, and Quinn learns one new skill at a time, in whatever order you want.</p>
+      <h2 id="unl-h" data-reveal>Agent one is the start, not the whole package.</h2>
+      <p class="side body lede" data-reveal>The subscription covers unlimited agents, built one at a time. Once your consulting agent is live and working, you tell us what's next.</p>
     </div>
-
-    <div class="compare">
-      <div class="cmp" data-reveal>
-        <p class="label">How we scoped it in the spring</p>
-        <h3>One-off builds <span>· $5,000 to $7,000 each</span></h3>
-        <p class="body">Each agent does one thing. Three businesses means three builds, $15,000 to $21,000 up front, and a new quote every time you want something else.</p>
-        <div class="meter"><div><i style="width:33%"></i></div><small><span>Jobs covered</span><span>1 per build</span></small></div>
-      </div>
-      <div class="cmp win" data-reveal>
-        <p class="label gold">Quinn, today</p>
-        <h3>Unlimited agents <span>· $5,000 a month</span></h3>
-        <p class="body">Every business, every job, as many agents as it takes. Usage is unlimited, all API and hosting costs are included, and she keeps getting better every month.</p>
-        <div class="meter"><div><i style="width:100%"></i></div><small><span>Jobs covered</span><span>As many as you ask for</span></small></div>
-      </div>
-    </div>
-
     <div class="stairs">
       <div class="chart" data-reveal>
         <svg viewBox="0 0 640 360" role="img" aria-labelledby="st-t st-d">
-          <title id="st-t">Quinn's capability grows with each release</title>
-          <desc id="st-d">A step chart rising over six releases. Release one covers the inbox, digest and drafts. Each later release adds a new skill. Illustrative order, Jackie picks what comes next.</desc>
+          <title id="st-t">Quinn grows one agent at a time</title>
+          <desc id="st-d">A step chart rising over six steps. Step one is the consulting agent, step two a marketing agent, and later steps are agents Jackie chooses.</desc>
           <defs><linearGradient id="stg" x1="0" x2="1"><stop offset="0" stop-color="#F2B705"/><stop offset="1" stop-color="#E8893A"/></linearGradient>
           <linearGradient id="stf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F2B705" stop-opacity=".22"/><stop offset="1" stop-color="#F2B705" stop-opacity="0"/></linearGradient></defs>
           <g stroke="rgba(244,241,234,.1)">
@@ -530,58 +715,55 @@ footer img{height:28px;width:auto}
           <path id="stair-fill" fill="url(#stf)" d="M40 320 V280 H137 V240 H233 V200 H330 V160 H427 V120 H523 V70 H620 V320 Z"/>
           <path id="stair" fill="none" stroke="url(#stg)" stroke-width="3" stroke-linejoin="round" d="M40 320 V280 H137 V240 H233 V200 H330 V160 H427 V120 H523 V70 H620"/>
           <g class="step-lbl">
-            <text x="48" y="270">Inbox</text><text x="145" y="230">Calls</text><text x="241" y="190">Content</text><text x="338" y="150">Books</text><text x="435" y="110">Team</text><text x="531" y="60">Sales</text>
+            <text x="48" y="270">Consulting</text><text x="145" y="230">Marketing</text><text x="241" y="190">Agent 3</text><text x="338" y="150">Agent 4</text><text x="435" y="110">Agent 5</text><text x="531" y="60">Agent 6</text>
           </g>
           <circle id="stair-dot" cx="620" cy="70" r="6" fill="#F2B705"/>
-          <g class="axis"><text x="40" y="344">Month 1</text><text x="560" y="344">Month 6+</text></g>
+          <g class="axis"><text x="40" y="344">Start</text><text x="560" y="344">Over time</text></g>
         </svg>
-        <p class="label" style="margin-top:10px">Illustrative order and pace. You choose what comes next.</p>
+        <p class="label" style="margin-top:10px">Illustrative. One agent at a time, in the order you choose.</p>
       </div>
       <ol data-reveal>
-        <li class="now"><div><b>Inbox, digest &amp; drafts</b><span>Email monitoring, WhatsApp digest, replies drafted by WhatsApp.</span></div></li>
-        <li><div><b>Call notes</b><span>Quinn sits in on calls, summarizes them and answers questions after, like Athena does.</span></div></li>
-        <li><div><b>Course content</b><span>Lessons, posts and emails for the credit management courses, in your voice.</span></div></li>
-        <li><div><b>Bookkeeping</b><span>Receipts and statements pulled from email and filed to the box for you.</span></div></li>
-        <li><div><b>Team brief</b><span>The updates your team needs, sent to their own WhatsApp.</span></div></li>
-        <li><div><b>Real estate &amp; shirts</b><span>Lead replies, showing requests, order updates. Your list, your order.</span></div></li>
+        <li class="now"><div><b>Consulting agent</b><span>Answers client questions and coaches from your book and resources.</span></div></li>
+        <li><div><b>Marketing agent</b><span>One option we discussed: promoting your book or your consulting services.</span></div></li>
+        <li><div><b>Whatever's next</b><span>Your call. Each new agent starts once the one before it is live and working.</span></div></li>
       </ol>
     </div>
   </div>
 </section>
 
-<!-- LOOP -->
-<section class="sec loop" aria-labelledby="loop-h">
+<!-- DELIVERY PATH -->
+<section class="sec loop" id="path" aria-labelledby="loop-h">
   <div class="wrap grid">
     <div class="copy">
-      <p class="label" data-reveal>How it works</p>
-      <h2 id="loop-h" style="margin-top:18px" data-reveal>Ask on Monday. We're building by Wednesday.</h2>
-      <p class="body lede" data-reveal>One feature at a time, fully tested before the next one starts. When a release is live and working, you send the next request and it enters the build queue.</p>
-      <p class="body" data-reveal>Work starts within 24 to 48 hours of a request. Bigger skills take longer to finish, and we'll tell you how long before we start.</p>
+      <p class="label" data-reveal>How it starts</p>
+      <h2 id="loop-h" style="margin-top:18px" data-reveal>From yes to a version you can test.</h2>
+      <p class="body lede" data-reveal>You start the subscription, we meet for onboarding, and about 7 to 14 days later you're testing your consulting agent with real questions.</p>
+      <p class="body" data-reveal>That 7 to 14 days is our estimate from the onboarding call to a first testing version, not a guaranteed launch date. Launch happens when it works the way you want. At 3 to 6 months we'll review the work together.</p>
     </div>
     <div class="ring" data-reveal>
       <svg viewBox="-100 0 720 520" role="img" aria-labelledby="lp-t lp-d">
-        <title id="lp-t">The release loop</title>
-        <desc id="lp-d">A circle with four stops: you ask, we build, you test, it goes live. Then the loop starts again with the next request.</desc>
+        <title id="lp-t">The delivery path</title>
+        <desc id="lp-d">A circle with four stops: you subscribe, an onboarding call, a testing version about 7 to 14 days after onboarding, then refine and launch before the next agent.</desc>
         <circle cx="260" cy="260" r="170" fill="none" stroke="rgba(244,241,234,.12)" stroke-width="2"/>
         <circle id="loop-arc" cx="260" cy="260" r="170" fill="none" stroke="url(#lpg)" stroke-width="3" stroke-linecap="round" transform="rotate(-90 260 260)" stroke-dasharray="1068" stroke-dashoffset="0"/>
         <defs><linearGradient id="lpg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#F2B705"/><stop offset="1" stop-color="#E8893A"/></linearGradient></defs>
         <g id="loop-orbit"><circle cx="260" cy="90" r="7" fill="#F2B705"/><circle cx="260" cy="90" r="16" fill="#F2B705" opacity=".18"/></g>
         <g>
           <circle cx="260" cy="90" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
-          <text class="node-t" x="260" y="44" text-anchor="middle">You ask</text>
-          <text class="node-s" x="260" y="64" text-anchor="middle">A WhatsApp, a call, a voice note</text>
+          <text class="node-t" x="260" y="44" text-anchor="middle">1 · You subscribe</text>
+          <text class="node-s" x="260" y="64" text-anchor="middle">After the board signs off</text>
           <circle cx="430" cy="260" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
-          <text class="node-t" x="446" y="244">We build</text>
-          <text class="node-s" x="446" y="264">Starts in 24 to 48 hrs</text>
+          <text class="node-t" x="446" y="244">2 · Onboarding call</text>
+          <text class="node-s" x="446" y="264">Your book, materials, rules</text>
           <circle cx="260" cy="430" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
-          <text class="node-t" x="260" y="466" text-anchor="middle">You test it</text>
-          <text class="node-s" x="260" y="486" text-anchor="middle">With your real inbox, your way</text>
+          <text class="node-t" x="260" y="466" text-anchor="middle">3 · Testing version</text>
+          <text class="node-s" x="260" y="486" text-anchor="middle">About 7 to 14 days after onboarding</text>
           <circle cx="90" cy="260" r="5" fill="#0F1012" stroke="#F2B705" stroke-width="2"/>
-          <text class="node-t" x="74" y="244" text-anchor="end">It goes live</text>
-          <text class="node-s" x="74" y="264" text-anchor="end">Then the next one</text>
+          <text class="node-t" x="74" y="244" text-anchor="end">4 · Refine &amp; launch</text>
+          <text class="node-s" x="74" y="264" text-anchor="end">Then the next agent</text>
         </g>
         <text x="260" y="252" text-anchor="middle" style="font:700 44px var(--display);letter-spacing:-.03em" fill="#F4F1EA">Quinn</text>
-        <text x="260" y="282" text-anchor="middle" class="node-s">gets one skill better</text>
+        <text x="260" y="282" text-anchor="middle" class="node-s">one agent at a time</text>
       </svg>
     </div>
   </div>
@@ -595,11 +777,11 @@ footer img{height:28px;width:auto}
     </figure>
     <div class="copy">
       <p class="label" data-reveal>What we run for you</p>
-      <h2 id="hd-h" style="margin-top:18px" data-reveal>You get the afternoon back. We keep the lights on.</h2>
-      <p class="body lede" data-reveal>Everything behind Quinn is ours to manage. No surprise bills for usage, no keys or servers for you to think about.</p>
+      <h2 id="hd-h" style="margin-top:18px" data-reveal>You coach where it counts. We keep the lights on.</h2>
+      <p class="body lede" data-reveal>Everything behind Quinn is ours to manage. No usage bills, no keys or servers for you to think about.</p>
       <ul class="checks">
-        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Integrations</b><span>Email, WhatsApp, calendar and the AI models, connected and managed.</span></div></li>
-        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Security</b><span>Your inbox stays yours. Nothing is sent without your OK.</span></div></li>
+        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Integrations</b><span>The AI models and the tools Quinn needs, connected and managed.</span></div></li>
+        <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Security</b><span>Your book, materials and client conversations kept private.</span></div></li>
         <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Hosting &amp; uptime</b><span>Quinn runs around the clock, watched by us.</span></div></li>
         <li data-reveal><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Maintenance</b><span>Updates, fixes and model upgrades, included.</span></div></li>
       </ul>
@@ -612,27 +794,31 @@ footer img{height:28px;width:auto}
   <div class="wrap grid">
     <div class="copy">
       <p class="label" data-reveal>Do the math with your numbers</p>
-      <h2 id="calc-h" style="margin-top:18px" data-reveal>What your inbox costs you now.</h2>
-      <p class="body lede" data-reveal>Move the sliders to match a normal day. This is your time, so it's your estimate, not ours.</p>
+      <h2 id="calc-h" style="margin-top:18px" data-reveal>What client calls cost you now.</h2>
+      <p class="body lede" data-reveal>Move the sliders to match the consulting load you expect. It's your time, so it's your estimate, not ours.</p>
     </div>
     <div class="panel" data-reveal>
       <div class="ctl">
-        <label for="em">Emails a day, all businesses <output id="emO" for="em">60</output></label>
-        <input id="em" type="range" min="10" max="250" step="5" value="60" />
+        <label for="em">Client calls a week <output id="emO" for="em">10</output></label>
+        <input id="em" type="range" min="1" max="40" step="1" value="10" />
       </div>
       <div class="ctl">
-        <label for="mn">Minutes each, reading and replying <output id="mnO" for="mn">2</output></label>
-        <input id="mn" type="range" min="1" max="6" step="0.5" value="2" />
+        <label for="mn">Minutes each call <output id="mnO" for="mn">60</output></label>
+        <input id="mn" type="range" min="15" max="120" step="15" value="60" />
+      </div>
+      <div class="ctl">
+        <label for="sh">Share Quinn could handle between calls <output id="shO" for="sh">40%</output></label>
+        <input id="sh" type="range" min="10" max="80" step="5" value="40" />
       </div>
       <div class="result">
-        <div><div class="big" id="hNow">60<small>hrs</small></div><p>a month in your inbox today</p></div>
-        <div><div class="big" id="hQ" style="color:#8A5A00">3<small>hrs</small></div><p>a month reading Quinn's digest, about 5 minutes a day plus approvals</p></div>
+        <div><div class="big" id="hNow">43<small>hrs</small></div><p>a month on client calls today</p></div>
+        <div><div class="big" id="hQ" style="color:#8A5A00">17<small>hrs</small></div><p>a month back if Quinn handles that share</p></div>
       </div>
       <div class="bars" aria-hidden="true">
         <div><b>Today</b><span><i id="bNow" style="transform:scaleX(1)"></i></span></div>
-        <div class="q"><b>With Quinn</b><span><i id="bQ" style="transform:scaleX(.05)"></i></span></div>
+        <div class="q"><b>With Quinn</b><span><i id="bQ" style="transform:scaleX(.6)"></i></span></div>
       </div>
-      <p class="fine">Assumes 30 days a month and about 6 minutes a day with Quinn. Actual time depends on how much you hand her.</p>
+      <p class="fine">Uses about 4.3 weeks a month. Your real numbers depend on your clients and what you hand to Quinn.</p>
     </div>
   </div>
 </section>
@@ -642,18 +828,18 @@ footer img{height:28px;width:auto}
   <div class="wrap grid">
     <div class="head">
       <p class="label" data-reveal>Investment</p>
-      <h2 id="inv-h" style="margin-top:18px" data-reveal>One price. Everything included.</h2>
+      <h2 id="inv-h" style="margin-top:18px" data-reveal>One price. Your first agent included.</h2>
       <p class="body lede" data-reveal>A monthly subscription with a card on file. No contract. If Quinn stops earning her keep, cancel anytime.</p>
-      <div class="terms" style="margin-top:26px" data-reveal><span>No contract</span><span>Cancel anytime</span><span>No usage caps</span><span>Release 1 in 30 days</span></div>
+      <div class="terms" style="margin-top:26px" data-reveal><span>No setup fee</span><span>No contract</span><span>Cancel anytime</span><span>No usage caps</span></div>
     </div>
     <div class="ledger">
       <div class="row" data-reveal>
         <b>Quinn, unlimited</b><span class="amt">$5,000 <small>/ month</small></span>
-        <ul><li>Unlimited agents</li><li>Unlimited usage</li><li>New feature work every month</li><li>All API &amp; infrastructure costs</li><li>Hosting, security, maintenance</li><li>Support from Jentzen &amp; Joe</li></ul>
+        <ul><li>Your consulting agent, first</li><li>Unlimited agents, one at a time</li><li>Unlimited usage</li><li>Onboarding call</li><li>All AI &amp; infrastructure costs</li><li>Hosting, security, maintenance</li><li>3 to 6 month review</li></ul>
       </div>
       <div class="row total" data-reveal>
         <b>To get started</b><span class="amt">$5,000</span>
-        <p>That's it. No setup fee. Then $5,000 a month for as long as Quinn is worth it to you.</p>
+        <p>No setup fee. Then $5,000 a month for as long as Quinn is worth it to you.</p>
       </div>
     </div>
   </div>
@@ -663,8 +849,8 @@ footer img{height:28px;width:auto}
   <div class="wrap">
     <h2 id="pt-h" class="label" style="margin-bottom:26px">Who's on your team</h2>
     <div class="grid">
-      <div data-reveal><p class="label">Local Sun Digital · Jentzen Pepple</p><h3>Builds and runs Quinn.</h3><p>Agent design, integrations, every release and the day-to-day care that keeps her sharp.</p></div>
-      <div data-reveal><p class="label">Acres of Diamonds · Joe Wexler</p><h3>The people side of it.</h3><p>A human working alongside Quinn at the start, handing more to her as she proves herself, with the AOD network behind you.</p></div>
+      <div data-reveal><p class="label">Local Sun Digital · Jentzen Pepple</p><h3>Builds and runs Quinn.</h3><p>Your consulting agent, every agent after it, and the day-to-day care that keeps them sharp.</p></div>
+      <div data-reveal><p class="label">Acres of Diamonds · Joe Wexler</p><h3>Partner on this engagement.</h3><p>Available with Jentzen for your board meeting and for onboarding.</p></div>
     </div>
   </div>
 </section>
@@ -672,15 +858,15 @@ footer img{height:28px;width:auto}
 <!-- CTA -->
 <section class="cta" aria-labelledby="cta-h">
   <div class="wrap">
-    <h2 id="cta-h" data-reveal>Say the word and Quinn starts reading.</h2>
-    <p class="lede" data-reveal>Start your subscription and we'll reach out to set up your kickoff call. Release 1 lands within 30 days.</p>
+    <h2 id="cta-h" data-reveal>When the board says yes, Quinn starts with your book.</h2>
+    <p class="lede" data-reveal>Start your subscription and we'll book your onboarding call. Questions first? Send them over and we'll answer before your meeting.</p>
     <div class="acts" data-reveal>
       <a class="btn cta-link" id="start-quinn" href="https://buy.stripe.com/9B64gz18E5TE9yW3As0kE0T"><span class="t"><span>Start Quinn · $5,000/mo</span><span>Secure checkout</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a class="btn ghost" href="tel:+16198863278"><span class="t"><span>Questions? Call Jentzen</span><span>619 886 3278</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn ghost" href="mailto:jentzen@localsundigital.com?subject=Quinn%20proposal%3A%20board%20questions"><span class="t"><span>Send questions first</span><span>Opens your email</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
     <div class="contact mono" data-reveal>
       <span>Jentzen Pepple · <a href="mailto:jentzen@localsundigital.com">jentzen@localsundigital.com</a></span>
-      <span><a href="https://localsundigital.com">localsundigital.com</a></span>
+      <span><a href="tel:+16198863278">619 886 3278</a></span>
     </div>
   </div>
 </section>
@@ -701,23 +887,22 @@ const run = () => {
   const reduce = document.documentElement.classList.contains('rm');
 
   /* ---------- calculator (works without GSAP) ---------- */
-  const em = $('#em'), mn = $('#mn');
+  const em = $('#em'), mn = $('#mn'), sh = $('#sh');
   const calc = () => {
-    const now = Math.round(em.value * mn.value * 30 / 60);
-    const q = 3;
-    $('#emO').textContent = em.value; $('#mnO').textContent = mn.value;
+    const now = Math.round(em.value * mn.value * 4.33 / 60);
+    const back = Math.round(now * sh.value / 100);
+    $('#emO').textContent = em.value; $('#mnO').textContent = mn.value; $('#shO').textContent = sh.value + '%';
     $('#hNow').innerHTML = now + '<small>hrs</small>';
-    $('#hQ').innerHTML = q + '<small>hrs</small>';
-    const max = Math.max(now, q);
-    $('#bNow').style.transform = `scaleX(${now / max})`;
-    $('#bQ').style.transform = `scaleX(${Math.max(.03, q / max)})`;
+    $('#hQ').innerHTML = back + '<small>hrs</small>';
+    $('#bNow').style.transform = 'scaleX(1)';
+    $('#bQ').style.transform = `scaleX(${Math.max(.03, (now - back) / Math.max(1, now))})`;
   };
-  em.addEventListener('input', calc); mn.addEventListener('input', calc); calc();
+  [em, mn, sh].forEach(i => i.addEventListener('input', calc)); calc();
 
   // if the animation library is blocked (in-app browsers, content blockers), fall back to the static layout
   if (!window.gsap || !window.ScrollTrigger) {
     document.documentElement.classList.add('rm');
-    $('#reading').textContent = 'Read 47 of 47';
+    $('#reading').textContent = 'Answered 31 of 31';
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
@@ -749,7 +934,7 @@ const run = () => {
     return { x: cx - (m.offsetLeft + m.offsetWidth / 2), y: cy - (m.offsetTop + m.offsetHeight / 2) };
   };
   if (reduce) {
-    gsap.set(lines, { opacity: 1 }); reading.textContent = 'Read 47 of 47';
+    gsap.set(lines, { opacity: 1 }); reading.textContent = 'Answered 31 of 31';
   } else {
     gsap.set(lines, { opacity: 0, y: 8 });
     gsap.set(digest, { opacity: 0 });
@@ -761,8 +946,8 @@ const run = () => {
       onRefresh: place,
       onUpdate: s => {
         const k = gsap.utils.clamp(0, 1, (s.progress - .14) / .58);
-        reading.textContent = k >= 1 ? 'Read 47 of 47' : `Read ${Math.round(k * 47)} of 47`;
-        $('#qstatus').textContent = k > 0 && k < 1 ? 'reading...' : (k >= 1 ? 'typing...' : 'online');
+        reading.textContent = k >= 1 ? 'Answered 31 of 31' : `Answered ${Math.round(k * 31)} of 31`;
+        $('#qstatus').textContent = k > 0 && k < 1 ? 'answering...' : (k >= 1 ? 'writing recap...' : 'online');
         if (s.progress > .9) $('#qstatus').textContent = 'online';
       }
     }});
@@ -822,7 +1007,6 @@ const run = () => {
   });
 
   /* ---------- comparison meters + staircase draw ---------- */
-  $$('.cmp .meter i').forEach(i => gsap.from(i, { scaleX: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: i, start: 'top 85%', once: true } }));
   const stair = $('#stair'), L = stair.getTotalLength();
   gsap.set(stair, { strokeDasharray: L, strokeDashoffset: L });
   gsap.set('#stair-fill', { opacity: 0 }); gsap.set('.step-lbl text', { opacity: 0 }); gsap.set('#stair-dot', { scale: 0, svgOrigin: '620 70' });
@@ -859,7 +1043,7 @@ try { run(); } catch (err) {
   document.documentElement.classList.add('rm');
   if (window.ScrollTrigger) ScrollTrigger.getAll().forEach(t => t.kill());
   if (window.gsap) gsap.set('.chap, [data-reveal], [data-intro], .mail, #digest, #digest .dl, #digest .t, #msgs > .msg, .hero h1 .line > span', { clearProps: 'all' });
-  const r = document.getElementById('reading'); if (r) r.textContent = 'Read 47 of 47';
+  const r = document.getElementById('reading'); if (r) r.textContent = 'Answered 31 of 31';
 }
 </script>
 </body>

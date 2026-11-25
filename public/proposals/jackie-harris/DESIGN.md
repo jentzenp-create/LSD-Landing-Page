@@ -1,41 +1,26 @@
 # Jackie Harris · Quinn proposal · DESIGN.md (awwwards skill)
 
-## Brief
-- Subject: Jackie Harris. Connector in the Acres of Diamonds (AOD) circle, several ventures at once: credit management courses and content, real estate, a t-shirt line, her own bookkeeping. Her team is the second audience (wants the information, not the email work).
-- Pitch: Quinn, a custom AI agent ("Athena's sister", built for her). Release 1 = inbox monitoring, WhatsApp digest, drafting replies by WhatsApp. Then one feature at a time, unlimited agents and usage.
-- Price: $5,000 to start, then $5,000/mo, card on file, no contract. CTA goes to the Stripe subscription link.
-- Sources: Granola calls from May to November 2026 and the June Canva quote.
-- Job: get a yes on the call where we walk her through it.
+## Brief (revision 2)
+- Subject: Jackie Harris, consultant. Immediate priority: a client-facing Quinn agent that extends her consulting work, so she can take on Working Entrepreneurs without leading every Zoom call.
+- Agent one: a custom RAG chatbot. Her books are the reference library and primary source. Source citations on every answer, a clean fallback when the books don't cover a topic, invite-only client access controls. Her example site informs the design only.
+- Package: same subscription, unlimited agents added one at a time. A marketing agent for her book or consulting services is a possible later agent.
+- Not promised: an exact copy of her example, her likeness or voice, a standalone app, fully autonomous consultations.
+- Delivery: subscribe, onboarding call, testing version about 7 to 14 days after onboarding (estimate), review at 3 to 6 months.
+- Price: $5,000/mo, card on file, no setup fee, no contract, cancel anytime. CTA goes to the Stripe subscription link.
+- Audience: Jackie and her board (C-corporation protocol). Board summary sits right after the hero; questions invited in advance.
 - Stack: single static `index.html` (project convention for /proposals/<slug>), GSAP + ScrollTrigger from cdnjs. No build step.
 
-## Concepts considered
-1. **One message instead of a hundred (picked).** The page is Quinn's overnight shift. Your inbox from five businesses piles up, Quinn reads it all, and at 7:00 am you get one message. Anchor: her first feature literally is inbox to WhatsApp digest, and her wish that the AI does everything. Originality 4, fit 5, feasibility 5, portability 2.
-2. The house crew. Her own line: she does not want a superstar cleaning her house, she wants the crew built for her house. Strong copy line (used in the "why unlimited" section) but weak as a visual system.
-3. The board deck. Proposal styled as a board packet. Portable to any client; rejected.
-
 ## Concept card
-- Idea: everything from all your businesses, read for you, handed back as one short message.
-- Metaphor: the mail room at dawn: letters come in, get sorted, one note goes up to the boss.
-- Signature: the sort. A sticky stage where ~13 email cards from her real ventures sit scattered; scroll files them one by one into the phone, which then writes the morning digest. Driver = section scroll progress. Idle: unsorted cards drift slightly, the phone's online dot pulses.
-- Emotion: relief. "Oh, that's my inbox and it's handled."
+- Idea: your coaching, available to clients between calls, answered from your own books.
+- Signature: the sticky stage. Client questions sit scattered; scroll files them into the phone, which writes Jackie a recap with flagged questions. Driver = section scroll progress. Idle: unanswered cards drift slightly.
 - Motion verb: sort like mail (slide, stack, file away; nothing bounces).
-- Screenshot: half-sorted stage with the digest writing itself in the phone.
 
 ## System
-- Palette: night #0F1012 (ground), ink-2 #17181B (surfaces), paper #EFEAE0 (light breather sections, envelopes), gold #F2B705 (LSD, CTA only), dawn #E8893A (warm accent from the photos, charts), signal #47D18C (Quinn online / read receipts, tiny doses).
-- Type: Bricolage Grotesque (display, 600 to 800, tight negative tracking) · Inter (body 17px/1.55) · JetBrains Mono (timestamps, labels with real info).
-- Grid: 12 col, 24px gutter, max 1280.
-- Shape: 18px radius for phone/cards/messages (chat world), 999px on buttons.
-- Sections (each different family): full-bleed photo hero with phone · editorial split "what we heard" · sticky sort stage · light chat demo · staircase chart + roadmap list · release loop diagram · photo + checklist · hours calculator · ledger investment · partners strip · CTA.
-
-## Genericness test
-- Generic version = LSD dark template with cards and a price table. Replaced with her own inbox as the hero object and a signature tied to Quinn's actual first feature.
-- Generic hover = color swap. Here buttons slide their label up like a letter into a slot.
-- Kept quiet: no loader, no GL, no smooth scroll. It's a proposal she reads on her phone.
+- Palette: night #0F1012, ink-2 #17181B, paper #EFEAE0 (light sections), gold #F2B705 (LSD, CTA only), dawn #E8893A (charts), signal #47D18C (status, included items).
+- Type: Bricolage Grotesque (display) · Inter (body) · JetBrains Mono (labels).
+- Sections: photo hero with price strip · board summary (sticky intro + fact list) · what you told us · sticky question stage · light chat demo · agent one RAG spec (flow diagram, four specs, straight talk, stack) · scope included / not included · agents over time · delivery path ring · photo + checklist · calls calculator · ledger investment · partners · CTA.
 
 ## Placeholders / assumptions
-- Email subjects, counts and the digest text are illustrative (marked on page).
-- No onboarding fee (decided 2026-11-25): $5,000 to start, then $5,000/mo.
-- CTA buttons (`.cta-link`: header, hero, closing) go to the Stripe payment link.
+- Client questions, counts, the recap and the chat are illustrative (marked on page). Nothing quotes her actual book.
+- Stack is a recommendation, confirmed at onboarding.
 - Cafe photo is AI-generated, no face; swap if it does not suit.
-- Board meetings were not found in Granola; nothing on the page cites them beyond "after the board conversations".
