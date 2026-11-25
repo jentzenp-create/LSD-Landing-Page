@@ -105,13 +105,41 @@
             "destination": "/blog/:slug/index.html"
         },
         {
+            "source": "/rsr-partners",
+            "destination": "/rsr-partners/index.html"
+        },
+        {
+            "source": "/rsr-partners/",
+            "destination": "/rsr-partners/index.html"
+        },
+        {
+            "source": "/rsr-partners/conversation",
+            "destination": "/rsr-partners/conversation/index.html"
+        },
+        {
+            "source": "/rsr-partners/conversation/",
+            "destination": "/rsr-partners/conversation/index.html"
+        },
+        {
+            "source": "/rsr-partners/seats/:slug",
+            "destination": "/rsr-partners/seats/:slug/index.html"
+        },
+        {
+            "source": "/rsr-partners/seats/:slug/",
+            "destination": "/rsr-partners/seats/:slug/index.html"
+        },
+        {
+            "source": "/rsr-partners/(.*)",
+            "destination": "/rsr-partners/404.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
     ],
     "headers": [
         {
-            "source": "/(proposals|baxter-advisors|gatherly|lake-tahoe-pontoons|dr-leslie-k|richard-rodman|dugan-insurance)",
+            "source": "/(proposals|baxter-advisors|gatherly|lake-tahoe-pontoons|dr-leslie-k|richard-rodman|dugan-insurance|rsr-partners)",
             "headers": [
                 {
                     "key": "X-Robots-Tag",
@@ -124,7 +152,7 @@
             ]
         },
         {
-            "source": "/(proposals|baxter-advisors|gatherly|lake-tahoe-pontoons|dr-leslie-k|richard-rodman|dugan-insurance)/(.*)",
+            "source": "/(proposals|baxter-advisors|gatherly|lake-tahoe-pontoons|dr-leslie-k|richard-rodman|dugan-insurance|rsr-partners)/(.*)",
             "headers": [
                 {
                     "key": "X-Robots-Tag",
