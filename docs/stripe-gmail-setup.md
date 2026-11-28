@@ -17,10 +17,7 @@ Open the Supabase SQL editor, paste `scripts/stripe_purchases_table.sql`, and ru
 1. In Google Cloud Console, create or pick a project and enable the **Gmail API**.
 2. On the OAuth consent screen, add your sending Gmail address as a test user. Then **publish** the app. Otherwise the token expires after 7 days.
 3. Under Credentials, create an **OAuth client ID** of type **Desktop app**.
-4. Run this locally, then open the link it prints and approve:
-   ```powershell
-   $env:GOOGLE_CLIENT_ID="..."; $env:GOOGLE_CLIENT_SECRET="..."; node scripts/gmail-auth.mjs
-   ```
+4. In a terminal in the project folder, run `node scripts/gmail-auth.mjs`. Paste the Client ID and secret when asked, then open the link it prints and approve.
 5. Copy the `GMAIL_REFRESH_TOKEN` it prints.
 
 The only permission requested is `gmail.send`. The site can send mail but cannot read your inbox.

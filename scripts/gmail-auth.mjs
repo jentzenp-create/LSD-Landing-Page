@@ -4,16 +4,19 @@
 // 2. Credentials > Create OAuth client ID > "Desktop app". Copy the client ID and secret.
 // 3. OAuth consent screen: add your Gmail address as a test user (or publish the app,
 //    otherwise refresh tokens expire after 7 days).
-// 4. Run (PowerShell):
-//      $env:GOOGLE_CLIENT_ID="..."; $env:GOOGLE_CLIENT_SECRET="..."; node scripts/gmail-auth.mjs
+// 4. Run from the project folder:  node scripts/gmail-auth.mjs
+//    It asks for the client ID and secret (or reads GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET).
 // 5. Open the printed link, sign in with the sending account, approve.
 //    The refresh token prints here. Save it in Vercel as GMAIL_REFRESH_TOKEN.
 import http from 'node:http';
+import { createInterface } from 'node:readline/promises';
 
-const clientId = process.env.GOOGLE_CLIENT_ID;
-const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+const rl = createInterface({ input: process.stdin, output: process.stdout });
+const clientId = process.env.GOOGLE_CLIENT_ID || (await rl.question('Paste your Google OAuth Client ID: ')).trim();
+const clientSecret = process.env.GOOGLE_CLIENT_SECRET || (await rl.question('Paste your Google OAuth Client secret: ')).trim();
+rl.close();
 if (!clientId || !clientSecret) {
-  console.error('Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET first.');
+  console.error('Both the Client ID and Client secret are needed.');
   process.exit(1);
 }
 
