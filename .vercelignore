@@ -1,0 +1,14 @@
+.claude
+node_modules
+dist
+dist-ssr
+
+# Local proposal/source artifacts that are not served by Vercel.
+Gatherly Proposal
+*.mp4
+/*.png
+
+# Local logs and environment files.
+*.log
+.env
+.env*.local
