@@ -2,7 +2,7 @@
 
 When someone pays through any Stripe Payment Link:
 
-1. Stripe calls `https://localsundigital.com/api/stripe-webhook`.
+1. Stripe calls `https://try.localsundigital.com/api/stripe-webhook`.
 2. The webhook checks Stripe's signature, logs the purchase in Supabase (`stripe_purchases`), and
 3. sends the **Day 0 welcome email** from your Gmail, plus a **purchase alert** to you.
 
@@ -24,7 +24,7 @@ The only permission requested is `gmail.send`. The site can send mail but cannot
 
 ### 3. Stripe webhook
 Go to Stripe Dashboard > Developers > Webhooks > Add endpoint.
-- URL: `https://localsundigital.com/api/stripe-webhook`
+- URL: `https://try.localsundigital.com/api/stripe-webhook`
 - Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`
 - Copy the signing secret (`whsec_...`).
 

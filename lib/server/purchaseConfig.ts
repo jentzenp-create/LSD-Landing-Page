@@ -18,7 +18,7 @@ export interface PackageConfig {
   extraNextSteps?: string[];
 }
 
-export const SITE_URL = 'https://localsundigital.com';
+export const SITE_URL = 'https://try.localsundigital.com';
 
 /** First name used to sign client emails. */
 export const SIGN_OFF_NAME = 'Jentzen';

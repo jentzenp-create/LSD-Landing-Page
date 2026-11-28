@@ -2,7 +2,7 @@
  * Stripe webhook: runs automations after a purchase.
  *
  * Stripe dashboard > Developers > Webhooks > Add endpoint
- *   URL:    https://localsundigital.com/api/stripe-webhook
+ *   URL:    https://try.localsundigital.com/api/stripe-webhook
  *   Events: checkout.session.completed, checkout.session.async_payment_succeeded
  *
  * Env vars:
